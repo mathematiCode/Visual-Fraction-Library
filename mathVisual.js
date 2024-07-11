@@ -11,7 +11,6 @@ mathVisual.fractionBar = (canvasElement, numerator, denominator, borderWidth=5, 
             }`
         );
     }
-
 canvas.clearRect(0, 0, canvasElement.width, canvasElement.height);
     const interval =  canvasElement.width/ denominator;
     let separator = interval; // Need two variables becuase separator will increment while interval stays constant. 
@@ -34,6 +33,9 @@ canvas.clearRect(0, 0, canvasElement.width, canvasElement.height);
         separator = separator + interval;
     }
 }
+
+
+
 
 mathVisual.fractionCircle = (canvasElement, numerator, denominator, borderWidth=5, colorFill="rgb(120, 190, 250)") => {
 
@@ -70,7 +72,6 @@ const angle = (Math.PI * 2) / denominator;
 let currentAngle = angle;
 let shaded = angle * numerator;
 
-
 canvas.beginPath();
 canvas.lineWidth = borderWidth;
 canvas.arc(x,y,radius,startAngle, endAngle); // Drawing the outer circle
@@ -97,3 +98,16 @@ canvas.stroke();
 }
 
 
+
+
+mathVisual.fractionMultiplication = (canvas,  wholeNum1, numerator1, denominator1, wholeNum2, numerator2, denominator2, style="area") => {
+
+
+}
+
+
+
+mathVisual.fractionDivision = (canvas, wholeNum1, numerator1, denominator1, wholeNum2, numerator2, denominator2, style="bar") => {
+
+
+}

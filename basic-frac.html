@@ -1,0 +1,35 @@
+<head>
+    <link
+      href="https://fonts.googleapis.com/css?family=Advent Pro"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  
+  <body>
+    <h1>Input the fraction you would like displayed:</h1>
+    <div class="user-inputs">
+      <div id="fraction-input">
+        <input type="number" id="numerator" />
+        <hr id="fracBar" />
+        <input type="number" id="denominator" />
+      </div>
+      <button class="blueButton" id="generate">Generate Fraction Circle</button>
+      <aside>
+        <p id="requirements">
+          Works best with denominators 30 or less. And proper fractions only.
+        </p>
+      </div>
+      </aside>
+      <canvas id="circle" width="200" height="400">
+        This browser doesn't support canvas elements. Try a different browser.
+      </canvas>
+
+      <a href="./index.html">Back to Home Page</a>
+  
+      <script src="mathVisual.js"></script>
+      <script src="script.js"></script>
+     
+  
+  </body>
+  
