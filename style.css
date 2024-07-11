@@ -1,0 +1,75 @@
+h1 {
+    font-family: "Advent Pro";
+    font-size: 50px;
+}
+
+#numerator {
+    width: 60px;
+    height: 50px;
+    font-size: 30px;
+    text-align: center;
+}
+
+#denominator {
+    width: 60px;
+    height: 50px;
+    font-size: 30px;
+    text-align: center;
+}
+
+#fraction-input {
+    width: 70px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#fracBar {
+    height: 2px;
+    width: 70px;
+    background-color: #333;
+}
+
+.user-inputs {
+    display: flex;
+    width: 80%;
+    margin-left: 20px;
+    justify-content: space between;
+    align-items: center;
+}
+
+p {
+    font-size: 18px;
+    font-family: "Advent Pro";
+}
+
+body {
+    background-color: white;
+}
+
+.blueButton {
+    align-items: center;
+    background-color: #7da9f0;
+    border: 5px solid #111;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-size: 20px;
+    width: 150px;
+    height: 65px;
+    margin-right: 15px;
+    margin-left: 38px;
+    color: black;
+    cursor: pointer;
+    display: flex;
+    font-family: Inter, sans-serif;
+    font-size: 24px;
+    position: relative;
+    text-align: center;
+    touch-action: manipulation;
+    transition-duration: 0.4s;
+    font-family: "Advent Pro";
+}
+
+#generate:hover {
+    background-color: white;
+}
