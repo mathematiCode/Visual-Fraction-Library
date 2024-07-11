@@ -7,6 +7,8 @@ My goal is to have a website and a javascript library with many different types 
 - Fraction Bar
 - Fraction Circle
 - Improper Fraction Representations
+- Division with Fractions with bars and circles
+- Fraction Multiplication
 - Fraction on a Number Line
 - Decimal on a Number Line
 - Negative Numbers on a Number Line
@@ -33,6 +35,9 @@ My goal is to have a website and a javascript library with many different types 
 - Download as svg?
 
 <h2> Things that I need to figure out </h2>
-- Should the fraction bar and circle be two toggles on the same page or two separate pages?
-- Would it be better to have the function create the canvas or have the canvas fed into the function as a parameter? I think for layout it's better for the canvas to be standard. BUT... if I make the fraction bar and fraction circle all on one page, I may need to change the functions so they both look good in the same size canvas.
--
+<ul>
+<li>Should the fraction bar and circle be two toggles on the same page or two separate pages? </li> 
+<li> Would it be better to have the function create the canvas or have the canvas fed into the function as a parameter? 
+ I think for layout it's better for the canvas to be standard. BUT... if I make the fraction bar and fraction circle all on one page, I may need to change the functions so they both look good in the same size canvas. </li>
+<li> How can I make the library testable? </li>
+</ul>
