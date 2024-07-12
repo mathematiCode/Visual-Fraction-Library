@@ -47,9 +47,7 @@ mathVisual.fractionCircle = (canvasElement, numerator, denominator, borderWidth=
    
     if (numerator > denominator) {
         return alert(
-            `Please enter a proper fraction. num=${numerator} denom=${denominator} ${
-                numerator > denominator
-            }`
+            `Please enter a proper fraction. num=${numerator} denom=${denominator} ${numerator > denominator}`
         );
     }
 
@@ -101,15 +99,15 @@ canvas.stroke();
 
 
 mathVisual.fractionMultiplication = 
-(canvas,  wholeNum1, numerator1, denominator1, wholeNum2, numerator2, denominator2, style="area") => {
-
+(canvasElement,  wholeNum1, numerator1, denominator1, wholeNum2, numerator2, denominator2, style="area") => {
+    let canvas = canvasElement.getContext("2d");
 
 }
 
 
 
 mathVisual.fractionDivision = 
-(canvas, wholeNum1, numerator1, denominator1, wholeNum2, numerator2, denominator2, style="bar") => {
-
+(canvasElement, wholeNum1, numerator1, denominator1, wholeNum2, numerator2, denominator2, style="bar") => {
+    let canvas = canvasElement.getContext("2d");
 
 }

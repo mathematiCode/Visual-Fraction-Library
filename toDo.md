@@ -1,0 +1,4 @@
+- Create functions for mathVisual.fractionMultiplication and mathVisual.fractionDivision
+- Add customization features (change line thickness, color fill, height of images, etc)
+- Make it look more modern and appealing
+- Update the script.js file to determine which page the user is on and only read inputs and run functions from that page
