@@ -19,11 +19,10 @@
           <input type="number" class="denominator" id="division-denominator1" />
         </div>
         <p class="symbol"> ÷</p> 
-        <input type="number" class="whole-number" id="division-whole-number1">
         <div class="fraction-input">
-          <input type="number" class="numerator" id="division-numerator1" />
+          <input type="number" class="numerator" id="division-numerator2" />
           <hr id="fracBar" />
-          <input type="number" class="denominator" id="division-denominator1" />
+          <input type="number" class="denominator" id="division-denominator2" />
         </div>
         </div>
         <button class="blue-button" id="generate-division">Generate Division Model</button>
@@ -32,16 +31,16 @@
             Works best with denominators 10 or less. 
           </p>
         </div>
-        </aside>
-        <canvas id="division-canvas" width="400" height="400">
+        <canvas id="division-canvas" width="800" height="200">
           This browser doesn't support canvas elements. Try a different browser.
         </canvas>
   
-  <a href="./index.html">Back to Home Page</a>
-  
+        <button class="blueButton" id="division-png-button"> Download PNG </button>
+        <a href="./index.html">Back to Home Page</a>
   
   
   <script src="mathVisual.js"></script>
   <script src="script.js"></script>
+  <script>divisionFrac()</script>
   
   </body>

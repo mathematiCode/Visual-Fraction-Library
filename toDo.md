@@ -1,4 +1,12 @@
-- Create functions for mathVisual.fractionMultiplication and mathVisual.fractionDivision
+- Create function for mathVisual.fractionMultiplication
+- Add alternative styles for fractionMultiplication
+- Create function for mathVisual.fractionDivision [in progress]
+  -Add alternative styles for fractionDivision
 - Add customization features (change line thickness, color fill, height of images, etc)
 - Make it look more modern and appealing
-- Update the script.js file to determine which page the user is on and only read inputs and run functions from that page
+- Update the script.js file to determine which page the user is on and only read inputs and run functions from that page ✅
+- Add a button to download to JPG
+- Add a button to copy to clipboard
+- Add a button to download as SVG
+- Add number lines with fractions/decimals/whole numbers
+- Add functionality for improper fractions to the basic page and functions
