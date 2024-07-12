@@ -43,9 +43,7 @@ h1 {
 
 .user-inputs {
     display: flex;
-    width: 80%;
-    margin-left: 20px;
-    justify-content: space between;
+    justify-content: center;
     align-items: center;
 }
 
@@ -69,8 +67,8 @@ body {
     box-sizing: border-box;
     font-size: 20px;
     width: 150px;
-    margin-right: 15px;
-    margin-left: 38px;
+    margin-left: 1rem;
+    margin-right: 1rem;
     color: black;
     cursor: pointer;
     display: flex;
