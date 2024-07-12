@@ -1,6 +1,9 @@
 - Create function for mathVisual.fractionMultiplication
 - Add alternative styles for fractionMultiplication
+- Add labels to fraction multiplication model
 - Create function for mathVisual.fractionDivision [in progress]
+- For fraction division, shorten width a bit if the last section is only a partial section to show what fraction of a whole section it would be.
+- Add labels to fraction division model
   -Add alternative styles for fractionDivision
 - Add customization features (change line thickness, color fill, height of images, etc)
 - Make it look more modern and appealing

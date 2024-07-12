@@ -1,5 +1,8 @@
 :root {
-    --primary-color: #7da9f0;
+    --button-color: #b3d7d3;
+    --primary-color: #337782;
+    --secondary-color:  #f0a68c;
+    font-family: "Advent Pro", sans-serif;
 }
 
 
@@ -16,6 +19,7 @@ a {
 h1 {
     font-family: "Advent Pro", sans-serif;
     font-size: 50px;
+    margin-bottom: 12px;
 }
 
 .numerator, .denominator {
@@ -58,25 +62,25 @@ input {
 }
 
 .requirements {
-    font-size: 18px;
-    font-family: "Advent Pro";
+    font-size: 2rem;
+    font-family: "Advent Pro", serif;
 }
 
 body {
     background-color: white;
     display: grid;
     place-items: center;
+    gap: 0px;
 }
 
 
-.blue-button {
+.blue-button, .download-button {
     align-items: center;
-    background-color: var(--primary-color);
+    background-color: var(--button-color);
     border: 5px solid #111;
     border-radius: 8px;
     box-sizing: border-box;
     font-size: 20px;
-    width: 150px;
     margin-left: 1rem;
     margin-right: 1rem;
     color: black;
@@ -89,6 +93,15 @@ body {
     touch-action: manipulation;
     transition-duration: 0.4s;
     font-family: "Advent Pro";
+}
+
+alert {
+    background-color: var(--button-color);
+}
+
+.blue-button {
+    width: 150px;
+
 }
 
 .blue-button:hover {
