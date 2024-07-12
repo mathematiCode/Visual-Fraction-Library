@@ -153,23 +153,10 @@ mathVisual.fractionDivision =
     if (wholeNum1 == 0) { dividend = interval * numerator1 }
     else { dividend = interval* wholeNum1 + ((interval / denominator1)*numerator1) }
 
-    canvas.fillStyle = "black";
-    canvas.setLineDash([5, 5]);
-    canvas.lineWidth = lineThickness*2;
-    canvas.beginPath();
-    canvas.moveTo(0,0);
-    canvas.lineTo(0, height);
-    canvas.lineTo(width, height);
-    canvas.lineTo(width, 0);
-    canvas.lineTo(0,0);
-    canvas.stroke();
 
     canvas.fillStyle = "white";
     canvas.fillRect(lineThickness, lineThickness, width -  (lineThickness*2), height - (lineThickness*2));
 
-    canvas.setLineDash([]); // Resets the line to solid instead of dashed
-    canvas.fillStyle = "black";
-    canvas.fillRect(0, 0, dividend, height);
 
 // Removing this code from here for now to put it closer to the end so these lines display above the colored sections. I'm leaving here because I may add it back later if I want to have an animation that shows the original dividend and then counts by divisors one at a time. 
 
@@ -193,23 +180,37 @@ let segmenter; // This represents how big the divisor
 if (wholeNum1 == 0) { segmenter = (width / denominator2)*numerator2 }
 else { segmenter = (interval / denominator2) * numerator2 }; 
 
-let numSegments = (wholeNum1+1) * denominator2 / numerator2;
+let numSegments = (wholeNum1+1) * denominator2 / numerator2+1;
 
 
 //color each section alternating colors
-    for (let i=1; i<numSegments; i++) {
+    for (let i=1; i<=numSegments; i++) {
         if (i%2 == 0) {
             canvas.fillStyle = colorFill2;
             canvas.fillRect(segmenter*i-segmenter, lineThickness, segmenter*i, height-lineThickness*2);
         }
         else { 
             canvas.fillStyle = colorFill;
-            canvas.fillRect(segmenter*i-segmenter - lineThickness*2, lineThickness, segmenter*i, height- lineThickness*2);
+            canvas.fillRect(segmenter*i-segmenter, lineThickness, segmenter*i, height- lineThickness*2);
         }
+
+
+        // Dashed border to represent the dividend if the dividend is a whole number or the next integer up if the dividend is a mixed number
+        canvas.fillStyle = "black";
+        canvas.setLineDash([5, 5]);
+        canvas.lineWidth = lineThickness*2;
+        canvas.beginPath();
+        canvas.moveTo(0,0);
+        canvas.lineTo(0, height);
+        canvas.lineTo(width, height);
+        canvas.lineTo(width, 0);
+        canvas.lineTo(0,0);
+        canvas.stroke();
 
         // Create dashed lines to segment each iteration of the divisor
         canvas.setLineDash([5, 10]);
-        canvas.fillStyle = colorFill;
+        // canvas.fillStyle = colorFill;
+        canvas.lineWidth = lineThickness;
         canvas.beginPath();
         canvas.moveTo(segmenter*i, 0);
         canvas.lineTo(segmenter*i, height);
@@ -217,13 +218,12 @@ let numSegments = (wholeNum1+1) * denominator2 / numerator2;
         canvas.stroke();
     }
 
-// Create solid black outline
-    canvas.beginPath();
-    canvas.fillStyle = colorFill;
-    // canvas.fillRect(lineThickness, lineThickness, dividend - lineThickness*2, height - lineThickness*2);
-    canvas.closePath();
-    canvas.stroke();
 
+//     canvas.beginPath();
+//     canvas.fillStyle = colorFill;
+//     // canvas.fillRect(lineThickness, lineThickness, dividend - lineThickness*2, height - lineThickness*2);
+//     canvas.closePath();
+//     canvas.stroke();
 
     canvas.setLineDash([]);
 // Create solid separators for each whole OR if the dividend is less than one, for each portion
@@ -237,7 +237,26 @@ let numSegments = (wholeNum1+1) * denominator2 / numerator2;
         separator = separator + interval;
     }
 
+      // thin unit fraction lines
+let unitFractionWidth = width / (numSections * denominator2);
+let unitFracDivider = unitFractionWidth;
+canvas.setLineDash([]);
+canvas.strokeStyle = "black";
+
+    for (let i=1; i<numSegments*denominator2; i++) {
+        canvas.lineWidth = lineThickness /4;
+        canvas.beginPath();
+       canvas.moveTo(unitFracDivider, 0);
+       canvas.lineTo(unitFracDivider, height);
+       canvas.stroke();
+       unitFracDivider = unitFracDivider + unitFractionWidth;
+    } 
 
 
-   
+    // Create solid black outline
+    canvas.setLineDash([]); // Resets the line to solid instead of dashed
+    canvas.strokeStyle = "black";
+    canvas.lineWidth = lineThickness*2;
+    canvas.strokeRect(0, 0, dividend, height);
+
 }
