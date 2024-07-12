@@ -37,11 +37,11 @@ const generateMultiplicationButton = document.getElementById("generate-multiplic
 generateMultiplicationButton.addEventListener("click", function () {
     const multiplicationCanvas = document.getElementById("multiplication-canvas");
     const multWholeNum1 = parseInt(document.getElementById("multiplication-whole-number1").value);
-    const multNumerator1 = parseInt(getElementById("multiplication-numerator1").value);
-    const multDenominator1 = parseInt(getElementById("multiplication-denominator1").value);
-    const multWholeNum2 = parseInt(getElementById("multiplication-whole-number2").value);
-    const multNumerator2 = parseInt(getElementById("multiplication-numerator2").value);
-    const multDenominator2 = parseInt (getElementById("multiplication-denominator2").value);
+    const multNumerator1 = parseInt(document.getElementById("multiplication-numerator1").value);
+    const multDenominator1 = parseInt(document.getElementById("multiplication-denominator1").value);
+    const multWholeNum2 = parseInt(document.getElementById("multiplication-whole-number2").value);
+    const multNumerator2 = parseInt(document.getElementById("multiplication-numerator2").value);
+    const multDenominator2 = parseInt (document.getElementById("multiplication-denominator2").value);
 
     mathVisual.fractionMultiplication(multiplicationCanvas, multWholeNum1, multNumerator1, multDenominator1, multWholeNum2, multNumerator2, multDenominator2);
 });
