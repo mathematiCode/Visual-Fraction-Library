@@ -100,14 +100,16 @@ canvas.stroke();
 
 
 
-mathVisual.fractionMultiplication = (canvas,  wholeNum1, numerator1, denominator1, wholeNum2, numerator2, denominator2, style="area") => {
+mathVisual.fractionMultiplication = 
+(canvas,  wholeNum1, numerator1, denominator1, wholeNum2, numerator2, denominator2, style="area") => {
 
 
 }
 
 
 
-mathVisual.fractionDivision = (canvas, wholeNum1, numerator1, denominator1, wholeNum2, numerator2, denominator2, style="bar") => {
+mathVisual.fractionDivision = 
+(canvas, wholeNum1, numerator1, denominator1, wholeNum2, numerator2, denominator2, style="bar") => {
 
 
 }

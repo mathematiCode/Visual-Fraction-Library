@@ -9,19 +9,19 @@
   <body>
     <h1>Input the fraction you would like displayed:</h1>
     <div class="user-inputs">
-      <div id="fraction-input">
-        <input type="number" id="numerator" />
+      <div class="fraction-input">
+        <input type="number" class="numerator" id="basic-numerator" />
         <hr id="fracBar" />
-        <input type="number" id="denominator" />
+        <input type="number" class="denominator" id="basic-denominator" />
       </div>
-      <button class="blueButton" id="generate">Generate Fraction Circle</button>
+      <button class="blue-button" id="generate-basic">Generate Fraction Circle</button>
       <aside>
-        <p id="requirements">
+        <p class="requirements">
           Works best with denominators 30 or less. And proper fractions only.
         </p>
       </div>
       </aside>
-      <canvas id="circle" width="200" height="400">
+      <canvas id="circle" width="400" height="400">
         This browser doesn't support canvas elements. Try a different browser.
       </canvas>
 

@@ -1,7 +1,7 @@
 let fractionCircle = document.getElementById("circle");
-let denominatorInput = document.getElementById("denominator");
-let numeratorInput = document.getElementById("numerator");
-let generateButton = document.getElementById("generate");
+let denominatorInput = document.getElementById("basic-denominator");
+let numeratorInput = document.getElementById("basic-numerator");
+let generateButton = document.getElementById("generate-basic");
 
 generateButton.addEventListener("click", function () {
     let numerator = parseInt(numeratorInput.value);
