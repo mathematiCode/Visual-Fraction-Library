@@ -8,6 +8,17 @@
   
   <body>
     <h1>Input the fraction you would like displayed:</h1>
+
+    <div  class="model-selection">
+   <h2> Circle Mode </h2>
+    <label class="switch">
+      <input type="checkbox" id="basic-model-toggle">
+      <span class="slider round"></span>
+    </label>
+      <h2 class="right-toggle">Bar Mode</h2>
+    </div>
+
+
     <div class="user-inputs">
       <div class="fraction-input">
         <input type="number" class="numerator" id="basic-numerator" />
@@ -20,7 +31,7 @@
           Works best with denominators 30 or less. And proper fractions only.
         </p>
       </div>
-      <canvas id="basic-canvas" width="350" height="350">
+      <canvas id="basic-canvas" width="350" height="300">
         This browser doesn't support canvas elements. Try a different browser.
       </canvas>
 
