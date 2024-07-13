@@ -1,5 +1,48 @@
 const mathVisual = {};
 
+function drawCircle(canvas, x, y, radius, lineThickness, color = "black") {
+  const startAngle = 0; // starting angle (in radians)
+  const endAngle = 2 * Math.PI; // ending angle (in radians)
+
+  canvas.beginPath();
+  canvas.strokeStyle = color;
+  canvas.lineWidth = lineThickness;
+  canvas.arc(x, y, radius, startAngle, endAngle); // Drawing the outer circle
+  canvas.stroke();
+  canvas.closePath();
+}
+
+function makeFractionSlices(
+  canvas,
+  x,
+  y,
+  radius,
+  numerator,
+  denominator,
+  colorFill
+) {
+  const startAngle = 0; // starting angle (in radians)
+  const angle = (Math.PI * 2) / denominator;
+  let currentAngle = angle;
+  let shaded = angle * numerator;
+  canvas.beginPath(); // Filling in the shaded pieces
+  canvas.arc(x, y, radius, startAngle, shaded);
+  canvas.lineTo(x, y);
+  // I've only drawn an arc and one line, but when the fill() method is called, the canvas will automatically draw a line back to the starting point. So I do not need to explicitly create the 3rd line to close the path to be filled.
+  canvas.fillStyle = colorFill;
+  canvas.fill();
+  canvas.closePath();
+
+  for (i = 0; i < denominator; i++) {
+    // Creating lines for each slice
+    canvas.beginPath();
+    canvas.arc(x, y, radius, currentAngle, currentAngle + angle);
+    canvas.lineTo(x, y);
+    currentAngle = currentAngle + angle;
+    canvas.stroke();
+  }
+}
+
 mathVisual.fractionBar = (
   canvasElement,
   numerator,
@@ -59,20 +102,22 @@ mathVisual.fractionCircle = (
   lineThickness = 5,
   colorFill = "rgb(120, 190, 250)"
 ) => {
-  const width = canvasElement.width;
-  const height = canvasElement.height;
   if (numerator < 0 || denominator < 0) {
     return alert(`Please enter a positive numerator and denominator.`);
-  }
-
-  if (numerator > denominator) {
-    return alert(
-      `Please enter a proper fraction. num=${numerator} denom=${denominator} ${
-        numerator > denominator
-      }`
+  } else if (numerator > denominator) {
+    mathVisual.mixedNumCircles(
+      canvasElement,
+      0,
+      numerator,
+      denominator,
+      lineThickness,
+      colorFill
     );
+    return;
   }
 
+  const width = canvasElement.width;
+  const height = canvasElement.height;
   let canvas = canvasElement.getContext("2d");
   canvas.clearRect(0, 0, width, height);
 
@@ -81,41 +126,80 @@ mathVisual.fractionCircle = (
   const y = height / 2; // y-coordinate of the center
   let radius = 0;
   if (width <= height) {
-    radius = width / 2 - 10;
+    radius = width / 2;
   } else {
-    radius = height / 2 - 10;
+    radius = height / 2;
   }
-  const startAngle = 0; // starting angle (in radians)
-  const endAngle = 2 * Math.PI; // ending angle (in radians)
 
-  const angle = (Math.PI * 2) / denominator;
-  let currentAngle = angle;
-  let shaded = angle * numerator;
+  drawCircle(canvas, x, y, radius, lineThickness); // Draws the outer circle
 
-  canvas.beginPath();
-  canvas.lineWidth = lineThickness;
-  canvas.arc(x, y, radius, startAngle, endAngle); // Drawing the outer circle
-  canvas.fillStyle = "white";
-  canvas.fill();
-  canvas.lineTo(x, y);
-  canvas.stroke();
+  makeFractionSlices(canvas, x, y, radius, numerator, denominator, colorFill); // Shades in the fraction portion and draws lines to show each slice
+};
 
-  canvas.beginPath(); // Filling in the shaded pieces
-  canvas.arc(x, y, radius, startAngle, shaded);
-  canvas.lineTo(x, y);
-  // I've only drawn an arc and one line, but when the fill() method is called, the canvas will automatically draw a line back to the starting point. So I do not need to explicitly create the 3rd line to close the path to be filled.
-  canvas.fillStyle = colorFill;
-  canvas.fill();
-  canvas.stroke();
+mathVisual.mixedNumCircles = (
+  canvasElement,
+  wholeNum,
+  numerator,
+  denominator,
+  lineThickness,
+  colorFill
+) => {
+  const width = canvasElement.width;
+  const height = canvasElement.height;
+  let canvas = canvasElement.getContext("2d");
+  canvas.clearRect(0, 0, width, height);
 
-  canvas.beginPath();
-  for (i = 0; i < denominator; i++) {
-    // Creating lines for each slice
-    canvas.arc(x, y, radius, currentAngle, currentAngle + angle);
-    canvas.lineTo(x, y);
-    currentAngle = currentAngle + angle;
+  canvas.fillStyle = "pink";
+  canvas.fillRect(0, 0, width, height);
+
+  // Figure out how long the radius of each circle should be based on the canvas dimensions.
+  let numWholes = Math.floor(numerator / denominator); //
+  let maxWholes = 0; // This is how many circles will be drawn on the canvas
+  if (numerator % denominator == 0) {
+    maxWholes = numWholes + wholeNum;
+  } else {
+    maxWholes = numWholes + wholeNum + 1;
+  } // Determines how many total circles will be drawn even if the last one is only partially shaded
+  let radius = 0;
+  if (width / maxWholes <= height) {
+    radius = width / maxWholes / 2 - 10;
+  } else {
+    radius = height / 2;
   }
-  canvas.stroke();
+
+  let currentX = radius + 10;
+  let currentY = radius + 10;
+  let slicesLeft = numerator;
+
+  // Draws the circles and shades in the correct # of slices given an improper fraction
+  for (let i = 0; i < maxWholes; i++) {
+    drawCircle(canvas, currentX, currentY, radius, lineThickness);
+    makeFractionSlices(
+      canvas,
+      currentX,
+      currentY,
+      radius,
+      slicesLeft,
+      denominator,
+      colorFill
+    ); // Shades in the fraction portion and draws lines to show each slice
+    slicesLeft = slicesLeft - denominator;
+    currentX = currentX + 2 * radius + 20;
+  }
+};
+
+mathVisual.mixedNumBars = (
+  canvasElement,
+  wholeNum = 0,
+  numerator,
+  denominator,
+  lineThickness,
+  colorFill
+) => {
+  const width = canvasElement.width;
+  const height = canvasElement.height;
+  let canvas = canvasElement.getContext("2d");
+  canvas.clearRect(0, 0, width, height);
 };
 
 mathVisual.fractionMultiplication = (
