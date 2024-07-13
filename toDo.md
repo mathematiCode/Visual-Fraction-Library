@@ -1,8 +1,9 @@
 - Create function for mathVisual.fractionMultiplication
 - Add alternative styles for fractionMultiplication
 - Add labels to fraction multiplication model
-- Create function for mathVisual.fractionDivision [in progress]
-- Make sure any fraction that is beyond the dividend is not colored to differentiate.
+- Create function for mathVisual.fractionDivision ✅
+- Make sure any fraction that is beyond the dividend is not colored to differentiate. ✅
+- Fix edge cases like having a dividend less than 1 ✅
 - For fraction division, shorten width a bit if the last section is only a partial section to show what fraction of a whole section it would be.
 - Add labels to fraction division model
   -Add alternative styles for fractionDivision

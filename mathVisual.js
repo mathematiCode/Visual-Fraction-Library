@@ -112,11 +112,12 @@ mathVisual.fractionMultiplication =
 }
 
 mathVisual.fractionDivision = 
-(canvasElement, wholeNum1, numerator1, denominator1, numerator2, denominator2, lineThickness=5, colorFill="#337782", colorFill2 = "#f0a68c", style="bar") => {
+(canvasElement, wholeNum1, numerator1, denominator1, numerator2, denominator2, lineThickness=4, colorFill="#337782", colorFill2 = "#f0a68c", style="bar") => {
     let canvas = canvasElement.getContext("2d");
     const width = canvasElement.width;
-    const height = canvasElement.height;
-    canvas.clearRect(0, 0, width, height);
+    const spaceForLabels = 50 
+    const height = canvasElement.height - spaceForLabels;
+    canvas.clearRect(0, 0, width, height+spaceForLabels);
     let numSections;
 
 
@@ -151,11 +152,8 @@ mathVisual.fractionDivision =
     if (!numerator1) {numerator1 = 0};
 
     if (wholeNum1 == 0) { dividend = interval * numerator1 }
-    else { dividend = interval* wholeNum1 + ((interval / denominator1)*numerator1) }
+    else { dividend = interval* wholeNum1 + ((interval / denominator1)*numerator1) } // unit: canvas pixels
 
-
-    canvas.fillStyle = "white";
-    canvas.fillRect(lineThickness, lineThickness, width -  (lineThickness*2), height - (lineThickness*2));
 
 
 // Removing this code from here for now to put it closer to the end so these lines display above the colored sections. I'm leaving here because I may add it back later if I want to have an animation that shows the original dividend and then counts by divisors one at a time. 
@@ -176,7 +174,7 @@ mathVisual.fractionDivision =
     //     separator = separator + interval;
     // }
 
-let segmenter; // This represents how big the divisor 
+let segmenter; // This represents how big the divisor is in pixels relative to the divident
 if (wholeNum1 == 0) { segmenter = (width / denominator2)*numerator2 }
 else { segmenter = (interval / denominator2) * numerator2 }; 
 
@@ -187,24 +185,27 @@ let numSegments = (wholeNum1+1) * denominator2 / numerator2+1;
     for (let i=1; i<=numSegments; i++) {
         if (i%2 == 0) {
             canvas.fillStyle = colorFill2;
-            canvas.fillRect(segmenter*i-segmenter, lineThickness, segmenter*i, height-lineThickness*2);
+            canvas.fillRect(segmenter*i-segmenter, 0, segmenter*i, height);
         }
         else { 
             canvas.fillStyle = colorFill;
-            canvas.fillRect(segmenter*i-segmenter, lineThickness, segmenter*i, height- lineThickness*2);
+            canvas.fillRect(segmenter*i-segmenter, 0, segmenter*i, height);
         }
 
 
-        // Dashed border to represent the dividend if the dividend is a whole number or the next integer up if the dividend is a mixed number
+        canvas.fillStyle = "white";
+        canvas.fillRect(dividend, 0, width, height);
+
+        // Dashed border which is invisible if the dividend is a whole number but shows the next integer up if the dividend is a mixed number
         canvas.fillStyle = "black";
-        canvas.setLineDash([5, 5]);
+        canvas.setLineDash([5, 6]);
         canvas.lineWidth = lineThickness*2;
         canvas.beginPath();
-        canvas.moveTo(0,0);
-        canvas.lineTo(0, height);
-        canvas.lineTo(width, height);
-        canvas.lineTo(width, 0);
-        canvas.lineTo(0,0);
+        canvas.moveTo(lineThickness,lineThickness);
+        canvas.lineTo(lineThickness, height+lineThickness);
+        canvas.lineTo(width- lineThickness, height+lineThickness);
+        canvas.lineTo(width- lineThickness, lineThickness);
+        canvas.lineTo(lineThickness,lineThickness);
         canvas.stroke();
 
         // Create dashed lines to segment each iteration of the divisor
@@ -218,13 +219,6 @@ let numSegments = (wholeNum1+1) * denominator2 / numerator2+1;
         canvas.stroke();
     }
 
-
-//     canvas.beginPath();
-//     canvas.fillStyle = colorFill;
-//     // canvas.fillRect(lineThickness, lineThickness, dividend - lineThickness*2, height - lineThickness*2);
-//     canvas.closePath();
-//     canvas.stroke();
-
     canvas.setLineDash([]);
 // Create solid separators for each whole OR if the dividend is less than one, for each portion
     for (let i = 1; i < numSections; i++) {
@@ -232,21 +226,23 @@ let numSegments = (wholeNum1+1) * denominator2 / numerator2+1;
         canvas.moveTo(separator, 0);
         canvas.lineTo(separator, height);
         canvas.closePath();
-        canvas.lineWidth = lineThickness;
+        if (wholeNum1 != 0) {canvas.lineWidth = lineThickness*2}
+        else { canvas.lineWidth = lineThickness }
         canvas.stroke();
         separator = separator + interval;
     }
 
       // thin unit fraction lines
-let unitFractionWidth = width / (numSections * denominator2);
-let unitFracDivider = unitFractionWidth;
-canvas.setLineDash([]);
-canvas.strokeStyle = "black";
-
-    for (let i=1; i<numSegments*denominator2; i++) {
+    let unitFractionWidth;
+    if (wholeNum1 == 0) {  unitFractionWidth = width / denominator2 } 
+    else { unitFractionWidth = width / (numSections * denominator2) }
+    let unitFracDivider = unitFractionWidth;
+    canvas.setLineDash([]);
+    canvas.strokeStyle = "black";
+    for (let i=1; i<numSections*denominator2; i++) {
         canvas.lineWidth = lineThickness /4;
         canvas.beginPath();
-       canvas.moveTo(unitFracDivider, 0);
+       canvas.moveTo(unitFracDivider, lineThickness);
        canvas.lineTo(unitFracDivider, height);
        canvas.stroke();
        unitFracDivider = unitFracDivider + unitFractionWidth;
@@ -257,6 +253,6 @@ canvas.strokeStyle = "black";
     canvas.setLineDash([]); // Resets the line to solid instead of dashed
     canvas.strokeStyle = "black";
     canvas.lineWidth = lineThickness*2;
-    canvas.strokeRect(0, 0, dividend, height);
+    canvas.strokeRect(lineThickness, lineThickness, dividend, height);
 
 }
