@@ -23,7 +23,7 @@ h1 {
 }
 
 .numerator, .denominator {
-    width: 60px;
+    width: 80px;
     height: 50px;
     font-size: 2rem;
     text-align: center;
@@ -192,5 +192,9 @@ alert {
   .right-toggle {
     grid-column: 3/4;
   }
+
+ #division-warning {
+    font-size: 1.25rem; 
+ }
 
   

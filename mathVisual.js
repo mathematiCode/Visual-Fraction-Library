@@ -12,6 +12,38 @@ function drawCircle(canvas, x, y, radius, lineThickness, color = "black") {
   canvas.closePath();
 }
 
+// Given a width and height of a container and a number of roughly-square items to fit inside of the container, this function returns the optimal size of each item so that they will all fit and use as much of the available space as possible.
+function calculateOptimalDimensions(width, height, numItems) {
+  /**
+   * For example, given a width of 900 pixels and a height of 300 pixels, the aspect ratio would be 3 (900 / 300).
+   * If we wanted to fit say 100 items in this 900 by 300 container,
+   * multiplying 100 by the aspect ratio allows us to consider how to evenly distribute 300 (100*3) items within a 900 by 900 pixel square.
+   * This can easily be done by taking the square root of 300 (triple the number of items we actually need)
+   * to determine that we need a little over 17 items to go in each row.
+   * In order to avoid overflow in the horizontal direction, I used Math.floor() method which will force the items per row to be 17.
+   *
+   * Since we actually only need 100 items in a 900 by 300 pixel container, we can calculate the number of rows needed with 100 / 17.
+   * This results in 5.88 which really means we need 6 rows but the last row will not be filled, which is why I used Math.ceil().
+   *
+   * Since our container has an aspect ratio of 900:300, simplified 3:1, the ratio of itemsPerRow : numRows should be as close as possible to this ratio, but prioritizing making sure all items fully fit inside.
+   *
+   */
+  let optimalDimensions = {};
+  let aspectRatio = width / height;
+
+  // Multiplying by numItems by the apsect ratio essentially makes it a square full of items with the side lengths equal to the width in pixels. Then taking the square root allows us to figure out how many items to line up in each row in order to distribute them equally.
+
+  let itemsPerRow = Math.floor(Math.sqrt(numItems * aspectRatio)); // How many elements should be put in each row
+  let numRows = Math.ceil(numItems / itemsPerRow);
+
+  let itemSize = Math.min(width / itemsPerRow, height / numRows);
+
+  optimalDimensions.size = itemSize;
+  optimalDimensions.itemsPerRow = itemsPerRow;
+  optimalDimensions.numRows = numRows;
+  return optimalDimensions;
+}
+
 function makeFractionSlices(
   canvas,
   x,
@@ -149,7 +181,7 @@ mathVisual.mixedNumCircles = (
   let canvas = canvasElement.getContext("2d");
   canvas.clearRect(0, 0, width, height);
 
-  canvas.fillStyle = "pink";
+  canvas.fillStyle = "white";
   canvas.fillRect(0, 0, width, height);
 
   // Figure out how long the radius of each circle should be based on the canvas dimensions.
@@ -161,43 +193,34 @@ mathVisual.mixedNumCircles = (
   } else {
     maxWholes = numWholes + wholeNum + 1;
   } // Determines how many total circles will be drawn even if the last one is only partially shaded
-  let radius = 0;
-  let numLines = 1; // Defaults to one line of circles
+
   let horizontalSpacing = 0;
   let verticalSpacing = 0;
+  let circlesPerLine = maxWholes;
+  let numLines = 1;
 
-  function findMaxRadius(width, height, maxWholes, numLines = 1) {
-    console.log(`numWholes is ${numWholes}`);
-
-    let aspectRatio = width / height;
-
-    let circlesPerLine = Math.floor(Math.sqrt(maxWholes * aspectRatio));
-    numLines = Math.ceil(maxWholes / circlesPerLine);
-
-    console.log(`aspectRatio is ${aspectRatio}`);
-    console.log(`maxWholes*aspectRatio is ${maxWholes * aspectRatio}`);
-    console.log(`circlesPerLine is ${circlesPerLine}`);
-    console.log(`numLines is ${numLines}`);
-    radius = Math.min(
-      (0.8 * width) / circlesPerLine / 2,
-      (0.8 * height) / numLines / 2
-    );
-    console.log(
-      `width / circlesPerLine/2 is ${
-        width / circlesPerLine / 2
-      }  The radius is ${radius}`
-    );
-
-    horizontalSpacing = (width - circlesPerLine * radius * 2) / circlesPerLine;
-
-    verticalSpacing = (height - numLines * radius * 2) / (numLines + 1);
+  if (maxWholes <= 4) {
+    // If there are only four or less circles this puts them all on one line because it looks silly otherwise.
+    numLines = 1;
+    circlesPerLine = maxWholes;
+    radius = (width * 0.8) / maxWholes;
+  } else {
+    optimalDimensions = calculateOptimalDimensions(
+      width * 0.8,
+      height * 0.8,
+      numWholes
+    ); // Multiplying by 0.8 to leave room for spacing.
+    circlesPerLine = optimalDimensions.itemsPerRow;
+    numLines = optimalDimensions.numRows;
+    radius = optimalDimensions.size / 2;
   }
 
-  findMaxRadius(width, height, maxWholes);
+  horizontalSpacing = (width - circlesPerLine * radius * 2) / circlesPerLine;
+
+  verticalSpacing = (height - numLines * radius * 2) / (numLines + 1);
 
   let currentX = radius + horizontalSpacing / 2;
   let currentY = radius + verticalSpacing;
-  let currentLine = 1;
   let slicesLeft = numerator;
   if (radius < 20 || (radius < 35 && denominator > 10) || denominator > 15) {
     lineThickness = lineThickness / 2;
