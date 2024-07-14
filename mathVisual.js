@@ -155,24 +155,61 @@ mathVisual.mixedNumCircles = (
   // Figure out how long the radius of each circle should be based on the canvas dimensions.
   let numWholes = Math.floor(numerator / denominator); //
   let maxWholes = 0; // This is how many circles will be drawn on the canvas
+
   if (numerator % denominator == 0) {
     maxWholes = numWholes + wholeNum;
   } else {
     maxWholes = numWholes + wholeNum + 1;
   } // Determines how many total circles will be drawn even if the last one is only partially shaded
   let radius = 0;
-  if (width / maxWholes <= height) {
-    radius = width / maxWholes / 2 - 10;
-  } else {
-    radius = height / 2;
+  let numLines = 1; // Defaults to one line of circles
+  let horizontalSpacing = 0;
+  let verticalSpacing = 0;
+
+  function findMaxRadius(width, height, maxWholes, numLines = 1) {
+    console.log(`numWholes is ${numWholes}`);
+
+    let aspectRatio = width / height;
+
+    let circlesPerLine = Math.floor(Math.sqrt(maxWholes * aspectRatio));
+    numLines = Math.ceil(maxWholes / circlesPerLine);
+
+    console.log(`aspectRatio is ${aspectRatio}`);
+    console.log(`maxWholes*aspectRatio is ${maxWholes * aspectRatio}`);
+    console.log(`circlesPerLine is ${circlesPerLine}`);
+    console.log(`numLines is ${numLines}`);
+    radius = Math.min(
+      (0.8 * width) / circlesPerLine / 2,
+      (0.8 * height) / numLines / 2
+    );
+    console.log(
+      `width / circlesPerLine/2 is ${
+        width / circlesPerLine / 2
+      }  The radius is ${radius}`
+    );
+
+    horizontalSpacing = (width - circlesPerLine * radius * 2) / circlesPerLine;
+
+    verticalSpacing = (height - numLines * radius * 2) / (numLines + 1);
   }
 
-  let currentX = radius + 10;
-  let currentY = radius + 10;
+  findMaxRadius(width, height, maxWholes);
+
+  let currentX = radius + horizontalSpacing / 2;
+  let currentY = radius + verticalSpacing;
+  let currentLine = 1;
   let slicesLeft = numerator;
+  if (radius < 20 || (radius < 35 && denominator > 10) || denominator > 15) {
+    lineThickness = lineThickness / 2;
+  }
 
   // Draws the circles and shades in the correct # of slices given an improper fraction
   for (let i = 0; i < maxWholes; i++) {
+    if (currentX + radius >= width) {
+      currentY = currentY + radius * 2 + verticalSpacing; // Moves the remaining circles to the second line if we run out of space
+      currentX = radius + horizontalSpacing / 2;
+    }
+
     drawCircle(canvas, currentX, currentY, radius, lineThickness);
     makeFractionSlices(
       canvas,
@@ -184,7 +221,7 @@ mathVisual.mixedNumCircles = (
       colorFill
     ); // Shades in the fraction portion and draws lines to show each slice
     slicesLeft = slicesLeft - denominator;
-    currentX = currentX + 2 * radius + 20;
+    currentX = currentX + 2 * radius + horizontalSpacing;
   }
 };
 
