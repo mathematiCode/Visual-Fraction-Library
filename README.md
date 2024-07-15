@@ -12,6 +12,7 @@ My goal is to have a website and a javascript library with many different types 
 <li> Improper Fraction Representations (circles only right now) ✅</li>
 <li> Fraction Division Bar when dividend > divisor ✅</li></li>
 <li> Fraction Division with Circles [in progress]</li>
+<li> Fraction Division when dividend < divisor with a circle </li>
 <li> Fraction Multiplication</li>
 <li> Fraction on a Number Line</li>
 <li> Decimal on a Number Line</li>
