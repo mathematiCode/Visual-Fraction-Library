@@ -1,13 +1,16 @@
 <h1>Math Clip Art Library</h1>
 
 This is the beginning of a library of simple math visualization functions built on top of html canvas.
+I am considering converting the functions or at least building new functions to create svgs instead of canvases. 
+
 My goal is to have a website and a javascript library with many different types of math visuals.
 
 <h2> Math Visual Functions/Pages to Create </h2>
-- Fraction Bar
-- Fraction Circle
-- Improper Fraction Representations
-- Division with Fractions with bars and circles
+- Fraction Bar ✅
+- Fraction Circle ✅
+- Improper Fraction Representations (circles only right now) ✅
+- Fraction Division Bar when dividend > divisor ✅
+- Fraction Division with Circles [in progress]
 - Fraction Multiplication
 - Fraction on a Number Line
 - Decimal on a Number Line
