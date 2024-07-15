@@ -12,7 +12,7 @@ function drawCircle(canvas, x, y, radius, lineThickness, color = "black") {
   canvas.closePath();
 }
 
-// Given a width and height of a container and a number of roughly-square items to fit inside of the container, this function returns the optimal size of each item so that they will all fit and use as much of the available space as possible.
+// Given a width and height of a container and a number of roughly-square items to fit inside of the container, this function returns the optimal size of each item so that they will all fit and use as much of the available space as possible. If you want the items to be spaced out, multiply the width and height parameters by a scale factor less than one.
 function calculateOptimalDimensions(width, height, numItems) {
   /**
    * For example, given a width of 900 pixels and a height of 300 pixels, the aspect ratio would be 3 (900 / 300).
@@ -52,9 +52,10 @@ function makeFractionSlices(
   numerator,
   denominator,
   lineThickness,
-  colorFill
+  colorFill,
+  startAngle = 0
 ) {
-  const startAngle = 0; // starting angle (in radians)
+  // const startAngle = 0; // starting angle (in radians)
   const angle = (Math.PI * 2) / denominator;
   let currentAngle = angle;
   let shaded = angle * numerator;
@@ -189,8 +190,8 @@ mathVisual.mixedNumCircles = (
   canvas.fillStyle = "white";
   canvas.fillRect(0, 0, width, height);
 
-  canvas.fillStyle = "pink";
-  canvas.fillRect(0, 0, width, height);
+  canvas.strokeStyle = "gray";
+  canvas.strokeRect(0, 0, width, height);
   // Figure out how long the radius of each circle should be based on the canvas dimensions.
   let numWholes = Math.floor(numerator / denominator);
   let maxWholes = 0; // This is how many circles will be drawn on the canvas
@@ -210,7 +211,8 @@ mathVisual.mixedNumCircles = (
     // If there are only four or less circles this puts them all on one line because it looks silly otherwise.
     numLines = 1;
     circlesPerLine = maxWholes;
-    radius = (width * 0.8) / maxWholes;
+    radius = Math.min((width * 0.8) / maxWholes / 2, (height * 0.8) / 2);
+    console.log(`radius is ${radius}`);
   } else {
     optimalDimensions = calculateOptimalDimensions(
       width * 0.8,
@@ -265,8 +267,16 @@ mathVisual.mixedNumCircles = (
     }
     currentX = currentX + 2 * radius + horizontalSpacing;
   }
+
+  let modelInfo = {};
+  modelInfo.horizontalSpacing = horizontalSpacing;
+  modelInfo.verticalSpacing = verticalSpacing;
+  modelInfo.radius = radius;
+  modelInfo.canvas = canvas;
+  return modelInfo;
 };
 
+// This function is not done yet.
 mathVisual.mixedNumBars = (
   canvasElement,
   wholeNum = 0,
@@ -281,6 +291,7 @@ mathVisual.mixedNumBars = (
   canvas.clearRect(0, 0, width, height);
 };
 
+// This function is not done yet.
 mathVisual.fractionMultiplication = (
   canvasElement,
   wholeNum1,
@@ -448,6 +459,7 @@ mathVisual.fractionDivisionBar = (
   canvas.strokeRect(lineThickness, lineThickness, dividend, height);
 };
 
+// This function is not done yet.
 mathVisual.fractionDivisionCircles = (
   canvasElement,
   wholeNum1,
@@ -456,13 +468,49 @@ mathVisual.fractionDivisionCircles = (
   numerator2,
   denominator2,
   lineThickness = 4,
-  colorFill = "#52a4b0",
-  colorFill2 = "#f0a68c"
+  colorFill = "#52a4b0", // teal
+  colorFill2 = "#9de56c" // light green
 ) => {
-  mathVisual.mixedNumCircles(
+  // mixedNumCircles will draw the dividend.
+
+  let info = mathVisual.mixedNumCircles(
     canvasElement,
     wholeNum1,
     numerator1,
-    denominator1
+    denominator1,
+    5,
+    "gray"
   );
+  canvas = info.canvas;
+  radius = info.radius;
+  horizontalSpacing = info.horizontalSpacing;
+  verticalSpacing = info.verticalSpacing;
+
+  currentX = radius + horizontalSpacing / 2;
+  currentY = radius + verticalSpacing;
+  startAngle = 0;
+  let color = colorFill;
+
+  for (let i = 0; i < 6; i++) {
+    console.log(`iteration ${i}`);
+    if (i % 2 == 0) {
+      color = colorFill;
+    } else {
+      color = colorFill2;
+    }
+
+    makeFractionSlices(
+      canvas,
+      currentX,
+      currentY,
+      radius,
+      numerator2,
+      denominator2,
+      lineThickness,
+      color,
+      startAngle
+    );
+    // startAngle = (numerator2 / denominator2) * Math.PI * 2;
+    currentX = currentX + radius * 2 + horizontalSpacing;
+  }
 };
