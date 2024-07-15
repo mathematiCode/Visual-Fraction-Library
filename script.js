@@ -24,10 +24,14 @@ function basicFrac() {
       document.getElementById("basic-denominator").value
     );
 
+    const wholeNum = parseInt(
+      document.getElementById("basic-whole-number").value
+    );
+
     if (modelToggle.checked) {
-      mathVisual.fractionBar(basicCanvas, numerator, denominator);
+      mathVisual.fractionBar(basicCanvas, wholeNum, numerator, denominator);
     } else {
-      mathVisual.fractionCircle(basicCanvas, numerator, denominator);
+      mathVisual.fractionCircle(basicCanvas, wholeNum, numerator, denominator);
     }
   });
 
@@ -95,6 +99,7 @@ function multiplicationFrac() {
 function divisionFrac() {
   // HTML Elements from the Division page
   const generateDivisionButton = document.getElementById("generate-division");
+  const modelToggle = document.getElementById("division-model-toggle");
 
   generateDivisionButton.addEventListener("click", function () {
     const divisionCanvas = document.getElementById("division-canvas");
@@ -114,14 +119,18 @@ function divisionFrac() {
       document.getElementById("division-denominator2").value
     );
 
-    mathVisual.fractionDivision(
-      divisionCanvas,
-      divisionWholeNum1,
-      divisionNumerator1,
-      divisionDenominator1,
-      divisionNumerator2,
-      divisionDenominator2
-    );
+    if (modelToggle.checked) {
+      mathVisual.fractionDivisionBar(
+        divisionCanvas,
+        divisionWholeNum1,
+        divisionNumerator1,
+        divisionDenominator1,
+        divisionNumerator2,
+        divisionDenominator2
+      );
+    } else {
+      alert(`This feature is currently under construction.`);
+    }
   });
 
   const divisionPngButton = document.getElementById("division-png-button");

@@ -77,6 +77,7 @@ function makeFractionSlices(
 
 mathVisual.fractionBar = (
   canvasElement,
+  wholeNum,
   numerator,
   denominator,
   lineThickness = 5,
@@ -129,6 +130,7 @@ mathVisual.fractionBar = (
 
 mathVisual.fractionCircle = (
   canvasElement,
+  wholeNum,
   numerator,
   denominator,
   lineThickness = 5,
@@ -136,15 +138,16 @@ mathVisual.fractionCircle = (
 ) => {
   if (numerator < 0 || denominator < 0) {
     return alert(`Please enter a positive numerator and denominator.`);
-  } else if (numerator > denominator) {
+  } else if (numerator > denominator || wholeNum > 0) {
     mathVisual.mixedNumCircles(
       canvasElement,
-      0,
+      wholeNum,
       numerator,
       denominator,
       lineThickness,
       colorFill
     );
+
     return;
   }
 
@@ -173,8 +176,8 @@ mathVisual.mixedNumCircles = (
   wholeNum,
   numerator,
   denominator,
-  lineThickness,
-  colorFill
+  lineThickness = 5,
+  colorFill = "rgb(120, 190, 250)"
 ) => {
   const width = canvasElement.width;
   const height = canvasElement.height;
@@ -184,8 +187,10 @@ mathVisual.mixedNumCircles = (
   canvas.fillStyle = "white";
   canvas.fillRect(0, 0, width, height);
 
+  canvas.fillStyle = "pink";
+  canvas.fillRect(0, 0, width, height);
   // Figure out how long the radius of each circle should be based on the canvas dimensions.
-  let numWholes = Math.floor(numerator / denominator); //
+  let numWholes = Math.floor(numerator / denominator);
   let maxWholes = 0; // This is how many circles will be drawn on the canvas
 
   if (numerator % denominator == 0) {
@@ -208,7 +213,7 @@ mathVisual.mixedNumCircles = (
     optimalDimensions = calculateOptimalDimensions(
       width * 0.8,
       height * 0.8,
-      numWholes
+      maxWholes
     ); // Multiplying by 0.8 to leave room for spacing.
     circlesPerLine = optimalDimensions.itemsPerRow;
     numLines = optimalDimensions.numRows;
@@ -222,6 +227,7 @@ mathVisual.mixedNumCircles = (
   let currentX = radius + horizontalSpacing / 2;
   let currentY = radius + verticalSpacing;
   let slicesLeft = numerator;
+  let currentWhole = 1;
   if (radius < 20 || (radius < 35 && denominator > 10) || denominator > 15) {
     lineThickness = lineThickness / 2;
   }
@@ -234,16 +240,25 @@ mathVisual.mixedNumCircles = (
     }
 
     drawCircle(canvas, currentX, currentY, radius, lineThickness);
-    makeFractionSlices(
-      canvas,
-      currentX,
-      currentY,
-      radius,
-      slicesLeft,
-      denominator,
-      colorFill
-    ); // Shades in the fraction portion and draws lines to show each slice
-    slicesLeft = slicesLeft - denominator;
+
+    if (currentWhole < wholeNum) {
+      canvas.beginPath();
+      canvas.fillStyle = colorFill;
+      canvas.arc(currentX, currentY, radius, 0, 2 * Math.PI);
+      canvas.fill();
+      currentWhole = currentWhole - 1;
+    } else {
+      makeFractionSlices(
+        canvas,
+        currentX,
+        currentY,
+        radius,
+        slicesLeft,
+        denominator,
+        colorFill
+      ); // Shades in the fraction portion and draws lines to show each slice
+      slicesLeft = slicesLeft - denominator;
+    }
     currentX = currentX + 2 * radius + horizontalSpacing;
   }
 };
@@ -281,7 +296,7 @@ mathVisual.fractionMultiplication = (
   }
 };
 
-mathVisual.fractionDivision = (
+mathVisual.fractionDivisionBar = (
   canvasElement,
   wholeNum1,
   numerator1,
@@ -341,29 +356,6 @@ mathVisual.fractionDivision = (
   } else {
     dividend = interval * wholeNum1 + (interval / denominator1) * numerator1;
   } // unit: canvas pixels
-
-  // Removing this code from here for now to put it closer to the end so these lines display above the colored sections. I'm leaving here because I may add it back later if I want to have an animation that shows the original dividend and then counts by divisors one at a time.
-
-  //   canvas.beginPath();
-  //   canvas.fillStyle = "gray";
-  //   canvas.fillRect(
-  //     lineThickness,
-  //     lineThickness,
-  //     dividend - lineThickness * 2,
-  //     height - lineThickness * 2
-  //   );
-  //   canvas.closePath();
-  //   canvas.stroke();
-
-  //   for (let i = 1; i < numSections; i++) {
-  //     canvas.beginPath();
-  //     canvas.moveTo(separator, 0);
-  //     canvas.lineTo(separator, height);
-  //     canvas.closePath();
-  //     canvas.lineWidth = lineThickness;
-  //     canvas.stroke();
-  //     separator = separator + interval;
-  //   }
 
   let segmenter; // This represents how big the divisor is in pixels relative to the divident
   if (wholeNum1 == 0) {
@@ -450,4 +442,23 @@ mathVisual.fractionDivision = (
   canvas.strokeStyle = "black";
   canvas.lineWidth = lineThickness * 2;
   canvas.strokeRect(lineThickness, lineThickness, dividend, height);
+};
+
+mathVisual.fractionDivisionCircles = (
+  canvasElement,
+  wholeNum1,
+  numerator1,
+  denominator1,
+  numerator2,
+  denominator2,
+  lineThickness = 4,
+  colorFill = "#52a4b0",
+  colorFill2 = "#f0a68c"
+) => {
+  mathVisual.mixedNumCircles(
+    canvasElement,
+    wholeNum1,
+    numerator1,
+    denominator1
+  );
 };
