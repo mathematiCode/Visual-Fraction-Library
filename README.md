@@ -6,6 +6,7 @@ I am considering converting the functions or at least building new functions to 
 My goal is to have a website and a javascript library with many different types of math visuals.
 
 <h2> Math Visual Functions/Pages to Create </h2>
+<ul>
 - Fraction Bar ✅
 - Fraction Circle ✅
 - Improper Fraction Representations (circles only right now) ✅
@@ -27,6 +28,7 @@ My goal is to have a website and a javascript library with many different types 
 - Circle Graphs
 - Dot Plots
 - Maybe More?
+</ul>
 
 <h2> Customization Options and Features </h2>
 - Change color
