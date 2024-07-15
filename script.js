@@ -129,7 +129,17 @@ function divisionFrac() {
         divisionDenominator2
       );
     } else {
-      alert(`This feature is currently under construction.`);
+      mathVisual.fractionDivisionCircles(
+        divisionCanvas,
+        divisionWholeNum1,
+        divisionNumerator1,
+        divisionDenominator1,
+        divisionNumerator2,
+        divisionDenominator2,
+        (lineThickness = 5),
+        (colorFill = "#52a4b0"),
+        (colorFill2 = "#f0a68c")
+      );
     }
   });
 
