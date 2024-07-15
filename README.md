@@ -1,43 +1,43 @@
 <h1>Math Clip Art Library</h1>
 
 This is the beginning of a library of simple math visualization functions built on top of html canvas.
-I am considering converting the functions or at least building new functions to create svgs instead of canvases. 
+I am considering converting the functions or at least building new functions to create svgs instead of canvases.
 
 My goal is to have a website and a javascript library with many different types of math visuals.
 
 <h2> Math Visual Functions/Pages to Create </h2>
 <ul>
-- Fraction Bar ✅
-- Fraction Circle ✅
-- Improper Fraction Representations (circles only right now) ✅
-- Fraction Division Bar when dividend > divisor ✅
-- Fraction Division with Circles [in progress]
-- Fraction Multiplication
-- Fraction on a Number Line
-- Decimal on a Number Line
-- Negative Numbers on a Number Line
-- Base 10 blocks
-- Customizable triangles, trapezoids, parallelograms, etc. with optionally labeled side lengths
-- Customizable 3D shapes
-- Linear Graphs
-- Non Linear Graphs
-- Scatter Plots
-- Box Plots
-- Histograms
-- Percent Bar Graphs
-- Circle Graphs
-- Dot Plots
-- Maybe More?
+<li> Fraction Bar ✅</li>
+<li> Fraction Circle ✅</li>
+<li> Improper Fraction Representations (circles only right now) ✅</li>
+<li> Fraction Division Bar when dividend > divisor ✅</li></li>
+<li> Fraction Division with Circles [in progress]</li>
+<li> Fraction Multiplication</li>
+<li> Fraction on a Number Line</li>
+<li> Decimal on a Number Line</li>
+<li> Negative Numbers on a Number Line</li>
+<li> Base 10 blocks</li>
+<li> Customizable triangles, trapezoids, parallelograms, etc. with optionally labeled side lengths</li>
+<li> Customizable 3D shapes</li>
+<li> Linear Graphs</li>
+<li> Non Linear Graphs</li>
+<li> Scatter Plots</li>
+<li> Box Plots</li>
+<li> Histograms</li>
+<li> Percent Bar Graphs</li>
+<li> Circle Graphs</li>
+<li> Dot Plots</li>
+<li> Maybe More?</li>
 </ul>
 
 <h2> Customization Options and Features </h2>
-- Change color
-- Change line width
-- Copy to Clipboard
-- Ability to drag and drop multiple items or add labels or other things to them?
-- Change size of image ??
-- Download as png or jpg??
-- Download as svg?
+<li> Change color</li>
+<li> Change line width</li>
+<li> Copy to Clipboard</li>
+<li> Ability to drag and drop multiple items or add labels or other things to them?</li>
+<li> Change size of image ??</li>
+<li> Download as png or jpg??</li>
+<li> Download as svg?</li>
 
 <h2> Things that I need to figure out </h2>
 <ul>
