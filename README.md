@@ -1,10 +1,7 @@
 <h1>Math Clip Art Library</h1>
 
-This is the beginning of a library of simple math visualization functions built on top of html canvas.
+This is the beginning of a library of simple math visualization functions originally built on canvas but I am converting everything to SVGs.
 
-<h2 style="color:'pink';">
-I have paused creating new features to instead focus my efforts on converting all the functions to create SVG's instead of canvases. I've decided SVGs make a lot more sense to preserve image quality at any scale. 
-</h2>
 
 My goal is to have a website and a javascript library with many different types of math visuals.
 
