@@ -2,7 +2,7 @@
 
 This is the beginning of a library of simple math visualization functions built on top of html canvas.
 
-<h2 style="color:"pink";">
+<h2 style="color:'pink';">
 I have paused creating new features to instead focus my efforts on converting all the functions to create SVG's instead of canvases. I've decided SVGs make a lot more sense to preserve image quality at any scale. 
 </h2>
 
