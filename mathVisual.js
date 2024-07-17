@@ -16,8 +16,7 @@ function drawCircle(canvas, x, y, radius, lineThickness, color = "black") {
 function calculateOptimalDimensions(width, height, numItems) {
   /**
    * For example, given a width of 900 pixels and a height of 300 pixels, the aspect ratio would be 3 (900 / 300).
-   * If we wanted to fit say 100 items in this 900 by 300 container,
-   * multiplying 100 by the aspect ratio allows us to consider how to evenly distribute 300 (100*3) items within a 900 by 900 pixel square.
+   * If we wanted to fit say 100 items in this 900 by 300 container, multiplying 100 by the aspect ratio allows us to consider how to evenly distribute 300 (100*3) items within a 900 by 900 pixel square.
    * This can easily be done by taking the square root of 300 (triple the number of items we actually need)
    * to determine that we need a little over 17 items to go in each row.
    * In order to avoid overflow in the horizontal direction, I used Math.floor() method which will force the items per row to be 17.
@@ -44,7 +43,18 @@ function calculateOptimalDimensions(width, height, numItems) {
   return optimalDimensions;
 }
 
-function makeFractionSlices(
+function alternateBetweenColors(current, color1, color2, color3) {
+  if (current == color1) {
+    current = color2;
+  } else if (current == color2) {
+    current = color3;
+  } else {
+    current = color1;
+  }
+  return current;
+}
+
+function shadeFractionSlices(
   canvas,
   x,
   y,
@@ -56,8 +66,8 @@ function makeFractionSlices(
   startAngle = 0
 ) {
   // const startAngle = 0; // starting angle (in radians)
-  const angle = (Math.PI * 2) / denominator;
-  let currentAngle = angle;
+  const angle = startAngle + (Math.PI * 2) / denominator;
+
   let shaded = angle * numerator;
   canvas.beginPath(); // Filling in the shaded pieces
   canvas.lineWidth = lineThickness;
@@ -67,7 +77,11 @@ function makeFractionSlices(
   canvas.fillStyle = colorFill;
   canvas.fill();
   canvas.closePath();
+}
 
+function makeFractionLines(canvas, x, y, radius, denominator) {
+  const angle = (Math.PI * 2) / denominator;
+  let currentAngle = angle;
   for (i = 0; i < denominator; i++) {
     // Creating lines for each slice
     canvas.beginPath();
@@ -253,7 +267,7 @@ mathVisual.mixedNumCircles = (
       canvas.fill();
       currentWhole = currentWhole + 1;
     } else {
-      makeFractionSlices(
+      shadeFractionSlices(
         canvas,
         currentX,
         currentY,
@@ -262,10 +276,13 @@ mathVisual.mixedNumCircles = (
         denominator,
         lineThickness,
         colorFill
-      ); // Shades in the fraction portion and draws lines to show each slice
+      );
+
+      makeFractionLines(canvas, currentX, currentY, radius, denominator);
+
       slicesLeft = slicesLeft - denominator;
     }
-    currentX = currentX + 2 * radius + horizontalSpacing;
+    currentX = currentX + 2 * radius + horizontalSpacing; // Move to next circle
   }
 
   let modelInfo = {};
@@ -469,10 +486,10 @@ mathVisual.fractionDivisionCircles = (
   denominator2,
   lineThickness = 4,
   colorFill = "#52a4b0", // teal
-  colorFill2 = "#9de56c" // light green
+  colorFill2 = "#f0a68c", // peach
+  colorFill3 = "#9de56c" // light green
 ) => {
   // mixedNumCircles will draw the dividend.
-
   let info = mathVisual.mixedNumCircles(
     canvasElement,
     wholeNum1,
@@ -491,26 +508,61 @@ mathVisual.fractionDivisionCircles = (
   startAngle = 0;
   let color = colorFill;
 
-  for (let i = 0; i < 6; i++) {
-    console.log(`iteration ${i}`);
-    if (i % 2 == 0) {
-      color = colorFill;
+  let slicesToBeFilled = Math.floor(
+    wholeNum1 * denominator2 +
+      (numerator1 / denominator1 / (numerator2 / denominator2)) * numerator2
+  );
+  let quotientFloor = Math.floor(slicesToBeFilled / numerator2);
+  console.log(
+    `Slices to be filled is ${slicesToBeFilled}, quotientFloor is ${quotientFloor}`
+  );
+
+  let currentPieceOfNumerator = 0;
+  let currentPieceOfDenominator = 0;
+  for (let i = 0; i < slicesToBeFilled; i++) {
+    if (currentPieceOfNumerator > numerator2) {
+      color = alternateBetweenColors(color, colorFill, colorFill2, colorFill3);
+      currentPieceOfNumerator = 0;
+      if (currentPieceOfDenominator > denominator2) {
+        makeFractionLines(canvas, currentX, currentY, radius, denominator2);
+        currentX = currentX + radius * 2 + horizontalSpacing;
+        startAngle = 0;
+        currentPieceOfDenominator = -1;
+        debugger;
+      } else {
+        startAngle = startAngle + (1 / denominator2) * Math.PI * 2;
+        debugger;
+      }
     } else {
-      color = colorFill2;
+      if (currentPieceOfDenominator >= denominator2) {
+        makeFractionLines(canvas, currentX, currentY, radius, denominator2);
+        currentX = currentX + radius * 2 + horizontalSpacing;
+        startAngle = 0;
+        currentPieceOfDenominator = -1;
+        debugger;
+      } else {
+        startAngle = startAngle + (1 / denominator2) * Math.PI * 2;
+        debugger;
+      }
     }
 
-    makeFractionSlices(
+    shadeFractionSlices(
       canvas,
       currentX,
       currentY,
       radius,
-      numerator2,
+      1,
       denominator2,
       lineThickness,
       color,
       startAngle
     );
-    // startAngle = (numerator2 / denominator2) * Math.PI * 2;
-    currentX = currentX + radius * 2 + horizontalSpacing;
+
+    console.log(
+      `currentPieceOfNum is ${currentPieceOfNumerator} and currentPieceOfDenom is ${currentPieceOfDenominator}`
+    );
+    debugger;
+    currentPieceOfNumerator++;
+    currentPieceOfDenominator++;
   }
 };
