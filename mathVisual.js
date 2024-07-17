@@ -476,7 +476,7 @@ mathVisual.fractionDivisionBar = (
   canvas.strokeRect(lineThickness, lineThickness, dividend, height);
 };
 
-// This function is almost done!
+// This function is almost done! I just need to handle the last piece if only a partial group or piece can be drawn.
 mathVisual.fractionDivisionCircles = (
   canvasElement,
   wholeNum1,
