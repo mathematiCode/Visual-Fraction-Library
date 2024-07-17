@@ -336,8 +336,8 @@ mathVisual.fractionDivisionBar = (
   numerator2,
   denominator2,
   lineThickness = 4,
-  colorFill = "#52a4b0",
-  colorFill2 = "#f0a68c",
+  colorFill = "#347d88",
+  colorFill2 = " #9de56c",
   style = "bar"
 ) => {
   let canvas = canvasElement.getContext("2d");
@@ -476,7 +476,7 @@ mathVisual.fractionDivisionBar = (
   canvas.strokeRect(lineThickness, lineThickness, dividend, height);
 };
 
-// This function is not done yet.
+// This function is almost done!
 mathVisual.fractionDivisionCircles = (
   canvasElement,
   wholeNum1,
@@ -507,6 +507,7 @@ mathVisual.fractionDivisionCircles = (
   currentY = radius + verticalSpacing;
   startAngle = 0;
   let color = colorFill;
+  let width = canvasElement.width;
 
   let slicesToBeFilled = Math.floor(
     wholeNum1 * denominator2 +
@@ -520,14 +521,18 @@ mathVisual.fractionDivisionCircles = (
   let currentPieceOfNumerator = 0;
   let currentPieceOfDenominator = 0;
   for (let i = 0; i < slicesToBeFilled; i++) {
-    if (currentPieceOfNumerator > numerator2) {
+    if (currentPieceOfNumerator >= numerator2) {
       color = alternateBetweenColors(color, colorFill, colorFill2, colorFill3);
       currentPieceOfNumerator = 0;
-      if (currentPieceOfDenominator > denominator2) {
+      if (currentPieceOfDenominator >= denominator2) {
         makeFractionLines(canvas, currentX, currentY, radius, denominator2);
         currentX = currentX + radius * 2 + horizontalSpacing;
+        if (currentX + radius >= width) {
+          currentY = currentY + radius * 2 + verticalSpacing; // Moves the remaining circles to the second line if we run out of space
+          currentX = radius + horizontalSpacing / 2;
+        }
         startAngle = 0;
-        currentPieceOfDenominator = -1;
+        currentPieceOfDenominator = 0;
         debugger;
       } else {
         startAngle = startAngle + (1 / denominator2) * Math.PI * 2;
@@ -537,8 +542,12 @@ mathVisual.fractionDivisionCircles = (
       if (currentPieceOfDenominator >= denominator2) {
         makeFractionLines(canvas, currentX, currentY, radius, denominator2);
         currentX = currentX + radius * 2 + horizontalSpacing;
+        if (currentX + radius >= width) {
+          currentY = currentY + radius * 2 + verticalSpacing; // Moves the remaining circles to the second line if we run out of space
+          currentX = radius + horizontalSpacing / 2;
+        }
         startAngle = 0;
-        currentPieceOfDenominator = -1;
+        currentPieceOfDenominator = 0;
         debugger;
       } else {
         startAngle = startAngle + (1 / denominator2) * Math.PI * 2;
@@ -565,4 +574,5 @@ mathVisual.fractionDivisionCircles = (
     currentPieceOfNumerator++;
     currentPieceOfDenominator++;
   }
+  makeFractionLines(canvas, currentX, currentY, radius, denominator2);
 };

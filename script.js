@@ -147,4 +147,46 @@ function divisionFrac() {
   divisionPngButton.addEventListener("click", function () {
     downloadPng("division-canvas");
   });
+
+  modelToggle.addEventListener("change", () => {
+    const divisionCanvas = document.getElementById("division-canvas");
+    const divisionWholeNum1 = parseInt(
+      document.getElementById("division-whole-number1").value
+    );
+    const divisionNumerator1 = parseInt(
+      document.getElementById("division-numerator1").value
+    );
+    const divisionDenominator1 = parseInt(
+      document.getElementById("division-denominator1").value
+    );
+    const divisionNumerator2 = parseInt(
+      document.getElementById("division-numerator2").value
+    );
+    const divisionDenominator2 = parseInt(
+      document.getElementById("division-denominator2").value
+    );
+
+    if (modelToggle.checked) {
+      mathVisual.fractionDivisionBar(
+        divisionCanvas,
+        divisionWholeNum1,
+        divisionNumerator1,
+        divisionDenominator1,
+        divisionNumerator2,
+        divisionDenominator2
+      );
+    } else {
+      mathVisual.fractionDivisionCircles(
+        divisionCanvas,
+        divisionWholeNum1,
+        divisionNumerator1,
+        divisionDenominator1,
+        divisionNumerator2,
+        divisionDenominator2,
+        (lineThickness = 5),
+        (colorFill = "#52a4b0"),
+        (colorFill2 = "#f0a68c")
+      );
+    }
+  });
 }
