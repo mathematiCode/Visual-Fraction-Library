@@ -17,20 +17,22 @@ My goal is to have a website and a javascript library with many different types 
 <li> Fraction on a Number Line</li>
 <li> Decimal on a Number Line</li>
 <li> Negative Numbers on a Number Line</li>
- <li> Animations for Fraction Operations <li>
 <li> Base 10 blocks</li>
 <li> Customizable triangles, trapezoids, parallelograms, etc. with optionally labeled side lengths</li>
 <li> Maybe More?</li>
 </ul>
 
 <h2> Customization Options and Features </h2>
-<li> Change color</li>
+<li> Change color((s)</li>
+<li> Change model (circles/bars/area model)</li>
 <li> Change line width</li>
+<li> Change spacing between multiple items </li>
 <li> Copy to Clipboard</li>
+<li> Download as svg</li>
 <li> Ability to drag and drop multiple items or add labels or other things to them?</li>
 <li> Change size of image ??</li>
 <li> Download as png or jpg??</li>
-<li> Download as svg?</li>
+
 
 <h2> Things that I need to figure out </h2>
 <ul>
