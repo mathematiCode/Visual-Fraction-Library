@@ -1,15 +1,15 @@
 const mathVisual = {};
 
-function drawCircle(canvas, x, y, radius, lineThickness, color = "black") {
-  const startAngle = 0; // starting angle (in radians)
-  const endAngle = 2 * Math.PI; // ending angle (in radians)
-
-  canvas.beginPath();
-  canvas.strokeStyle = color;
-  canvas.lineWidth = lineThickness;
-  canvas.arc(x, y, radius, startAngle, endAngle); // Drawing the outer circle
-  canvas.stroke();
-  canvas.closePath();
+function drawCircle(svg, x, y, radius, lineThickness, color = "black") {
+  const svgNS = svg.namespaceURI;
+  const circle = document.createElementNS(svgNS, "circle");
+  circle.setAttribute("cx", x);
+  circle.setAttribute("cy", y);
+  circle.setAttribute("r", radius);
+  circle.setAttribute("stroke", color);
+  circle.setAttribute("fill", "none");
+  circle.setAttribute("stroke-width", lineThickness);
+  svg.appendChild(circle);
 }
 
 // Given a width and height of a container and a number of roughly-square items to fit inside of the container, this function returns the optimal size of each item so that they will all fit and use as much of the available space as possible. If you want the items to be spaced out, multiply the width and height parameters by a scale factor less than one.
@@ -43,7 +43,7 @@ function calculateOptimalDimensions(width, height, numItems) {
   return optimalDimensions;
 }
 
-function alternateBetweenColors(current, color1, color2, color3) {
+function switchBetweenColors(current, color1, color2, color3) {
   if (current == color1) {
     current = color2;
   } else if (current == color2) {
@@ -55,7 +55,7 @@ function alternateBetweenColors(current, color1, color2, color3) {
 }
 
 function shadeFractionSlices(
-  canvas,
+  svg,
   x,
   y,
   radius,
@@ -63,46 +63,120 @@ function shadeFractionSlices(
   denominator,
   lineThickness,
   colorFill,
-  startAngle = 0
+  startAngle = Math.PI
 ) {
-  // const startAngle = 0; // starting angle (in radians)
+  const svgNS = svg.namespaceURI;
   const angle = startAngle + (Math.PI * 2) / denominator;
-
-  let shaded = angle * numerator;
-  canvas.beginPath(); // Filling in the shaded pieces
-  canvas.lineWidth = lineThickness;
-  canvas.arc(x, y, radius, startAngle, shaded);
-  canvas.lineTo(x, y);
-  // I've only drawn an arc and one line, but when the fill() method is called, the canvas will automatically draw a line back to the starting point. So I do not need to explicitly create the 3rd line to close the path to be filled.
-  canvas.fillStyle = colorFill;
-  canvas.fill();
-  canvas.closePath();
-}
-
-function makeFractionLines(canvas, x, y, radius, denominator) {
-  const angle = (Math.PI * 2) / denominator;
+  let previousAngle = startAngle;
   let currentAngle = angle;
-  for (i = 0; i < denominator; i++) {
-    // Creating lines for each slice
-    canvas.beginPath();
-    canvas.arc(x, y, radius, currentAngle, currentAngle + angle);
-    canvas.lineTo(x, y);
+  for (let i = 0; i < numerator; i++) {
+    const curvedPath = document.createElementNS(svgNS, "path");
+    const startX = x + radius * Math.cos(previousAngle);
+    const startY = y + radius * Math.sin(previousAngle);
+    const endX = x + radius * Math.cos(currentAngle);
+    const endY = y + radius * Math.sin(currentAngle);
+    curvedPath.setAttribute("fill", colorFill);
+    curvedPath.setAttribute(
+      "d",
+      `
+    M ${x},${y} 
+    L ${startX},${startY} 
+    A ${radius},${radius} 0 0 1 ${endX},${endY} 
+    Z
+  `
+    );
+    previousAngle = currentAngle;
     currentAngle = currentAngle + angle;
-    canvas.stroke();
+    svg.appendChild(curvedPath);
   }
 }
 
+function makeFractionLines(svg, x, y, radius, denominator, lineThickness) {
+  const angle = (Math.PI * 2) / denominator;
+  let currentAngle = Math.PI;
+
+  for (let i = 0; i < denominator; i++) {
+    const svgNS = svg.namespaceURI;
+    const line = document.createElementNS(svgNS, "line");
+    const startX = x + radius * Math.cos(currentAngle);
+    const startY = y + radius * Math.sin(currentAngle);
+    const endX = x;
+    const endY = y;
+
+    line.setAttribute("x1", startX);
+    line.setAttribute("y1", startY);
+    line.setAttribute("x2", endX);
+    line.setAttribute("y2", endY);
+    line.setAttribute("stroke", "black");
+    line.setAttribute("stroke-width", lineThickness);
+    svg.appendChild(line);
+
+    currentAngle += angle;
+  }
+}
+
+function drawFractionBar(
+  svg,
+  x,
+  y,
+  width,
+  height,
+  numerator,
+  denominator,
+  lineThickness,
+  colorFill
+) {
+  const svgNS = svg.namespaceURI;
+  const interval = width / denominator;
+  let separator = interval; // Need two variables becuase separator will increment while interval stays constant.
+
+  let shaded = interval * numerator;
+  console.log(`Shaded is ${shaded}`);
+
+  const shadedRect = document.createElementNS(svgNS, "rect");
+  shadedRect.setAttribute("x", x + lineThickness);
+  shadedRect.setAttribute("y", y);
+  shadedRect.setAttribute("width", shaded - lineThickness);
+  shadedRect.setAttribute("height", height);
+  shadedRect.setAttribute("fill", colorFill);
+  shadedRect.setAttribute("stroke", "black");
+  shadedRect.setAttribute("stroke-width", 0);
+  svg.appendChild(shadedRect);
+
+  for (let i = 1; i < denominator; i++) {
+    const pieceSeparator = document.createElementNS(svgNS, "line");
+    pieceSeparator.setAttribute("x1", x + separator);
+    pieceSeparator.setAttribute("y1", y);
+    pieceSeparator.setAttribute("x2", x + separator);
+    pieceSeparator.setAttribute("y2", y + height);
+    pieceSeparator.setAttribute("stroke", "black");
+    pieceSeparator.setAttribute("stroke-width", lineThickness);
+    svg.appendChild(pieceSeparator);
+    separator = separator + interval;
+  }
+
+  const blackBorder = document.createElementNS(svgNS, "rect");
+  blackBorder.setAttribute("x", x + lineThickness);
+  blackBorder.setAttribute("y", y);
+  blackBorder.setAttribute("width", width);
+  blackBorder.setAttribute("height", height);
+  blackBorder.setAttribute("fill", "none");
+  blackBorder.setAttribute("stroke", "black");
+  blackBorder.setAttribute("stroke-width", lineThickness);
+  svg.appendChild(blackBorder);
+}
+
 mathVisual.fractionBar = (
-  canvasElement,
+  svg,
   wholeNum,
   numerator,
   denominator,
   lineThickness = 5,
   colorFill = "rgb(120, 190, 250)"
 ) => {
-  let canvas = canvasElement.getContext("2d");
-  const width = canvasElement.width;
-  const height = canvasElement.height;
+  const width = svg.getAttribute("width") - lineThickness - 5;
+  const height = svg.getAttribute("height") - lineThickness - 5;
+  const svgNS = svg.namespaceURI;
 
   if (numerator > denominator) {
     return alert(
@@ -110,54 +184,46 @@ mathVisual.fractionBar = (
         numerator > denominator
       }`
     );
+  } else if (wholeNum > 0) {
+    mathVisual.mixedNumBars(
+      svg,
+      wholeNum,
+      numerator,
+      denominator,
+      lineThickness,
+      colorFill
+    );
+  } else {
+    drawFractionBar(
+      svg,
+      lineThickness,
+      lineThickness,
+      width,
+      height,
+      numerator,
+      denominator,
+      lineThickness,
+      colorFill
+    );
   }
-  canvas.clearRect(0, 0, width, height);
-  const interval = width / denominator;
-  let separator = interval; // Need two variables becuase separator will increment while interval stays constant.
-
-  let shaded = interval * numerator;
-  canvas.fillStyle = "white";
-  canvas.fillRect(
-    lineThickness,
-    lineThickness,
-    width - lineThickness * 2,
-    height - lineThickness * 2
-  );
-  canvas.fillStyle = colorFill;
-  canvas.fillRect(
-    lineThickness,
-    lineThickness,
-    shaded - lineThickness,
-    height - lineThickness
-  );
-
-  for (let i = 1; i < denominator; i++) {
-    canvas.beginPath();
-    canvas.moveTo(separator, 0);
-    canvas.lineTo(separator, height);
-    canvas.closePath();
-    canvas.lineWidth = lineThickness;
-    canvas.stroke();
-    separator = separator + interval;
-  }
-  canvas.lineWidth = lineThickness * 2;
-  canvas.fillStyle = "black";
-  canvas.strokeRect(0, 0, width, height);
 };
 
 mathVisual.fractionCircle = (
-  canvasElement,
+  svg,
   wholeNum,
   numerator,
   denominator,
   lineThickness = 5,
   colorFill = "rgb(120, 190, 250)"
 ) => {
+  const width = svg.getAttribute("width");
+  const height = svg.getAttribute("height");
+  console.log(`The width of the svg is ${width}`);
   if (numerator < 0 || denominator < 0) {
     return alert(`Please enter a positive numerator and denominator.`);
   } else if (numerator > denominator || wholeNum > 0) {
     mathVisual.mixedNumCircles(
-      canvasElement,
+      svg,
       wholeNum,
       numerator,
       denominator,
@@ -167,11 +233,6 @@ mathVisual.fractionCircle = (
 
     return;
   }
-
-  const width = canvasElement.width;
-  const height = canvasElement.height;
-  let canvas = canvasElement.getContext("2d");
-  canvas.clearRect(0, 0, width, height);
 
   // Set the circle properties
   const x = width / 2; // x-coordinate of the center
@@ -183,32 +244,36 @@ mathVisual.fractionCircle = (
     radius = height / 2;
   }
 
-  drawCircle(canvas, x, y, radius, lineThickness); // Draws the outer circle
+  drawCircle(svg, x, y, radius - 5, lineThickness); // Draws the outer circle
 
-  makeFractionSlices(canvas, x, y, radius, numerator, denominator, colorFill); // Shades in the fraction portion and draws lines to show each slice
+  shadeFractionSlices(
+    svg,
+    x,
+    y,
+    radius - lineThickness / 2 - 5,
+    numerator,
+    denominator,
+    lineThickness,
+    colorFill,
+    0
+  ); // Shades in the fraction portion and draws lines to show each slice
+  makeFractionLines(svg, x, y, radius - 5, denominator);
 };
 
 mathVisual.mixedNumCircles = (
-  canvasElement,
+  svg,
   wholeNum,
   numerator,
   denominator,
   lineThickness = 5,
   colorFill = "rgb(120, 190, 250)"
 ) => {
-  const width = canvasElement.width;
-  const height = canvasElement.height;
-  let canvas = canvasElement.getContext("2d");
-  canvas.clearRect(0, 0, width, height);
-
-  canvas.fillStyle = "white";
-  canvas.fillRect(0, 0, width, height);
-
-  canvas.strokeStyle = "gray";
-  canvas.strokeRect(0, 0, width, height);
-  // Figure out how long the radius of each circle should be based on the canvas dimensions.
+  const width = svg.getAttribute("width");
+  const height = svg.getAttribute("height");
+  const svgNS = svg.namespaceURI;
+  // Figure out how long the radius of each circle should be based on the svg dimensions.
   let numWholes = Math.floor(numerator / denominator);
-  let maxWholes = 0; // This is how many circles will be drawn on the canvas
+  let maxWholes = 0; // This is how many circles will be drawn on the svg
 
   if (numerator % denominator == 0) {
     maxWholes = numWholes + wholeNum;
@@ -253,59 +318,141 @@ mathVisual.mixedNumCircles = (
   // Draws the circles and shades in the correct # of slices given an improper fraction
   for (let i = 0; i < maxWholes; i++) {
     if (currentX + radius >= width) {
-      currentY = currentY + radius * 2 + verticalSpacing; // Moves the remaining circles to the second line if we run out of space
+      currentY = currentY + radius * 2 + verticalSpacing; // Moves the remaining circles to the next line if we run out of space
       currentX = radius + horizontalSpacing / 2;
     }
+    const wholeCircle = document.createElementNS(svgNS, "circle");
 
-    drawCircle(canvas, currentX, currentY, radius, lineThickness);
+    drawCircle(svg, currentX, currentY, radius, lineThickness);
 
     if (currentWhole <= wholeNum) {
-      canvas.beginPath();
-      canvas.fillStyle = colorFill;
-      canvas.lineWidth = lineThickness;
-      canvas.arc(currentX, currentY, radius, 0, 2 * Math.PI);
-      canvas.fill();
+      wholeCircle.setAttribute("cx", currentX);
+      wholeCircle.setAttribute("cy", currentY);
+      wholeCircle.setAttribute("r", radius - lineThickness / 2);
+      wholeCircle.setAttribute("stroke", "none");
+      wholeCircle.setAttribute("fill", colorFill);
+      svg.appendChild(wholeCircle);
       currentWhole = currentWhole + 1;
     } else {
       shadeFractionSlices(
-        canvas,
+        svg,
         currentX,
         currentY,
-        radius,
+        radius - lineThickness / 2,
         slicesLeft,
         denominator,
         lineThickness,
         colorFill
       );
 
-      makeFractionLines(canvas, currentX, currentY, radius, denominator);
+      makeFractionLines(
+        svg,
+        currentX,
+        currentY,
+        radius,
+        denominator,
+        lineThickness
+      );
 
       slicesLeft = slicesLeft - denominator;
     }
     currentX = currentX + 2 * radius + horizontalSpacing; // Move to next circle
   }
-
+  // Returns this object of info to be used later in the fractionDivisionCircles function.
   let modelInfo = {};
   modelInfo.horizontalSpacing = horizontalSpacing;
   modelInfo.verticalSpacing = verticalSpacing;
   modelInfo.radius = radius;
-  modelInfo.canvas = canvas;
+  modelInfo.svg = svg;
   return modelInfo;
 };
 
 // This function is not done yet.
 mathVisual.mixedNumBars = (
-  canvasElement,
-  wholeNum = 0,
+  svg,
+  wholeNum,
   numerator,
   denominator,
   lineThickness,
   colorFill
 ) => {
-  const width = canvasElement.width;
-  const height = canvasElement.height;
-  let canvas = canvasElement.getContext("2d");
-  canvas.clearRect(0, 0, width, height);
+  const width = svg.getAttribute("width");
+  const height = svg.getAttribute("height");
+  const svgNS = svg.namespaceURI;
+
+  let numWholes = Math.floor(numerator / denominator);
+  let maxWholes = 0; // This is how many bars will be drawn on the svg
+
+  if (numerator % denominator == 0) {
+    maxWholes = numWholes + wholeNum;
+  } else {
+    maxWholes = numWholes + wholeNum + 1;
+  } // Determines how many total bars will be drawn even if the last one is only partially shaded
+
+  let horizontalSpacing = 0;
+  let verticalSpacing = 0;
+  let circlesPerLine = maxWholes;
+  let numLines = 1;
+
+  if (maxWholes <= 7) {
+    // If there are only four or less bars this puts them all on one line because it looks silly otherwise.
+    numLines = 1;
+    barsPerLine = maxWholes;
+    barWidth = (width * 0.9) / maxWholes;
+    barHeight = height * 0.8;
+  } else {
+    optimalDimensions = calculateOptimalDimensions(
+      width * 0.9,
+      height * 0.8,
+      maxWholes
+    ); // Multiplying by 0.8 to leave room for spacing.
+    barsPerLine = optimalDimensions.itemsPerRow;
+    numLines = optimalDimensions.numRows;
+    barWidth = optimalDimensions.size;
+    barHeight = optimalDimensions.size;
+  }
+
+  horizontalSpacing = (width - barsPerLine * barWidth) / barsPerLine;
+
+  verticalSpacing = (height - numLines * barHeight) / (numLines + 1);
+
+  let currentX = horizontalSpacing / 2;
+  let currentY = verticalSpacing;
+  let currentWhole = 1;
+
+  // Draws the bars and shades in the correct # of slices given an improper fraction
+  for (let i = 0; i < maxWholes; i++) {
+    if (currentX + barWidth >= width) {
+      currentY = currentY + barHeight + verticalSpacing; // Moves the remaining bars to the next line if we run out of space
+      currentX = horizontalSpacing / 2;
+    }
+    const wholeBar = document.createElementNS(svgNS, "rect");
+
+    if (currentWhole <= wholeNum) {
+      wholeBar.setAttribute("x", currentX);
+      wholeBar.setAttribute("y", currentY);
+      wholeBar.setAttribute("width", barWidth);
+      wholeBar.setAttribute("height", barHeight);
+      wholeBar.setAttribute("stroke", "black");
+      wholeBar.setAttribute("stroke-width", lineThickness);
+      wholeBar.setAttribute("fill", colorFill);
+      svg.appendChild(wholeBar);
+      currentWhole = currentWhole + 1;
+    } else {
+      drawFractionBar(
+        svg,
+        currentX,
+        currentY,
+        barWidth,
+        barHeight,
+        numerator,
+        denominator,
+        lineThickness,
+        colorFill
+      );
+    }
+    currentX = currentX + barWidth + horizontalSpacing; // Move to next bar
+  }
 };
 
 // This function is not done yet.
@@ -329,7 +476,7 @@ mathVisual.fractionMultiplication = (
 };
 
 mathVisual.fractionDivisionBar = (
-  canvasElement,
+  svg,
   wholeNum1,
   numerator1,
   denominator1,
@@ -340,11 +487,10 @@ mathVisual.fractionDivisionBar = (
   colorFill2 = " #9de56c",
   style = "bar"
 ) => {
-  let canvas = canvasElement.getContext("2d");
-  const width = canvasElement.width;
   const spaceForLabels = 50;
-  const height = canvasElement.height - spaceForLabels;
-  canvas.clearRect(0, 0, width, height + spaceForLabels);
+  const width = svg.getAttribute("width");
+  const height = svg.getAttribute("height") - spaceForLabels;
+  const svgNS = svg.namespaceURI;
   let numSections = 0; //
 
   // Need to add error handling for decimal, blank or negative inputs
@@ -387,7 +533,7 @@ mathVisual.fractionDivisionBar = (
     dividend = interval * numerator1;
   } else {
     dividend = interval * wholeNum1 + (interval / denominator1) * numerator1;
-  } // unit: canvas pixels
+  } // unit: pixels
 
   let segmenter; // This represents how big the divisor is in pixels relative to the divident
   if (wholeNum1 == 0) {
@@ -400,54 +546,68 @@ mathVisual.fractionDivisionBar = (
 
   //color each section alternating colors
   for (let i = 1; i <= numSegments; i++) {
+    const section = document.createElementNS(svgNS, "rect");
     if (i % 2 == 0) {
-      canvas.fillStyle = colorFill2;
-      canvas.fillRect(segmenter * i - segmenter, 0, segmenter * i, height);
+      section.setAttribute("fill", colorFill2);
     } else {
-      canvas.fillStyle = colorFill;
-      canvas.fillRect(segmenter * i - segmenter, 0, segmenter * i, height);
+      section.setAttribute("fill", colorFill);
     }
 
-    canvas.fillStyle = "white";
-    canvas.fillRect(dividend, 0, width, height);
+    section.setAttribute("x", segmenter * i - segmenter);
+    section.setAttribute("y", 0);
+    section.setAttribute("width", segmenter);
+    section.setAttribute("height", height);
+    svg.appendChild(section);
+
+    // Covers up any shading that may have overflowed beyond the dividend
+    const whiteBackground = document.createElementNS(svgNS, "rect");
+    whiteBackground.setAttribute("fill", "white");
+    whiteBackground.setAttribute("x", dividend);
+    whiteBackground.setAttribute("y", 0);
+    whiteBackground.setAttribute("width", width - dividend);
+    whiteBackground.setAttribute("height", height);
+    svg.appendChild(whiteBackground);
 
     // Dashed border which is invisible if the dividend is a whole number but shows the next integer up if the dividend is a mixed number
-    canvas.fillStyle = "black";
-    canvas.setLineDash([5, 6]);
-    canvas.lineWidth = lineThickness * 2;
-    canvas.beginPath();
-    canvas.moveTo(lineThickness, lineThickness);
-    canvas.lineTo(lineThickness, height + lineThickness);
-    canvas.lineTo(width - lineThickness, height + lineThickness);
-    canvas.lineTo(width - lineThickness, lineThickness);
-    canvas.lineTo(lineThickness, lineThickness);
-    canvas.stroke();
+    const dottedRect = document.createElementNS(svgNS, "rect");
+    dottedRect.setAttribute("x", lineThickness);
+    dottedRect.setAttribute("y", lineThickness);
+    dottedRect.setAttribute("width", width - lineThickness * 2);
+    dottedRect.setAttribute("height", height);
+    dottedRect.setAttribute("fill", "none");
+    dottedRect.setAttribute("stroke", "black");
+    dottedRect.setAttribute("stroke-width", lineThickness * 2);
+    dottedRect.setAttribute("stroke-dasharray", "5, 6"); // dash pattern: 5 units dash, 6 units gap
+    svg.appendChild(dottedRect);
 
     // Create dashed lines to segment each iteration of the divisor
-    canvas.setLineDash([5, 10]);
-    // canvas.fillStyle = colorFill;
-    canvas.lineWidth = lineThickness + 1;
-    canvas.beginPath();
-    canvas.moveTo(segmenter * i, 0);
-    canvas.lineTo(segmenter * i, height);
-    canvas.closePath();
-    canvas.stroke();
+    const dottedLine = document.createElementNS(svgNS, "line");
+    dottedLine.setAttribute("x1", segmenter * i);
+    dottedLine.setAttribute("y1", 0);
+    dottedLine.setAttribute("x2", segmenter * i);
+    dottedLine.setAttribute("y2", height);
+    dottedLine.setAttribute("stroke", "black");
+    dottedLine.setAttribute("stroke-width", lineThickness + 2);
+    dottedLine.setAttribute("stroke-dasharray", "5, 5"); // dash pattern: 5 units dash, 10 units gap
+    svg.appendChild(dottedLine);
   }
 
-  canvas.setLineDash([]);
   // Create solid separators for each whole OR if the dividend is less than one, for each portion
   for (let i = 1; i < numSections; i++) {
-    canvas.beginPath();
-    canvas.moveTo(separator, 0);
-    canvas.lineTo(separator, height);
-    canvas.closePath();
+    const boldLine = document.createElementNS(svgNS, "line");
+    boldLine.setAttribute("stroke-dasharray", "none");
+    boldLine.setAttribute("stroke", "black");
+    boldLine.setAttribute("x1", separator);
+    boldLine.setAttribute("y1", 0);
+    boldLine.setAttribute("x2", separator);
+    boldLine.setAttribute("y2", height);
     if (wholeNum1 != 0) {
-      canvas.lineWidth = lineThickness * 2;
+      boldLine.setAttribute("stroke-width", lineThickness * 2);
     } else {
-      canvas.lineWidth = lineThickness;
+      boldLine.setAttribute("stroke-width", lineThickness * 2);
     }
-    canvas.stroke();
     separator = separator + interval;
+    svg.appendChild(boldLine);
   }
 
   // thin unit fraction lines
@@ -458,27 +618,34 @@ mathVisual.fractionDivisionBar = (
     unitFractionWidth = width / (numSections * denominator2);
   }
   let unitFracDivider = unitFractionWidth;
-  canvas.setLineDash([]);
-  canvas.strokeStyle = "black";
+
   for (let i = 1; i < numSections * denominator2; i++) {
-    canvas.lineWidth = lineThickness / 4;
-    canvas.beginPath();
-    canvas.moveTo(unitFracDivider, lineThickness);
-    canvas.lineTo(unitFracDivider, height);
-    canvas.stroke();
+    const thinLine = document.createElementNS(svgNS, "line");
+    thinLine.setAttribute("stroke-width", lineThickness / 2);
+    thinLine.setAttribute("stroke", "black");
+    thinLine.setAttribute("x1", unitFracDivider);
+    thinLine.setAttribute("y1", lineThickness);
+    thinLine.setAttribute("x2", unitFracDivider);
+    thinLine.setAttribute("y2", height);
+    svg.appendChild(thinLine);
     unitFracDivider = unitFracDivider + unitFractionWidth;
   }
 
   // Create solid black outline
-  canvas.setLineDash([]); // Resets the line to solid instead of dashed
-  canvas.strokeStyle = "black";
-  canvas.lineWidth = lineThickness * 2;
-  canvas.strokeRect(lineThickness, lineThickness, dividend, height);
+  const blackOutline = document.createElementNS(svgNS, "rect");
+  blackOutline.setAttribute("stroke-width", lineThickness * 2);
+  blackOutline.setAttribute("fill", "none");
+  blackOutline.setAttribute("stroke", "black");
+  blackOutline.setAttribute("x", lineThickness);
+  blackOutline.setAttribute("y", lineThickness);
+  blackOutline.setAttribute("width", dividend);
+  blackOutline.setAttribute("height", height);
+  svg.appendChild(blackOutline);
 };
 
 // This function is almost done! I just need to handle the last piece if only a partial group or piece can be drawn.
 mathVisual.fractionDivisionCircles = (
-  canvasElement,
+  svg,
   wholeNum1,
   numerator1,
   denominator1,
@@ -491,41 +658,46 @@ mathVisual.fractionDivisionCircles = (
 ) => {
   // mixedNumCircles will draw the dividend.
   let info = mathVisual.mixedNumCircles(
-    canvasElement,
+    svg,
     wholeNum1,
     numerator1,
     denominator1,
-    5,
+    lineThickness,
     "gray"
   );
-  canvas = info.canvas;
+  const width = svg.getAttribute("width");
+  const height = svg.getAttribute("height");
   radius = info.radius;
   horizontalSpacing = info.horizontalSpacing;
   verticalSpacing = info.verticalSpacing;
-
   currentX = radius + horizontalSpacing / 2;
   currentY = radius + verticalSpacing;
   startAngle = 0;
   let color = colorFill;
-  let width = canvasElement.width;
-
   let slicesToBeFilled = Math.floor(
     wholeNum1 * denominator2 +
       (numerator1 / denominator1 / (numerator2 / denominator2)) * numerator2
   );
-  let quotientFloor = Math.floor(slicesToBeFilled / numerator2);
-  console.log(
-    `Slices to be filled is ${slicesToBeFilled}, quotientFloor is ${quotientFloor}`
-  );
+  // let quotientFloor = Math.floor(slicesToBeFilled / numerator2);
+  // console.log(
+  //   `Slices to be filled is ${slicesToBeFilled}, quotientFloor is ${quotientFloor}`
+  // );
 
   let currentPieceOfNumerator = 0;
   let currentPieceOfDenominator = 0;
   for (let i = 0; i < slicesToBeFilled; i++) {
     if (currentPieceOfNumerator >= numerator2) {
-      color = alternateBetweenColors(color, colorFill, colorFill2, colorFill3);
+      color = switchBetweenColors(color, colorFill, colorFill2, colorFill3);
       currentPieceOfNumerator = 0;
       if (currentPieceOfDenominator >= denominator2) {
-        makeFractionLines(canvas, currentX, currentY, radius, denominator2);
+        makeFractionLines(
+          svg,
+          currentX,
+          currentY,
+          radius,
+          denominator2,
+          lineThickness
+        );
         currentX = currentX + radius * 2 + horizontalSpacing;
         if (currentX + radius >= width) {
           currentY = currentY + radius * 2 + verticalSpacing; // Moves the remaining circles to the second line if we run out of space
@@ -533,14 +705,19 @@ mathVisual.fractionDivisionCircles = (
         }
         startAngle = 0;
         currentPieceOfDenominator = 0;
-        debugger;
       } else {
         startAngle = startAngle + (1 / denominator2) * Math.PI * 2;
-        debugger;
       }
     } else {
       if (currentPieceOfDenominator >= denominator2) {
-        makeFractionLines(canvas, currentX, currentY, radius, denominator2);
+        makeFractionLines(
+          svg,
+          currentX,
+          currentY,
+          radius,
+          denominator2,
+          lineThickness
+        );
         currentX = currentX + radius * 2 + horizontalSpacing;
         if (currentX + radius >= width) {
           currentY = currentY + radius * 2 + verticalSpacing; // Moves the remaining circles to the second line if we run out of space
@@ -548,25 +725,21 @@ mathVisual.fractionDivisionCircles = (
         }
         startAngle = 0;
         currentPieceOfDenominator = 0;
-        debugger;
       } else {
         startAngle = startAngle + (1 / denominator2) * Math.PI * 2;
-        debugger;
       }
     }
-
     shadeFractionSlices(
-      canvas,
+      svg,
       currentX,
       currentY,
-      radius,
+      radius - lineThickness / 2,
       1,
       denominator2,
       lineThickness,
       color,
       startAngle
     );
-
     console.log(
       `currentPieceOfNum is ${currentPieceOfNumerator} and currentPieceOfDenom is ${currentPieceOfDenominator}`
     );
@@ -574,5 +747,13 @@ mathVisual.fractionDivisionCircles = (
     currentPieceOfNumerator++;
     currentPieceOfDenominator++;
   }
-  makeFractionLines(canvas, currentX, currentY, radius, denominator2);
+
+  makeFractionLines(
+    svg,
+    currentX,
+    currentY,
+    radius,
+    denominator2,
+    lineThickness
+  );
 };

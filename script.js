@@ -4,7 +4,7 @@ function downloadPng(canvasEl) {
   const canvas = document.getElementById(canvasEl); // Gets canvas element from html
   const link = document.createElement("a");
   link.href = canvas.toDataURL("image/png");
-  link.download = "canvas_image.png";
+  link.download = "image.png";
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
@@ -14,9 +14,12 @@ function basicFrac() {
   // HTML Elements from the basic fraction page
   const generateBasicButton = document.getElementById("generate-basic");
   const modelToggle = document.getElementById("basic-model-toggle");
-  const basicCanvas = document.getElementById("basic-canvas");
+  const basicSVG = document.getElementById("basic-svg");
 
   generateBasicButton.addEventListener("click", function () {
+    const wholeNum = parseInt(
+      document.getElementById("basic-whole-number").value
+    );
     const numerator = parseInt(
       document.getElementById("basic-numerator").value
     );
@@ -24,34 +27,35 @@ function basicFrac() {
       document.getElementById("basic-denominator").value
     );
 
-    const wholeNum = parseInt(
-      document.getElementById("basic-whole-number").value
-    );
-
+    basicSVG.innerHTML = "";
     if (modelToggle.checked) {
-      mathVisual.fractionBar(basicCanvas, wholeNum, numerator, denominator);
+      mathVisual.fractionBar(basicSVG, wholeNum, numerator, denominator);
     } else {
-      mathVisual.fractionCircle(basicCanvas, wholeNum, numerator, denominator);
+      mathVisual.fractionCircle(basicSVG, wholeNum, numerator, denominator);
     }
   });
 
   modelToggle.addEventListener("change", () => {
+    const wholeNum = parseInt(
+      document.getElementById("basic-whole-number").value
+    );
     const numerator = parseInt(
       document.getElementById("basic-numerator").value
     );
     const denominator = parseInt(
       document.getElementById("basic-denominator").value
     );
+    basicSVG.innerHTML = "";
     if (modelToggle.checked) {
-      mathVisual.fractionBar(basicCanvas, numerator, denominator);
+      mathVisual.fractionBar(basicSVG, wholeNum, numerator, denominator);
     } else {
-      mathVisual.fractionCircle(basicCanvas, numerator, denominator);
+      mathVisual.fractionCircle(basicSVG, wholeNum, numerator, denominator);
     }
   });
 
   const basicPngButton = document.getElementById("basic-png-button");
   basicPngButton.addEventListener("click", function () {
-    downloadPng("basic-canvas");
+    downloadPng("basic-SVG");
   });
 }
 
@@ -102,7 +106,7 @@ function divisionFrac() {
   const modelToggle = document.getElementById("division-model-toggle");
 
   generateDivisionButton.addEventListener("click", function () {
-    const divisionCanvas = document.getElementById("division-canvas");
+    const divisionSVG = document.getElementById("division-svg");
     const divisionWholeNum1 = parseInt(
       document.getElementById("division-whole-number1").value
     );
@@ -118,10 +122,10 @@ function divisionFrac() {
     const divisionDenominator2 = parseInt(
       document.getElementById("division-denominator2").value
     );
-
+    divisionSVG.innerHTML = "";
     if (modelToggle.checked) {
       mathVisual.fractionDivisionBar(
-        divisionCanvas,
+        divisionSVG,
         divisionWholeNum1,
         divisionNumerator1,
         divisionDenominator1,
@@ -130,7 +134,7 @@ function divisionFrac() {
       );
     } else {
       mathVisual.fractionDivisionCircles(
-        divisionCanvas,
+        divisionSVG,
         divisionWholeNum1,
         divisionNumerator1,
         divisionDenominator1,
@@ -145,11 +149,11 @@ function divisionFrac() {
 
   const divisionPngButton = document.getElementById("division-png-button");
   divisionPngButton.addEventListener("click", function () {
-    downloadPng("division-canvas");
+    downloadPng("division-svg");
   });
 
   modelToggle.addEventListener("change", () => {
-    const divisionCanvas = document.getElementById("division-canvas");
+    const divisionSVG = document.getElementById("division-svg");
     const divisionWholeNum1 = parseInt(
       document.getElementById("division-whole-number1").value
     );
@@ -165,10 +169,10 @@ function divisionFrac() {
     const divisionDenominator2 = parseInt(
       document.getElementById("division-denominator2").value
     );
-
+    divisionSVG.innerHTML = "";
     if (modelToggle.checked) {
       mathVisual.fractionDivisionBar(
-        divisionCanvas,
+        divisionSVG,
         divisionWholeNum1,
         divisionNumerator1,
         divisionDenominator1,
@@ -177,7 +181,7 @@ function divisionFrac() {
       );
     } else {
       mathVisual.fractionDivisionCircles(
-        divisionCanvas,
+        divisionSVG,
         divisionWholeNum1,
         divisionNumerator1,
         divisionDenominator1,
