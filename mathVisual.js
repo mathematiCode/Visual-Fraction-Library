@@ -700,10 +700,11 @@ mathVisual.fractionDivisionCircles = (
         );
         currentX = currentX + radius * 2 + horizontalSpacing;
         if (currentX + radius >= width) {
-          currentY = currentY + radius * 2 + verticalSpacing; // Moves the remaining circles to the second line if we run out of space
+          currentY = currentY + radius * 2 + verticalSpacing; // Moves the remaining circles to the next line if we run out of space
           currentX = radius + horizontalSpacing / 2;
+          startAngle = Math.PI;
         }
-        startAngle = 0;
+
         currentPieceOfDenominator = 0;
       } else {
         startAngle = startAngle + (1 / denominator2) * Math.PI * 2;
@@ -720,10 +721,11 @@ mathVisual.fractionDivisionCircles = (
         );
         currentX = currentX + radius * 2 + horizontalSpacing;
         if (currentX + radius >= width) {
-          currentY = currentY + radius * 2 + verticalSpacing; // Moves the remaining circles to the second line if we run out of space
+          currentY = currentY + radius * 2 + verticalSpacing; // Moves the remaining circles to the next line if we run out of space
           currentX = radius + horizontalSpacing / 2;
+          startAngle = Math.PI;
         }
-        startAngle = 0;
+
         currentPieceOfDenominator = 0;
       } else {
         startAngle = startAngle + (1 / denominator2) * Math.PI * 2;
