@@ -17,17 +17,9 @@ My goal is to have a website and a javascript library with many different types 
 <li> Fraction on a Number Line</li>
 <li> Decimal on a Number Line</li>
 <li> Negative Numbers on a Number Line</li>
+ <li> Animations for Fraction Operations <li>
 <li> Base 10 blocks</li>
 <li> Customizable triangles, trapezoids, parallelograms, etc. with optionally labeled side lengths</li>
-<li> Customizable 3D shapes</li>
-<li> Linear Graphs</li>
-<li> Non Linear Graphs</li>
-<li> Scatter Plots</li>
-<li> Box Plots</li>
-<li> Histograms</li>
-<li> Percent Bar Graphs</li>
-<li> Circle Graphs</li>
-<li> Dot Plots</li>
 <li> Maybe More?</li>
 </ul>
 
@@ -42,8 +34,6 @@ My goal is to have a website and a javascript library with many different types 
 
 <h2> Things that I need to figure out </h2>
 <ul>
-<li>Should the fraction bar and circle be two toggles on the same page or two separate pages? </li> 
-<li> Would it be better to have the function create the canvas or have the canvas fed into the function as a parameter? 
- I think for layout it's better for the canvas to be standard. BUT... if I make the fraction bar and fraction circle all on one page, I may need to change the functions so they both look good in the same size canvas. </li>
 <li> How can I make the library testable? </li>
+ <li> Should I delete all of the code that was generating canvas's instead of SVGs? I could have the SVG's converted to PNGs for the download PNG button. </li>
 </ul>
