@@ -342,7 +342,9 @@ mathVisual.mixedNumCircles = (
         slicesLeft,
         denominator,
         lineThickness,
-        colorFill
+        colorFill,
+
+        Math.PI
       );
 
       makeFractionLines(
@@ -672,7 +674,7 @@ mathVisual.fractionDivisionCircles = (
   verticalSpacing = info.verticalSpacing;
   currentX = radius + horizontalSpacing / 2;
   currentY = radius + verticalSpacing;
-  startAngle = 0;
+  startAngle = Math.PI;
   let color = colorFill;
   let slicesToBeFilled = Math.floor(
     wholeNum1 * denominator2 +
@@ -699,12 +701,12 @@ mathVisual.fractionDivisionCircles = (
           lineThickness
         );
         currentX = currentX + radius * 2 + horizontalSpacing;
-        if (currentX + radius >= width) {
-          currentY = currentY + radius * 2 + verticalSpacing; // Moves the remaining circles to the second line if we run out of space
-          currentX = radius + horizontalSpacing / 2;
-        }
-        startAngle = 0;
         currentPieceOfDenominator = 0;
+        if (currentX + radius >= width) {
+          currentY = currentY + radius * 2 + verticalSpacing; // Moves the remaining circles to the next line if we run out of space
+          currentX = radius + horizontalSpacing / 2;
+          startAngle = Math.PI;
+        }
       } else {
         startAngle = startAngle + (1 / denominator2) * Math.PI * 2;
       }
@@ -719,12 +721,12 @@ mathVisual.fractionDivisionCircles = (
           lineThickness
         );
         currentX = currentX + radius * 2 + horizontalSpacing;
-        if (currentX + radius >= width) {
-          currentY = currentY + radius * 2 + verticalSpacing; // Moves the remaining circles to the second line if we run out of space
-          currentX = radius + horizontalSpacing / 2;
-        }
-        startAngle = 0;
         currentPieceOfDenominator = 0;
+        if (currentX + radius >= width) {
+          currentY = currentY + radius * 2 + verticalSpacing; // Moves the remaining circles to the next line if we run out of space
+          currentX = radius + horizontalSpacing / 2;
+          startAngle = Math.PI;
+        }
       } else {
         startAngle = startAngle + (1 / denominator2) * Math.PI * 2;
       }
