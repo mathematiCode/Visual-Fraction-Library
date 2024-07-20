@@ -1,22 +1,33 @@
 const mathVisual = {};
 
-function drawCircle(svg, x, y, radius, lineThickness, color = "black") {
+// I made this a global variable because I may change it later or make it customizable by the user. It means the circles will start shading at 270 degrees going counterclockwise. This is so that if there are a few pieces that go in the same group as some in the next circle, they are closer together.
+angleWherePiecesStart = Math.PI * 0.5;
+
+function drawCircle(
+  svg,
+  x,
+  y,
+  radius,
+  lineThickness,
+  lineColor = "black",
+  fillColor = "none"
+) {
   const svgNS = svg.namespaceURI;
   const circle = document.createElementNS(svgNS, "circle");
   circle.setAttribute("cx", x);
   circle.setAttribute("cy", y);
   circle.setAttribute("r", radius);
-  circle.setAttribute("stroke", color);
-  circle.setAttribute("fill", "none");
+  circle.setAttribute("stroke", lineColor);
+  circle.setAttribute("fill", fillColor);
   circle.setAttribute("stroke-width", lineThickness);
   svg.appendChild(circle);
 }
 
-// Given a width and height of a container and a number of roughly-square items to fit inside of the container, this function returns the optimal size of each item so that they will all fit and use as much of the available space as possible. If you want the items to be spaced out, multiply the width and height parameters by a scale factor less than one.
+// Given a width and height of a container and a number of roughly-square items to fit inside of the container, this function returns the optimal size of each item so that they will all fit and use as much of the available space as possible.
 function calculateOptimalDimensions(width, height, numItems) {
   /**
    * For example, given a width of 900 pixels and a height of 300 pixels, the aspect ratio would be 3 (900 / 300).
-   * If we wanted to fit say 100 items in this 900 by 300 container, multiplying 100 by the aspect ratio allows us to consider how to evenly distribute 300 (100*3) items within a 900 by 900 pixel square.
+   * If we wanted to fit say 100 items in a 900 by 300 container, multiplying 100 by the aspect ratio allows us to consider how to evenly distribute 300 (100*3) items within a 900 by 900 pixel square.
    * This can easily be done by taking the square root of 300 (triple the number of items we actually need)
    * to determine that we need a little over 17 items to go in each row.
    * In order to avoid overflow in the horizontal direction, I used Math.floor() method which will force the items per row to be 17.
@@ -24,15 +35,15 @@ function calculateOptimalDimensions(width, height, numItems) {
    * Since we actually only need 100 items in a 900 by 300 pixel container, we can calculate the number of rows needed with 100 / 17.
    * This results in 5.88 which really means we need 6 rows but the last row will not be filled, which is why I used Math.ceil().
    *
-   * Since our container has an aspect ratio of 900:300, simplified 3:1, the ratio of itemsPerRow : numRows should be as close as possible to this ratio, but prioritizing making sure all items fully fit inside.
+   * Since our container has an aspect ratio of 900:300, simplified 3:1, the ratio of itemsPerRow : numRows should be as close as possible to this ratio, but the function will prioritize making sure all items fully fit inside.
+   *
+   * If you want the items to be spaced out, multiply the width and height parameters by a scale factor less than one.
    *
    */
   let optimalDimensions = {};
   let aspectRatio = width / height;
 
-  // Multiplying by numItems by the apsect ratio essentially makes it a square full of items with the side lengths equal to the width in pixels. Then taking the square root allows us to figure out how many items to line up in each row in order to distribute them equally.
-
-  let itemsPerRow = Math.floor(Math.sqrt(numItems * aspectRatio)); // How many elements should be put in each row
+  let itemsPerRow = Math.floor(Math.sqrt(numItems * aspectRatio));
   let numRows = Math.ceil(numItems / itemsPerRow);
 
   let itemSize = Math.min(width / itemsPerRow, height / numRows);
@@ -63,12 +74,13 @@ function shadeFractionSlices(
   denominator,
   lineThickness,
   colorFill,
-  startAngle = Math.PI
+  startAngle = angleWherePiecesStart
 ) {
   const svgNS = svg.namespaceURI;
-  const angle = startAngle + (Math.PI * 2) / denominator;
+  const angle = (Math.PI * 2) / denominator;
   let previousAngle = startAngle;
-  let currentAngle = angle;
+  let currentAngle = startAngle + angle;
+  debugger;
   for (let i = 0; i < numerator; i++) {
     const curvedPath = document.createElementNS(svgNS, "path");
     const startX = x + radius * Math.cos(previousAngle);
@@ -86,14 +98,22 @@ function shadeFractionSlices(
   `
     );
     previousAngle = currentAngle;
-    currentAngle = currentAngle + angle;
+    currentAngle += angle;
     svg.appendChild(curvedPath);
   }
 }
 
-function makeFractionLines(svg, x, y, radius, denominator, lineThickness) {
+function makeFractionLines(
+  svg,
+  x,
+  y,
+  radius,
+  denominator,
+  lineThickness,
+  startAngle = angleWherePiecesStart
+) {
   const angle = (Math.PI * 2) / denominator;
-  let currentAngle = Math.PI;
+  let currentAngle = startAngle;
 
   for (let i = 0; i < denominator; i++) {
     const svgNS = svg.namespaceURI;
@@ -113,6 +133,88 @@ function makeFractionLines(svg, x, y, radius, denominator, lineThickness) {
 
     currentAngle += angle;
   }
+}
+
+function drawAndShadeGroups(
+  svg,
+  currentX,
+  currentY,
+  width,
+  radius,
+  slicesToBeFilled,
+  numerator2,
+  denominator2,
+  lineThickness,
+  horizontalSpacing,
+  verticalSpacing,
+  startAngle,
+  color,
+  colorFill,
+  colorFill2,
+  colorFill3
+) {
+  let currentPieceOfNumerator = 0;
+  let currentPieceOfDenominator = 0;
+
+  for (let i = 0; i < slicesToBeFilled; i++) {
+    if (i == 0) {
+      startAngle = angleWherePiecesStart;
+    } else if (currentPieceOfDenominator >= denominator2) {
+      // If circle is fully shaded, draws the lines and moves to the next circle
+      makeFractionLines(
+        svg,
+        currentX,
+        currentY,
+        radius,
+        denominator2,
+        lineThickness,
+        startAngle
+      );
+      currentX = currentX + radius * 2 + horizontalSpacing;
+      startAngle = angleWherePiecesStart;
+      currentPieceOfDenominator = 0;
+      if (currentX + radius >= width) {
+        // Moves the remaining circles to the next line if we run out of space
+        currentY = currentY + radius * 2 + verticalSpacing;
+        currentX = radius + horizontalSpacing / 2;
+      }
+    } else {
+      // if there are still pieces left to shade on the current circle
+      startAngle += (1 / denominator2) * Math.PI * 2;
+    }
+
+    if (currentPieceOfNumerator >= numerator2) {
+      color = switchBetweenColors(color, colorFill, colorFill2, colorFill3);
+      currentPieceOfNumerator = 1;
+    } else {
+      currentPieceOfNumerator++;
+    }
+
+    shadeFractionSlices(
+      svg,
+      currentX,
+      currentY,
+      radius - lineThickness / 2,
+      1,
+      denominator2,
+      lineThickness,
+      color,
+      startAngle
+    );
+
+    currentPieceOfDenominator++;
+  }
+
+  // Creates lines for the last circle that may not have gotten lines drawn if it wasn't filled.
+  makeFractionLines(
+    svg,
+    currentX,
+    currentY,
+    radius,
+    denominator2,
+    lineThickness,
+    startAngle
+  );
 }
 
 function drawFractionBar(
@@ -136,7 +238,7 @@ function drawFractionBar(
   const shadedRect = document.createElementNS(svgNS, "rect");
   shadedRect.setAttribute("x", x + lineThickness);
   shadedRect.setAttribute("y", y);
-  shadedRect.setAttribute("width", shaded - lineThickness);
+  shadedRect.setAttribute("width", shaded);
   shadedRect.setAttribute("height", height);
   shadedRect.setAttribute("fill", colorFill);
   shadedRect.setAttribute("stroke", "black");
@@ -145,9 +247,9 @@ function drawFractionBar(
 
   for (let i = 1; i < denominator; i++) {
     const pieceSeparator = document.createElementNS(svgNS, "line");
-    pieceSeparator.setAttribute("x1", x + separator);
+    pieceSeparator.setAttribute("x1", x + separator + lineThickness);
     pieceSeparator.setAttribute("y1", y);
-    pieceSeparator.setAttribute("x2", x + separator);
+    pieceSeparator.setAttribute("x2", x + separator + lineThickness);
     pieceSeparator.setAttribute("y2", y + height);
     pieceSeparator.setAttribute("stroke", "black");
     pieceSeparator.setAttribute("stroke-width", lineThickness);
@@ -255,7 +357,7 @@ mathVisual.fractionCircle = (
     denominator,
     lineThickness,
     colorFill,
-    0
+    angleWherePiecesStart
   ); // Shades in the fraction portion and draws lines to show each slice
   makeFractionLines(svg, x, y, radius - 5, denominator);
 };
@@ -311,40 +413,45 @@ mathVisual.mixedNumCircles = (
   let currentY = radius + verticalSpacing;
   let slicesLeft = numerator;
   let currentWhole = 1;
+  let fillRadius = radius - lineThickness / 2;
+
+  // Makes the lines thinner when there isn't space for the full thickness
   if (radius < 20 || (radius < 35 && denominator > 10) || denominator > 15) {
     lineThickness = lineThickness / 2;
   }
 
-  // Draws the circles and shades in the correct # of slices given an improper fraction
+  // This loop draws the circles and shades in the correct # of slices given an improper fraction
   for (let i = 0; i < maxWholes; i++) {
     if (currentX + radius >= width) {
       currentY = currentY + radius * 2 + verticalSpacing; // Moves the remaining circles to the next line if we run out of space
       currentX = radius + horizontalSpacing / 2;
     }
-    const wholeCircle = document.createElementNS(svgNS, "circle");
 
+    // Draws black outline of circle
     drawCircle(svg, currentX, currentY, radius, lineThickness);
 
     if (currentWhole <= wholeNum) {
-      wholeCircle.setAttribute("cx", currentX);
-      wholeCircle.setAttribute("cy", currentY);
-      wholeCircle.setAttribute("r", radius - lineThickness / 2);
-      wholeCircle.setAttribute("stroke", "none");
-      wholeCircle.setAttribute("fill", colorFill);
-      svg.appendChild(wholeCircle);
+      drawCircle(
+        svg,
+        currentX,
+        currentY,
+        fillRadius,
+        lineThickness,
+        "none",
+        colorFill
+      );
       currentWhole = currentWhole + 1;
     } else {
       shadeFractionSlices(
         svg,
         currentX,
         currentY,
-        radius - lineThickness / 2,
+        fillRadius,
         slicesLeft,
         denominator,
         lineThickness,
         colorFill,
-
-        Math.PI
+        angleWherePiecesStart
       );
 
       makeFractionLines(
@@ -369,7 +476,6 @@ mathVisual.mixedNumCircles = (
   return modelInfo;
 };
 
-// This function is not done yet.
 mathVisual.mixedNumBars = (
   svg,
   wholeNum,
@@ -393,7 +499,7 @@ mathVisual.mixedNumBars = (
 
   let horizontalSpacing = 0;
   let verticalSpacing = 0;
-  let circlesPerLine = maxWholes;
+  let barsPerLine = maxWholes;
   let numLines = 1;
 
   if (maxWholes <= 7) {
@@ -407,7 +513,7 @@ mathVisual.mixedNumBars = (
       width * 0.9,
       height * 0.8,
       maxWholes
-    ); // Multiplying by 0.8 to leave room for spacing.
+    ); // Multiplying by 0.8 and 0.9 to leave room for spacing.
     barsPerLine = optimalDimensions.itemsPerRow;
     numLines = optimalDimensions.numRows;
     barWidth = optimalDimensions.size;
@@ -422,7 +528,7 @@ mathVisual.mixedNumBars = (
   let currentY = verticalSpacing;
   let currentWhole = 1;
 
-  // Draws the bars and shades in the correct # of slices given an improper fraction
+  // Draws the bars and shades in the correct # of pieces given an improper fraction
   for (let i = 0; i < maxWholes; i++) {
     if (currentX + barWidth >= width) {
       currentY = currentY + barHeight + verticalSpacing; // Moves the remaining bars to the next line if we run out of space
@@ -674,7 +780,7 @@ mathVisual.fractionDivisionCircles = (
   verticalSpacing = info.verticalSpacing;
   currentX = radius + horizontalSpacing / 2;
   currentY = radius + verticalSpacing;
-  startAngle = Math.PI;
+  startAngle = angleWherePiecesStart;
   let color = colorFill;
   let slicesToBeFilled = Math.floor(
     wholeNum1 * denominator2 +
@@ -685,70 +791,24 @@ mathVisual.fractionDivisionCircles = (
   //   `Slices to be filled is ${slicesToBeFilled}, quotientFloor is ${quotientFloor}`
   // );
 
-  let currentPieceOfNumerator = 0;
-  let currentPieceOfDenominator = 0;
-  for (let i = 0; i < slicesToBeFilled; i++) {
-    if (currentPieceOfNumerator >= numerator2) {
-      color = switchBetweenColors(color, colorFill, colorFill2, colorFill3);
-      currentPieceOfNumerator = 0;
-      if (currentPieceOfDenominator >= denominator2) {
-        makeFractionLines(
-          svg,
-          currentX,
-          currentY,
-          radius,
-          denominator2,
-          lineThickness
-        );
-        currentX = currentX + radius * 2 + horizontalSpacing;
-        currentPieceOfDenominator = 0;
-        if (currentX + radius >= width) {
-          currentY = currentY + radius * 2 + verticalSpacing; // Moves the remaining circles to the next line if we run out of space
-          currentX = radius + horizontalSpacing / 2;
-          startAngle = Math.PI;
-        }
-      } else {
-        startAngle = startAngle + (1 / denominator2) * Math.PI * 2;
-      }
-    } else {
-      if (currentPieceOfDenominator >= denominator2) {
-        makeFractionLines(
-          svg,
-          currentX,
-          currentY,
-          radius,
-          denominator2,
-          lineThickness
-        );
-        currentX = currentX + radius * 2 + horizontalSpacing;
-        currentPieceOfDenominator = 0;
-        if (currentX + radius >= width) {
-          currentY = currentY + radius * 2 + verticalSpacing; // Moves the remaining circles to the next line if we run out of space
-          currentX = radius + horizontalSpacing / 2;
-          startAngle = Math.PI;
-        }
-      } else {
-        startAngle = startAngle + (1 / denominator2) * Math.PI * 2;
-      }
-    }
-    shadeFractionSlices(
-      svg,
-      currentX,
-      currentY,
-      radius - lineThickness / 2,
-      1,
-      denominator2,
-      lineThickness,
-      color,
-      startAngle
-    );
-    console.log(
-      `currentPieceOfNum is ${currentPieceOfNumerator} and currentPieceOfDenom is ${currentPieceOfDenominator}`
-    );
-    debugger;
-    currentPieceOfNumerator++;
-    currentPieceOfDenominator++;
-  }
+  drawAndShadeGroups(
+    svg,
+    currentX,
+    currentY,
+    width,
+    radius,
+    slicesToBeFilled,
+    numerator2,
+    denominator2,
+    lineThickness,
+    horizontalSpacing,
+    verticalSpacing,
+    startAngle,
+    color,
+    colorFill,
+    colorFill2,
+    colorFill3
+  );
 
   makeFractionLines(
     svg,
@@ -756,6 +816,7 @@ mathVisual.fractionDivisionCircles = (
     currentY,
     radius,
     denominator2,
-    lineThickness
+    lineThickness,
+    startAngle
   );
 };

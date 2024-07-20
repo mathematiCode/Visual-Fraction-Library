@@ -10,6 +10,23 @@ function downloadPng(canvasEl) {
   document.body.removeChild(link);
 }
 
+function downloadSvg(svgEl) {
+  if (svgEl instanceof Node) {
+    const serializer = new XMLSerializer();
+    const xmlString = serializer.serializeToString(svgEl);
+    const svgBlob = new Blob([xmlString], { type: "image/svg+xml" });
+    const url = URL.createObjectURL(svgBlob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "image.svg";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  } else {
+    console.error("The object is not a node.");
+  }
+}
+
 function basicFrac() {
   // HTML Elements from the basic fraction page
   const generateBasicButton = document.getElementById("generate-basic");
@@ -53,9 +70,13 @@ function basicFrac() {
     }
   });
 
-  const basicPngButton = document.getElementById("basic-png-button");
-  basicPngButton.addEventListener("click", function () {
+  const downloadPngButton = document.getElementById("basic-png-button");
+  const downloadBasicSVGButton = document.getElementById("basic-svg-button");
+  downloadPngButton.addEventListener("click", function () {
     downloadPng("basic-SVG");
+  });
+  downloadBasicSVGButton.addEventListener("click", function () {
+    downloadSvg(basicSVG);
   });
 }
 
@@ -150,6 +171,11 @@ function divisionFrac() {
   const divisionPngButton = document.getElementById("division-png-button");
   divisionPngButton.addEventListener("click", function () {
     downloadPng("division-svg");
+  });
+  const downloadDivisionSVG = document.getElementById("division-svg-button");
+  downloadDivisionSVG.addEventListener("click", function () {
+    const divisionSVG = document.getElementById("division-svg");
+    downloadSvg(divisionSVG);
   });
 
   modelToggle.addEventListener("change", () => {
