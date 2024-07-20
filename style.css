@@ -100,6 +100,13 @@ body {
     font-family: "Advent Pro";
 }
 
+.download-button-container {
+
+    display: flex;
+    gap: 20px;
+
+}
+
 alert {
     background-color: var(--button-color);
 }
