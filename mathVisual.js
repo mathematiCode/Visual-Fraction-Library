@@ -217,7 +217,7 @@ function drawAndShadeGroups(
   );
 }
 
-function drawFractionBar(
+function drawVerticalFractionBar(
   svg,
   x,
   y,
@@ -233,7 +233,6 @@ function drawFractionBar(
   let separator = interval; // Need two variables becuase separator will increment while interval stays constant.
 
   let shaded = interval * numerator;
-  console.log(`Shaded is ${shaded}`);
 
   const shadedRect = document.createElementNS(svgNS, "rect");
   shadedRect.setAttribute("x", x + lineThickness);
@@ -252,7 +251,7 @@ function drawFractionBar(
     pieceSeparator.setAttribute("x2", x + separator + lineThickness);
     pieceSeparator.setAttribute("y2", y + height);
     pieceSeparator.setAttribute("stroke", "black");
-    pieceSeparator.setAttribute("stroke-width", lineThickness);
+    pieceSeparator.setAttribute("stroke-width", lineThickness * 0.7);
     svg.appendChild(pieceSeparator);
     separator = separator + interval;
   }
@@ -262,6 +261,56 @@ function drawFractionBar(
   blackBorder.setAttribute("y", y);
   blackBorder.setAttribute("width", width);
   blackBorder.setAttribute("height", height);
+  blackBorder.setAttribute("fill", "none");
+  blackBorder.setAttribute("stroke", "black");
+  blackBorder.setAttribute("stroke-width", lineThickness);
+  svg.appendChild(blackBorder);
+}
+
+function drawHorizontalFractionBar(
+  svg,
+  x,
+  y,
+  width,
+  height,
+  numerator,
+  denominator,
+  lineThickness,
+  colorFill
+) {
+  const svgNS = svg.namespaceURI;
+  const interval = height / denominator;
+  let separator = interval; // Need two variables becuase separator will increment while interval stays constant.
+
+  let shaded = interval * numerator;
+
+  const shadedRect = document.createElementNS(svgNS, "rect");
+  shadedRect.setAttribute("x", x + lineThickness);
+  shadedRect.setAttribute("y", y);
+  shadedRect.setAttribute("width", width);
+  shadedRect.setAttribute("height", shaded);
+  shadedRect.setAttribute("fill", colorFill);
+  shadedRect.setAttribute("stroke", "black");
+  shadedRect.setAttribute("stroke-width", 0);
+  svg.appendChild(shadedRect);
+
+  for (let i = 1; i < denominator; i++) {
+    const pieceSeparator = document.createElementNS(svgNS, "line");
+    pieceSeparator.setAttribute("x1", x + lineThickness);
+    pieceSeparator.setAttribute("y1", y + separator);
+    pieceSeparator.setAttribute("x2", x + width + lineThickness);
+    pieceSeparator.setAttribute("y2", y + separator);
+    pieceSeparator.setAttribute("stroke", "black");
+    pieceSeparator.setAttribute("stroke-width", lineThickness * 0.7);
+    svg.appendChild(pieceSeparator);
+    separator = separator + interval;
+  }
+
+  const blackBorder = document.createElementNS(svgNS, "rect");
+  blackBorder.setAttribute("x", x + lineThickness);
+  blackBorder.setAttribute("y", y + lineThickness / 2);
+  blackBorder.setAttribute("width", width);
+  blackBorder.setAttribute("height", height - lineThickness);
   blackBorder.setAttribute("fill", "none");
   blackBorder.setAttribute("stroke", "black");
   blackBorder.setAttribute("stroke-width", lineThickness);
@@ -296,7 +345,7 @@ mathVisual.fractionBar = (
       colorFill
     );
   } else {
-    drawFractionBar(
+    drawVerticalFractionBar(
       svg,
       lineThickness,
       lineThickness,
@@ -320,7 +369,6 @@ mathVisual.fractionCircle = (
 ) => {
   const width = svg.getAttribute("width");
   const height = svg.getAttribute("height");
-  console.log(`The width of the svg is ${width}`);
   if (numerator < 0 || denominator < 0) {
     return alert(`Please enter a positive numerator and denominator.`);
   } else if (numerator > denominator || wholeNum > 0) {
@@ -547,39 +595,98 @@ mathVisual.mixedNumBars = (
       svg.appendChild(wholeBar);
       currentWhole = currentWhole + 1;
     } else {
-      drawFractionBar(
-        svg,
-        currentX,
-        currentY,
-        barWidth,
-        barHeight,
-        numerator,
-        denominator,
-        lineThickness,
-        colorFill
-      );
+      if (barWidth > barHeight) {
+        drawVerticalFractionBar(
+          svg,
+          currentX,
+          currentY,
+          barWidth,
+          barHeight,
+          numerator,
+          denominator,
+          lineThickness,
+          colorFill
+        );
+      } else {
+        drawHorizontalFractionBar(
+          svg,
+          currentX,
+          currentY,
+          barWidth,
+          barHeight,
+          numerator,
+          denominator,
+          lineThickness,
+          colorFill
+        );
+      }
     }
     currentX = currentX + barWidth + horizontalSpacing; // Move to next bar
   }
 };
 
 // This function is not done yet.
-mathVisual.fractionMultiplication = (
-  canvasElement,
+mathVisual.fractionMultiplicationAreaModel = (
+  svg,
   wholeNum1,
   numerator1,
   denominator1,
   wholeNum2,
   numerator2,
   denominator2,
-  style = "area"
+  lineThickness = 5,
+  colorFill = "hsla(188, 37%, 51%,70%)",
+  colorFill2 = "hsla(96, 70%, 66%,50%)"
 ) => {
-  let canvas = canvasElement.getContext("2d");
-  const width = canvasElement.width;
-  const height = canvasElement.height;
-  canvas.clearRect(0, 0, width, height);
+  const width = svg.getAttribute("width");
+  const height = svg.getAttribute("height");
+  maxSideLength = Math.min(width, height) - 10;
+  let verticalInterval = 0;
+  let horizontalInterval = 0;
 
   if (wholeNum1 === 0 && wholeNum2 === 0) {
+    verticalInterval = maxSideLength / denominator1;
+    horizontalInterval = maxSideLength / denominator2;
+
+    drawVerticalFractionBar(
+      svg,
+      0,
+      0,
+      maxSideLength,
+      maxSideLength,
+      numerator1,
+      denominator1,
+      lineThickness,
+      colorFill
+    );
+
+    drawHorizontalFractionBar(
+      svg,
+      0,
+      0,
+      maxSideLength,
+      maxSideLength,
+      numerator2,
+      denominator2,
+      lineThickness,
+      colorFill2
+    );
+
+    // Draws the separator lines again on top so they aren't under the second overlay
+    drawVerticalFractionBar(
+      svg,
+      0,
+      0,
+      maxSideLength,
+      maxSideLength,
+      numerator1,
+      denominator1,
+      lineThickness,
+      "none"
+    );
+  }
+
+  if (wholeNum1 > 0 || wholeNum2 > 0) {
   }
 };
 
@@ -810,13 +917,13 @@ mathVisual.fractionDivisionCircles = (
     colorFill3
   );
 
-  makeFractionLines(
-    svg,
-    currentX,
-    currentY,
-    radius,
-    denominator2,
-    lineThickness,
-    startAngle
-  );
+  // makeFractionLines(
+  //   svg,
+  //   currentX,
+  //   currentY,
+  //   radius,
+  //   denominator2,
+  //   lineThickness,
+  //   startAngle
+  // );
 };

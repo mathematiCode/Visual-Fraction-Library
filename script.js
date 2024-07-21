@@ -87,9 +87,7 @@ function multiplicationFrac() {
   );
 
   generateMultiplicationButton.addEventListener("click", function () {
-    const multiplicationCanvas = document.getElementById(
-      "multiplication-canvas"
-    );
+    const multiplicationSVG = document.getElementById("multiplication-svg");
     const multWholeNum1 = parseInt(
       document.getElementById("multiplication-whole-number1").value
     );
@@ -109,8 +107,9 @@ function multiplicationFrac() {
       document.getElementById("multiplication-denominator2").value
     );
 
-    mathVisual.fractionMultiplication(
-      multiplicationCanvas,
+    multiplicationSVG.innerHTML = "";
+    mathVisual.fractionMultiplicationAreaModel(
+      multiplicationSVG,
       multWholeNum1,
       multNumerator1,
       multDenominator1,

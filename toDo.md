@@ -29,6 +29,7 @@ Customizations to Add
 - Labels or no labels
 - Spacing between items
 - Vertical or Horizontal bars
+- Drag box to resize width:height ratio
 
 Download Options
 
