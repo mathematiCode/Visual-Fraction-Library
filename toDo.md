@@ -1,24 +1,38 @@
-- Create functions for mathVisual.fractionMultiplication - Area Model - Circles - Bars
-- Add labels to fraction multiplication model
-- Create function for mathVisual.fractionDivision ✅
-- Make sure any fraction that is beyond the dividend is not colored to differentiate. ✅
-- Fix edge cases like having a dividend less than 1 ✅
-- For the fraction division bar, shorten width a bit if the last section is only a partial section to show what fraction of a whole section it would be.
-- For fraction division cirlces, show the portion of the last group as a fraction
-- Add labels to fraction division model
-  -Add circle style for fractionDivision ✅
-  - Add fraction division models for when the divisor is greater than the dividend
-- Add customization features (change line thickness, color fill, height of images, etc)
-- Make it look more modern and appealing
-- Update the script.js file to determine which page the user is on and only read inputs and run functions from that page ✅
-- Add a button to download to JPG
-- Add a button to copy to clipboard
-- Add a button to download as SVG ✅
-- Add number lines with fractions/decimals/whole numbers
-- Add functionality for improper fractions to the basic page and functions ✅
+✅
 
 Next Steps
 
 - Add a fraction division model for when the divisor is greater than the dividend
 - Create area model function for mathVisual.fractionMultiplication
 - Refactor code to minimize parameters passed by using objects where it makes sense.
+
+Models to Add
+
+- Division when divisor > dividend
+- Multiplication Area Model
+- Multiplication Circles
+
+Other To Do's
+
+- For the fraction division bar, shorten width a bit if the last section is only a partial section to show what fraction of a whole section it would be.
+- For fraction division circles, show the portion of the last group as a fraction
+- Use an if statement to determine if it's better to alternate between 2 or 3 colors, or even 4
+- If more than one row, make the rows more evenly split so it looks better.
+- Add labels to division models
+- Add labels to multiplication models
+- Make it look more modern and appealing
+
+Customizations to Add
+
+- Change colors
+- Change line thickness
+- Labels or no labels
+- Spacing between items
+- Vertical or Horizontal bars
+- Drag box to resize width:height ratio
+
+Download Options
+
+- Add a button to download to JPG
+- Add a button to copy to clipboard
+- Add a button to download as SVG ✅
