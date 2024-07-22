@@ -88,34 +88,32 @@ function multiplicationFrac() {
 
   generateMultiplicationButton.addEventListener("click", function () {
     const multiplicationSVG = document.getElementById("multiplication-svg");
-    const multWholeNum1 = parseInt(
+    let factor1 = {};
+    const factor2 = {};
+    factor1.wholeNum = parseInt(
       document.getElementById("multiplication-whole-number1").value
     );
-    const multNumerator1 = parseInt(
+    factor1.numerator = parseInt(
       document.getElementById("multiplication-numerator1").value
     );
-    const multDenominator1 = parseInt(
+    factor1.denominator = parseInt(
       document.getElementById("multiplication-denominator1").value
     );
-    const multWholeNum2 = parseInt(
+    factor2.wholeNum = parseInt(
       document.getElementById("multiplication-whole-number2").value
     );
-    const multNumerator2 = parseInt(
+    factor2.numerator = parseInt(
       document.getElementById("multiplication-numerator2").value
     );
-    const multDenominator2 = parseInt(
+    factor2.denominator = parseInt(
       document.getElementById("multiplication-denominator2").value
     );
 
     multiplicationSVG.innerHTML = "";
     mathVisual.fractionMultiplicationAreaModel(
       multiplicationSVG,
-      multWholeNum1,
-      multNumerator1,
-      multDenominator1,
-      multWholeNum2,
-      multNumerator2,
-      multDenominator2
+      factor1,
+      factor2
     );
   });
 }
