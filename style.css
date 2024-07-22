@@ -89,6 +89,7 @@ body {
     font-size: 20px;
     margin-left: 1rem;
     margin-right: 1rem;
+    margin-top: 1rem;
     color: black;
     cursor: pointer;
     display: flex;
