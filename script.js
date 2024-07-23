@@ -1,31 +1,7 @@
 // Global Functions
-
-function downloadPng(canvasEl) {
-  const canvas = document.getElementById(canvasEl); // Gets canvas element from html
-  const link = document.createElement("a");
-  link.href = canvas.toDataURL("image/png");
-  link.download = "image.png";
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
-}
-
-function downloadSvg(svgEl) {
-  if (svgEl instanceof Node) {
-    const serializer = new XMLSerializer();
-    const xmlString = serializer.serializeToString(svgEl);
-    const svgBlob = new Blob([xmlString], { type: "image/svg+xml" });
-    const url = URL.createObjectURL(svgBlob);
-    const link = document.createElement("a");
-    link.href = url;
-    link.download = "image.svg";
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  } else {
-    console.error("The object is not a node.");
-  }
-}
+const mathVisual = {};
+// I made this a global variable because I may change it later or make it customizable by the user. It means the circles will start shading at 270 degrees going counterclockwise. This is so that if there are a few pieces that go in the same group as some in the next circle, they are closer together.
+angleWherePiecesStart = Math.PI * 0.5;
 
 function basicFrac() {
   // HTML Elements from the basic fraction page
@@ -115,6 +91,18 @@ function multiplicationFrac() {
       factor1,
       factor2
     );
+  });
+
+  // const multiplicationPngButton = document.getElementById("multiplication-png-button");
+  // divisionPngButton.addEventListener("click", function () {
+  //   downloadPng("division-svg");
+  // });
+  const downloadMultiplicationSVG = document.getElementById(
+    "multiplication-svg-button"
+  );
+  downloadMultiplicationSVG.addEventListener("click", function () {
+    const multiplicationSVG = document.getElementById("multiplication-svg");
+    downloadSvg(multiplicationSVG);
   });
 }
 

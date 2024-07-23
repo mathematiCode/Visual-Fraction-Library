@@ -9,7 +9,7 @@ Next Steps
 Models to Add
 
 - Division when divisor > dividend
-- Multiplication Area Model
+- Multiplication Area Model [in progress]
 - Multiplication Circles
 
 Other To Do's
@@ -30,6 +30,7 @@ Customizations to Add
 - Spacing between items
 - Vertical or Horizontal bars
 - Drag box to resize width:height ratio
+- To scale or not to scale
 
 Download Options
 
