@@ -329,6 +329,29 @@ function drawHorizontalFractionBar(
   svg.appendChild(blackBorder);
 }
 
+function adjustWidthAndHeightToScale(maxWholes1, maxWholes2, width, height) {
+  let adjustment = {};
+
+  let factor1ShouldBeTheWidth =
+    (isFactor1GreaterThanOrEqualToFactor2 && width >= height) ||
+    (!isFactor1GreaterThanOrEqualToFactor2 && height >= width);
+
+  if (factor1ShouldBeTheWidth) {
+    adjustment.wholeSize = Math.min(width / maxWholes1, height / maxWholes2);
+    adjustment.width = adjustment.wholeSize * maxWholes1;
+    adjustment.height = adjustment.wholeSize * maxWholes2;
+    adjustment.centerStartX = (width - adjustment.width) / 2;
+    adjustment.centerStartY = (height - adjustment.height) / 2;
+  } else {
+    adjustment.wholeSize = Math.min(height / maxWholes1, width / maxWholes2);
+    adjustment.width = adjustment.wholeSize * maxWholes2;
+    adjustment.height = adjustment.wholeSize * maxWholes1;
+    adjustment.centerStartX = (width - adjustment.width) / 2;
+    adjustment.centerStartY = (height - adjustment.height) / 2;
+  }
+  return adjustment;
+}
+
 mathVisual.fractionBar = (
   svg,
   wholeNum,
@@ -643,11 +666,33 @@ mathVisual.fractionMultiplicationAreaModel = (
   factor2,
   lineThickness = 5,
   colorFill = "hsla(188, 37%, 51%,70%)",
-  colorFill2 = "hsla(96, 70%, 66%,50%)"
+  colorFill2 = "hsla(96, 70%, 66%,50%)",
+  toScale = true
 ) => {
-  const width = svg.getAttribute("width") - 10;
-  const height = svg.getAttribute("height") - 10;
-  maxSideLength = Math.min(width, height) - 10;
+  let width = svg.getAttribute("width") - 10;
+  let height = svg.getAttribute("height") - 10;
+  let maxSideLength = Math.min(width, height) - 10;
+  factor1.maxWholes =
+    factor1.numerator === 0 ? factor1.wholeNum : factor1.wholeNum + 1;
+  factor2.maxWholes =
+    factor2.numerator === 0 ? factor2.wholeNum : factor2.wholeNum + 1;
+
+  let adjustToScale;
+  let centerStartX;
+  let centerStartY;
+
+  if (toScale == true) {
+    adjustToScale = adjustWidthAndHeightToScale(
+      factor1.maxWholes,
+      factor2.maxWholes,
+      width,
+      height
+    );
+    width = adjustToScale.width;
+    height = adjustToScale.height;
+    centerStartX = adjustToScale.centerStartX;
+    centerStartY = adjustToScale.centerStartY;
+  }
 
   if (factor1.wholeNum == 0 && factor2.wholeNum == 0) {
     centerStartX = (width - maxSideLength) / 2;
@@ -695,26 +740,23 @@ mathVisual.fractionMultiplicationAreaModel = (
   let factor1ShouldBeTheWidth =
     (isFactor1GreaterThanOrEqualToFactor2 && width >= height) ||
     (!isFactor1GreaterThanOrEqualToFactor2 && height >= width);
+  debugger;
   let lastWholeStartLineX;
   let lastWholeStartLineY;
   if (factor1ShouldBeTheWidth) {
-    lastWholeStartLineX = width - width / (factor1.wholeNum + 1);
+    lastWholeStartLineX = width - width / (factor1.wholeNum + 1) + centerStartX;
     lastWholeStartLineY = height - height / (factor2.wholeNum + 1);
   } else {
     lastWholeStartLineY = height - height / (factor1.wholeNum + 1);
     lastWholeStartLineX = width - width / (factor2.wholeNum + 1);
   }
 
-  factor1.maxWholes =
-    factor1.numerator === 0 ? factor1.wholeNum : factor1.wholeNum + 1;
-  factor2.maxWholes =
-    factor2.numerator === 0 ? factor2.wholeNum : factor2.wholeNum + 1;
-
   if (factor1ShouldBeTheWidth) {
+    // Shades wholeNum for factor1
     drawVerticalFractionBar(
       svg,
-      0,
-      0,
+      centerStartX,
+      centerStartY,
       width,
       height,
       factor1.wholeNum,
@@ -722,11 +764,12 @@ mathVisual.fractionMultiplicationAreaModel = (
       lineThickness,
       colorFill
     );
+    // if there is a fraction, shades that portion
     if (factor1.maxWholes > factor1.wholeNum) {
       drawVerticalFractionBar(
         svg,
         lastWholeStartLineX,
-        0,
+        centerStartY,
         width / factor1.maxWholes,
         height,
         factor1.numerator,
@@ -735,10 +778,11 @@ mathVisual.fractionMultiplicationAreaModel = (
         colorFill
       );
     }
+    // shades the wholeNum for factor2
     drawHorizontalFractionBar(
       svg,
-      0,
-      0,
+      centerStartX,
+      centerStartY,
       width,
       height,
       factor2.wholeNum,
@@ -746,10 +790,11 @@ mathVisual.fractionMultiplicationAreaModel = (
       lineThickness,
       colorFill2
     );
+    //if there is a fraction in factor2, shades that part
     if (factor2.maxWholes > factor2.wholeNum) {
       drawHorizontalFractionBar(
         svg,
-        0,
+        centerStartX,
         lastWholeStartLineY,
         width,
         height / factor2.maxWholes,
@@ -762,8 +807,8 @@ mathVisual.fractionMultiplicationAreaModel = (
     // Draws the separator lines again on top so they aren't under the second overlay
     drawVerticalFractionBar(
       svg,
-      0,
-      0,
+      centerStartX,
+      centerStartY,
       width,
       height,
       factor1.wholeNum,
@@ -774,7 +819,7 @@ mathVisual.fractionMultiplicationAreaModel = (
     drawVerticalFractionBar(
       svg,
       lastWholeStartLineX,
-      0,
+      centerStartY,
       width / factor1.maxWholes,
       height,
       factor1.numerator,
@@ -784,152 +829,6 @@ mathVisual.fractionMultiplicationAreaModel = (
     );
   }
 };
-
-// This function is not done yet.
-// mathVisual.fractionMultiplicationAreaModel = (
-//   svg,
-//   wholeNum1,
-//   numerator1,
-//   denominator1,
-//   wholeNum2,
-//   numerator2,
-//   denominator2,
-//   lineThickness = 5,
-//   colorFill = "hsla(188, 37%, 51%,70%)",
-//   colorFill2 = "hsla(96, 70%, 66%,50%)"
-// ) => {
-//   const width = svg.getAttribute("width");
-//   const height = svg.getAttribute("height");
-//   maxSideLength = Math.min(width, height) - 10;
-//   let verticalInterval = 0;
-//   let horizontalInterval = 0;
-//   debugger;
-//   if (wholeNum1 === 0 && wholeNum2 === 0) {
-//     verticalInterval = maxSideLength / denominator1;
-//     horizontalInterval = maxSideLength / denominator2;
-//     debugger;
-//     drawVerticalFractionBar(
-//       svg,
-//       0,
-//       0,
-//       maxSideLength,
-//       maxSideLength,
-//       numerator1,
-//       denominator1,
-//       lineThickness,
-//       colorFill
-//     );
-
-//     drawHorizontalFractionBar(
-//       svg,
-//       0,
-//       0,
-//       maxSideLength,
-//       maxSideLength,
-//       numerator2,
-//       denominator2,
-//       lineThickness,
-//       colorFill2
-//     );
-
-//     // Draws the separator lines again on top so they aren't under the second overlay
-//     drawVerticalFractionBar(
-//       svg,
-//       0,
-//       0,
-//       maxSideLength,
-//       maxSideLength,
-//       numerator1,
-//       denominator1,
-//       lineThickness,
-//       "none"
-//     );
-//   } else if (wholeNum1 > wholeNum2) {
-//     if (numerator1 > 0) {
-//       drawVerticalFractionBar(
-//         svg,
-//         0,
-//         lineThickness,
-//         width - 10,
-//         height - 10,
-//         wholeNum1,
-//         wholeNum1 + 1,
-//         lineThickness + 3,
-//         colorFill
-//       );
-//       drawVerticalFractionBar(
-//         svg,
-//         (width - 10) * (wholeNum1 / (wholeNum1 + 1)) + lineThickness,
-//         lineThickness + 3,
-//         width / (wholeNum1 + 1),
-//         height - lineThickness - 10,
-//         numerator1,
-//         denominator1,
-//         lineThickness * 0.5,
-//         colorFill
-//       );
-//       if (wholeNum2 > 0 && numerator2 > 0) {
-//         drawHorizontalFractionBar(
-//           svg,
-//           0,
-//           0,
-//           width - 10,
-//           height,
-//           wholeNum2,
-//           wholeNum2 + 1,
-//           lineThickness + 3,
-//           colorFill2
-//         );
-//         drawHorizontalFractionBar(
-//           svg,
-//           lineThickness + 3,
-//           height * (wholeNum2 / (wholeNum2 + 1)),
-//           width - 10 - lineThickness,
-//           height / (wholeNum2 + 1),
-//           numerator2,
-//           denominator2,
-//           lineThickness * 0.5,
-//           colorFill2
-//         );
-//       } else if (wholeNum2 == 0 && numerator2 > 0) {
-//         drawHorizontalFractionBar(
-//           svg,
-//           lineThickness + 3,
-//           0,
-//           width - 10 - lineThickness,
-//           height,
-//           numerator2,
-//           denominator2,
-//           lineThickness * 0.5,
-//           colorFill2
-//         );
-//       }
-//       drawVerticalFractionBar(
-//         svg,
-//         0,
-//         lineThickness,
-//         width - 10,
-//         height - 10,
-//         wholeNum1,
-//         wholeNum1 + 1,
-//         lineThickness + 3,
-//         "none"
-//       );
-//       drawVerticalFractionBar(
-//         svg,
-//         (width - 10) * (wholeNum1 / (wholeNum1 + 1)) + lineThickness,
-//         lineThickness + 3,
-//         width / (wholeNum1 + 1),
-//         height - lineThickness - 10,
-//         numerator1,
-//         denominator1,
-//         lineThickness * 0.7,
-//         "none"
-//       );
-//     }
-//   } else if (wholeNum2 > wholeNum1) {
-//   }
-// };
 
 mathVisual.fractionDivisionBar = (
   svg,
