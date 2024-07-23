@@ -1,5 +1,4 @@
 const mathVisual = {};
-
 // I made this a global variable because I may change it later or make it customizable by the user. It means the circles will start shading at 270 degrees going counterclockwise. This is so that if there are a few pieces that go in the same group as some in the next circle, they are closer together.
 angleWherePiecesStart = Math.PI * 0.5;
 
@@ -651,10 +650,13 @@ mathVisual.fractionMultiplicationAreaModel = (
   maxSideLength = Math.min(width, height) - 10;
 
   if (factor1.wholeNum == 0 && factor2.wholeNum == 0) {
+    centerStartX = (width - maxSideLength) / 2;
+    centerStartY = (height - maxSideLength) / 2;
+
     drawVerticalFractionBar(
       svg,
-      0,
-      0,
+      centerStartX,
+      centerStartY,
       maxSideLength,
       maxSideLength,
       factor1.numerator,
@@ -665,8 +667,8 @@ mathVisual.fractionMultiplicationAreaModel = (
 
     drawHorizontalFractionBar(
       svg,
-      0,
-      0,
+      centerStartX,
+      centerStartY,
       maxSideLength,
       maxSideLength,
       factor2.numerator,
@@ -678,8 +680,8 @@ mathVisual.fractionMultiplicationAreaModel = (
     // Draws the separator lines again on top so they aren't under the second overlay
     drawVerticalFractionBar(
       svg,
-      0,
-      0,
+      centerStartX,
+      centerStartY,
       maxSideLength,
       maxSideLength,
       factor1.numerator,
