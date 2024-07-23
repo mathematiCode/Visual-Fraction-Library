@@ -4,11 +4,20 @@
    --other-color:  #347d88;
     --secondary-color:  #f0a68c;
     --tertiary-color: #9de56c;
+    --nav-color: #c9eaec;
     
   
-    font-family: "Advent Pro", sans-serif;
+    font-family: "Raleway", sans-serif;
+    font-size: 16px;
 }
-
+ 
+.corner-logo {
+  width: 70px;
+  height: 70px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
 
 
 .homepage {
@@ -16,14 +25,36 @@
     place-items: center;
 }
 
-a {
-    font-size: 1.7rem;
+nav {
+  display: flex;
+  gap: 48px;
+  font-size: 1.3rem;
+  background-color:#c9eaec ;
+  position: absolute;
+  justify-content: center;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  padding: 20px;
+
+}
+
+.home-button {
+  width: 70px;
+  height: 70px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
 }
 
 h1 {
-    font-family: "Advent Pro", sans-serif;
-    font-size: 50px;
+    font-family: "Raleway", sans-serif;
+    font-size: 2.5rem;
+    font-weight: 300;
     margin-bottom: 12px;
+    margin-top: 12px;
+    margin-left: 70px;
+    margin-right: 70px;
 }
 
 .numerator, .denominator {
@@ -35,6 +66,8 @@ h1 {
 
 input {
     text-align: center;
+    border-radius: 10%;
+    box-shadow: 0px 2px 5px #629ead;
 }
 
 .whole-number {
@@ -43,7 +76,6 @@ input {
     height: 100px;
     font-size: 3rem;
     text-align: center;
-
 }
 
 
@@ -69,7 +101,7 @@ input {
 
 .requirements {
     font-size: 2rem;
-    font-family: "Advent Pro", serif;
+    font-weight: 100;
 }
 
 body {
@@ -79,10 +111,14 @@ body {
     gap: 0px;
 }
 
+a {
+  color: #0d6979;
+  text-decoration: none;
+}
 
 .blue-button, .download-button {
     align-items: center;
-    background-color: var(--button-color);
+    background-color: var(--nav-color);
     border: 5px solid #111;
     border-radius: 8px;
     box-sizing: border-box;
@@ -99,7 +135,6 @@ body {
     text-align: center;
     touch-action: manipulation;
     transition-duration: 0.4s;
-    font-family: "Advent Pro";
 }
 
 .download-button-container {
@@ -211,4 +246,12 @@ alert {
     font-size: 1.25rem; 
  }
 
+ .model-toggle {
+  font-weight: 100;
+ }
+
+ h2 {
+  font-weight: 200;
+
+ }
   
