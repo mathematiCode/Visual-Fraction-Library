@@ -468,23 +468,11 @@ function mixedNumCircles(
 
 function adjustWidthAndHeightToScale(maxWholes1, maxWholes2, width, height) {
   let adjustment = {};
+  adjustment.wholeSize = Math.min(width / maxWholes1, height / maxWholes2);
+  adjustment.width = adjustment.wholeSize * maxWholes1;
+  adjustment.height = adjustment.wholeSize * maxWholes2;
+  adjustment.centerStartX = (width - adjustment.width) / 2;
+  adjustment.centerStartY = (height - adjustment.height) / 2;
 
-  let factor1ShouldBeTheWidth =
-    (isFactor1GreaterThanOrEqualToFactor2 && width >= height) ||
-    (!isFactor1GreaterThanOrEqualToFactor2 && height >= width);
-
-  if (factor1ShouldBeTheWidth) {
-    adjustment.wholeSize = Math.min(width / maxWholes1, height / maxWholes2);
-    adjustment.width = adjustment.wholeSize * maxWholes1;
-    adjustment.height = adjustment.wholeSize * maxWholes2;
-    adjustment.centerStartX = (width - adjustment.width) / 2;
-    adjustment.centerStartY = (height - adjustment.height) / 2;
-  } else {
-    adjustment.wholeSize = Math.min(height / maxWholes1, width / maxWholes2);
-    adjustment.width = adjustment.wholeSize * maxWholes2;
-    adjustment.height = adjustment.wholeSize * maxWholes1;
-    adjustment.centerStartX = (width - adjustment.width) / 2;
-    adjustment.centerStartY = (height - adjustment.height) / 2;
-  }
   return adjustment;
 }

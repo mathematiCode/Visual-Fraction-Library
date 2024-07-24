@@ -10,7 +10,7 @@ Next Steps
 Models to Add
 
 - Division when divisor > dividend
-- Multiplication Area Model [in progress]
+- Multiplication Area Model ✅
 - Multiplication Circles
 
 Other To Do's

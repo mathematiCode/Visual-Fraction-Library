@@ -6,6 +6,7 @@
     --tertiary-color: #9de56c;
     --nav-color: #c9eaec;
     --faded-green: #b7dd82;
+    --faded-green-100: #daecb1;
     
   
     font-family: "Raleway", sans-serif;
@@ -30,9 +31,10 @@ nav {
   display: flex;
   gap: 65px;
   font-size: 1.3rem;
-  background-color:#c9eaec ;
+  background-color: var(--faded-green-100);
   position: absolute;
   justify-content: center;
+  font-weight: 500;
   left: 0px;
   right: 0px;
   top: 0px;
@@ -259,8 +261,13 @@ alert {
   display: grid;
   gap: 0px;
 border-radius: 20px;
-padding: 30px;
+padding: 25px;
 font-size: 1.3rem;
+ }
+
+ #terms-div h2 {
+  margin-bottom: 5px;
+
  }
 
 
