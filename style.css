@@ -28,7 +28,7 @@
 
 nav {
   display: flex;
-  gap: 48px;
+  gap: 65px;
   font-size: 1.3rem;
   background-color:#c9eaec ;
   position: absolute;
@@ -192,7 +192,7 @@ alert {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #9de56c;
+    background-color: var(--faded-green);
     -webkit-transition: .4s;
     transition: .4s;
   }
@@ -251,6 +251,44 @@ alert {
 
  h2 {
   font-weight: 200;
-
  }
   
+ #terms-div {
+  width: 65%;
+  background-color: var(--nav-color);
+  display: grid;
+  gap: 0px;
+border-radius: 20px;
+padding: 30px;
+font-size: 1.3rem;
+ }
+
+
+ #to-scale {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.3rem;
+ }
+
+ #to-scale-checkbox {
+  width: 1.3rem;
+  height: 1.3rem;
+ }
+
+ #to-scale-checkbox:checked {
+  color: var(--other-color);
+ }
+
+ #button-and-checkbox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0px;
+  margin-bottom: 15px;
+ }
+
+ #generate-multiplication {
+
+  margin-top: 0px;
+ }
