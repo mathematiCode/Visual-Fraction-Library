@@ -3,8 +3,9 @@
 Next Steps
 
 - Add a fraction division model for when the divisor is greater than the dividend
-- Create area model function for mathVisual.fractionMultiplication
+- Create area model function for mathVisual.fractionMultiplication ✅
 - Refactor code to minimize parameters passed by using a customizations object.
+- Reorganize file structure ✅
 
 Models to Add
 
