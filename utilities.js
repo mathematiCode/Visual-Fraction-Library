@@ -1,11 +1,33 @@
-function downloadPng(canvasEl) {
-  const canvas = document.getElementById(canvasEl); // Gets canvas element from html
-  const link = document.createElement("a");
-  link.href = canvas.toDataURL("image/png");
-  link.download = "image.png";
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
+// import { Canvg } from "canvg";
+
+function downloadPng(svgEl) {
+  if (svgEl instanceof Node) {
+    const canvas = document.createElement("canvas");
+    const ctx = canvas.getContext("2d");
+    const svgXml = new XMLSerializer().serializeToString(svgEl);
+    const svgBlob = new Blob([svgXml], { type: "image/svg+xml" });
+    const url = URL.createObjectURL(svgBlob);
+    const img = new Image();
+    img.onload = function () {
+      ctx.canvas.width = img.width;
+      ctx.canvas.height = img.height;
+      ctx.drawImage(img, 0, 0);
+      URL.revokeObjectURL(url);
+
+      // Get the canvas data as a PNG-encoded string
+      const pngData = canvas.toDataURL("image/png");
+
+      // Create a blob from the PNG data
+      const pngBlob = new Blob([pngData], { type: "image/png" });
+
+      // Create a link to download the blob as a PNG file
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(pngBlob);
+      a.download = "my-image.png";
+      a.click();
+    };
+    img.src = url;
+  } else console.error("The object is not a node");
 }
 
 function downloadSvg(svgEl) {
@@ -358,10 +380,14 @@ function mixedNumCircles(
   numerator,
   denominator,
   lineThickness = 5,
-  colorFill = "rgb(120, 190, 250)"
+  colorFill = "rgb(120, 190, 250)",
+  width,
+  height,
+  startX = 0,
+  startY = 0
 ) {
-  const width = svg.getAttribute("width");
-  const height = svg.getAttribute("height");
+  // const width = svg.getAttribute("width");
+  // const height = svg.getAttribute("height");
   const svgNS = svg.namespaceURI;
   // Figure out how long the radius of each circle should be based on the svg dimensions.
   let numWholes = Math.floor(numerator / denominator);
@@ -413,8 +439,9 @@ function mixedNumCircles(
   // This loop draws the circles and shades in the correct # of slices given an improper fraction
   for (let i = 0; i < maxWholes; i++) {
     if (currentX + radius >= width) {
-      currentY = currentY + radius * 2 + verticalSpacing; // Moves the remaining circles to the next line if we run out of space
-      currentX = radius + horizontalSpacing / 2;
+      currentY = currentY + radius * 2 + verticalSpacing + startY;
+      // Moves the remaining circles to the next line if we run out of space
+      currentX = radius + horizontalSpacing / 2 + startX;
     }
 
     // Draws black outline of circle

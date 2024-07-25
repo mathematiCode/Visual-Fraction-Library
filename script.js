@@ -49,7 +49,7 @@ function basicFrac() {
   const downloadPngButton = document.getElementById("basic-png-button");
   const downloadBasicSVGButton = document.getElementById("basic-svg-button");
   downloadPngButton.addEventListener("click", function () {
-    downloadPng("basic-SVG");
+    downloadPng(basicSVG);
   });
   downloadBasicSVGButton.addEventListener("click", function () {
     downloadSvg(basicSVG);
@@ -220,3 +220,10 @@ function divisionFrac() {
     }
   });
 }
+
+let logoSVG = document.getElementById("logo-svg");
+const downloadLogoSVG = document.getElementById("logo-svg-button");
+
+downloadLogoSVG.addEventListener("click", function () {
+  downloadSvg(logoSVG);
+});
