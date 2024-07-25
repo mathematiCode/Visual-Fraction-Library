@@ -1,9 +1,9 @@
-<h1>Math Clip Art Library</h1>
+<h1> Visual Fraction Library </h1>
 
-This is the beginning of a library of simple math visualization functions originally built on canvas but I am converting everything to SVGs.
+This is the beginning of a library of simple fraction visualization functions that generate SVGs.
 
 
-My goal is to have a website and a javascript library with many different types of math visuals.
+My goal is to have a website and a javascript library with many different types of math visuals and customization options.
 
 <h2> Math Visual Functions/Pages to Create </h2>
 <ul>
@@ -31,12 +31,11 @@ My goal is to have a website and a javascript library with many different types 
 <li> Copy to Clipboard</li>
 <li> Download as SVG ✅</li>
 <li> Ability to drag and drop multiple items or add labels or other things to them?</li>
-<li> Change size of image ??</li>
+<li> Change size of image </li>
 <li> Download as PNG ✅ </li>
 
 
 <h2> Things that I need to figure out </h2>
 <ul>
 <li> How can I make the library testable? </li>
- <li> Should I delete all of the code that was generating canvas's instead of SVGs? I could have the SVG's converted to PNGs for the download PNG button. </li>
 </ul>
