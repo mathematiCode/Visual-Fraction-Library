@@ -1,22 +1,40 @@
 :root {
-    --button-color: #b3d7d3;
-    --primary-color: #52a4b0;
-   --other-color:  #347d88;
-    --secondary-color:  #f0a68c;
-    --tertiary-color: #9de56c;
-    --nav-color: #c9eaec;
-    --faded-green: #b7dd82;
-    
-  
-    font-family: "Raleway", sans-serif;
-    font-size: 16px;
+  --teal-100: #c9eaec; 
+  --teal-200: #b3d7d3;
+    --teal-400: #6ec2cf;
+    --teal-500: #52a4b0;
+   --teal-800:  #347d88;
+   --teal-900:  #26646e;
+
+
+
+   --peach-200:  #f5b9ad;
+    --peach-500:  #f0a68c;
+    --green-400: #9de56c;
+    --green-200: #b7dd82;
+    --faded-green-100: #daecb1;
+    --faded-green-200: hsl(83, 48%, 67%);
+    --light-orange: #f8d2a3;
+
+     font-family: "Raleway", sans-serif; 
+        font-size: 16px;
 }
+
+#greenSlice1:hover {
+  transform: translate(100px,0);
+}
+
+/* #green-slice-1:hover {
+  display: none;
+  color: black;
+} */
+
  
 .corner-logo {
-  width: 70px;
-  height: 70px;
+  width: 65px;
+  max-height: 60px;
   position: absolute;
-  top: 0px;
+  top: 3px;
   left: 0px;
 }
 
@@ -30,14 +48,14 @@ nav {
   display: flex;
   gap: 65px;
   font-size: 1.3rem;
-  background-color:#c9eaec ;
+  background-color: var(--teal-100);
   position: absolute;
   justify-content: center;
+  font-weight: 500;
   left: 0px;
   right: 0px;
   top: 0px;
   padding: 20px;
-
 }
 
 .home-button {
@@ -49,7 +67,6 @@ nav {
 }
 
 h1 {
-    font-family: "Raleway", sans-serif;
     font-size: 2.5rem;
     font-weight: 300;
     margin-bottom: 12px;
@@ -120,12 +137,12 @@ a {
 
 .blue-button, .download-button {
     align-items: center;
-    background-color: var(--nav-color);
+    background-color: var(--teal-100);
     border: 5px solid #111;
     border-radius: 8px;
     box-sizing: border-box;
     font-size: 1.5rem;
-    padding: 10px;
+    padding: 4px;
     max-width: 20ch;
     margin-left: 1rem;
     margin-right: 1rem;
@@ -148,7 +165,7 @@ a {
 }
 
 alert {
-    background-color: var(--button-color);
+    background-color: var(--teal-200);
 }
 
 
@@ -192,7 +209,7 @@ alert {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: var(--faded-green);
+    background-color: var(--faded-green-200);
     -webkit-transition: .4s;
     transition: .4s;
   }
@@ -210,11 +227,11 @@ alert {
   }
   
   input:checked + .slider {
-    background-color: var(--primary-color);
+    background-color: var(--teal-500);
   }
   
   input:focus + .slider {
-    box-shadow: 0 0 1px var(--primary-color);
+    box-shadow: 0 0 1px var(--teal-500);
   }
   
   input:checked + .slider:before {
@@ -255,18 +272,24 @@ alert {
   
  #terms-div {
   width: 65%;
-  background-color: var(--nav-color);
+  background-color: var(--teal-100);
   display: grid;
   gap: 0px;
 border-radius: 20px;
-padding: 30px;
+padding: 25px;
 font-size: 1.3rem;
+ }
+
+ #terms-div h2 {
+  margin-bottom: 5px;
+
  }
 
 
  #to-scale {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
   font-size: 1.3rem;
  }
@@ -277,10 +300,10 @@ font-size: 1.3rem;
  }
 
  #to-scale-checkbox:checked {
-  color: var(--other-color);
+  color: var(--teal-800);
  }
 
- #button-and-checkbox {
+ .button-and-checkbox {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -288,7 +311,68 @@ font-size: 1.3rem;
   margin-bottom: 15px;
  }
 
+ #type-of-division {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.3rem;
+ }
+
+ #divisor-is-larger-checkbox {
+  width: 1.3rem;
+  height: 1.3rem;
+ }
+
  #generate-multiplication {
 
   margin-top: 0px;
  }
+
+
+ @media(max-width: 400px) {
+  .corner-logo {
+    width: 100px;
+    height: 100px;
+  }
+
+ }
+
+ @font-face {
+  font-family:"Lovelo-LineBold";
+  src: url(./Lovelo/Commercial/WEB/Lovelo-LineBold.woff);
+ }
+
+
+ #large-logo-container {
+  place-items: center;
+  width: 400px;
+  height: 400px;
+  text-align: center;
+  display: grid;
+  grid-template-columns: 400px;
+  grid-template-rows: 400px;
+ }
+
+ .logo-text {
+  font-family: "Lovelo-LineBold", sans-serif;
+  color: var(--teal-900);
+  line-height: 1.5;
+  margin-left: 100px;
+  font-size: 4.5rem;
+text-shadow: 4px 4px 1px var(--teal-400);
+  font-weight: 800;
+  grid-row: 1/-1;
+  grid-column: 1/-1;
+  z-index: 1;
+}
+
+#logo-svg {
+  grid-row: 1/-1;
+  grid-column: 1/-1;
+  z-index: 0;
+}
+
+svg curvedPath:hover {
+  color: black;
+
+}

@@ -49,7 +49,7 @@ function basicFrac() {
   const downloadPngButton = document.getElementById("basic-png-button");
   const downloadBasicSVGButton = document.getElementById("basic-svg-button");
   downloadPngButton.addEventListener("click", function () {
-    downloadPng("basic-SVG");
+    downloadPng(basicSVG);
   });
   downloadBasicSVGButton.addEventListener("click", function () {
     downloadSvg(basicSVG);
@@ -62,7 +62,7 @@ function multiplicationFrac() {
     "generate-multiplication"
   );
 
-  generateMultiplicationButton.addEventListener("click", function () {
+  function generateMultiplicationModel() {
     const multiplicationSVG = document.getElementById("multiplication-svg");
     let factor1 = {};
     const factor2 = {};
@@ -85,12 +85,22 @@ function multiplicationFrac() {
       document.getElementById("multiplication-denominator2").value
     );
 
+    let toScale = document.getElementById("to-scale-checkbox").checked;
+
     multiplicationSVG.innerHTML = "";
     mathVisual.fractionMultiplicationAreaModel(
       multiplicationSVG,
       factor1,
-      factor2
+      factor2,
+      (lineThickness = 5),
+      (colorFill = "hsla(188, 37%, 51%,70%)"),
+      (colorFill2 = "hsla(96, 70%, 66%,50%)"),
+      toScale
     );
+  }
+
+  generateMultiplicationButton.addEventListener("click", function () {
+    generateMultiplicationModel();
   });
 
   // const multiplicationPngButton = document.getElementById("multiplication-png-button");
@@ -100,6 +110,11 @@ function multiplicationFrac() {
   const downloadMultiplicationSVG = document.getElementById(
     "multiplication-svg-button"
   );
+  const toScaleCheck = document.getElementById("to-scale-checkbox");
+
+  toScaleCheck.addEventListener("change", function () {
+    generateMultiplicationModel();
+  });
   downloadMultiplicationSVG.addEventListener("click", function () {
     const multiplicationSVG = document.getElementById("multiplication-svg");
     downloadSvg(multiplicationSVG);
@@ -203,5 +218,14 @@ function divisionFrac() {
         (colorFill2 = "#f0a68c")
       );
     }
+  });
+}
+
+function logoScript() {
+  let logoSVG = document.getElementById("logo-svg");
+  const downloadLogoSVG = document.getElementById("logo-svg-button");
+
+  downloadLogoSVG.addEventListener("click", function () {
+    downloadSvg(logoSVG);
   });
 }

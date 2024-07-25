@@ -1,63 +1,77 @@
 <head>
-    <link
-      href="https://fonts.googleapis.com/css?family=Advent Pro"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="../style.css" />
-    <title> Fraction Division Visuals</title>
-  </head>
-  
-  
-  <body>
-    <a class="home-button"  href="../index.html">
-    <img class="corner-logo" src="../logo.png" />
-    </a>
-      <h1>Input the division problem you would like displayed.</h1>
-      <p class="requirements" id="division-warning">
-        For now this only works when the dividend is greater than the divisor. I plan to add other models later that are better at modeling division when the divisor is larger. 
-      </p>
-      <div  class="model-selection">
-        <h2 class="mode-toggle"> Circle Mode </h2>
-         <label class="switch">
-           <input type="checkbox" id="division-model-toggle">
-           <span class="slider round"></span>
-         </label>
-           <h2 class="right-toggle" class="mode-toggle">Bar Mode</h2>
-         </div>
-      <div class="user-inputs">
-  
-          <div class="problem-input">
-          <input type="number" class="whole-number" id="division-whole-number1">
-        <div class="fraction-input">
-          <input type="number" class="numerator" id="division-numerator1" />
-          <hr id="fracBar" />
-          <input type="number" class="denominator" id="division-denominator1" />
-        </div>
-        <p class="symbol"> ÷</p> 
-        <div class="fraction-input">
-          <input type="number" class="numerator" id="division-numerator2" />
-          <hr id="fracBar" />
-          <input type="number" class="denominator" id="division-denominator2" />
-        </div>
-        </div>
-        <button class="blue-button" id="generate-division">Generate Division Model</button>
-        <aside>
-          
-        </div>
-        <svg id="division-svg" width="800" height="200">
-          This browser doesn't support canvas elements. Try a different browser.
-        </svg>
-  
-        <div class="download-button-container">
-        <button class="download-button" id="division-svg-button"> Download SVG </button>
-        <button class="download-button" id="division-png-button"> Download PNG </button>
-        </div>
-        <a href="../index.html">Back to Home Page</a>
-  
-  
-        <script src="../script.js"></script>
-        <script src="../utilities.js"></script>
-        <script src="../lib/divisionFunctions.js"></script>
-        <script>divisionFrac()</script>
-  
-  </body>
+  <link
+    href="https://fonts.googleapis.com/css?family=Advent Pro"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="../style.css" />
+  <title>Fraction Division Visuals</title>
+</head>
+
+<body>
+  <a class="home-button" href="../index.html">
+    <img class="corner-logo" src="../icons-logos/small-logo.png" />
+  </a>
+  <h1>Input the division problem you would like displayed.</h1>
+  <!-- <p class="requirements" id="division-warning">
+    For now this only works when the dividend is greater than the divisor. I
+    plan to add other models later that are better at modeling division when the
+    divisor is larger.
+  </p> -->
+
+  <div class="model-selection">
+    <h2 class="mode-toggle">Circle Model</h2>
+    <label class="switch">
+      <input type="checkbox" id="division-model-toggle" />
+      <span class="slider round"></span>
+    </label>
+    <h2 class="right-toggle" class="mode-toggle">Bar Model</h2>
+  </div>
+
+  <div class="user-inputs">
+    <div class="problem-input">
+      <input type="number" class="whole-number" id="division-whole-number1" />
+      <div class="fraction-input">
+        <input type="number" class="numerator" id="division-numerator1" />
+        <hr id="fracBar" />
+        <input type="number" class="denominator" id="division-denominator1" />
+      </div>
+      <p class="symbol">÷</p>
+      <div class="fraction-input">
+        <input type="number" class="numerator" id="division-numerator2" />
+        <hr id="fracBar" />
+        <input type="number" class="denominator" id="division-denominator2" />
+      </div>
+    </div>
+
+    <div class="button-and-checkbox">
+      <div id="type-of-division">
+        <input id="divisor-is-larger-checkbox" type="checkbox" />
+        <p>The Divisor is Larger</p>
+      </div>
+      <button class="blue-button" id="generate-division">
+        Generate Division Model
+      </button>
+    </div>
+  </div>
+
+  <svg id="division-svg" width="800" height="200">
+    This browser doesn't support canvas elements. Try a different browser.
+  </svg>
+
+  <div class="download-button-container">
+    <button class="download-button" id="division-svg-button">
+      Download SVG
+    </button>
+    <button class="download-button" id="division-png-button">
+      Download PNG
+    </button>
+  </div>
+  <a href="../index.html">Back to Home Page</a>
+
+  <script src="../script.js"></script>
+  <script src="../utilities.js"></script>
+  <script src="../lib/divisionFunctions.js"></script>
+  <script>
+    divisionFrac();
+  </script>
+</body>
