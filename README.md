@@ -13,7 +13,7 @@ My goal is to have a website and a javascript library with many different types 
 <li> Fraction Division Bar when dividend > divisor ✅</li></li>
 <li> Fraction Division with Circles [in progress]</li>
 <li> Fraction Division when dividend < divisor with a circle </li>
-<li> Fraction Multiplication</li>
+<li> Fraction Multiplication ✅</li> 
 <li> Fraction on a Number Line</li>
 <li> Decimal on a Number Line</li>
 <li> Negative Numbers on a Number Line</li>
@@ -24,14 +24,14 @@ My goal is to have a website and a javascript library with many different types 
 
 <h2> Customization Options and Features </h2>
 <li> Change color((s)</li>
-<li> Change model (circles/bars/area model)</li>
+<li> Change model (circles/bars/area model) ✅</li>
 <li> Change line width</li>
 <li> Change spacing between multiple items </li>
 <li> Copy to Clipboard</li>
-<li> Download as svg</li>
+<li> Download as SVG ✅</li>
 <li> Ability to drag and drop multiple items or add labels or other things to them?</li>
 <li> Change size of image ??</li>
-<li> Download as png or jpg??</li>
+<li> Download as PNG?? [in progress]</li>
 
 
 <h2> Things that I need to figure out </h2>
