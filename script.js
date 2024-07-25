@@ -221,9 +221,11 @@ function divisionFrac() {
   });
 }
 
-let logoSVG = document.getElementById("logo-svg");
-const downloadLogoSVG = document.getElementById("logo-svg-button");
+function logoScript() {
+  let logoSVG = document.getElementById("logo-svg");
+  const downloadLogoSVG = document.getElementById("logo-svg-button");
 
-downloadLogoSVG.addEventListener("click", function () {
-  downloadSvg(logoSVG);
-});
+  downloadLogoSVG.addEventListener("click", function () {
+    downloadSvg(logoSVG);
+  });
+}

@@ -1,4 +1,6 @@
-// import { Canvg } from "canvg";
+// import { Canvg } from "https://cdn.skypack.dev/canvg@^4.0.0";
+const header = new Request();
+console.log(Canvg);
 
 function downloadPng(svgEl) {
   if (svgEl instanceof Node) {
