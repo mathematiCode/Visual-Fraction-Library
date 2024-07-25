@@ -6,8 +6,6 @@
    --teal-800:  #347d88;
    --teal-900:  #26646e;
 
-
-
    --peach-200:  #f5b9ad;
     --peach-500:  #f0a68c;
     --green-400: #9de56c;
@@ -372,7 +370,13 @@ text-shadow: 4px 4px 1px var(--teal-400);
   z-index: 0;
 }
 
-svg curvedPath:hover {
-  color: black;
 
+
+#buy-me-a-coffee {
+ position: absolute;
+ bottom: 30px;
+ right: 30px;
+ background-color: transparent;
+ border: none;
+ text-align: center;
 }

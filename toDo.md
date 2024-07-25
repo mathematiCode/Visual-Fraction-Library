@@ -1,11 +1,22 @@
-✅
-
 Next Steps
 
 - Add a fraction division model for when the divisor is greater than the dividend
 - Create area model function for mathVisual.fractionMultiplication ✅
-- Refactor code to minimize parameters passed by using a customizations object.
+- Add labels to division models
+- Separate CSS into separate files
+- Make responsive for mobile devices
+- Add animation on logo
+
+Refactoring
+
 - Reorganize file structure ✅
+- Separate CSS into separate files
+- Rewrite CSS to be more flexible and maintainable
+- Add ARIA labels and other accessibility features
+- Separate script.js into separate files
+- Create customizations object to minimize parameters
+- Create and use smaller more reusable functions
+- Simplify functions where possible
 
 Models to Add
 
@@ -22,6 +33,7 @@ Other To Do's
 - Add labels to division models
 - Add labels to multiplication models
 - Make it look more modern and appealing
+- Make responsive for mobile devices
 
 Customizations to Add
 
@@ -31,10 +43,15 @@ Customizations to Add
 - Spacing between items
 - Vertical or Horizontal bars
 - Drag box to resize width:height ratio
-- To scale or not to scale
+- To scale or not to scale ✅
 
 Download Options
 
-- Add a button to download to JPG
+- Add a button to download to PNG ✅
 - Add a button to copy to clipboard
 - Add a button to download as SVG ✅
+
+In the Future...
+
+- Create an open source library of lower level functions
+- Add number line generator

@@ -110,6 +110,9 @@ function multiplicationFrac() {
   const downloadMultiplicationSVG = document.getElementById(
     "multiplication-svg-button"
   );
+  const downloadMultiplicationPNG = document.getElementById(
+    "multiplication-png-button"
+  );
   const toScaleCheck = document.getElementById("to-scale-checkbox");
 
   toScaleCheck.addEventListener("change", function () {
@@ -118,6 +121,11 @@ function multiplicationFrac() {
   downloadMultiplicationSVG.addEventListener("click", function () {
     const multiplicationSVG = document.getElementById("multiplication-svg");
     downloadSvg(multiplicationSVG);
+  });
+
+  downloadMultiplicationPNG.addEventListener("click", function () {
+    const multiplicationSVG = document.getElementById("multiplication-svg");
+    downloadPng(multiplicationSVG);
   });
 }
 
@@ -170,7 +178,8 @@ function divisionFrac() {
 
   const divisionPngButton = document.getElementById("division-png-button");
   divisionPngButton.addEventListener("click", function () {
-    downloadPng("division-svg");
+    const divisionSVG = document.getElementById("division-svg");
+    downloadPng(divisionSVG);
   });
   const downloadDivisionSVG = document.getElementById("division-svg-button");
   downloadDivisionSVG.addEventListener("click", function () {
@@ -225,7 +234,7 @@ function logoScript() {
   let logoSVG = document.getElementById("logo-svg");
   const downloadLogoSVG = document.getElementById("logo-svg-button");
 
-  downloadLogoSVG.addEventListener("click", function () {
-    downloadSvg(logoSVG);
-  });
+  // downloadLogoSVG.addEventListener("click", function () {
+  //   downloadSvg(logoSVG);
+  // });
 }
