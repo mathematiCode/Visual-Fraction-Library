@@ -1,7 +1,3 @@
-// import { Canvg } from "https://cdn.skypack.dev/canvg@^4.0.0";
-const header = new Request();
-console.log(Canvg);
-
 function downloadPng(svgEl) {
   if (svgEl instanceof Node) {
     const canvas = document.createElement("canvas");
@@ -11,25 +7,28 @@ function downloadPng(svgEl) {
     const url = URL.createObjectURL(svgBlob);
     const img = new Image();
     img.onload = function () {
-      ctx.canvas.width = img.width;
-      ctx.canvas.height = img.height;
+      canvas.width = img.width;
+      canvas.height = img.height;
       ctx.drawImage(img, 0, 0);
-      URL.revokeObjectURL(url);
 
       // Get the canvas data as a PNG-encoded string
       const pngData = canvas.toDataURL("image/png");
 
-      // Create a blob from the PNG data
-      const pngBlob = new Blob([pngData], { type: "image/png" });
-
-      // Create a link to download the blob as a PNG file
+      // Create a link to download the PNG file
       const a = document.createElement("a");
-      a.href = URL.createObjectURL(pngBlob);
+      a.href = pngData;
       a.download = "my-image.png";
       a.click();
+
+      URL.revokeObjectURL(url);
     };
     img.src = url;
-  } else console.error("The object is not a node");
+    img.onerror = function () {
+      console.error("Failed to load image");
+    };
+  } else {
+    console.error("The object is not a node");
+  }
 }
 
 function downloadSvg(svgEl) {
