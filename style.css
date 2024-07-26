@@ -125,6 +125,7 @@ body {
     background-color: white;
     display: grid;
     place-items: center;
+    height: 100vh;
     gap: 0px;
 }
 
