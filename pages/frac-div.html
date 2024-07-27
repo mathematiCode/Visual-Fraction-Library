@@ -5,92 +5,97 @@
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-      <link rel="stylesheet" href="../style.css" />
+      <link rel="stylesheet" href="../css/styles.css" />
+      <link rel="stylesheet" href="../css/layout.css" />
+      <link rel="stylesheet" href="../css/inputs.css" />
+      <link rel="stylesheet" href="../css/nav.css" />
       <title>Fraction Division Visuals</title>
     </head>
 
     <body>
-      <a class="home-button" href="../index.html">
-        <img
-          class="corner-logo"
-          src="../icons-logos/small-logo.png"
-          alt="Visual Fraction Library - Home"
-        />
-      </a>
-      <h1>Input the division problem you would like displayed.</h1>
-      <!-- <p class="requirements" id="division-warning">
+      <div class="grid-layout">
+        <a class="home-button" href="../index.html">
+          <img
+            class="corner-logo"
+            src="../icons-logos/small-logo.png"
+            alt="Visual Fraction Library - Home"
+          />
+        </a>
+        <h1>Input the division problem you would like displayed.</h1>
+        <!-- <p class="requirements" id="division-warning">
     For now this only works when the dividend is greater than the divisor. I
     plan to add other models later that are better at modeling division when the
     divisor is larger.
   </p> -->
 
-      <div class="model-selection">
-        <h2 class="mode-toggle">Circle Model</h2>
-        <label class="switch">
-          <input type="checkbox" id="division-model-toggle" />
-          <span class="slider round"></span>
-        </label>
-        <h2 class="right-toggle" class="mode-toggle">Bar Model</h2>
-      </div>
+        <div class="model-selection">
+          <h2 class="mode-toggle">Circle Model</h2>
+          <label class="switch">
+            <input type="checkbox" id="division-model-toggle" />
+            <span class="slider round"></span>
+          </label>
+          <h2 class="right-toggle" class="mode-toggle">Bar Model</h2>
+        </div>
 
-      <div class="user-inputs">
-        <div class="problem-input">
-          <input
-            type="number"
-            class="whole-number"
-            id="division-whole-number1"
-          />
-          <div class="fraction-input">
-            <input type="number" class="numerator" id="division-numerator1" />
-            <hr id="fracBar" />
+        <div class="user-inputs">
+          <div class="problem-input">
             <input
               type="number"
-              class="denominator"
-              id="division-denominator1"
+              class="whole-number"
+              id="division-whole-number1"
             />
+            <div class="fraction-input">
+              <input type="number" class="numerator" id="division-numerator1" />
+              <hr id="fracBar" />
+              <input
+                type="number"
+                class="denominator"
+                id="division-denominator1"
+              />
+            </div>
+            <p class="symbol">÷</p>
+            <div class="fraction-input">
+              <input type="number" class="numerator" id="division-numerator2" />
+              <hr id="fracBar" />
+              <input
+                type="number"
+                class="denominator"
+                id="division-denominator2"
+              />
+            </div>
           </div>
-          <p class="symbol">÷</p>
-          <div class="fraction-input">
-            <input type="number" class="numerator" id="division-numerator2" />
-            <hr id="fracBar" />
-            <input
-              type="number"
-              class="denominator"
-              id="division-denominator2"
-            />
+
+          <div class="button-and-checkbox">
+            <div id="type-of-division">
+              <input id="divisor-is-larger-checkbox" type="checkbox" />
+              <p>The Divisor is Larger</p>
+            </div>
+            <button class="blue-button" id="generate-division">
+              Generate Division Model
+            </button>
           </div>
         </div>
 
-        <div class="button-and-checkbox">
-          <div id="type-of-division">
-            <input id="divisor-is-larger-checkbox" type="checkbox" />
-            <p>The Divisor is Larger</p>
-          </div>
-          <button class="blue-button" id="generate-division">
-            Generate Division Model
+        <svg
+          id="division-svg"
+          width="800"
+          height="200"
+          alt="Division model will be displayed here."
+        >
+          This browser doesn't support canvas elements. Try a different browser.
+        </svg>
+
+        <div class="download-button-container">
+          <button class="download-button" id="division-svg-button">
+            Download SVG
+          </button>
+          <button class="download-button" id="division-png-button">
+            Download PNG
+          </button>
+          <button class="download-button" id="division-copy-button">
+            Copy to Clipboard
           </button>
         </div>
-      </div>
-
-      <svg
-        id="division-svg"
-        width="800"
-        height="200"
-        alt="Division model will be displayed here."
-      >
-        This browser doesn't support canvas elements. Try a different browser.
-      </svg>
-
-      <div class="download-button-container">
-        <button class="download-button" id="division-svg-button">
-          Download SVG
-        </button>
-        <button class="download-button" id="division-png-button">
-          Download PNG
-        </button>
-        <button class="download-button" id="division-copy-button">
-          Copy to Clipboard
-        </button>
       </div>
 
       <script src="../script.js"></script>

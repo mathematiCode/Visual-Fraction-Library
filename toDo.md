@@ -3,15 +3,15 @@ Next Steps
 - Add a fraction division model for when the divisor is greater than the dividend
 - Create area model function for mathVisual.fractionMultiplication ✅
 - Add labels to division models
-- Separate CSS into separate files
+- Separate CSS into separate files ✅
 - Make responsive for different screen sizes ✅ (to an extend)
 - Add animation on logo
 
 Refactoring
 
 - Reorganize file structure ✅
-- Separate CSS into separate files
-- Rewrite CSS to be more flexible and maintainable
+- Separate CSS into separate files ✅
+- Rewrite CSS to be more flexible and maintainable ✅
 - Add ARIA labels and other accessibility features
 - Separate script.js into separate files
 - Create customizations object to minimize parameters
@@ -51,8 +51,10 @@ Customizations to Add
 Download Options
 
 - Add a button to download to PNG ✅
-- Add a button to copy to clipboard
 - Add a button to download as SVG ✅
+- Add a button to copy to clipboard ✅
+  - Verify that it's been copied
+- Copy EMF to clipboard
 
 In the Future...
 

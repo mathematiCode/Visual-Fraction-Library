@@ -5,96 +5,106 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
-    <link rel="stylesheet" href="../style.css" />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="stylesheet" href="../css/layout.css" />
+    <link rel="stylesheet" href="../css/inputs.css" />
+    <link rel="stylesheet" href="../css/nav.css" />
     <title>Fraction Multiplication VIsuals</title>
   </head>
 
   <body>
-    <a class="home-button" href="../index.html">
-      <img
-        class="corner-logo"
-        src="../icons-logos/small-logo.png"
-        alt="Visual Fraction Library - Home"
-      />
-    </a>
-    <h1>Enter the multiplication problem you would like displayed.</h1>
-    <!-- <p class="requirements">
+    <div class="grid-layout">
+      <a class="home-button" href="../index.html">
+        <img
+          class="corner-logo"
+          src="../icons-logos/small-logo.png"
+          alt="Visual Fraction Library - Home"
+        />
+      </a>
+
+      <h1>Enter the multiplication problem you would like displayed.</h1>
+      <!-- <p class="requirements">
      Works best with denominators 10 or less.  
   </p> -->
 
-    <div class="model-selection">
-      <h2 class="mode-toggle">Circle Model</h2>
-      <label class="switch">
-        <input type="checkbox" id="multiplication-model-toggle" />
-        <span class="slider round"></span>
-      </label>
-      <h2 class="right-toggle" class="mode-toggle">Area Model</h2>
-    </div>
-
-    <div class="user-inputs">
-      <div class="problem-input">
-        <input
-          type="number"
-          class="whole-number"
-          id="multiplication-whole-number1"
-        />
-        <div class="fraction-input">
-          <input
-            type="number"
-            class="numerator"
-            id="multiplication-numerator1"
-          />
-          <hr id="fracBar" />
-          <input
-            type="number"
-            class="denominator"
-            id="multiplication-denominator1"
-          />
-        </div>
-        <p class="symbol">×</p>
-        <input
-          type="number"
-          class="whole-number"
-          id="multiplication-whole-number2"
-        />
-        <div class="fraction-input">
-          <input
-            type="number"
-            class="numerator"
-            id="multiplication-numerator2"
-          />
-          <hr id="fracBar" />
-          <input
-            type="number"
-            class="denominator"
-            id="multiplication-denominator2"
-          />
-        </div>
+      <div class="model-selection">
+        <h2 class="mode-toggle">Circle Model</h2>
+        <label class="switch">
+          <input type="checkbox" id="multiplication-model-toggle" />
+          <span class="slider round"></span>
+        </label>
+        <h2 class="right-toggle" class="mode-toggle">Area Model</h2>
       </div>
 
-      <div id="button-and-checkbox">
-        <div id="to-scale">
-          <input id="to-scale-checkbox" type="checkbox" />
-          <p>Draw areas to scale</p>
+      <div class="user-inputs">
+        <div class="problem-input">
+          <input
+            type="number"
+            class="whole-number"
+            id="multiplication-whole-number1"
+          />
+          <div class="fraction-input">
+            <input
+              type="number"
+              class="numerator"
+              id="multiplication-numerator1"
+            />
+            <hr id="fracBar" />
+            <input
+              type="number"
+              class="denominator"
+              id="multiplication-denominator1"
+            />
+          </div>
+          <p class="symbol">×</p>
+          <input
+            type="number"
+            class="whole-number"
+            id="multiplication-whole-number2"
+          />
+          <div class="fraction-input">
+            <input
+              type="number"
+              class="numerator"
+              id="multiplication-numerator2"
+            />
+            <hr id="fracBar" />
+            <input
+              type="number"
+              class="denominator"
+              id="multiplication-denominator2"
+            />
+          </div>
         </div>
-        <button class="blue-button" id="generate-multiplication">
-          Generate Multiplication Model
+
+        <div id="button-and-checkbox">
+          <div id="to-scale">
+            <input id="to-scale-checkbox" type="checkbox" />
+            <p>Draw areas to scale</p>
+          </div>
+          <button class="blue-button" id="generate-multiplication">
+            Generate Multiplication Model
+          </button>
+        </div>
+      </div>
+      <svg
+        id="multiplication-svg"
+        width="800"
+        height="250"
+        alt="multiplication visual will be displayed here"
+      ></svg>
+
+      <div class="download-button-container">
+        <button class="download-button" id="mult-svg-button">
+          Download SVG
+        </button>
+        <button class="download-button" id="mult-png-button">
+          Download PNG
+        </button>
+        <button class="download-button" id="mult-copy-button">
+          Copy to Clipboard
         </button>
       </div>
-    </div>
-    <svg
-      id="multiplication-svg"
-      width="800"
-      height="300"
-      alt="multiplication visual will be displayed here"
-    ></svg>
-
-    <div class="download-button-container">
-      <button class="download-button" id="mult-svg-button">Download SVG</button>
-      <button class="download-button" id="mult-png-button">Download PNG</button>
-      <button class="download-button" id="mult-copy-button">
-        Copy to Clipboard
-      </button>
     </div>
 
     <script src="../script.js"></script>
