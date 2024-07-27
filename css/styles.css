@@ -1,0 +1,160 @@
+:root {
+  --teal-100: #c9eaec; 
+  --teal-200: #b3d7d3;
+    --teal-400: #6ec2cf;
+    --teal-500: #52a4b0;
+   --teal-800:  #347d88;
+   --teal-900:  #16434a;
+
+   --peach-200:  #f5b9ad;
+    --peach-500:  #f0a68c;
+    --green-400: #9de56c;
+    --green-200: #b7dd82;
+    --faded-green-100: #daecb1;
+    --faded-green-200: hsl(83, 48%, 67%);
+    --light-orange: #f8d2a3;
+
+     font-family: "Raleway", sans-serif; 
+        font-size: 16px;
+      color: var(--teal-900);
+}
+
+
+h1 {
+    font-size: 2.5rem;
+    font-weight: 500;
+    margin-bottom: 12px;
+    margin-top: 12px;
+    margin-left: 70px;
+    margin-right: 70px;
+    grid-row: 1/2;
+}
+
+.requirements {
+    font-size: 2rem;
+    font-weight: 100;
+}
+
+
+a {
+  color: #0d6979;
+  text-decoration: none;
+}
+
+.blue-button, .download-button {
+    align-items: center;
+    background-color: var(--teal-100);
+    border: 5px solid var(--teal-800);
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-size: 1.5rem;
+    padding: 4px;
+    max-width: 20ch;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    margin-top: 1rem;
+    color: var(--teal-900);
+    cursor: pointer;
+    display: flex;
+    font-family: Inter, sans-serif;
+    position: relative;
+    text-align: center;
+    touch-action: manipulation;
+    transition-duration: 0.4s;
+}
+
+alert {
+    background-color: var(--teal-200);
+}
+
+.blue-button:hover, .download-button:hover {
+    background-color: white;
+}
+
+ #division-warning {
+    font-size: 1.25rem; 
+ }
+
+
+ h2 {
+  font-weight: 200;
+ }
+  
+ @font-face {
+  font-family:"Lovelo-LineBold";
+  src: url(../Lovelo/Commercial/WEB/Lovelo-LineBold.woff);
+ }
+
+
+ #large-logo-container {
+  place-items: center;
+  width: 400px;
+  height: 400px;
+  text-align: center;
+  display: grid;
+  grid-template-columns: 400px;
+  grid-template-rows: 400px;
+ }
+
+ .logo-text {
+  font-family: "Lovelo-LineBold", sans-serif;
+  color: var(--teal-900);
+  line-height: 1.5;
+  margin-left: 100px;
+  font-size: 4.5rem;
+text-shadow: 4px 4px 1px var(--teal-400);
+  font-weight: 800;
+  grid-row: 1/-1;
+  grid-column: 1/-1;
+  z-index: 1;
+}
+
+#logo-svg {
+  grid-row: 1/-1;
+  grid-column: 1/-1;
+  z-index: 0;
+  margin-top: 25px;
+}
+
+
+
+#buy-me-a-coffee {
+ position: fixed;
+ padding-right: 7px;
+ bottom: 30px;
+ right: 30px;
+ background-color: transparent;
+ border: none;
+ text-align: center;
+ 
+}
+
+
+.modal {
+  position: fixed;
+  z-index: 2;
+  display: none;
+  height: fit-content;
+
+  background-color: var(--faded-green-100);
+color: var(--teal-900);
+font-weight: 500;
+}
+
+
+@media(max-width: 750px) {
+  #screen-size-warning {
+    display: flex;
+    font-size: 1.7rem;
+    padding: 30px;
+  } 
+  #screen-size-modal {
+    display: flex;
+    margin-top: 15%;
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+    border-radius: 10px;
+    border: 5px solid var(--teal-800);
+  }
+}

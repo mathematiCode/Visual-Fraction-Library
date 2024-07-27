@@ -1,0 +1,43 @@
+.corner-logo {
+    width: 80px;
+    height: 80px;
+    position: fixed;
+    top: 10px;
+    left: 10px;
+  }
+  
+  #homepage-corner-logo {
+    width: 60px;
+    height: 60px;
+    top: 3px;
+    left: 3px;
+  }
+  
+  nav {
+    display: flex;
+    gap: 65px;
+    font-size: 1.3rem;
+    background-color: var(--teal-100);
+    position: fixed;
+    justify-content: center;
+    font-weight: 500;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+    padding: 20px;
+  }
+  
+  @media(max-width: 950px) {
+  
+    nav {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .logo-text {
+      display: none;
+    }
+    #logo-svg {
+      display: none;
+    }
+  }

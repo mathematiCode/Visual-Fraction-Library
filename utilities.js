@@ -360,10 +360,6 @@ function mixedNumCircles(
   startX = 0,
   startY = 0
 ) {
-  debugger;
-  // const width = svg.getAttribute("width");
-  // const height = svg.getAttribute("height");
-  const svgNS = svg.namespaceURI;
   // Figure out how long the radius of each circle should be based on the svg dimensions.
   let numWholes = Math.floor(mixedNum.numerator / mixedNum.denominator);
   let maxWholes = 0; // This is how many circles will be drawn on the svg
@@ -406,15 +402,6 @@ function mixedNumCircles(
   let slicesLeft = mixedNum.numerator;
   let currentWhole = 1;
   let fillRadius = radius - lineThickness / 2;
-
-  // Makes the lines thinner when there isn't space for the full thickness
-  if (
-    radius < 20 ||
-    (radius < 35 && mixedNum.denominator > 10) ||
-    mixedNum.denominator > 15
-  ) {
-    lineThickness = lineThickness / 2;
-  }
 
   // This loop draws the circles and shades in the correct # of slices given an improper fraction
   for (let i = 0; i < maxWholes; i++) {
