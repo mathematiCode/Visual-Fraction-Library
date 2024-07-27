@@ -58,6 +58,10 @@ nav {
   left: 0px;
 }
 
+#screen-size-warning{
+  display: none;
+}
+
 @media(max-width: 950px) {
 
   nav {
@@ -72,11 +76,15 @@ nav {
     display: none;
   }
 
-
-
 }
 
-
+@media(max-width: 750px) {
+  #screen-size-warning {
+    display: flex;
+    margin-top: 400px;
+    font-size: 1.7rem;
+  } 
+}
 
 
 
@@ -391,10 +399,18 @@ text-shadow: 4px 4px 1px var(--teal-400);
 
 
 #buy-me-a-coffee {
- position: absolute;
+ position: fixed;
+ padding-right: 7px;
  bottom: 30px;
  right: 30px;
  background-color: transparent;
  border: none;
  text-align: center;
+}
+
+
+
+#multiplication-svg {
+  width: min(800px, 95%);
+
 }

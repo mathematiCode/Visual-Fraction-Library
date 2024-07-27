@@ -35,6 +35,7 @@ Other To Do's
 - Add labels to multiplication models
 - Make it look more modern and appealing
 - Make responsive for mobile devices
+- Sign up Form
 
 Customizations to Add
 
