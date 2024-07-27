@@ -1,5 +1,6 @@
 .numerator, .denominator {
-    width: 80px;
+    min-width: 60px;
+    field-sizing: content;
     height: 50px;
     font-size: 2rem;
     text-align: center;
@@ -13,7 +14,7 @@ input {
 
 .whole-number {
     field-sizing: content;
-    min-width: 80px;
+    min-width: 60px;
     height: 100px;
     font-size: 3rem;
     margin:  10px;
