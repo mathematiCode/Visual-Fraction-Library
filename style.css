@@ -36,18 +36,12 @@
   left: 0px;
 }
 
-
-.homepage {
-    display: grid;
-    place-items: center;
-}
-
 nav {
   display: flex;
   gap: 65px;
   font-size: 1.3rem;
   background-color: var(--teal-100);
-  position: absolute;
+  position: fixed;
   justify-content: center;
   font-weight: 500;
   left: 0px;
@@ -63,6 +57,29 @@ nav {
   top: 0px;
   left: 0px;
 }
+
+@media(max-width: 950px) {
+
+  nav {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .logo-text {
+    display: none;
+  }
+  #logo-svg {
+    display: none;
+  }
+
+
+
+}
+
+
+
+
+
 
 h1 {
     font-size: 2.5rem;
