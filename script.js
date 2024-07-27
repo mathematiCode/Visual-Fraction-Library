@@ -49,11 +49,15 @@ function basicFrac() {
 
   const downloadPngButton = document.getElementById("basic-png-button");
   const downloadBasicSVGButton = document.getElementById("basic-svg-button");
+  const copyPngButton = document.getElementById("basic-copy-button");
   downloadPngButton.addEventListener("click", function () {
     downloadPng(basicSVG);
   });
   downloadBasicSVGButton.addEventListener("click", function () {
     downloadSvg(basicSVG);
+  });
+  copyPngButton.addEventListener("click", function () {
+    copyPngToClipboard(basicSVG);
   });
 }
 
@@ -108,12 +112,9 @@ function multiplicationFrac() {
   // divisionPngButton.addEventListener("click", function () {
   //   downloadPng("division-svg");
   // });
-  const downloadMultiplicationSVG = document.getElementById(
-    "multiplication-svg-button"
-  );
-  const downloadMultiplicationPNG = document.getElementById(
-    "multiplication-png-button"
-  );
+  const downloadMultiplicationSVG = document.getElementById("mult-svg-button");
+  const downloadMultiplicationPNG = document.getElementById("mult-png-button");
+  const copyPngButton = document.getElementById("mult-copy-button");
   const toScaleCheck = document.getElementById("to-scale-checkbox");
 
   toScaleCheck.addEventListener("change", function () {
@@ -127,6 +128,10 @@ function multiplicationFrac() {
   downloadMultiplicationPNG.addEventListener("click", function () {
     const multiplicationSVG = document.getElementById("multiplication-svg");
     downloadPng(multiplicationSVG);
+  });
+  copyPngButton.addEventListener("click", function () {
+    const multiplicationSVG = document.getElementById("multiplication-svg");
+    copyPngToClipboard(multiplicationSVG);
   });
 }
 
@@ -178,6 +183,12 @@ function divisionFrac() {
   downloadDivisionSVG.addEventListener("click", function () {
     const divisionSVG = document.getElementById("division-svg");
     downloadSvg(divisionSVG);
+  });
+
+  const copyPngButton = document.getElementById("division-copy-button");
+  copyPngButton.addEventListener("click", function () {
+    const divisionSVG = document.getElementById("division-svg");
+    copyPngToClipboard(divisionSVG);
   });
 
   modelToggle.addEventListener("change", () => {
