@@ -25,11 +25,18 @@
 
  
 .corner-logo {
-  width: 65px;
+  width: 80px;
+  height: 80px;
+  position: fixed;
+  top: 10px;
+  left: 10px;
+}
+
+#homepage-corner-logo {
+  width: 60px;
   height: 60px;
-  position: absolute;
   top: 3px;
-  left: 0px;
+  left: 3px;
 }
 
 nav {
@@ -82,7 +89,7 @@ nav {
   } 
   #screen-size-modal {
     display: flex;
-    margin-top: 300px;
+    margin-top: 150px;
     width: 90%;
     border-radius: 10px;
     border: 5px solid var(--teal-800);
@@ -94,7 +101,7 @@ nav {
 
 h1 {
     font-size: 2.5rem;
-    font-weight: 300;
+    font-weight: 500;
     margin-bottom: 12px;
     margin-top: 12px;
     margin-left: 70px;
@@ -409,6 +416,7 @@ text-shadow: 4px 4px 1px var(--teal-400);
  background-color: transparent;
  border: none;
  text-align: center;
+ 
 }
 
 

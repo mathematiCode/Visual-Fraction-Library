@@ -48,6 +48,54 @@ function downloadSvg(svgEl) {
   }
 }
 
+// Helper function to convert a data URL to a blob
+function dataURLtoBlob(dataURL) {
+  const binary = atob(dataURL.split(",")[1]);
+  const array = [];
+  for (let i = 0; i < binary.length; i++) {
+    array.push(binary.charCodeAt(i));
+  }
+  return new Blob([new Uint8Array(array)], { type: "image/png" });
+}
+
+function copyPngToClipboard(svgEl) {
+  if (svgEl instanceof Node) {
+    const canvas = document.createElement("canvas");
+    const ctx = canvas.getContext("2d");
+    const svgXml = new XMLSerializer().serializeToString(svgEl);
+    const svgBlob = new Blob([svgXml], { type: "image/svg+xml" });
+    const url = URL.createObjectURL(svgBlob);
+    const img = new Image();
+    img.onload = function () {
+      canvas.width = img.width;
+      canvas.height = img.height;
+      ctx.drawImage(img, 0, 0);
+
+      // Get the canvas data as a PNG-encoded string
+      const pngData = canvas.toDataURL("image/png");
+
+      // Convert the PNG data to a blob
+      const pngBlob = dataURLtoBlob(pngData);
+
+      // Create a clipboard item
+      const item = new ClipboardItem({ "image/png": pngBlob });
+
+      // Write the clipboard item to the clipboard
+      navigator.clipboard.write([item]).then(() => {
+        console.log("PNG copied to clipboard!");
+      });
+
+      URL.revokeObjectURL(url);
+    };
+    img.src = url;
+    img.onerror = function () {
+      console.error("Failed to load image");
+    };
+  } else {
+    console.error("The object is not a node");
+  }
+}
+
 function drawCircle(
   svg,
   x,
