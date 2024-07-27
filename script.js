@@ -8,41 +8,42 @@ function basicFrac() {
   const generateBasicButton = document.getElementById("generate-basic");
   const modelToggle = document.getElementById("basic-model-toggle");
   const basicSVG = document.getElementById("basic-svg");
+  let mixedNum = {};
 
   generateBasicButton.addEventListener("click", function () {
-    const wholeNum = parseInt(
+    mixedNum.wholeNum = parseInt(
       document.getElementById("basic-whole-number").value
     );
-    const numerator = parseInt(
+    mixedNum.numerator = parseInt(
       document.getElementById("basic-numerator").value
     );
-    const denominator = parseInt(
+    mixedNum.denominator = parseInt(
       document.getElementById("basic-denominator").value
     );
 
     basicSVG.innerHTML = "";
     if (modelToggle.checked) {
-      mathVisual.fractionBar(basicSVG, wholeNum, numerator, denominator);
+      mathVisual.fractionBar(basicSVG, mixedNum);
     } else {
-      mathVisual.fractionCircle(basicSVG, wholeNum, numerator, denominator);
+      mathVisual.fractionCircle(basicSVG, mixedNum);
     }
   });
 
   modelToggle.addEventListener("change", () => {
-    const wholeNum = parseInt(
+    mixedNum.wholeNum = parseInt(
       document.getElementById("basic-whole-number").value
     );
-    const numerator = parseInt(
+    mixedNum.numerator = parseInt(
       document.getElementById("basic-numerator").value
     );
-    const denominator = parseInt(
+    mixedNum.denominator = parseInt(
       document.getElementById("basic-denominator").value
     );
     basicSVG.innerHTML = "";
     if (modelToggle.checked) {
-      mathVisual.fractionBar(basicSVG, wholeNum, numerator, denominator);
+      mathVisual.fractionBar(basicSVG, mixedNum);
     } else {
-      mathVisual.fractionCircle(basicSVG, wholeNum, numerator, denominator);
+      mathVisual.fractionCircle(basicSVG, mixedNum);
     }
   });
 
@@ -136,39 +137,31 @@ function divisionFrac() {
 
   generateDivisionButton.addEventListener("click", function () {
     const divisionSVG = document.getElementById("division-svg");
-    const divisionWholeNum1 = parseInt(
+    let dividend = {};
+    let divisor = {};
+    dividend.wholeNum = parseInt(
       document.getElementById("division-whole-number1").value
     );
-    const divisionNumerator1 = parseInt(
+    dividend.numerator = parseInt(
       document.getElementById("division-numerator1").value
     );
-    const divisionDenominator1 = parseInt(
+    dividend.denominator = parseInt(
       document.getElementById("division-denominator1").value
     );
-    const divisionNumerator2 = parseInt(
+    divisor.numerator = parseInt(
       document.getElementById("division-numerator2").value
     );
-    const divisionDenominator2 = parseInt(
+    divisor.denominator = parseInt(
       document.getElementById("division-denominator2").value
     );
     divisionSVG.innerHTML = "";
     if (modelToggle.checked) {
-      mathVisual.fractionDivisionBar(
-        divisionSVG,
-        divisionWholeNum1,
-        divisionNumerator1,
-        divisionDenominator1,
-        divisionNumerator2,
-        divisionDenominator2
-      );
+      mathVisual.fractionDivisionBar(divisionSVG, dividend, divisor);
     } else {
       mathVisual.fractionDivisionCircles(
         divisionSVG,
-        divisionWholeNum1,
-        divisionNumerator1,
-        divisionDenominator1,
-        divisionNumerator2,
-        divisionDenominator2,
+        dividend,
+        divisor,
         (lineThickness = 5),
         (colorFill = "#52a4b0"),
         (colorFill2 = "#f0a68c")
@@ -189,39 +182,32 @@ function divisionFrac() {
 
   modelToggle.addEventListener("change", () => {
     const divisionSVG = document.getElementById("division-svg");
-    const divisionWholeNum1 = parseInt(
+    let dividend = {};
+    let divisor = {};
+    dividend.wholeNum = parseInt(
       document.getElementById("division-whole-number1").value
     );
-    const divisionNumerator1 = parseInt(
+    dividend.numerator = parseInt(
       document.getElementById("division-numerator1").value
     );
-    const divisionDenominator1 = parseInt(
+    dividend.denominator = parseInt(
       document.getElementById("division-denominator1").value
     );
-    const divisionNumerator2 = parseInt(
+    divisor.numerator = parseInt(
       document.getElementById("division-numerator2").value
     );
-    const divisionDenominator2 = parseInt(
+    divisor.denominator = parseInt(
       document.getElementById("division-denominator2").value
     );
+
     divisionSVG.innerHTML = "";
     if (modelToggle.checked) {
-      mathVisual.fractionDivisionBar(
-        divisionSVG,
-        divisionWholeNum1,
-        divisionNumerator1,
-        divisionDenominator1,
-        divisionNumerator2,
-        divisionDenominator2
-      );
+      mathVisual.fractionDivisionBar(divisionSVG, dividend, divisor);
     } else {
       mathVisual.fractionDivisionCircles(
         divisionSVG,
-        divisionWholeNum1,
-        divisionNumerator1,
-        divisionDenominator1,
-        divisionNumerator2,
-        divisionDenominator2,
+        dividend,
+        divisor,
         (lineThickness = 5),
         (colorFill = "#52a4b0"),
         (colorFill2 = "#f0a68c")
