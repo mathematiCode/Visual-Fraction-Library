@@ -1,32 +1,28 @@
-.numerator, .denominator {
-    width: 70px;
-    field-sizing: content;
-    height: 50px;
-    font-size: 2rem;
-    text-align: center;
-}
-
 input {
-    text-align: center;
-    border-radius: 10px;
-    box-shadow: 0px 2px 5px #629ead;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0px 2px 5px #629ead;
 }
 
-.whole-number {
-    width: 80px;
-    field-sizing: content;
-    height: 100px;
-    font-size: 3rem;
-    margin:  10px;
-    text-align: center;
-}
+  .numerator, .denominator {
+      height: 50px;
+      font-size: 2rem;
+      text-align: center;
+  }
 
-.fraction-input {
-    width: 70px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+  .whole-number {
+      height: 100px;
+      font-size: 3rem;
+      margin:  10px;
+      text-align: center;
+  }
+
+  .fraction-input {
+      width: 70px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+  }
 
 #fracBar {
     height: 2px;
@@ -34,22 +30,24 @@ input {
     background-color: #333;
 }
 
-.user-inputs {
-    display: flex;
-    grid-row: 3/4;
-    gap: 10px;
-    justify-content: center;
-    align-items: center;
-}
-
 .symbol {
     font-size: 3rem;
 }
 
-.problem-input {
-    gap: 8px;
-    display: flex;
-    align-items: center;
+@supports(field-sizing: inherit) {
+  .whole-number, .numerator, .denominator {
+    min-width: 70px;
+    field-sizing: content;
+}
+}
+
+@supports not (field-sizing: inherit) {
+  .numerator, .denominator {
+    width: 70px;
+  }
+  .whole-number {
+    width: 80px;
+  }
 }
 
 
