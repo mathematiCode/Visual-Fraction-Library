@@ -21,6 +21,20 @@ body {
   overflow-y: none;
 }
 
+.user-inputs {
+  display: flex;
+  grid-row: 3/4;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.problem-input {
+  gap: 8px;
+  display: flex;
+  align-items: center;
+}
+
 svg {
     grid-row: 4/5;
   }
@@ -32,16 +46,17 @@ svg {
     gap: 20px;
 }
 
-#terms-div {
-    width: 65%;
+.blue-container {
+    width: 80%;
     background-color: var(--teal-100);
     display: grid;
     gap: 0px;
   border-radius: 20px;
+  margin: 20px;
   padding: 25px;
   font-size: 1.3rem;
    }
   
-   #terms-div h2 {
+   .blue-container h2 {
     margin-bottom: 5px;
    }
