@@ -202,88 +202,6 @@ function makeFractionLines(
   }
 }
 
-function drawAndShadeGroups(
-  svg,
-  currentX,
-  currentY,
-  width,
-  radius,
-  slicesToBeFilled,
-  numerator2,
-  denominator2,
-  lineThickness,
-  horizontalSpacing,
-  verticalSpacing,
-  startAngle,
-  color,
-  colorFill,
-  colorFill2,
-  colorFill3
-) {
-  let currentPieceOfNumerator = 0;
-  let currentPieceOfDenominator = 0;
-
-  for (let i = 0; i < slicesToBeFilled; i++) {
-    if (i == 0) {
-      startAngle = angleWherePiecesStart;
-    } else if (currentPieceOfDenominator >= denominator2) {
-      // If circle is fully shaded, draws the lines and moves to the next circle
-      makeFractionLines(
-        svg,
-        currentX,
-        currentY,
-        radius,
-        denominator2,
-        lineThickness,
-        startAngle
-      );
-      currentX = currentX + radius * 2 + horizontalSpacing;
-      startAngle = angleWherePiecesStart;
-      currentPieceOfDenominator = 0;
-      if (currentX + radius >= width) {
-        // Moves the remaining circles to the next line if we run out of space
-        currentY = currentY + radius * 2 + verticalSpacing;
-        currentX = radius + horizontalSpacing / 2;
-      }
-    } else {
-      // if there are still pieces left to shade on the current circle
-      startAngle += (1 / denominator2) * Math.PI * 2;
-    }
-
-    if (currentPieceOfNumerator >= numerator2) {
-      color = switchBetweenColors(color, colorFill, colorFill2, colorFill3);
-      currentPieceOfNumerator = 1;
-    } else {
-      currentPieceOfNumerator++;
-    }
-
-    shadeFractionSlices(
-      svg,
-      currentX,
-      currentY,
-      radius - lineThickness / 2,
-      1,
-      denominator2,
-      lineThickness,
-      color,
-      startAngle
-    );
-
-    currentPieceOfDenominator++;
-  }
-
-  // Creates lines for the last circle that may not have gotten lines drawn if it wasn't filled.
-  makeFractionLines(
-    svg,
-    currentX,
-    currentY,
-    radius,
-    denominator2,
-    lineThickness,
-    startAngle
-  );
-}
-
 function drawVerticalFractionBar(
   svg,
   x,
@@ -302,7 +220,7 @@ function drawVerticalFractionBar(
   let shaded = interval * numerator;
 
   const shadedRect = document.createElementNS(svgNS, "rect");
-  shadedRect.setAttribute("x", x + lineThickness);
+  shadedRect.setAttribute("x", x);
   shadedRect.setAttribute("y", y);
   shadedRect.setAttribute("width", shaded);
   shadedRect.setAttribute("height", height);
@@ -313,9 +231,9 @@ function drawVerticalFractionBar(
 
   for (let i = 1; i < denominator; i++) {
     const pieceSeparator = document.createElementNS(svgNS, "line");
-    pieceSeparator.setAttribute("x1", x + separator + lineThickness);
+    pieceSeparator.setAttribute("x1", x + separator);
     pieceSeparator.setAttribute("y1", y);
-    pieceSeparator.setAttribute("x2", x + separator + lineThickness);
+    pieceSeparator.setAttribute("x2", x + separator);
     pieceSeparator.setAttribute("y2", y + height);
     pieceSeparator.setAttribute("stroke", "black");
     pieceSeparator.setAttribute("stroke-width", lineThickness * 0.7);
@@ -324,7 +242,7 @@ function drawVerticalFractionBar(
   }
 
   const blackBorder = document.createElementNS(svgNS, "rect");
-  blackBorder.setAttribute("x", x + lineThickness);
+  blackBorder.setAttribute("x", x);
   blackBorder.setAttribute("y", y);
   blackBorder.setAttribute("width", width);
   blackBorder.setAttribute("height", height);
@@ -352,7 +270,7 @@ function drawHorizontalFractionBar(
   let shaded = interval * numerator;
 
   const shadedRect = document.createElementNS(svgNS, "rect");
-  shadedRect.setAttribute("x", x + lineThickness);
+  shadedRect.setAttribute("x", x);
   shadedRect.setAttribute("y", y);
   shadedRect.setAttribute("width", width);
   shadedRect.setAttribute("height", shaded);
@@ -363,9 +281,9 @@ function drawHorizontalFractionBar(
 
   for (let i = 1; i < denominator; i++) {
     const pieceSeparator = document.createElementNS(svgNS, "line");
-    pieceSeparator.setAttribute("x1", x + lineThickness);
+    pieceSeparator.setAttribute("x1", x);
     pieceSeparator.setAttribute("y1", y + separator);
-    pieceSeparator.setAttribute("x2", x + width + lineThickness);
+    pieceSeparator.setAttribute("x2", x + width);
     pieceSeparator.setAttribute("y2", y + separator);
     pieceSeparator.setAttribute("stroke", "black");
     pieceSeparator.setAttribute("stroke-width", lineThickness * 0.7);
@@ -374,10 +292,10 @@ function drawHorizontalFractionBar(
   }
 
   const blackBorder = document.createElementNS(svgNS, "rect");
-  blackBorder.setAttribute("x", x + lineThickness);
-  blackBorder.setAttribute("y", y + lineThickness / 2);
+  blackBorder.setAttribute("x", x);
+  blackBorder.setAttribute("y", y);
   blackBorder.setAttribute("width", width);
-  blackBorder.setAttribute("height", height - lineThickness);
+  blackBorder.setAttribute("height", height);
   blackBorder.setAttribute("fill", "none");
   blackBorder.setAttribute("stroke", "black");
   blackBorder.setAttribute("stroke-width", lineThickness);
@@ -386,9 +304,7 @@ function drawHorizontalFractionBar(
 
 function mixedNumCircles(
   svg,
-  wholeNum,
-  numerator,
-  denominator,
+  mixedNum,
   lineThickness = 5,
   colorFill = "rgb(120, 190, 250)",
   width,
@@ -396,17 +312,18 @@ function mixedNumCircles(
   startX = 0,
   startY = 0
 ) {
+  debugger;
   // const width = svg.getAttribute("width");
   // const height = svg.getAttribute("height");
   const svgNS = svg.namespaceURI;
   // Figure out how long the radius of each circle should be based on the svg dimensions.
-  let numWholes = Math.floor(numerator / denominator);
+  let numWholes = Math.floor(mixedNum.numerator / mixedNum.denominator);
   let maxWholes = 0; // This is how many circles will be drawn on the svg
 
-  if (numerator % denominator == 0) {
-    maxWholes = numWholes + wholeNum;
+  if (mixedNum.numerator % mixedNum.denominator == 0) {
+    maxWholes = numWholes + mixedNum.wholeNum;
   } else {
-    maxWholes = numWholes + wholeNum + 1;
+    maxWholes = numWholes + mixedNum.wholeNum + 1;
   } // Determines how many total circles will be drawn even if the last one is only partially shaded
 
   let horizontalSpacing = 0;
@@ -421,6 +338,7 @@ function mixedNumCircles(
     radius = Math.min((width * 0.8) / maxWholes / 2, (height * 0.8) / 2);
     console.log(`radius is ${radius}`);
   } else {
+    debugger;
     optimalDimensions = calculateOptimalDimensions(
       width * 0.8,
       height * 0.8,
@@ -437,12 +355,16 @@ function mixedNumCircles(
 
   let currentX = radius + horizontalSpacing / 2;
   let currentY = radius + verticalSpacing;
-  let slicesLeft = numerator;
+  let slicesLeft = mixedNum.numerator;
   let currentWhole = 1;
   let fillRadius = radius - lineThickness / 2;
 
   // Makes the lines thinner when there isn't space for the full thickness
-  if (radius < 20 || (radius < 35 && denominator > 10) || denominator > 15) {
+  if (
+    radius < 20 ||
+    (radius < 35 && mixedNum.denominator > 10) ||
+    mixedNum.denominator > 15
+  ) {
     lineThickness = lineThickness / 2;
   }
 
@@ -457,7 +379,7 @@ function mixedNumCircles(
     // Draws black outline of circle
     drawCircle(svg, currentX, currentY, radius, lineThickness);
 
-    if (currentWhole <= wholeNum) {
+    if (currentWhole <= mixedNum.wholeNum) {
       drawCircle(
         svg,
         currentX,
@@ -475,7 +397,7 @@ function mixedNumCircles(
         currentY,
         fillRadius,
         slicesLeft,
-        denominator,
+        mixedNum.denominator,
         lineThickness,
         colorFill,
         angleWherePiecesStart
@@ -486,11 +408,11 @@ function mixedNumCircles(
         currentX,
         currentY,
         radius,
-        denominator,
+        mixedNum.denominator,
         lineThickness
       );
 
-      slicesLeft = slicesLeft - denominator;
+      slicesLeft = slicesLeft - mixedNum.denominator;
     }
     currentX = currentX + 2 * radius + horizontalSpacing; // Move to next circle
   }
