@@ -4,6 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta
+      name="description"
+      content="Generate SVG and PNG images of visual models depicting fraction multiplication with area models and circle models."
+    />
 
     <link rel="stylesheet" href="../css/styles.css" />
     <link rel="stylesheet" href="../css/layout.css" />
@@ -23,10 +27,18 @@
             alt="Visual Fraction Library - Home"
           />
         </a>
-        <a tabindex="" href="../pages/basic-frac.html">Simple Fractions</a>
-        <a tabindex="" href="../pages/frac-div.html"> Fraction Division</a>
-        <a tabindex="" href="../pages/terms-of-use.html"> Terms of Use</a>
-        <a tabindex="" href="../pages/svg-vs-png.html"> SVG vs PNG</a>
+        <a class="nav-link" tabindex="" href="../pages/basic-frac.html"
+          >Simple Fractions</a
+        >
+        <a class="nav-link" tabindex="" href="../pages/frac-div.html">
+          Fraction Division</a
+        >
+        <a class="nav-link" tabindex="" href="../pages/terms-of-use.html">
+          Terms of Use</a
+        >
+        <a class="nav-link" tabindex="" href="../pages/svg-vs-png.html">
+          SVG vs PNG</a
+        >
       </nav>
 
       <div class="grid-layout">
@@ -45,8 +57,13 @@
 
         <div class="model-selection">
           <h2 class="mode-toggle">Circle Model</h2>
-          <label class="switch">
-            <input type="checkbox" id="multiplication-model-toggle" />
+          <label for="multiplication-model-toggle" class="switch">
+            <input
+              type="checkbox"
+              id="multiplication-model-toggle"
+              aria-label="Check for Area Model, uncheck for Circle Model."
+              aria-checked="Area Model is Selected."
+            />
             <span class="slider round"></span>
           </label>
           <h2 class="right-toggle" class="mode-toggle">Area Model</h2>
@@ -55,18 +72,21 @@
         <div class="user-inputs">
           <div class="problem-input">
             <input
+              aria-label="first factor whole number"
               type="number"
               class="whole-number"
               id="multiplication-whole-number1"
             />
             <div class="fraction-input">
               <input
+                aria-label="first factor numerator"
                 type="number"
                 class="numerator"
                 id="multiplication-numerator1"
               />
               <hr id="fracBar" />
               <input
+                aria-label="first factor denominator"
                 type="number"
                 class="denominator"
                 id="multiplication-denominator1"
@@ -74,18 +94,21 @@
             </div>
             <p class="symbol">×</p>
             <input
+              aria-label="second factor whole number"
               type="number"
               class="whole-number"
               id="multiplication-whole-number2"
             />
             <div class="fraction-input">
               <input
+                aria-label="second factor numerator"
                 type="number"
                 class="numerator"
                 id="multiplication-numerator2"
               />
               <hr id="fracBar" />
               <input
+                aria-label="second factor denominator"
                 type="number"
                 class="denominator"
                 id="multiplication-denominator2"
@@ -95,7 +118,12 @@
 
           <div id="button-and-checkbox">
             <div id="to-scale">
-              <input id="to-scale-checkbox" type="checkbox" />
+              <input
+                id="to-scale-checkbox"
+                type="checkbox"
+                aria-label="Draw to scale"
+                aria-label-checked="Draw to scale selected"
+              />
               <p>Draw areas to scale</p>
             </div>
             <button class="blue-button" id="generate-multiplication">

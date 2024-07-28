@@ -18,7 +18,7 @@
     padding: 8px;
   }
   
-  a:hover {
+  .nav-link:hover {
    background-color: var(--light-orange);
    border-radius: 15px;
   }
