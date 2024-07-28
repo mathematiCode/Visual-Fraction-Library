@@ -28,7 +28,7 @@ My goal is to have a website and a javascript library with many different types 
 <li> Change model (circles/bars/area model) ✅</li>
 <li> Change line width</li>
 <li> Change spacing between multiple items </li>
-<li> Copy to Clipboard</li>
+<li> Copy to Clipboard ✅</li>
 <li> Download as SVG ✅</li>
 <li> Ability to drag and drop multiple items or add labels or other things to them?</li>
 <li> Change size of image </li>
