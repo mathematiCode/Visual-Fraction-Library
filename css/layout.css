@@ -4,14 +4,21 @@ body {
     place-items: center;
     align-items: center;
     height: 97vh;
+    width: 100%;
     gap: 15px;
     overflow-y: auto;
 }
+
+.two-column-layout {
+  display: grid;
+  grid-template-columns: 135px 1fr;
+ }
 
 .grid-layout {
   display: grid;
   grid-template-rows: 80px 60px 140px 1fr 70px;
   margin-top: 0px;
+  grid-column: 2/3;
   place-items: center;
   height: 100%;
   width: 100%;
@@ -48,11 +55,12 @@ svg {
 
 .blue-container {
     width: 80%;
-    background-color: var(--teal-100);
+    background-color: var(--faded-green-100);
     display: grid;
     gap: 0px;
   border-radius: 20px;
-  margin: 20px;
+  margin-left: auto;
+  margin-right: auto;
   padding: 25px;
   font-size: 1.3rem;
    }
@@ -60,3 +68,16 @@ svg {
    .blue-container h2 {
     margin-bottom: 5px;
    }
+
+
+   .main-page {
+    grid-column: 2/3;
+    text-align: center;
+   }
+
+
+   #generate-multiplication {
+    margin-top: 0px;
+   }
+
+

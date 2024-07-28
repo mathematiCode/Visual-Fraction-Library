@@ -1,5 +1,4 @@
 .corner-logo {
-    width: 80px;
     height: 80px;
     position: fixed;
     top: 10px;
@@ -13,6 +12,18 @@
     left: 3px;
   }
   
+  a {
+    color: #0d6979;
+    text-decoration: none;
+    padding: 8px;
+  }
+  
+  a:hover {
+   background-color: var(--light-orange);
+   border-radius: 15px;
+  }
+
+
   nav {
     display: flex;
     gap: 65px;
@@ -24,7 +35,7 @@
     left: 0px;
     right: 0px;
     top: 0px;
-    padding: 20px;
+    padding: 12px;
   }
   
   @media(max-width: 950px) {
@@ -40,4 +51,18 @@
     #logo-svg {
       display: none;
     }
+  }
+
+  .side-nav{
+    width: 135px;
+    display: flex;
+    position: fixed;
+    border-radius: 15px;
+    left: 0;
+    gap: 40px;
+    padding-top: 120px;
+    height: 100%;
+    flex-direction: column;
+    justify-content: start;
+    background-color: var(--teal-100);
   }

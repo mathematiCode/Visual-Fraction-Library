@@ -235,3 +235,14 @@ function logoScript() {
   //   downloadSvg(logoSVG);
   // });
 }
+
+// let cornerLogo = document.getElementsByClassName("corner-logo");
+// let sideNavToggle = document.getElementsByClassName("side-nav");
+// cornerLogo.addEventListener("click", function () {
+//   let currentDisplay = getComputedStyle(sideNavToggle).display;
+//   if (currentDisplay == "none") {
+//     sideNavToggle.setAttribute("display", "flex");
+//   } else {
+//     sideNavToggle.setAttribute("display", "none");
+//   }
+// });
