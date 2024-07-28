@@ -51,21 +51,23 @@
 
 
     <div  class="model-selection">
-   <h2> Circle Mode </h2>
+   <h2> Circle Model </h2>
     <label class="switch">
-      <input tabindex="2" type="checkbox" id="basic-model-toggle">
+      <input tabindex="2" type="checkbox" id="basic-model-toggle"
+      aria-label="Check for Bar Model, uncheck for Circle Model."
+              aria-checked="true" role="switch">
       <span class="slider round"></span>
     </label>
-      <h2 class="right-toggle">Bar Mode</h2>
+      <h2 class="right-toggle">Bar Model</h2>
     </div>
 
 
     <div class="user-inputs">
-      <input tabindex="3" type="number" class="whole-number" id="basic-whole-number">
+      <input aria-label="Whole Number" tabindex="3" type="number" class="whole-number" id="basic-whole-number">
       <div class="fraction-input">
-        <input tabindex="4" type="number" class="numerator" id="basic-numerator" />
+        <input aria-label="numerator" tabindex="4" type="number" class="numerator" id="basic-numerator" />
         <hr id="fracBar" />
-        <input tabindex="5" type="number" class="denominator" id="basic-denominator" />
+        <input aria-label="denominator" tabindex="5" type="number" class="denominator" id="basic-denominator" />
       </div>
       <button tabindex="6" class="blue-button" id="generate-basic">Generate Model</button>
       <aside>

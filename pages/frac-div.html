@@ -51,7 +51,14 @@
         <div tabindex="1" class="model-selection">
           <h2 tabindex="2" class="mode-toggle">Circle Model</h2>
           <label class="switch">
-            <input tabindex="3" type="checkbox" id="division-model-toggle" />
+            <input
+              tabindex="3"
+              type="checkbox"
+              role="switch"
+              id="division-model-toggle"
+              aria-label="Check for Bar Model, uncheck for Circle Model"
+              aria-checked="true"
+            />
             <span class="slider round"></span>
           </label>
           <h2 class="right-toggle" class="mode-toggle">Bar Model</h2>
@@ -60,6 +67,7 @@
         <div class="user-inputs">
           <div class="problem-input">
             <input
+              aria-label="Dividend Whole Number"
               tabindex="4"
               type="number"
               class="whole-number"
@@ -67,6 +75,7 @@
             />
             <div class="fraction-input">
               <input
+                aria-label="Dividend Numerator"
                 tabindex="5"
                 type="number"
                 class="numerator"
@@ -74,6 +83,7 @@
               />
               <hr id="fracBar" />
               <input
+                aria-label="Dividend denominator"
                 tabindex="6"
                 type="number"
                 class="denominator"
@@ -83,6 +93,7 @@
             <p class="symbol">÷</p>
             <div class="fraction-input">
               <input
+                aria-label="Divisor numerator"
                 tabindex="7"
                 type="number"
                 class="numerator"
@@ -90,6 +101,7 @@
               />
               <hr id="fracBar" />
               <input
+                aria-label="Divisor denominator"
                 tabindex="8"
                 type="number"
                 class="denominator"
@@ -101,6 +113,8 @@
           <div class="button-and-checkbox">
             <div id="type-of-division">
               <input
+                aria-label="Check if divisor is larger than dividend"
+                aria-checked="true"
                 tabindex="9"
                 id="divisor-is-larger-checkbox"
                 type="checkbox"
