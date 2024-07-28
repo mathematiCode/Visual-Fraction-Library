@@ -94,11 +94,11 @@ input {
   }
   
   input:checked + .slider {
-    background-color: var(--teal-500);
+    background-color: var(--teal-800);
   }
   
   input:focus + .slider {
-    box-shadow: 0 0 1px var(--teal-500);
+    box-shadow: 0 0 1px var(--teal-800);
     border: 2px solid var(--teal-900);
   }
   
@@ -127,6 +127,10 @@ input {
   .right-toggle {
     grid-column: 3/4;
   }
+
+  .model-toggle {
+    font-weight: 100;
+   }
 
   #to-scale {
     display: flex;
@@ -163,10 +167,6 @@ input {
    #divisor-is-larger-checkbox {
     width: 1.3rem;
     height: 1.3rem;
-   }
-
-   .model-toggle {
-    font-weight: 100;
    }
 
    input[type="checkbox"]:checked {
