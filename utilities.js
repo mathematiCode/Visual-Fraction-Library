@@ -198,10 +198,10 @@ function shadeFractionSlices(
 
   for (let i = 0; i < numerator; i++) {
     const curvedPath = document.createElementNS(svgNS, "path");
-    const startX = x + radius * Math.cos(previousAngle);
-    const startY = y + radius * Math.sin(previousAngle);
-    const endX = x + radius * Math.cos(currentAngle);
-    const endY = y + radius * Math.sin(currentAngle);
+    const startX = (x + radius * Math.cos(previousAngle)).toFixed(1);
+    const startY = (y + radius * Math.sin(previousAngle)).toFixed(1);
+    const endX = (x + radius * Math.cos(currentAngle)).toFixed(1);
+    const endY = (y + radius * Math.sin(currentAngle)).toFixed(1);
     curvedPath.setAttribute("fill", colorFill);
     curvedPath.setAttribute(
       "d",
@@ -233,8 +233,8 @@ function makeFractionLines(
   for (let i = 0; i < denominator; i++) {
     const svgNS = svg.namespaceURI;
     const line = document.createElementNS(svgNS, "line");
-    const startX = x + radius * Math.cos(currentAngle);
-    const startY = y + radius * Math.sin(currentAngle);
+    const startX = (x + radius * Math.cos(currentAngle)).toFixed(1);
+    const startY = (y + radius * Math.sin(currentAngle)).toFixed(1);
     const endX = x;
     const endY = y;
 
@@ -262,7 +262,7 @@ function drawVerticalFractionBar(
   colorFill
 ) {
   const svgNS = svg.namespaceURI;
-  const interval = width / denominator;
+  const interval = parseFloat((width / denominator).toFixed(2));
   let separator = interval; // Need two variables becuase separator will increment while interval stays constant.
 
   let shaded = interval * numerator;
@@ -312,7 +312,7 @@ function drawHorizontalFractionBar(
   colorFill
 ) {
   const svgNS = svg.namespaceURI;
-  const interval = height / denominator;
+  const interval = parseFloat((height / denominator).toFixed(2));
   let separator = interval; // Need two variables becuase separator will increment while interval stays constant.
 
   let shaded = interval * numerator;
@@ -462,7 +462,9 @@ function mixedNumCircles(
 
 function adjustWidthAndHeightToScale(maxWholes1, maxWholes2, width, height) {
   let adjustment = {};
-  adjustment.wholeSize = Math.min(width / maxWholes1, height / maxWholes2);
+  adjustment.wholeSize = parseFloat(
+    Math.min(width / maxWholes1, height / maxWholes2).toFixed(2)
+  );
   adjustment.width = adjustment.wholeSize * maxWholes1;
   adjustment.height = adjustment.wholeSize * maxWholes2;
   adjustment.centerStartX = (width - adjustment.width) / 2;
