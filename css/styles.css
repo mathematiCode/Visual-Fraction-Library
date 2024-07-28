@@ -17,6 +17,8 @@
      font-family: "Raleway", sans-serif; 
         font-size: 16px;
       color: var(--teal-900);
+      box-sizing: border-box;
+      
 }
 
 
@@ -35,11 +37,6 @@ h1 {
     font-weight: 100;
 }
 
-
-a {
-  color: #0d6979;
-  text-decoration: none;
-}
 
 .blue-button, .download-button {
     align-items: center;
@@ -67,7 +64,7 @@ alert {
     background-color: var(--teal-200);
 }
 
-.blue-button:hover, .download-button:hover {
+.blue-button:hover, .blue-button:focus, .download-button:hover, .download-button:focus {
     background-color: white;
 }
 

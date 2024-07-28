@@ -99,6 +99,7 @@ input {
   
   input:focus + .slider {
     box-shadow: 0 0 1px var(--teal-500);
+    border: 2px solid var(--teal-900);
   }
   
   input:checked + .slider:before {
@@ -163,12 +164,6 @@ input {
     width: 1.3rem;
     height: 1.3rem;
    }
-  
-   #generate-multiplication {
-  
-    margin-top: 0px;
-   }
-  
 
    .model-toggle {
     font-weight: 100;
@@ -177,3 +172,5 @@ input {
    input[type="checkbox"]:checked {
     accent-color: var(--teal-800); 
   }
+
+ 
