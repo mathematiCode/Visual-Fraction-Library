@@ -21,24 +21,17 @@
       <nav class="side-nav">
         <a class="home-button" href="../index.html">
           <img
-            tabindex="0"
             class="corner-logo"
             src="../icons-logos/small-logo.png"
             alt="Visual Fraction Library - Home"
           />
         </a>
-        <a class="nav-link" tabindex="" href="../pages/basic-frac.html"
-          >Simple Fractions</a
-        >
-        <a class="nav-link" tabindex="" href="../pages/frac-mult.html"
+        <a class="nav-link" href="../pages/basic-frac.html">Simple Fractions</a>
+        <a class="nav-link" href="../pages/frac-mult.html"
           >Fraction Multiplication</a
         >
-        <a class="nav-link" tabindex="" href="../pages/terms-of-use.html">
-          Terms of Use</a
-        >
-        <a class="nav-link" tabindex="" href="../pages/svg-vs-png.html">
-          SVG vs PNG</a
-        >
+        <a class="nav-link" href="../pages/terms-of-use.html"> Terms of Use</a>
+        <a class="nav-link" href="../pages/svg-vs-png.html"> SVG vs PNG</a>
       </nav>
 
       <div class="grid-layout">
@@ -49,11 +42,10 @@
     divisor is larger.
   </p> -->
 
-        <div tabindex="1" class="model-selection">
-          <h2 tabindex="2" class="mode-toggle">Circle Model</h2>
+        <div class="model-selection">
+          <h2 class="mode-toggle">Circle Model</h2>
           <label class="switch">
             <input
-              tabindex="3"
               type="checkbox"
               role="switch"
               id="division-model-toggle"
@@ -68,7 +60,6 @@
           <div class="problem-input">
             <input
               aria-label="Dividend Whole Number"
-              tabindex="4"
               type="number"
               class="whole-number"
               id="division-whole-number1"
@@ -76,7 +67,6 @@
             <div class="fraction-input">
               <input
                 aria-label="Dividend Numerator"
-                tabindex="5"
                 type="number"
                 class="numerator"
                 id="division-numerator1"
@@ -84,7 +74,6 @@
               <hr id="fracBar" />
               <input
                 aria-label="Dividend denominator"
-                tabindex="6"
                 type="number"
                 class="denominator"
                 id="division-denominator1"
@@ -94,7 +83,6 @@
             <div class="fraction-input">
               <input
                 aria-label="Divisor numerator"
-                tabindex="7"
                 type="number"
                 class="numerator"
                 id="division-numerator2"
@@ -102,7 +90,6 @@
               <hr id="fracBar" />
               <input
                 aria-label="Divisor denominator"
-                tabindex="8"
                 type="number"
                 class="denominator"
                 id="division-denominator2"
@@ -114,13 +101,12 @@
             <div id="type-of-division">
               <input
                 aria-label="Check if divisor is larger than dividend"
-                tabindex="9"
                 id="divisor-is-larger-checkbox"
                 type="checkbox"
               />
               <p>The Divisor is Larger</p>
             </div>
-            <button tabindex="10" class="blue-button" id="generate-division">
+            <button class="blue-button" id="generate-division">
               Generate Division Model
             </button>
           </div>
@@ -136,25 +122,13 @@
         </svg>
 
         <div class="download-button-container">
-          <button
-            tabindex="11"
-            class="download-button"
-            id="division-svg-button"
-          >
+          <button class="download-button" id="division-svg-button">
             Download SVG
           </button>
-          <button
-            tabindex="12"
-            class="download-button"
-            id="division-png-button"
-          >
+          <button class="download-button" id="division-png-button">
             Download PNG
           </button>
-          <button
-            tabindex="13"
-            class="download-button"
-            id="division-copy-button"
-          >
+          <button class="download-button" id="division-copy-button">
             Copy to Clipboard
           </button>
         </div>
