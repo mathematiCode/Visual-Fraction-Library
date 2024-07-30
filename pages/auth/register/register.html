@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VFS Signup</title>
+    <link rel="stylesheet" href="./register.css" />
+  </head>
+  <body>
+    <div class="register-container">
+      <form class="register-form">
+        <h1 class="register-title">Sign up</h1>
+        <div class="register-input-container">
+          <input
+            class="register-input"
+            type="text"
+            name="username"
+            id="username"
+            placeholder="Username"
+          />
+          <input
+            class="register-input"
+            type="email"
+            name="email"
+            id="email"
+            placeholder="Email"
+          />
+          <input
+            class="register-input"
+            type="password"
+            name="password"
+            id="password"
+            placeholder="Password"
+          />
+        </div>
+        <div class="register-button-container">
+          <button class="register-button" type="submit">Sign up</button>
+        </div>
+      </form>
+
+      <p class="register-redirect">
+        Already have an account? <a href="../login/login.html">Login</a>
+      </p>
+
+      <div id="register-error"></div>
+      <div id="register-success"></div>
+    </div>
+    <script src="./register.js"></script>
+  </body>
+</html>

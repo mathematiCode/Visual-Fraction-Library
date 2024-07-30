@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VFS Signin</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="./login.css" />
+  </head>
+  <body>
+    <div class="login-container">
+      <form class="login-form">
+        <h1 class="login-title">Sign in</h1>
+        <div class="login-input-container">
+          <input
+            class="login-input"
+            type="text"
+            name="username"
+            id="username"
+            placeholder="Username"
+          />
+          <input
+            class="login-input"
+            type="password"
+            name="password"
+            id="password"
+            placeholder="Password"
+          />
+        </div>
+        <div class="login-button-container">
+          <button class="login-button" type="submit">Sign in</button>
+        </div>
+        <p class="login-error-message"></p>
+        <a class="login-signup-link" href="../register/register.html"
+          >Sign up</a
+        >
+        <a class="login-forgot-password-link" href="../reset/reset.html"
+          >Forgot password?</a
+        >
+        <a class="login-home-link" href="../../../index.html">Home</a>
+      </form>
+    </div>
+
+    <script src="./login.js"></script>
+  </body>
+</html>
