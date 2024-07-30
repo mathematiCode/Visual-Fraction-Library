@@ -1,6 +1,6 @@
 // Global Functions
 const mathVisual = {};
-// I made this a global variable because I may change it later or make it customizable by the user. It means the circles will start shading at 270 degrees going counterclockwise. This is so that if there are a few pieces that go in the same group as some in the next circle, they are closer together.
+// I made angleWherePiecesStart a global variable because I may change it later or make it customizable by the user. It means the circles will start shading at 270 degrees going counterclockwise. This is for fraction division circles so that if there are a few pieces that go in the same group as some in the next circle, they are closer together.
 angleWherePiecesStart = Math.PI * 0.5;
 
 function basicFrac() {
@@ -108,16 +108,14 @@ function multiplicationFrac() {
     generateMultiplicationModel();
   });
 
-  // const multiplicationPngButton = document.getElementById("multiplication-png-button");
-  // divisionPngButton.addEventListener("click", function () {
-  //   downloadPng("division-svg");
-  // });
   const downloadMultiplicationSVG = document.getElementById("mult-svg-button");
   const downloadMultiplicationPNG = document.getElementById("mult-png-button");
   const copyPngButton = document.getElementById("mult-copy-button");
   const toScaleCheck = document.getElementById("to-scale-checkbox");
 
   toScaleCheck.addEventListener("change", function () {
+    const multiplicationSVG = document.getElementById("multiplication-svg");
+    multiplicationSVG.innerHTML = "";
     generateMultiplicationModel();
   });
   downloadMultiplicationSVG.addEventListener("click", function () {
@@ -245,3 +243,11 @@ function logoScript() {
   let logoSVG = document.getElementById("logo-svg");
   const downloadLogoSVG = document.getElementById("logo-svg-button");
 }
+
+closeModal = document.getElementById("screen-size-warning-button");
+modal = document.getElementById("screen-size-modal");
+
+closeModal.addEventListener("click", () => {
+  modal.close();
+  console.log("Success!");
+});

@@ -1,6 +1,6 @@
 Next Steps
 
-- Add a fraction division model for when the divisor is greater than the dividend
+- Add a fraction division model for when the divisor is greater than the dividend ✅
 - Add labels to division models
 - Add circle model for multiplication
 - Add an SVG vs PNG page ✅
@@ -20,7 +20,7 @@ Refactoring
 
 Models to Add
 
-- Division when divisor > dividend
+- Division when divisor > dividend ✅
 - Multiplication Area Model ✅
 - Multiplication Circles
 

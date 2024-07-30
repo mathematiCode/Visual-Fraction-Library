@@ -15,6 +15,8 @@
   --faded-green-200: hsl(83, 48%, 67%);
   --light-orange: #f8d2a3;
 
+  --light-gray: rgb(195, 195, 195);
+
   font-family: "Raleway", sans-serif;
   font-size: 16px;
   color: var(--teal-900);
@@ -22,7 +24,7 @@
 }
 
 h1 {
-  font-size: 2.5rem;
+  font-size: 1.8rem;
   font-weight: 500;
   margin-bottom: 12px;
   margin-top: 12px;
@@ -124,11 +126,12 @@ h2 {
 }
 
 .modal {
-  position: fixed;
-  z-index: 2;
-  display: none;
+  /* position: fixed;
+  z-index: 2; */
   height: fit-content;
-
+  display: flex;
+  flex-direction: column;
+  visibility: hidden;
   background-color: var(--faded-green-100);
   color: var(--teal-900);
   font-weight: 500;
@@ -137,10 +140,11 @@ h2 {
 @media (max-width: 750px) {
   #screen-size-warning {
     display: flex;
-    font-size: 1.7rem;
+    font-size: 1.4rem;
     padding: 30px;
   }
   #screen-size-modal {
+    visibility: visible;
     display: flex;
     margin-top: 15%;
     width: 90%;
@@ -150,4 +154,9 @@ h2 {
     border-radius: 10px;
     border: 5px solid var(--teal-800);
   }
+}
+
+#screen-size-warning-button {
+  font-size: 1rem;
+  max-width: 22ch;
 }

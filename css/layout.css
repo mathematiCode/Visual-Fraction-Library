@@ -14,10 +14,21 @@ body {
   grid-template-columns: 135px 1fr;
 }
 
+@media (max-width: 950px) {
+  .two-column-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  svg {
+    width: 85vw;
+  }
+}
+
 .grid-layout {
   display: grid;
   grid-template-rows: 80px 60px 140px 1fr 70px;
-  margin-top: 0px;
+  margin-top: 15px;
   grid-column: 2/3;
   place-items: center;
   height: 100%;

@@ -1,141 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <meta
-      name="description"
-      content="Generate SVG and PNG images of visual models depicting fraction operations."
-    />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="css/styles.css" />
-    <link rel="stylesheet" href="css/layout.css" />
-    <link rel="stylesheet" href="css/nav.css" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <meta name="description" content="Generate SVG and PNG images of visual models depicting fraction operations." />
+  <style>
+    * {}
 
-    <title>Fraction Visual Library</title>
-  </head>
+    /* This is here to solve cross-origin problem(?) */
+  </style>
 
-  <!-- <h1>Fraction Visual Library</h1> -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/nav.css" />
 
-  <body>
-    <nav>
-      <img
-        class="corner-logo"
-        id="homepage-corner-logo"
-        src="./icons-logos/small-logo.png"
-        alt="Visual Fraction Library"
-      />
-      <a class="nav-link" tabindex="1" href="./pages/basic-frac.html"
-        >Simple Fractions</a
-      >
-      <a class="nav-link" tabindex="2" href="./pages/frac-mult.html"
-        >Fraction Multiplication</a
-      >
-      <a class="nav-link" tabindex="3" href="./pages/frac-div.html">
-        Fraction Division</a
-      >
-      <a class="nav-link" tabindex="4" href="./pages/terms-of-use.html">
-        Terms of Use</a
-      >
-      <a class="nav-link" tabindex="5" href="./pages/svg-vs-png.html">
-        SVG vs PNG</a
-      >
-    </nav>
+  <title>Fraction Visual Library</title>
+</head>
 
-    <div id="screen-size-modal" class="modal">
-      <p id="screen-size-warning">
-        Warning: This website is not optimized for mobile devices. We strongly
-        recommend using our site on a tablet, laptop or desktop. Please reach
-        out to us if you would be interested in a mobile version of this
-        website.
-      </p>
-    </div>
+<!-- <h1>Fraction Visual Library</h1> -->
 
-    <div id="large-logo-container">
-      <h1 class="logo-text">Visual Fraction Library</h1>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        id="logo-svg"
-        width="400"
-        height="400"
-        alt="large logo made of colorful fraction pieces"
-      >
-        <path
-          id="greenSlice1"
-          fill="hsl(78, 61%, 81%,70%)"
-          d="&#10;        M 200,200 &#10;        L 61.10394181597309,182.4533473009974 &#10;        A 140,140 0 0 1 127.1182496958948,80.46652990643139 &#10;        Z&#10;      "
-        />
-        <path
-          id="peachSlice1"
-          fill="hsl(78, 61%, 81%,70%)"
-          d="&#10;        M 200,200 &#10;        L 86.73762078750737,282.28993532094626 &#10;        A 140,140 0 0 1 65.04519950258054,162.7548416206655 &#10;        Z&#10;      "
-        />
-        <path
-          id=""
-          fill="hsl(10, 78%, 82%, 70%)"
-          d="&#10;        M 200,200 &#10;        L 187.44189609413732,399.6053456856543 &#10;        A 200,200 0 0 1 36.11240695805361,314.6335764377844 &#10;        Z&#10;      "
-        />
-        <path
-          fill="hsl(183, 48%, 86%,70%)"
-          d="&#10;        M 200,200 &#10;        L 276.4120827980215,305.1722092687432 &#10;        A 130,130 0 0 1 190.9316584132637,329.6833265337772 &#10;        Z&#10;      "
-        />
-        <path
-          fill="hsl(78, 61%, 81%,70%)"
-          d="&#10;        M 200,200 &#10;        L 357.1659601165902,229.98101033371594 &#10;        A 160,160 0 0 1 274.55127557693197,341.57014978395813 &#10;        Z&#10;      "
-        />
-        <path
-          fill="hsl(10, 78%, 82%, 70%)"
-          d="&#10;        M 200,200 &#10;        L 380.9654104932039,114.84414168698545 &#10;        A 200,200 0 0 1 396.45745014573777,237.4762629171449 &#10;        Z&#10;      "
-        />
-        <path
-          fill="hsl(78, 61%, 81%,70%)"
-          d="&#10;        M 200,200 &#10;        L 255.89175684047308,44.75467312255279 &#10;        A 165,165 0 0 1 349.29646365689325,129.74641689176303 &#10;        Z&#10;      "
-        />
-        <path
-          fill="hsl(33, 86%, 81%, 70%)"
-          d="&#10;        M 200,200 &#10;        L 168.7131069919538,2.462331880972471 &#10;        A 200,200 0 0 1 264.0971637884619,10.54933730842987 &#10;        Z&#10;      "
-        />
-        <path
-          fill="hsl(183, 48%, 86%,70%)"
-          d="&#10;        M 200,200 &#10;        L 111.1752439982887,55.051172059804315 &#10;        A 170,170 0 0 1 173.40614094316075,32.09298209882658 &#10;        Z&#10;      "
-        />
-      </svg>
-      <!-- <svg id="logo-svg" width="400" height="400"></svg> -->
-    </div>
-    <!-- <img src="./icons-logos/logo.png" /> -->
+<body>
+  <nav>
+    <img class="corner-logo" id="homepage-corner-logo" src="./icons-logos/small-logo.png"
+      alt="Visual Fraction Library" />
+    <a class="nav-link" tabindex="1" href="./pages/basic-frac.html">Simple Fractions</a>
+    <a class="nav-link" tabindex="2" href="./pages/frac-mult.html">Fraction Multiplication</a>
+    <a class="nav-link" tabindex="3" href="./pages/frac-div.html">
+      Fraction Division</a>
+    <a class="nav-link" tabindex="4" href="./pages/terms-of-use.html">
+      Terms of Use</a>
+    <a class="nav-link" tabindex="5" href="./pages/svg-vs-png.html">
+      SVG vs PNG</a>
+  </nav>
 
-    <!-- <button class="download-button" id="logo-svg-button">Download SVG</button> -->
+  <dialog open id="screen-size-modal" class="modal">
+    <p id="screen-size-warning">
+      Warning: This website is not optimized for mobile devices. We strongly
+      recommend using our site on a tablet, laptop or desktop. <!--  Please reach
+      out to us if you would be interested in a mobile version of this
+      website. -->
+    </p>
+    <button class="blue-button" id="screen-size-warning-button"> Thanks for the warning.</button>
+  </dialog>
 
-    <button tabindex="6" id="buy-me-a-coffee">
-      <script
-        type="text/javascript"
-        src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js"
-        data-name="bmc-button"
-        data-slug="MathVisualLibrary"
-        data-color="#347d88"
-        data-emoji="☕"
-        data-font="Cookie"
-        data-text="Buy me a coffee"
-        data-outline-color="#ffffff"
-        data-font-color="#ffffff"
-        data-coffee-color="#FFDD00"
-      ></script>
-    </button>
-  </body>
+  <div id="large-logo-container">
+    <h1 class="logo-text">Visual Fraction Library</h1>
+    <svg xmlns="http://www.w3.org/2000/svg" id="logo-svg" width="400" height="400"
+      alt="large logo made of colorful fraction pieces">
+      <path id="greenSlice1" fill="hsl(78, 61%, 81%,70%)"
+        d="&#10;        M 200,200 &#10;     L 61.1,182.4 &#10;   A 140,140 0 0 1 127.1,80.4 &#10;        Z&#10;      " />
+      <path id="peachSlice1" fill="hsl(78, 61%, 81%,70%)"
+        d="&#10;        M 200,200 &#10;     L 86.7,282.29 &#10;    A 140,140 0 0 1 65.0,162.75 &#10;        Z&#10;      " />
+      <path id="" fill="hsl(10, 78%, 82%, 70%)"
+        d="&#10;        M 200,200 &#10;     L 187.4,399.6 &#10;   A 200,200 0 0 1 36.1,314.6 &#10;        Z&#10;      " />
+      <path fill="hsl(183, 48%, 86%,70%)"
+        d="&#10;        M 200,200 &#10;     L 276.4,305.2 &#10;    A 130,130 0 0 1 190.9,329.7 &#10;        Z&#10;      " />
+      <path fill="hsl(78, 61%, 81%,70%)"
+        d="&#10;        M 200,200 &#10;     L 357.2,230 &#10;    A 160,160 0 0 1 274.5,341.6 &#10;        Z&#10;      " />
+      <path fill="hsl(10, 78%, 82%, 70%)"
+        d="&#10;        M 200,200 &#10;     L 381,114.8 &#10;    A 200,200 0 0 1 396.5,237.5 &#10;        Z&#10;      " />
+      <path fill="hsl(78, 61%, 81%,70%)"
+        d="&#10;        M 200,200 &#10;     L 255.9,44.7 &#10;    A 165,165 0 0 1 349.3,129.7 &#10;        Z&#10;      " />
+      <path fill="hsl(33, 86%, 81%, 70%)"
+        d="&#10;        M 200,200 &#10;     L 168.7,2.5 &#10;     A 200,200 0 0 1 264,10.5 &#10;        Z&#10;      " />
+      <path fill="hsl(183, 48%, 86%,70%)"
+        d="&#10;        M 200,200 &#10;     L 111.2,55.1 &#10;    A 170,170 0 0 1 173.4,32.1 &#10;        Z&#10;      " />
+    </svg>
+    <!-- <svg id="logo-svg" width="400" height="400"></svg> -->
+  </div>
+  <!-- <img src="./icons-logos/logo.png" /> -->
 
-  <script src="script.js"></script>
-  <script>
-    logoScript();
-  </script>
-  <script src="drawLogo.js"></script>
-  <script src="./utilities.js"></script>
+  <!-- <button class="download-button" id="logo-svg-button">Download SVG</button> -->
 
-  <!-- Logo Font is called Lovelo -->
+  <button tabindex="6" id="buy-me-a-coffee">
+    <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button"
+      data-slug="MathVisualLibrary" data-color="#347d88" data-emoji="☕" data-font="Cookie" data-text="Buy me a coffee"
+      data-outline-color="#ffffff" data-font-color="#ffffff" data-coffee-color="#FFDD00"></script>
+  </button>
+</body>
+
+<script src="script.js"></script>
+<script>
+  logoScript();
+</script>
+<script src="drawLogo.js"></script>
+<script src="./utilities.js"></script>
+
+<!-- Logo Font is called Lovelo -->
+
 </html>

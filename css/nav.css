@@ -36,10 +36,17 @@ nav {
   padding: 12px;
 }
 
+@media (min-width: 950px) {
+}
+
 @media (max-width: 950px) {
   nav {
     flex-direction: column;
     align-items: center;
+  }
+
+  .side-nav {
+    display: none !important;
   }
 
   .logo-text {
