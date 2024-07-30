@@ -1,161 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <meta
-      name="description"
-      content="Generate SVG and PNG images of visual models depicting fraction multiplication with area models and circle models."
-    />
 
-    <link rel="stylesheet" href="../css/styles.css" />
-    <link rel="stylesheet" href="../css/layout.css" />
-    <link rel="stylesheet" href="../css/inputs.css" />
-    <link rel="stylesheet" href="../css/nav.css" />
-    <title>Fraction Multiplication VIsuals</title>
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <meta name="description"
+    content="Generate SVG and PNG images of visual models depicting fraction multiplication with area models and circle models." />
 
-  <body>
-    <div class="two-column-layout">
-      <nav class="side-nav">
-        <a class="home-button" href="../index.html">
-          <img
-            tabindex="0"
-            class="corner-logo"
-            src="../icons-logos/small-logo.png"
-            alt="Visual Fraction Library - Home"
-          />
-        </a>
-        <a class="nav-link" tabindex="" href="../pages/basic-frac.html"
-          >Simple Fractions</a
-        >
-        <a class="nav-link" tabindex="" href="../pages/frac-div.html">
-          Fraction Division</a
-        >
-        <a class="nav-link" tabindex="" href="../pages/terms-of-use.html">
-          Terms of Use</a
-        >
-        <a class="nav-link" tabindex="" href="../pages/svg-vs-png.html">
-          SVG vs PNG</a
-        >
-      </nav>
+  <link rel="stylesheet" href="../css/styles.css" />
+  <link rel="stylesheet" href="../css/layout.css" />
+  <link rel="stylesheet" href="../css/inputs.css" />
+  <link rel="stylesheet" href="../css/nav.css" />
+  <title>Fraction Multiplication Visuals</title>
+</head>
 
-      <div class="grid-layout">
-        <a class="home-button" href="../index.html">
-          <img
-            class="corner-logo"
-            src="../icons-logos/small-logo.png"
-            alt="Visual Fraction Library - Home"
-          />
-        </a>
+<body>
+  <div class="two-column-layout">
+    <nav class="side-nav">
+      <a class="home-button" href="../index.html">
+        <img tabindex="0" class="corner-logo" src="../icons-logos/small-logo.png"
+          alt="Visual Fraction Library - Home" />
+      </a>
+      <a class="nav-link" tabindex="" href="../pages/basic-frac.html">Simple Fractions</a>
+      <a class="nav-link" tabindex="" href="../pages/frac-div.html">
+        Fraction Division</a>
+      <a class="nav-link" tabindex="" href="../pages/terms-of-use.html">
+        Terms of Use</a>
+      <a class="nav-link" tabindex="" href="../pages/svg-vs-png.html">
+        SVG vs PNG</a>
+    </nav>
 
-        <h1>Enter the multiplication problem you would like displayed.</h1>
-        <!-- <p class="requirements">
+    <div class="grid-layout">
+      <a class="home-button" href="../index.html">
+        <img class="corner-logo" src="../icons-logos/small-logo.png" alt="Visual Fraction Library - Home" />
+      </a>
+
+      <h1>Enter the multiplication problem you would like displayed.</h1>
+      <!-- <p class="requirements">
      Works best with denominators 10 or less.  
   </p> -->
 
-        <div class="model-selection">
-          <h2 class="mode-toggle">Circle Model</h2>
-          <label for="multiplication-model-toggle" class="switch">
-            <input
-              type="checkbox"
-              role="switch"
-              id="multiplication-model-toggle"
-              aria-label="Check for Area Model, uncheck for Circle Model."
-            />
-            <span class="slider round"></span>
-          </label>
-          <h2 class="right-toggle" class="mode-toggle">Area Model</h2>
-        </div>
+      <div class="model-selection">
+        <h2 class="mode-toggle">Circle Model</h2>
+        <label for="multiplication-model-toggle" class="switch">
+          <input type="checkbox" role="switch" id="multiplication-model-toggle"
+            aria-label="Check for Area Model, uncheck for Circle Model." />
+          <span class="slider round"></span>
+        </label>
+        <h2 class="right-toggle" class="mode-toggle">Area Model</h2>
+      </div>
 
-        <div class="user-inputs">
-          <div class="problem-input">
-            <input
-              aria-label="first factor whole number"
-              type="number"
-              class="whole-number"
-              id="multiplication-whole-number1"
-            />
-            <div class="fraction-input">
-              <input
-                aria-label="first factor numerator"
-                type="number"
-                class="numerator"
-                id="multiplication-numerator1"
-              />
-              <hr id="fracBar" />
-              <input
-                aria-label="first factor denominator"
-                type="number"
-                class="denominator"
-                id="multiplication-denominator1"
-              />
-            </div>
-            <p class="symbol">×</p>
-            <input
-              aria-label="second factor whole number"
-              type="number"
-              class="whole-number"
-              id="multiplication-whole-number2"
-            />
-            <div class="fraction-input">
-              <input
-                aria-label="second factor numerator"
-                type="number"
-                class="numerator"
-                id="multiplication-numerator2"
-              />
-              <hr id="fracBar" />
-              <input
-                aria-label="second factor denominator"
-                type="number"
-                class="denominator"
-                id="multiplication-denominator2"
-              />
-            </div>
+      <div class="user-inputs">
+        <div class="problem-input">
+          <input aria-label="first factor whole number" type="number" class="whole-number"
+            id="multiplication-whole-number1" />
+          <div class="fraction-input">
+            <input aria-label="first factor numerator" type="number" class="numerator" id="multiplication-numerator1" />
+            <hr id="fracBar" />
+            <input aria-label="first factor denominator" type="number" class="denominator"
+              id="multiplication-denominator1" />
           </div>
-
-          <div id="button-and-checkbox">
-            <div id="to-scale">
-              <input
-                id="to-scale-checkbox"
-                type="checkbox"
-                aria-label="Draw to scale"
-              />
-              <p>Draw areas to scale</p>
-            </div>
-            <button class="blue-button" id="generate-multiplication">
-              Generate Multiplication Model
-            </button>
+          <p class="symbol">×</p>
+          <input aria-label="second factor whole number" type="number" class="whole-number"
+            id="multiplication-whole-number2" />
+          <div class="fraction-input">
+            <input aria-label="second factor numerator" type="number" class="numerator"
+              id="multiplication-numerator2" />
+            <hr id="fracBar" />
+            <input aria-label="second factor denominator" type="number" class="denominator"
+              id="multiplication-denominator2" />
           </div>
         </div>
-        <svg
-          id="multiplication-svg"
-          width="800"
-          height="250"
-          alt="multiplication visual will be displayed here"
-        ></svg>
 
-        <div class="download-button-container">
-          <button class="download-button" id="mult-svg-button">
-            Download SVG
-          </button>
-          <button class="download-button" id="mult-png-button">
-            Download PNG
-          </button>
-          <button class="download-button" id="mult-copy-button">
-            Copy to Clipboard
+        <div id="button-and-checkbox">
+          <div id="to-scale">
+            <input id="to-scale-checkbox" type="checkbox" aria-label="Draw to scale" />
+            <p>Draw areas to scale</p>
+          </div>
+          <button class="blue-button" id="generate-multiplication">
+            Generate Multiplication Model
           </button>
         </div>
       </div>
-    </div>
+      <svg id="multiplication-svg" width="800" height="250" alt="multiplication visual will be displayed here"></svg>
 
-    <script src="../script.js"></script>
-    <script src="../utilities.js"></script>
-    <script src="../lib/multiplicationFunctions.js"></script>
-    <script>
-      multiplicationFrac();
-    </script>
-  </body>
+      <div class="download-button-container">
+        <button class="download-button" id="mult-svg-button">
+          Download SVG
+        </button>
+        <button class="download-button" id="mult-png-button">
+          Download PNG
+        </button>
+        <button class="download-button" id="mult-copy-button">
+          Copy to Clipboard
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../script.js"></script>
+  <script src="../utilities.js"></script>
+  <script src="../lib/multiplicationFunctions.js"></script>
+  <script>
+    multiplicationFrac();
+  </script>
+</body>
+
 </html>

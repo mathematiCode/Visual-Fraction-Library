@@ -191,6 +191,7 @@ function shadeFractionSlices(
   colorFill,
   startAngle = angleWherePiecesStart
 ) {
+  debugger;
   const svgNS = svg.namespaceURI;
   const angle = (Math.PI * 2) / denominator;
   let previousAngle = startAngle;
@@ -200,6 +201,7 @@ function shadeFractionSlices(
     const curvedPath = document.createElementNS(svgNS, "path");
     const startX = (x + radius * Math.cos(previousAngle)).toFixed(1);
     const startY = (y + radius * Math.sin(previousAngle)).toFixed(1);
+    console.log(`StartX is ${startX}`);
     const endX = (x + radius * Math.cos(currentAngle)).toFixed(1);
     const endY = (y + radius * Math.sin(currentAngle)).toFixed(1);
     curvedPath.setAttribute("fill", colorFill);

@@ -1,67 +1,65 @@
 .corner-logo {
-    height: 80px;
-    position: fixed;
-    top: 10px;
-    left: 10px;
-  }
-  
-  #homepage-corner-logo {
-    height: 60px;
-    top: 3px;
-    left: 3px;
-  }
-  
-  a {
-    color: #0d6979;
-    text-decoration: none;
-    padding: 8px;
-  }
-  
-  .nav-link:hover {
-   background-color: var(--light-orange);
-   border-radius: 15px;
-  }
+  height: 80px;
+  position: fixed;
+  top: 10px;
+  left: 10px;
+}
 
+#homepage-corner-logo {
+  height: 60px;
+  top: 3px;
+  left: 3px;
+}
 
+a {
+  color: #0d6979;
+  text-decoration: none;
+  padding: 8px;
+}
+
+.nav-link:hover {
+  background-color: var(--teal-50);
+  border-radius: 15px;
+}
+
+nav {
+  display: flex;
+  gap: 65px;
+  font-size: 1.3rem;
+  background-color: var(--teal-100);
+  position: fixed;
+  justify-content: center;
+  font-weight: 500;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  padding: 12px;
+}
+
+@media (max-width: 950px) {
   nav {
-    display: flex;
-    gap: 65px;
-    font-size: 1.3rem;
-    background-color: var(--teal-100);
-    position: fixed;
-    justify-content: center;
-    font-weight: 500;
-    left: 0px;
-    right: 0px;
-    top: 0px;
-    padding: 12px;
-  }
-  
-  @media(max-width: 950px) {
-  
-    nav {
-      flex-direction: column;
-      align-items: center;
-    }
-  
-    .logo-text {
-      display: none;
-    }
-    #logo-svg {
-      display: none;
-    }
+    flex-direction: column;
+    align-items: center;
   }
 
-  .side-nav{
-    width: 135px;
-    display: flex;
-    position: fixed;
-    border-radius: 15px;
-    left: 0;
-    gap: 40px;
-    padding-top: 120px;
-    height: 100%;
-    flex-direction: column;
-    justify-content: start;
-    background-color: var(--teal-100);
+  .logo-text {
+    display: none;
   }
+  #logo-svg {
+    display: none;
+  }
+}
+
+.side-nav {
+  width: 135px;
+  display: flex;
+  position: fixed;
+  border-radius: 15px;
+  left: 0;
+  gap: 40px;
+  padding-top: 120px;
+  height: 100%;
+  flex-direction: column;
+  justify-content: start;
+  background-color: var(--teal-100);
+}

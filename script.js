@@ -139,39 +139,83 @@ function divisionFrac() {
   // HTML Elements from the Division page
   const generateDivisionButton = document.getElementById("generate-division");
   const modelToggle = document.getElementById("division-model-toggle");
+  const divisionSVG = document.getElementById("division-svg");
+  divisionSVG.innerHTML = "";
+  const divisionModelCheckbox = document.getElementById(
+    "divisor-is-larger-checkbox"
+  );
+  const divisorLargerInputs = document.getElementById("divisor-larger");
+  const divisorSmallerInputs = document.getElementById("divisor-smaller");
 
-  generateDivisionButton.addEventListener("click", function () {
-    const divisionSVG = document.getElementById("division-svg");
-    let dividend = {};
-    let divisor = {};
-    dividend.wholeNum = parseInt(
-      document.getElementById("division-whole-number1").value
-    );
-    dividend.numerator = parseInt(
-      document.getElementById("division-numerator1").value
-    );
-    dividend.denominator = parseInt(
-      document.getElementById("division-denominator1").value
-    );
-    divisor.numerator = parseInt(
-      document.getElementById("division-numerator2").value
-    );
-    divisor.denominator = parseInt(
-      document.getElementById("division-denominator2").value
-    );
+  divisionModelCheckbox.addEventListener("change", function () {
     divisionSVG.innerHTML = "";
-    if (modelToggle.checked) {
-      mathVisual.fractionDivisionBar(divisionSVG, dividend, divisor);
+    if (divisionModelCheckbox.checked) {
+      divisorLargerInputs.style.visibility = "visible";
+      divisorSmallerInputs.style.visibility = "hidden";
     } else {
-      mathVisual.fractionDivisionCircles(
+      divisorLargerInputs.style.visibility = "hidden";
+      divisorSmallerInputs.style.visibility = "visible";
+    }
+  });
+
+  function generateDivisionModel(divisionSVG) {
+    if (!divisionModelCheckbox.checked) {
+      let dividend = {};
+      let divisor = {};
+      dividend.wholeNum = parseInt(
+        document.getElementById("division-whole-number1").value
+      );
+      dividend.numerator = parseInt(
+        document.getElementById("division-numerator1").value
+      );
+      dividend.denominator = parseInt(
+        document.getElementById("division-denominator1").value
+      );
+      divisor.numerator = parseInt(
+        document.getElementById("division-numerator2").value
+      );
+      divisor.denominator = parseInt(
+        document.getElementById("division-denominator2").value
+      );
+      divisionSVG.innerHTML = "";
+      if (modelToggle.checked) {
+        mathVisual.fractionDivisionBar(divisionSVG, dividend, divisor);
+      } else {
+        mathVisual.fractionDivisionCircles(
+          divisionSVG,
+          dividend,
+          divisor,
+          (lineThickness = 5),
+          (colorFill = "#52a4b0"),
+          (colorFill2 = "#f0a68c")
+        );
+      }
+    } else {
+      let dividend = {};
+      let divisor = {};
+      dividend.numerator = parseInt(
+        document.getElementById("dividend-numerator").value
+      );
+      dividend.denominator = parseInt(
+        document.getElementById("dividend-denominator").value
+      );
+      divisor.wholeNum = parseInt(
+        document.getElementById("divisor-whole-number").value
+      );
+      mathVisual.fractionDivisionOneCircle(
         divisionSVG,
         dividend,
         divisor,
         (lineThickness = 5),
-        (colorFill = "#52a4b0"),
-        (colorFill2 = "#f0a68c")
+        (colorFill = "#52a4b0")
       );
     }
+  }
+
+  generateDivisionButton.addEventListener("click", function () {
+    const divisionSVG = document.getElementById("division-svg");
+    divisionSVG.innerHTML = "";
+    generateDivisionModel(divisionSVG);
   });
 
   const divisionPngButton = document.getElementById("division-png-button");
@@ -193,56 +237,11 @@ function divisionFrac() {
 
   modelToggle.addEventListener("change", () => {
     const divisionSVG = document.getElementById("division-svg");
-    let dividend = {};
-    let divisor = {};
-    dividend.wholeNum = parseInt(
-      document.getElementById("division-whole-number1").value
-    );
-    dividend.numerator = parseInt(
-      document.getElementById("division-numerator1").value
-    );
-    dividend.denominator = parseInt(
-      document.getElementById("division-denominator1").value
-    );
-    divisor.numerator = parseInt(
-      document.getElementById("division-numerator2").value
-    );
-    divisor.denominator = parseInt(
-      document.getElementById("division-denominator2").value
-    );
-
-    divisionSVG.innerHTML = "";
-    if (modelToggle.checked) {
-      mathVisual.fractionDivisionBar(divisionSVG, dividend, divisor);
-    } else {
-      mathVisual.fractionDivisionCircles(
-        divisionSVG,
-        dividend,
-        divisor,
-        (lineThickness = 5),
-        (colorFill = "#52a4b0"),
-        (colorFill2 = "#f0a68c")
-      );
-    }
+    generateDivisionModel(divisionSVG);
   });
 }
 
 function logoScript() {
   let logoSVG = document.getElementById("logo-svg");
   const downloadLogoSVG = document.getElementById("logo-svg-button");
-
-  // downloadLogoSVG.addEventListener("click", function () {
-  //   downloadSvg(logoSVG);
-  // });
 }
-
-// let cornerLogo = document.getElementsByClassName("corner-logo");
-// let sideNavToggle = document.getElementsByClassName("side-nav");
-// cornerLogo.addEventListener("click", function () {
-//   let currentDisplay = getComputedStyle(sideNavToggle).display;
-//   if (currentDisplay == "none") {
-//     sideNavToggle.setAttribute("display", "flex");
-//   } else {
-//     sideNavToggle.setAttribute("display", "none");
-//   }
-// });

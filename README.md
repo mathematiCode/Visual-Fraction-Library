@@ -2,7 +2,6 @@
 
 This is the beginning of a library of simple fraction visualization functions that generate SVGs.
 
-
 My goal is to have a website and a javascript library with many different types of math visuals and customization options.
 
 <h2> Math Visual Functions/Pages to Create </h2>
@@ -12,7 +11,7 @@ My goal is to have a website and a javascript library with many different types 
 <li> Improper Fraction Representations ✅</li>
 <li> Fraction Division Bar when dividend > divisor ✅</li></li>
 <li> Fraction Division with Circles [in progress]</li>
-<li> Fraction Division when dividend < divisor with a circle </li>
+<li> Fraction Division when dividend < divisor with a circle ✅ </li> 
 <li> Fraction Multiplication Area Model ✅</li> 
  <li> Fraction Multiplication Cricles </li>
 <li> Fraction on a Number Line</li>
@@ -33,7 +32,6 @@ My goal is to have a website and a javascript library with many different types 
 <li> Ability to drag and drop multiple items or add labels or other things to them?</li>
 <li> Change size of image </li>
 <li> Download as PNG ✅ </li>
-
 
 <h2> Things that I need to figure out </h2>
 <ul>

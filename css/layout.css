@@ -1,18 +1,18 @@
 body {
-    background-color: white;
-    display: grid;
-    place-items: center;
-    align-items: center;
-    height: 97vh;
-    width: 100%;
-    gap: 15px;
-    overflow-y: auto;
+  background-color: white;
+  display: grid;
+  place-items: center;
+  align-items: center;
+  height: 97vh;
+  width: 100%;
+  gap: 15px;
+  overflow-y: auto;
 }
 
 .two-column-layout {
   display: grid;
   grid-template-columns: 135px 1fr;
- }
+}
 
 .grid-layout {
   display: grid;
@@ -43,41 +43,37 @@ body {
 }
 
 svg {
-    grid-row: 4/5;
-  }
+  grid-row: 4/5;
+}
 
 .download-button-container {
-    display: flex;
-    align-self: center;
-    grid-row: 5/6;
-    gap: 20px;
+  display: flex;
+  align-self: center;
+  grid-row: 5/6;
+  gap: 20px;
 }
 
 .blue-container {
-    width: 80%;
-    background-color: var(--faded-green-100);
-    display: grid;
-    gap: 0px;
+  width: 80%;
+  background-color: var(--faded-green-100);
+  display: grid;
+  gap: 0px;
   border-radius: 20px;
   margin-left: auto;
   margin-right: auto;
   padding: 25px;
   font-size: 1.3rem;
-   }
-  
-   .blue-container h2 {
-    margin-bottom: 5px;
-   }
+}
 
+.blue-container h2 {
+  margin-bottom: 5px;
+}
 
-   .main-page {
-    grid-column: 2/3;
-    text-align: center;
-   }
+.main-page {
+  grid-column: 2/3;
+  text-align: center;
+}
 
-
-   #generate-multiplication {
-    margin-top: 0px;
-   }
-
-
+#generate-multiplication {
+  margin-top: 0px;
+}
