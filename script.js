@@ -315,7 +315,6 @@ function index() {
 function buttonFunctions() {
   let openCloseNavButton = document.querySelector(".corner-logo");
   let sideNav = document.querySelector(".side-nav");
-  sideNav.dataset.state = "open";
 
   openCloseNavButton.addEventListener("click", () => {
     if (sideNav.dataset.state === "open") {
