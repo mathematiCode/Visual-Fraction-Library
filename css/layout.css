@@ -9,6 +9,11 @@ body {
   overflow-y: auto;
 }
 
+header {
+  height: fit-content;
+  border: 2px solid black;
+}
+
 .grid-layout {
   display: grid;
   grid-template-rows: 80px 60px 140px 1fr 70px;
