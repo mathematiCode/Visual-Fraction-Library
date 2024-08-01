@@ -10,6 +10,16 @@ function basicFrac() {
   const basicSVG = document.getElementById("basic-svg");
   let mixedNum = {};
 
+  let openCloseNavButton = document.querySelector(".corner-logo");
+  let sideNav = document.querySelector(".side-nav");
+
+  openCloseNavButton.addEventListener("click", () => {
+    if (sideNav.dataset.state === "open") {
+      sideNav.dataset.state = "closed";
+    } else sideNav.dataset.state = "open";
+    console.log(sideNav.dataset.state);
+  });
+
   generateBasicButton.addEventListener("click", function () {
     mixedNum.wholeNum = parseInt(
       document.getElementById("basic-whole-number").value
@@ -66,6 +76,16 @@ function multiplicationFrac() {
   const generateMultiplicationButton = document.getElementById(
     "generate-multiplication"
   );
+
+  let openCloseNavButton = document.querySelector(".corner-logo");
+  let sideNav = document.querySelector(".side-nav");
+
+  openCloseNavButton.addEventListener("click", () => {
+    if (sideNav.dataset.state === "open") {
+      sideNav.dataset.state = "closed";
+    } else sideNav.dataset.state = "open";
+    console.log(sideNav.dataset.state);
+  });
 
   function generateMultiplicationModel() {
     const multiplicationSVG = document.getElementById("multiplication-svg");
@@ -144,6 +164,16 @@ function divisionFrac() {
   );
   const divisorLargerInputs = document.getElementById("divisor-larger");
   const divisorSmallerInputs = document.getElementById("divisor-smaller");
+
+  let openCloseNavButton = document.querySelector(".corner-logo");
+  let sideNav = document.querySelector(".side-nav");
+
+  openCloseNavButton.addEventListener("click", () => {
+    if (sideNav.dataset.state === "open") {
+      sideNav.dataset.state = "closed";
+    } else sideNav.dataset.state = "open";
+    console.log(sideNav.dataset.state);
+  });
 
   divisionModelCheckbox.addEventListener("change", function () {
     divisionSVG.innerHTML = "";
@@ -239,15 +269,58 @@ function divisionFrac() {
   });
 }
 
-function logoScript() {
-  let logoSVG = document.getElementById("logo-svg");
-  const downloadLogoSVG = document.getElementById("logo-svg-button");
+function index() {
+  // function logoScript() {
+  //   let logoSVG = document.getElementById("logo-svg");
+  //   const downloadLogoSVG = document.getElementById("logo-svg-button");
+  // }
+
+  let modal = document.getElementById("screen-size-modal");
+  let closeModal = document.getElementById("screen-size-warning-button");
+
+  const mediaQuery = window.matchMedia("(max-width: 600px)");
+
+  function handleScreenChange(e) {
+    if (e.matches) {
+      // Screen width is 600px or less
+      modal.showModal();
+    }
+  }
+
+  function handleResize() {
+    if (window.innerWidth <= 600) {
+      modal.showModal();
+    }
+  }
+
+  // mediaQuery.addEventListener(handleScreenChange);
+  // handleScreenChange(mediaQuery);
+
+  function handleScreenChange() {
+    if (mediaQuery.matches) {
+      modal.showModal();
+    }
+  }
+
+  handleScreenChange();
+
+  window.addEventListener("resize", handleResize);
+
+  closeModal.addEventListener("click", () => {
+    modal.close();
+    console.log("Success!");
+  });
 }
 
-closeModal = document.getElementById("screen-size-warning-button");
-modal = document.getElementById("screen-size-modal");
+function buttonFunctions() {
+  let openCloseNavButton = document.querySelector(".corner-logo");
+  let sideNav = document.querySelector(".side-nav");
+  sideNav.dataset.state = "open";
 
-closeModal.addEventListener("click", () => {
-  modal.close();
-  console.log("Success!");
-});
+  openCloseNavButton.addEventListener("click", () => {
+    if (sideNav.dataset.state === "open") {
+      sideNav.dataset.state = "closed";
+    } else sideNav.dataset.state = "open";
+    console.log(sideNav.dataset.state);
+  });
+}

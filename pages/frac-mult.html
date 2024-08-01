@@ -17,11 +17,11 @@
 
 <body>
   <div class="two-column-layout">
-    <nav class="side-nav">
-      <a class="home-button" href="../index.html">
-        <img tabindex="0" class="corner-logo" src="../icons-logos/small-logo.png"
-          alt="Visual Fraction Library - Home" />
-      </a>
+    <button class="nav-toggle" aria-label="Open or Close Nav Bar">
+      <img class="corner-logo" src="../icons-logos/small-logo.png" alt="Visual Fraction Library Logo" />
+    </button>
+    <nav class="side-nav" data-state="closed">
+      <a class="nav-link" href="../index.html"> Home</a>
       <a class="nav-link" tabindex="" href="../pages/basic-frac.html">Simple Fractions</a>
       <a class="nav-link" tabindex="" href="../pages/frac-div.html">
         Fraction Division</a>
@@ -32,9 +32,7 @@
     </nav>
 
     <div class="grid-layout">
-      <a class="home-button" href="../index.html">
-        <img class="corner-logo" src="../icons-logos/small-logo.png" alt="Visual Fraction Library - Home" />
-      </a>
+
 
       <h1>Enter the multiplication problem you would like displayed.</h1>
       <!-- <p class="requirements">

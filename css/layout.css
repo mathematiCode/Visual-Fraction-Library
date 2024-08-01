@@ -9,22 +9,6 @@ body {
   overflow-y: auto;
 }
 
-.two-column-layout {
-  display: grid;
-  grid-template-columns: 135px 1fr;
-}
-
-@media (max-width: 950px) {
-  .two-column-layout {
-    display: grid;
-    grid-template-columns: 1fr;
-  }
-
-  svg {
-    width: 85vw;
-  }
-}
-
 .grid-layout {
   display: grid;
   grid-template-rows: 80px 60px 140px 1fr 70px;
@@ -81,10 +65,20 @@ svg {
 }
 
 .main-page {
-  grid-column: 2/3;
   text-align: center;
 }
 
 #generate-multiplication {
   margin-top: 0px;
+}
+
+.two-column-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+@media screen and (max-width: 950px) {
+  svg {
+    width: 85vw;
+  }
 }

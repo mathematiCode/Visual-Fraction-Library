@@ -191,7 +191,6 @@ function shadeFractionSlices(
   colorFill,
   startAngle = angleWherePiecesStart
 ) {
-  debugger;
   const svgNS = svg.namespaceURI;
   const angle = (Math.PI * 2) / denominator;
   let previousAngle = startAngle;

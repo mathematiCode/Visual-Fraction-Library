@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
   <meta charset="UTF-8" />
@@ -7,8 +7,6 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <meta name="description" content="Generate SVG and PNG images of visual models depicting fraction operations." />
   <style>
-    * {}
-
     /* This is here to solve cross-origin problem(?) */
   </style>
 
@@ -17,8 +15,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
     rel="stylesheet" />
   <link rel="stylesheet" href="css/styles.css" />
-  <link rel="stylesheet" href="css/layout.css" />
   <link rel="stylesheet" href="css/nav.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/modal.css" />
 
   <title>Fraction Visual Library</title>
 </head>
@@ -29,17 +28,17 @@
   <nav>
     <img class="corner-logo" id="homepage-corner-logo" src="./icons-logos/small-logo.png"
       alt="Visual Fraction Library" />
-    <a class="nav-link" tabindex="1" href="./pages/basic-frac.html">Simple Fractions</a>
-    <a class="nav-link" tabindex="2" href="./pages/frac-mult.html">Fraction Multiplication</a>
-    <a class="nav-link" tabindex="3" href="./pages/frac-div.html">
+    <a class="nav-link" href="./pages/basic-frac.html">Simple Fractions</a>
+    <a class="nav-link" href="./pages/frac-mult.html">Fraction Multiplication</a>
+    <a class="nav-link" href="./pages/frac-div.html">
       Fraction Division</a>
-    <a class="nav-link" tabindex="4" href="./pages/terms-of-use.html">
+    <a class="nav-link" href="./pages/terms-of-use.html">
       Terms of Use</a>
-    <a class="nav-link" tabindex="5" href="./pages/svg-vs-png.html">
+    <a class="nav-link" href="./pages/svg-vs-png.html">
       SVG vs PNG</a>
   </nav>
 
-  <dialog open id="screen-size-modal" class="modal">
+  <dialog id="screen-size-modal" class="modal">
     <p id="screen-size-warning">
       Warning: This website is not optimized for mobile devices. We strongly
       recommend using our site on a tablet, laptop or desktop. <!--  Please reach
@@ -83,15 +82,14 @@
       data-slug="MathVisualLibrary" data-color="#347d88" data-emoji="☕" data-font="Cookie" data-text="Buy me a coffee"
       data-outline-color="#ffffff" data-font-color="#ffffff" data-coffee-color="#FFDD00"></script>
   </button>
+
+  <script src="script.js"></script>
+  <script>index()</script>
+  <script src="drawLogo.js"></script>
+  <script src="./utilities.js"></script>
+
+  <!-- Logo Font is called Lovelo -->
+
 </body>
-
-<script src="script.js"></script>
-<script>
-  logoScript();
-</script>
-<script src="drawLogo.js"></script>
-<script src="./utilities.js"></script>
-
-<!-- Logo Font is called Lovelo -->
 
 </html>
