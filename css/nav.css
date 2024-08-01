@@ -38,7 +38,9 @@ nav {
   display: flex;
   position: absolute;
   z-index: 1;
-  gap: 65px;
+  padding-left: 70px !important;
+  padding-right: 70px !important;
+  gap: clamp(25px, 55px, 55px);
   font-size: 1.3rem;
   background-color: var(--teal-100);
   position: fixed;
@@ -67,7 +69,7 @@ nav {
 
 .side-nav[data-state="open"] {
   width: 135px;
-  position: absolute;
+  position: fixed;
   z-index: 2;
   border-radius: 15px;
   left: 0;
