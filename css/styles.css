@@ -120,7 +120,17 @@ h2 {
   padding-right: 7px;
   bottom: 30px;
   right: 30px;
-  background-color: transparent;
+  color: var(--faded-green-100);
+  font-size: 1.7rem;
+  background-color: var(--teal-800);
   border: none;
+  padding: 0.5rem;
+  border-radius: 10px;
   text-align: center;
+  cursor: pointer;
+  box-shadow: 2px 2px 5px var(--teal-400);
+}
+
+#buy-me-a-coffee:hover {
+  background-color: var(--teal-900);
 }
