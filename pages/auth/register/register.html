@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>VFS Register</title>
+    <link rel="icon" href="../../../icons-logos/small-logo.png" />
+    <link rel="stylesheet" href="../../../css/styles.css" />
+    <link rel="stylesheet" href="./register.css" />
+  </head>
+  <body>
+    <main class="user">
+      <section class="user_options-container">
+        <div class="user_options-text">
+          <div class="user_options-unregistered">
+            <h2 class="user_unregistered-title">Don't have an account?</h2>
+            <p class="user_unregistered-text">
+              Get started by registering a new account.
+            </p>
+            <button class="user_unregistered-signup" id="signup-button">
+              Sign up
+            </button>
+          </div>
+
+          <div class="user_options-registered">
+            <h2 class="user_registered-title">Have an account?</h2>
+            <p class="user_registered-text">Welcome back!</p>
+            <button class="user_registered-login" id="login-button">
+              Login
+            </button>
+          </div>
+        </div>
+
+        <div class="user_options-forms" id="user_options-forms">
+          <div class="user_forms-login">
+            <div class="forms_login-header">
+              <h2 class="forms_title">Login</h2>
+              <img
+                src="../../../icons-logos/vfl logo v2.png"
+                alt="VFL Logo"
+                width="100px"
+                class="logovfl"
+              />
+            </div>
+            <form class="forms_form">
+              <fieldset class="forms_fieldset">
+                <div class="forms_field">
+                  <input
+                    type="email"
+                    placeholder="Email"
+                    class="forms_field-input"
+                    required
+                    autofocus
+                  />
+                </div>
+                <div class="forms_field">
+                  <input
+                    type="password"
+                    placeholder="Password"
+                    class="forms_field-input"
+                    required
+                  />
+                </div>
+              </fieldset>
+              <div class="forms_buttons">
+                <a href="../reset/reset.html" class="forms_buttons-forgot">
+                  Forgot password?
+                </a>
+                <input
+                  type="submit"
+                  value="Log In"
+                  class="forms_buttons-action"
+                />
+              </div>
+            </form>
+          </div>
+          <div class="user_forms-signup">
+            <div class="forms_login-header">
+              <h2 class="forms_title">Sign up</h2>
+              <img
+                src="../../../icons-logos/vfl logo v2.png"
+                alt="VFL Logo"
+                width="100px"
+                class="logovfl"
+              />
+            </div>
+            <form class="forms_form" id="register-form">
+              <fieldset class="forms_fieldset">
+                <div class="forms_field">
+                  <input
+                    type="text"
+                    id="username"
+                    placeholder="Name"
+                    class="forms_field-input"
+                    required
+                  />
+                </div>
+                <div class="forms_field">
+                  <input
+                    type="email"
+                    id="email"
+                    placeholder="Email"
+                    class="forms_field-input"
+                    required
+                  />
+                </div>
+                <div class="forms_field">
+                  <input
+                    type="password"
+                    id="password"
+                    placeholder="Password"
+                    class="forms_field-input"
+                    required
+                  />
+                </div>
+              </fieldset>
+              <div class="forms_buttons">
+                <input
+                  type="submit"
+                  value="Sign up"
+                  class="forms_buttons-action"
+                  id="forms_buttons-action"
+                />
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="./register.mjs"></script>
+  </body>
+</html>
