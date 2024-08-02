@@ -5,7 +5,6 @@ Next Steps
 - Add circle model for multiplication
 - Add an SVG vs PNG page ✅
 - Add side menu from corner logo ✅
-- Add animation on logo
 
 Refactoring
 
@@ -20,9 +19,18 @@ Refactoring
 
 Models to Add
 
-- Division when divisor > dividend ✅
+- Division when divisor > dividend circle ✅
+- Division when divisor > dividend bar model ✅
 - Multiplication Area Model ✅
 - Multiplication Circles
+
+UI
+
+- Use an icon for side nav to expand/collapsse
+- Add Sign Up/ Log In Page to Navigation
+- Fix Toggle Quirk ✅
+- Add animation on logo
+- Add a checkIfValid function to the script to not run the function if the inputs are blank to prevent black borders for non-inputs
 
 Other To Do's
 
@@ -34,7 +42,7 @@ Other To Do's
 - Add labels to division models
 - Add labels to multiplication models
 - Make it look more modern and appealing ✅
-- Sign up Form
+- Sign up Form ✅
 - SVG vs PNG page ✅
 - Side bar navigation ✅
 

@@ -200,7 +200,6 @@ function shadeFractionSlices(
     const curvedPath = document.createElementNS(svgNS, "path");
     const startX = (x + radius * Math.cos(previousAngle)).toFixed(1);
     const startY = (y + radius * Math.sin(previousAngle)).toFixed(1);
-    console.log(`StartX is ${startX}`);
     const endX = (x + radius * Math.cos(currentAngle)).toFixed(1);
     const endY = (y + radius * Math.sin(currentAngle)).toFixed(1);
     curvedPath.setAttribute("fill", colorFill);
@@ -381,7 +380,6 @@ function mixedNumCircles(
     numLines = 1;
     circlesPerLine = maxWholes;
     radius = Math.min((width * 0.8) / maxWholes / 2, (height * 0.8) / 2);
-    console.log(`radius is ${radius}`);
   } else {
     debugger;
     optimalDimensions = calculateOptimalDimensions(

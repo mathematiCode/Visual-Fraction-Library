@@ -10,11 +10,6 @@
   font-weight: 500;
 }
 
-/* .modal[open]::backdrop {
-  background: linear-gradient(45deg, hsl(83, 48%, 67%), #6ec2cf);
-  opacity: 0.3;
-} */
-
 #screen-size-warning-button {
   font-size: 1rem;
   max-width: 22ch;

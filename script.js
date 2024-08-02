@@ -230,13 +230,23 @@ function divisionFrac() {
       divisor.wholeNum = parseInt(
         document.getElementById("divisor-whole-number").value
       );
-      mathVisual.fractionDivisionOneCircle(
-        divisionSVG,
-        dividend,
-        divisor,
-        (lineThickness = 5),
-        (colorFill = "#52a4b0")
-      );
+      if (modelToggle.checked) {
+        mathVisual.fractionDivisionOneBar(
+          divisionSVG,
+          dividend,
+          divisor,
+          (lineThickness = 5),
+          (colorFill = "#52a4b0")
+        );
+      } else {
+        mathVisual.fractionDivisionOneCircle(
+          divisionSVG,
+          dividend,
+          divisor,
+          (lineThickness = 5),
+          (colorFill = "#52a4b0")
+        );
+      }
     }
   }
 
@@ -265,6 +275,7 @@ function divisionFrac() {
 
   modelToggle.addEventListener("change", () => {
     const divisionSVG = document.getElementById("division-svg");
+    divisionSVG.innerHTML = "";
     generateDivisionModel(divisionSVG);
   });
 }
