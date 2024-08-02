@@ -79,6 +79,9 @@ function multiplicationFrac() {
 
   let openCloseNavButton = document.querySelector(".corner-logo");
   let sideNav = document.querySelector(".side-nav");
+  let multiplicationModel = document.getElementById(
+    "multiplication-model-toggle"
+  );
 
   openCloseNavButton.addEventListener("click", () => {
     if (sideNav.dataset.state === "open") {
@@ -91,37 +94,52 @@ function multiplicationFrac() {
     const multiplicationSVG = document.getElementById("multiplication-svg");
     let factor1 = {};
     const factor2 = {};
-    factor1.wholeNum = parseInt(
-      document.getElementById("multiplication-whole-number1").value
-    );
-    factor1.numerator = parseInt(
-      document.getElementById("multiplication-numerator1").value
-    );
-    factor1.denominator = parseInt(
-      document.getElementById("multiplication-denominator1").value
-    );
-    factor2.wholeNum = parseInt(
-      document.getElementById("multiplication-whole-number2").value
-    );
-    factor2.numerator = parseInt(
-      document.getElementById("multiplication-numerator2").value
-    );
-    factor2.denominator = parseInt(
-      document.getElementById("multiplication-denominator2").value
-    );
+    if (multiplicationModel.checked) {
+      factor1.wholeNum = parseInt(
+        document.getElementById("multiplication-whole-number1").value
+      );
+      factor1.numerator = parseInt(
+        document.getElementById("multiplication-numerator1").value
+      );
+      factor1.denominator = parseInt(
+        document.getElementById("multiplication-denominator1").value
+      );
+      factor2.wholeNum = parseInt(
+        document.getElementById("multiplication-whole-number2").value
+      );
+      factor2.numerator = parseInt(
+        document.getElementById("multiplication-numerator2").value
+      );
+      factor2.denominator = parseInt(
+        document.getElementById("multiplication-denominator2").value
+      );
 
-    let toScale = document.getElementById("to-scale-checkbox").checked;
+      let toScale = document.getElementById("to-scale-checkbox").checked;
 
-    multiplicationSVG.innerHTML = "";
-    mathVisual.fractionMultiplicationAreaModel(
-      multiplicationSVG,
-      factor1,
-      factor2,
-      (lineThickness = 5),
-      (colorFill = "hsla(188, 37%, 51%,70%)"),
-      (colorFill2 = "hsla(96, 70%, 66%,50%)"),
-      toScale
-    );
+      multiplicationSVG.innerHTML = "";
+      mathVisual.fractionMultiplicationAreaModel(
+        multiplicationSVG,
+        factor1,
+        factor2,
+        (lineThickness = 5),
+        (colorFill = "hsla(188, 37%, 51%,70%)"),
+        (colorFill2 = "hsla(96, 70%, 66%,50%)"),
+        toScale
+      );
+    } else {
+      factor1.wholeNum = parseInt(
+        document.getElementById("multiplication-whole-number1").value
+      );
+      factor1.numerator = parseInt(
+        document.getElementById("multiplication-numerator1").value
+      );
+      factor1.denominator = parseInt(
+        document.getElementById("multiplication-denominator1").value
+      );
+      factor2.wholeNum = parseInt(
+        document.getElementById("multiplication-whole-number2").value
+      );
+    }
   }
 
   generateMultiplicationButton.addEventListener("click", function () {
@@ -298,11 +316,11 @@ function index() {
     }
   }
 
-  function handleResize() {
-    if (window.innerWidth <= 600) {
-      modal.showModal();
-    }
-  }
+  // function handleResize() {
+  //   if (window.innerWidth <= 600) {
+  //     modal.showModal();
+  //   }
+  // }
 
   // mediaQuery.addEventListener(handleScreenChange);
   // handleScreenChange(mediaQuery);
@@ -315,7 +333,7 @@ function index() {
 
   handleScreenChange();
 
-  window.addEventListener("resize", handleResize);
+  // window.addEventListener("resize", handleResize);
 
   closeModal.addEventListener("click", () => {
     modal.close();

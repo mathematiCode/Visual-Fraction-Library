@@ -55,6 +55,8 @@ input {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-right: 10px;
+  margin-left: 10px;
 }
 
 #fracBar {
@@ -64,7 +66,8 @@ input {
 }
 
 .symbol {
-  font-size: 3rem;
+  font-size: 3.5rem;
+  color: black;
 }
 
 /* The switch - the box around the slider */
