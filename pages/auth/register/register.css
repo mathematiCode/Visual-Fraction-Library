@@ -328,7 +328,7 @@ input::placeholder {
   background-color: var(--teal-800);
   border-radius: 3px;
   padding: 10px 35px;
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-weight: 300;
   color: var(--teal-50);
   text-transform: uppercase;
