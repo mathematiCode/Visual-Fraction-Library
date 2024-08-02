@@ -5,12 +5,13 @@
   --teal-400: #6ec2cf;
   --teal-500: #52a4b0;
   --teal-800: #347d88;
-  --teal-900: 22, 67, 74; /* #16434a;*/
+  --teal-900: #16434a;
 
   --peach-200: #f5b9ad;
   --peach-500: #f0a68c;
   --green-400: #9de56c;
   --green-200: #b7dd82;
+  --faded-green-50: #e7fcce;
   --faded-green-100: #daecb1;
   --faded-green-200: hsl(83, 48%, 67%);
   --light-orange: #f8d2a3;

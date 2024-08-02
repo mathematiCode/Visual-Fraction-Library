@@ -3,7 +3,7 @@
 }
 
 body {
-  font-family: "Montserrat", sans-serif;
+  font-family: "Raleway", sans-serif;
   font-size: 12px;
   line-height: 1em;
   margin: 0;
@@ -16,12 +16,10 @@ body {
   background-size: cover;
   background-color: #fff;
   height: 100vh;
-  font-family: "Roboto", sans-serif;
 }
 
 .logovfl {
-  border-radius: 50%;
-  border: 7px solid var(--teal-50);
+  padding-top: 15px;
 }
 
 button {
@@ -32,17 +30,22 @@ button {
   cursor: pointer;
 }
 
+.forms_fieldset {
+  border: none;
+  background: transparent;
+}
+
 input {
   background-color: transparent;
   padding: 0;
-  border: 0;
+  border: 2px solid var(--teal-800);
+  border-radius: 10px;
   outline: 0;
   box-shadow: none;
 }
 
 input[type="text"],
 input[type="password"] {
-  border: none;
   outline: none;
 }
 
@@ -50,39 +53,39 @@ input[type="submit"] {
   cursor: pointer;
 }
 input::-webkit-input-placeholder {
-  font-size: 0.85rem;
-  font-family: "Montserrat", sans-serif;
-  font-weight: 300;
+  font-size: 1rem;
+  font-family: "Raleway", sans-serif;
+  font-weight: 400;
   letter-spacing: 0.1rem;
-  color: #ccc;
+  color: var(--teal-500);
 }
 input::-moz-placeholder {
-  font-size: 0.85rem;
-  font-family: "Montserrat", sans-serif;
-  font-weight: 300;
+  font-size: 1rem;
+  font-family: "Raleway", sans-serif;
+  font-weight: 400;
   letter-spacing: 0.1rem;
-  color: #ccc;
+  color: var(--teal-500);
 }
 input:-ms-input-placeholder {
-  font-size: 0.85rem;
-  font-family: "Montserrat", sans-serif;
-  font-weight: 300;
+  font-size: 1rem;
+  font-family: "Raleway", sans-serif;
+  font-weight: 400;
   letter-spacing: 0.1rem;
-  color: #ccc;
+  color: var(--teal-500);
 }
 input::-ms-input-placeholder {
-  font-size: 0.85rem;
-  font-family: "Montserrat", sans-serif;
-  font-weight: 300;
+  font-size: 1rem;
+  font-family: "Raleway", sans-serif;
+  font-weight: 400;
   letter-spacing: 0.1rem;
-  color: #ccc;
+  color: var(--teal-500);
 }
 input::placeholder {
-  font-size: 0.85rem;
-  font-family: "Montserrat", sans-serif;
-  font-weight: 300;
+  font-size: 1rem;
+  font-family: "Raleway", sans-serif;
+  font-weight: 400;
   letter-spacing: 0.1rem;
-  color: #ccc;
+  color: var(--teal-500);
 }
 
 /**
@@ -179,6 +182,7 @@ input::placeholder {
   width: 100%;
   height: 100vh;
   background-size: cover;
+  background-color: var(--faded-green-50);
 }
 .user_options-container {
   position: relative;
@@ -190,7 +194,7 @@ input::placeholder {
   display: flex;
   justify-content: space-between;
   width: 100%;
-  background-color: rgba(var(--teal-900), 0.6);
+  background-color: var(--teal-900);
   border-radius: 3px;
 }
 
@@ -245,6 +249,7 @@ input::placeholder {
   color: var(--teal-800);
   border: 1px solid var(--teal-100);
   background-color: var(--teal-100);
+  border-radius: 10px;
 }
 
 /**
@@ -254,10 +259,11 @@ input::placeholder {
   position: absolute;
   top: 50%;
   left: 30px;
+  padding-top: 50px;
   width: calc(50% - 30px);
-  min-height: 420px;
-  background-color: var(--teal-50);
-  border-radius: 3px;
+  min-height: 460px;
+  background-color: white;
+  border-radius: 10px;
   box-shadow: 2px 0 15px rgba(0, 0, 0, 0.25);
   overflow: hidden;
   -webkit-transform: translate3d(100%, -50%, 0);
@@ -273,11 +279,11 @@ input::placeholder {
 }
 .user_options-forms .forms_title {
   margin-bottom: 45px;
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   font-weight: 500;
   line-height: 1em;
   text-transform: uppercase;
-  color: var(--peach-500);
+  color: var(--teal-800);
   letter-spacing: 0.1rem;
 }
 .user_options-forms .forms_field:not(:last-of-type) {
@@ -285,12 +291,11 @@ input::placeholder {
 }
 .user_options-forms .forms_field-input {
   width: 100%;
-  border-bottom: 1px solid var(--teal-200);
   padding: 6px 20px 6px 6px;
-  font-family: "Montserrat", sans-serif;
-  font-size: 1rem;
-  font-weight: 300;
-  color: var(--peach-500);
+  font-family: "Raleway", sans-serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--teal-800);
   letter-spacing: 0.1rem;
   -webkit-transition: border-color 0.2s ease-in-out;
   transition: border-color 0.2s ease-in-out;
@@ -308,7 +313,8 @@ input::placeholder {
   margin-top: 35px;
 }
 .user_options-forms .forms_buttons-forgot {
-  font-family: "Montserrat", sans-serif;
+  font-family: "Raleway", sans-serif;
+  font-size: 1rem;
   letter-spacing: 0.1rem;
   color: var(--teal-800);
   text-decoration: underline;
@@ -316,14 +322,13 @@ input::placeholder {
   transition: color 0.2s ease-in-out;
 }
 .user_options-forms .forms_buttons-forgot:hover {
-  color: var(--peach-500);
+  color: var(--teal-800);
 }
 .user_options-forms .forms_buttons-action {
-  background-color: var(--peach-200);
+  background-color: var(--teal-800);
   border-radius: 3px;
   padding: 10px 35px;
   font-size: 1rem;
-  font-family: "Montserrat", sans-serif;
   font-weight: 300;
   color: var(--teal-50);
   text-transform: uppercase;
@@ -332,7 +337,8 @@ input::placeholder {
   transition: background-color 0.2s ease-in-out;
 }
 .user_options-forms .forms_buttons-action:hover {
-  background-color: var(--peach-500);
+  background-color: var(--peach-200);
+  color: var(--teal-900);
 }
 .user_options-forms .user_forms-signup,
 .user_options-forms .user_forms-login {
