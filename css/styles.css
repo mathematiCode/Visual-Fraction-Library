@@ -15,6 +15,8 @@
   --faded-green-200: hsl(83, 48%, 67%);
   --light-orange: #f8d2a3;
 
+  --light-gray: rgb(195, 195, 195);
+
   font-family: "Raleway", sans-serif;
   font-size: 16px;
   color: var(--teal-900);
@@ -22,7 +24,7 @@
 }
 
 h1 {
-  font-size: 2.5rem;
+  font-size: 2.4rem;
   font-weight: 500;
   margin-bottom: 12px;
   margin-top: 12px;
@@ -118,36 +120,17 @@ h2 {
   padding-right: 7px;
   bottom: 30px;
   right: 30px;
-  background-color: transparent;
+  color: var(--faded-green-100);
+  font-size: 1.7rem;
+  background-color: var(--teal-800);
   border: none;
+  padding: 0.5rem;
+  border-radius: 10px;
   text-align: center;
+  cursor: pointer;
+  box-shadow: 2px 2px 5px var(--teal-400);
 }
 
-.modal {
-  position: fixed;
-  z-index: 2;
-  display: none;
-  height: fit-content;
-
-  background-color: var(--faded-green-100);
-  color: var(--teal-900);
-  font-weight: 500;
-}
-
-@media (max-width: 750px) {
-  #screen-size-warning {
-    display: flex;
-    font-size: 1.7rem;
-    padding: 30px;
-  }
-  #screen-size-modal {
-    display: flex;
-    margin-top: 15%;
-    width: 90%;
-    inset: 0;
-    margin-left: auto;
-    margin-right: auto;
-    border-radius: 10px;
-    border: 5px solid var(--teal-800);
-  }
+#buy-me-a-coffee:hover {
+  background-color: var(--teal-900);
 }

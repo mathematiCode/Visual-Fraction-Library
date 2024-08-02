@@ -9,15 +9,15 @@ body {
   overflow-y: auto;
 }
 
-.two-column-layout {
-  display: grid;
-  grid-template-columns: 135px 1fr;
+header {
+  height: fit-content;
+  border: 2px solid black;
 }
 
 .grid-layout {
   display: grid;
   grid-template-rows: 80px 60px 140px 1fr 70px;
-  margin-top: 0px;
+  margin-top: 15px;
   grid-column: 2/3;
   place-items: center;
   height: 100%;
@@ -70,10 +70,20 @@ svg {
 }
 
 .main-page {
-  grid-column: 2/3;
   text-align: center;
 }
 
 #generate-multiplication {
   margin-top: 0px;
+}
+
+.two-column-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+@media screen and (max-width: 950px) {
+  svg {
+    width: 85vw;
+  }
 }

@@ -1,80 +1,75 @@
 <head>
   <!DOCTYPE html>
   <html lang="en">
-    <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-      <meta
-        name="description"
-        content="Learn about the differences between SVGs and PNGs and why SVGs are better suited for images of mathematical models."
-      />
-      <link rel="stylesheet" href="../css/styles.css" />
-      <link rel="stylesheet" href="../css/layout.css" />
-      <link rel="stylesheet" href="../css/nav.css" />
-      <title>SVG vs PNG</title>
-    </head>
 
-    <body>
-      <div class="two-column-layout">
-        <nav class="side-nav">
-          <a class="home-button" href="../index.html">
-            <img
-              tabindex="0"
-              class="corner-logo"
-              src="../icons-logos/small-logo.png"
-              alt="Visual Fraction Library - Home"
-            />
-          </a>
-          <a class="nav-link" tabindex="" href="../pages/basic-frac.html"
-            >Simple Fractions</a
-          >
-          <a class="nav-link" tabindex="" href="../pages/frac-mult.html"
-            >Fraction Multiplication</a
-          >
-          <a class="nav-link" tabindex="" href="../pages/frac-div.html">
-            Fraction Division</a
-          >
-          <a class="nav-link" tabindex="" href="../pages/terms-of-use.html">
-            Terms of Use</a
-          >
-        </nav>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta name="description"
+      content="Learn about the differences between SVGs and PNGs and why SVGs are better suited for images of mathematical models." />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="stylesheet" href="../css/layout.css" />
+    <link rel="stylesheet" href="../css/nav.css" />
+    <title>SVG vs PNG</title>
+  </head>
 
-        <div class="main-page">
-          <h1>SVGs vs PNGs: Understanding the Key Differences</h1>
-          <div class="blue-container">
-            <h2>Scalability: A Key Advantage of SVGs</h2>
-            <p>
-              The "S" in SVG stands for scalable, which means that SVG images
-              can be zoomed in or out without losing any clarity. In contrast,
-              PNG images are composed of pixels and can become pixelated when
-              enlarged.
-            </p>
-            <h2>The Mathematical Foundation of SVGs</h2>
-            <p>
-              SVGs are created using mathematical equations to draw shapes and
-              lines, making them a natural fit for generating graphics that
-              involve mathematical concepts. On the other hand, PNGs are raster
-              images composed of thousands of pixels, making them better suited
-              for photographic images.
-            </p>
-            <h2>File Size: SVGs Offer a Significant Advantage</h2>
-            <p>
-              Because SVGs can be written in code that describes the shapes and
-              lines to draw, they typically have a smaller file size compared to
-              PNGs, which require storing information about each individual
-              pixel.
-            </p>
-            <h2>Compatibility: PNGs Remain a Widely Accepted Option</h2>
-            <p>
-              While SVGs are gaining popularity, there are still some websites
-              and platforms that only support PNG and JPEG file formats.
-              However, it's worth noting that SVGs are compatible with Microsoft
-              products and Google Docs.
-            </p>
-          </div>
-        </div>
+<body>
+  <div class="two-column-layout">
+
+    <button class="nav-toggle" aria-label="Open or Close Nav Bar">
+      <img tabindex="0" class="corner-logo" src="../icons-logos/small-logo.png" alt="Visual Fraction Library Logo" />
+    </button>
+    <nav class="side-nav" data-state="closed">
+      <a class="nav-link" href="../index.html"> Home</a>
+      <a class="nav-link" href="../pages/basic-frac.html">Simple Fractions</a>
+      <a class="nav-link" href="../pages/frac-mult.html">Fraction Multiplication</a>
+      <a class="nav-link" href="../pages/frac-div.html">
+        Fraction Division</a>
+      <a class="nav-link" href="../pages/terms-of-use.html">
+        Terms of Use</a>
+    </nav>
+
+    <div class="main-page">
+      <h1>SVGs vs PNGs: Understanding the Key Differences</h1>
+      <div class="blue-container">
+        <h2>Scalability: A Key Advantage of SVGs</h2>
+        <p>
+          The "S" in SVG stands for scalable, which means that SVG images
+          can be zoomed in or out without losing any clarity. In contrast,
+          PNG images are composed of pixels and can become pixelated when
+          enlarged.
+        </p>
+        <h2>The Mathematical Foundation of SVGs</h2>
+        <p>
+          SVGs are created using mathematical equations to draw shapes and
+          lines, making them a natural fit for generating graphics that
+          involve mathematical concepts. On the other hand, PNGs are raster
+          images composed of thousands of pixels, making them better suited
+          for photographic images.
+        </p>
+        <h2>File Size: SVGs Offer a Significant Advantage</h2>
+        <p>
+          Because SVGs can be written in code that describes the shapes and
+          lines to draw, they typically have a smaller file size compared to
+          PNGs, which require storing information about each individual
+          pixel.
+        </p>
+        <h2>Compatibility: PNGs Remain a Widely Accepted Option</h2>
+        <p>
+          While SVGs are gaining popularity, there are still some websites
+          and platforms that only support PNG and JPEG file formats.
+          However, it's worth noting that SVGs are compatible with Microsoft
+          products and Google Docs.
+        </p>
       </div>
-    </body>
-  </html>
-</head>
+    </div>
+  </div>
+
+
+  <script src="../script.js"></script>
+  <script> buttonFunctions() </script>
+</body>
+
+
+</html>

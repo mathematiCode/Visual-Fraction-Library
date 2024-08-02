@@ -1,0 +1,41 @@
+.modal[open] {
+  /* position: fixed;
+  z-index: 2; */
+  height: fit-content;
+  flex-direction: column;
+  visibility: hidden;
+  z-index: -1;
+  background-color: var(--faded-green-100);
+  color: var(--teal-900);
+  font-weight: 500;
+}
+
+/* .modal[open]::backdrop {
+  background: linear-gradient(45deg, hsl(83, 48%, 67%), #6ec2cf);
+  opacity: 0.3;
+} */
+
+#screen-size-warning-button {
+  font-size: 1rem;
+  max-width: 22ch;
+}
+
+#screen-size-warning {
+  font-size: 1.4rem;
+  padding: 30px;
+}
+
+@media (max-width: 600px) {
+  .modal[open] {
+    visibility: visible;
+    display: flex;
+    margin-top: 15%;
+    width: 90%;
+    inset: 0;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 10px;
+    border: 5px solid var(--teal-800);
+    z-index: 2;
+  }
+}

@@ -1,104 +1,98 @@
 <!DOCTYPE html>
+<html lang="en">
+
 <head>
-  <meta name="viewport">
-  <meta name="description" content="Generate SVG and PNG images of visual models of fractions and mixed numbers including circle models and bar models.">
-    <link
-      href="https://fonts.googleapis.com/css?family=Advent Pro"
-      rel="stylesheet"
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <!-- <link rel="stylesheet" href="../Lovelo/Commercial/TTF/Lovelo-LineBold.ttf"> -->
+  <meta content="width=device-width" name="viewport">
+  <meta name="description"
+    content="Generate SVG and PNG images of visual models of fractions and mixed numbers including circle models and bar models.">
+  <!-- <link href="https://fonts.googleapis.com/css?family=Advent Pro" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /> -->
   <link rel="stylesheet" href="../Lovelo/Commercial/WEB/Lovelo-LineBold.woff">
 
-     <!--  <link
+  <!--  <link
   href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
     rel="stylesheet"/>
     -->
-    <link rel="stylesheet" href="../css/styles.css" />
-    <link rel="stylesheet" href="../css/layout.css" />
-    <link rel="stylesheet" href="../css/inputs.css" />
-    <link rel="stylesheet" href="../css/nav.css" />
-    <title> Basic Fraction Visuals</title>
-  </head>
-  
-  <body>
-    <div class="two-column-layout">
-    <nav class="side-nav">
-      <a class="home-button" href="../index.html">
-        <img
-          class="corner-logo"
-          src="../icons-logos/small-logo.png"
-          alt="Visual Fraction Library - Home"
-        />
-      </a>
-      <a class="nav-link"  href="../pages/frac-mult.html"
-        >Fraction Multiplication</a>
-      <a class="nav-link"  href="../pages/frac-div.html"> Fraction Division</a>
-      <a class="nav-link"  href="../pages/terms-of-use.html"> Terms of Use</a>
-      <a class="nav-link"  href="../pages/svg-vs-png.html"> SVG vs PNG</a>
+  <link rel="stylesheet" href="../css/styles.css" />
+  <link rel="stylesheet" href="../css/nav.css" />
+  <link rel="stylesheet" href="../css/inputs.css" />
+  <link rel="stylesheet" href="../css/layout.css" />
+  <title> Basic Fraction Visuals</title>
+</head>
+
+<body>
+  <div class="two-column-layout">
+    <button class="nav-toggle" aria-label="Open or Close Nav Bar">
+      <img class="corner-logo" src="../icons-logos/small-logo.png" alt="Visual Fraction Library Logo" />
+    </button>
+    <nav class="side-nav" data-state="closed">
+      <a class="nav-link" href="../index.html">Home</a>
+      <a class="nav-link" href="../pages/frac-mult.html">Fraction Multiplication</a>
+      <a class="nav-link" href="../pages/frac-div.html"> Fraction Division</a>
+      <a class="nav-link" href="../pages/terms-of-use.html"> Terms of Use</a>
+      <a class="nav-link" href="../pages/svg-vs-png.html"> SVG vs PNG</a>
     </nav>
 
 
 
     <div class="grid-layout">
-      
-
-
-    <h1>Input the fraction you would like displayed.</h1>
 
 
 
-    <div  class="model-selection">
-   <h2> Circle Model </h2>
-    <label class="switch">
-      <input type="checkbox" id="basic-model-toggle"
-      aria-label="Check for Bar Model, uncheck for Circle Model."
-             role="switch">
-      <span class="slider round"></span>
-    </label>
-      <h2 class="right-toggle">Bar Model</h2>
-    </div>
+      <h1>Input the fraction you would like displayed.</h1>
 
 
-    <div class="user-inputs">
-      <input aria-label="Whole Number"  type="number" class="whole-number" id="basic-whole-number">
-      <div class="fraction-input">
-        <input aria-label="numerator" type="number" class="numerator" id="basic-numerator" />
-        <hr id="fracBar" />
-        <input aria-label="denominator" type="number" class="denominator" id="basic-denominator" />
+
+      <div class="model-selection">
+        <h2> Circle Model </h2>
+        <label class="switch">
+          <input type="checkbox" id="basic-model-toggle" aria-label="Check for Bar Model, uncheck for Circle Model."
+            role="switch">
+          <span class="slider round"></span>
+        </label>
+        <h2 class="right-toggle">Bar Model</h2>
       </div>
-      <button  class="blue-button" id="generate-basic">Generate Model</button>
-      <aside>
-        <p class="requirements">
-          Works best with denominators 30 or less. 
-        </p>
+
+
+      <div class="user-inputs">
+        <input aria-label="Whole Number" type="number" class="whole-number" id="basic-whole-number">
+        <div class="fraction-input">
+          <input aria-label="numerator" type="number" class="numerator" id="basic-numerator" />
+          <hr id="fracBar" />
+          <input aria-label="denominator" type="number" class="denominator" id="basic-denominator" />
+        </div>
+        <button class="blue-button" id="generate-basic">Generate Model</button>
+        <aside>
+          <!-- <p class="requirements">
+            Works best with denominators 30 or less.
+          </p> -->
       </div>
 
       <img>
-      <svg id="basic-svg" width="800" height="250"
-      xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-      alt="Fraction Model will be displayed here.">
+      <svg id="basic-svg" width="800" height="250" xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink" alt="Fraction Model will be displayed here.">
 
 
       </svg>
-    </img>
+      </img>
 
       <div class="download-button-container">
-      <button 7" class="download-button" id="basic-svg-button"> Download SVG </button>
-      <button 8" class="download-button" id="basic-png-button"> Download PNG </button>
-      <button 9" class="download-button" id="basic-copy-button"> Copy to Clipboard </button>
+        <button class="download-button" id="basic-svg-button"> Download SVG </button>
+        <button class="download-button" id="basic-png-button"> Download PNG </button>
+        <button class="download-button" id="basic-copy-button"> Copy to Clipboard </button>
+      </div>
     </div>
   </div>
-    </div>
 
-  
 
-      <script src="../script.js"></script>
-      <script src="../utilities.js"></script>
-      <script src="../lib/basicFunctions.js"></script>
-      <script> basicFrac()</script>
-     
-  
-  </body>
-  </html>
+
+  <script src="../script.js"></script>
+  <script src="../utilities.js"></script>
+  <script src="../lib/basicFunctions.js"></script>
+  <script> basicFrac()</script>
+
+
+</body>
+
+</html>

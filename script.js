@@ -1,6 +1,6 @@
 // Global Functions
 const mathVisual = {};
-// I made this a global variable because I may change it later or make it customizable by the user. It means the circles will start shading at 270 degrees going counterclockwise. This is so that if there are a few pieces that go in the same group as some in the next circle, they are closer together.
+// I made angleWherePiecesStart a global variable because I may change it later or make it customizable by the user. It means the circles will start shading at 270 degrees going counterclockwise. This is for fraction division circles so that if there are a few pieces that go in the same group as some in the next circle, they are closer together.
 angleWherePiecesStart = Math.PI * 0.5;
 
 function basicFrac() {
@@ -9,6 +9,16 @@ function basicFrac() {
   const modelToggle = document.getElementById("basic-model-toggle");
   const basicSVG = document.getElementById("basic-svg");
   let mixedNum = {};
+
+  let openCloseNavButton = document.querySelector(".corner-logo");
+  let sideNav = document.querySelector(".side-nav");
+
+  openCloseNavButton.addEventListener("click", () => {
+    if (sideNav.dataset.state === "open") {
+      sideNav.dataset.state = "closed";
+    } else sideNav.dataset.state = "open";
+    console.log(sideNav.dataset.state);
+  });
 
   generateBasicButton.addEventListener("click", function () {
     mixedNum.wholeNum = parseInt(
@@ -67,6 +77,16 @@ function multiplicationFrac() {
     "generate-multiplication"
   );
 
+  let openCloseNavButton = document.querySelector(".corner-logo");
+  let sideNav = document.querySelector(".side-nav");
+
+  openCloseNavButton.addEventListener("click", () => {
+    if (sideNav.dataset.state === "open") {
+      sideNav.dataset.state = "closed";
+    } else sideNav.dataset.state = "open";
+    console.log(sideNav.dataset.state);
+  });
+
   function generateMultiplicationModel() {
     const multiplicationSVG = document.getElementById("multiplication-svg");
     let factor1 = {};
@@ -108,16 +128,14 @@ function multiplicationFrac() {
     generateMultiplicationModel();
   });
 
-  // const multiplicationPngButton = document.getElementById("multiplication-png-button");
-  // divisionPngButton.addEventListener("click", function () {
-  //   downloadPng("division-svg");
-  // });
   const downloadMultiplicationSVG = document.getElementById("mult-svg-button");
   const downloadMultiplicationPNG = document.getElementById("mult-png-button");
   const copyPngButton = document.getElementById("mult-copy-button");
   const toScaleCheck = document.getElementById("to-scale-checkbox");
 
   toScaleCheck.addEventListener("change", function () {
+    const multiplicationSVG = document.getElementById("multiplication-svg");
+    multiplicationSVG.innerHTML = "";
     generateMultiplicationModel();
   });
   downloadMultiplicationSVG.addEventListener("click", function () {
@@ -146,6 +164,16 @@ function divisionFrac() {
   );
   const divisorLargerInputs = document.getElementById("divisor-larger");
   const divisorSmallerInputs = document.getElementById("divisor-smaller");
+
+  let openCloseNavButton = document.querySelector(".corner-logo");
+  let sideNav = document.querySelector(".side-nav");
+
+  openCloseNavButton.addEventListener("click", () => {
+    if (sideNav.dataset.state === "open") {
+      sideNav.dataset.state = "closed";
+    } else sideNav.dataset.state = "open";
+    console.log(sideNav.dataset.state);
+  });
 
   divisionModelCheckbox.addEventListener("change", function () {
     divisionSVG.innerHTML = "";
@@ -241,7 +269,57 @@ function divisionFrac() {
   });
 }
 
-function logoScript() {
-  let logoSVG = document.getElementById("logo-svg");
-  const downloadLogoSVG = document.getElementById("logo-svg-button");
+function index() {
+  // function logoScript() {
+  //   let logoSVG = document.getElementById("logo-svg");
+  //   const downloadLogoSVG = document.getElementById("logo-svg-button");
+  // }
+
+  let modal = document.getElementById("screen-size-modal");
+  let closeModal = document.getElementById("screen-size-warning-button");
+
+  const mediaQuery = window.matchMedia("(max-width: 600px)");
+
+  function handleScreenChange(e) {
+    if (e.matches) {
+      // Screen width is 600px or less
+      modal.showModal();
+    }
+  }
+
+  function handleResize() {
+    if (window.innerWidth <= 600) {
+      modal.showModal();
+    }
+  }
+
+  // mediaQuery.addEventListener(handleScreenChange);
+  // handleScreenChange(mediaQuery);
+
+  function handleScreenChange() {
+    if (mediaQuery.matches) {
+      modal.showModal();
+    }
+  }
+
+  handleScreenChange();
+
+  window.addEventListener("resize", handleResize);
+
+  closeModal.addEventListener("click", () => {
+    modal.close();
+    console.log("Success!");
+  });
+}
+
+function buttonFunctions() {
+  let openCloseNavButton = document.querySelector(".corner-logo");
+  let sideNav = document.querySelector(".side-nav");
+
+  openCloseNavButton.addEventListener("click", () => {
+    if (sideNav.dataset.state === "open") {
+      sideNav.dataset.state = "closed";
+    } else sideNav.dataset.state = "open";
+    console.log(sideNav.dataset.state);
+  });
 }
