@@ -1,13 +1,39 @@
-const axios = require("axios")
+// const axios = require("axios")
+const registerForm = document.querySelector("#forms_buttons-action")
+// const submitButton = document.getElementById("forms_buttons-action")
 
-const registerForm = document.querySelector(".register-form")
+const signupButton = document.getElementById("signup-button"),
+  loginButton = document.getElementById("login-button"),
+  userForms = document.getElementById("user_options-forms")
 
-registerForm.addEventListener("submit", async (event) => {
+signupButton.addEventListener(
+  "click",
+  () => {
+    userForms.classList.remove("bounceRight")
+    userForms.classList.add("bounceLeft")
+  },
+  false
+)
+
+loginButton.addEventListener(
+  "click",
+  () => {
+    userForms.classList.remove("bounceLeft")
+    userForms.classList.add("bounceRight")
+  },
+  false
+)
+
+// ---
+
+registerForm.addEventListener("click", async (event) => {
   event.preventDefault()
+  console.log("submit")
   const username = document.querySelector("#username").value
   const email = document.querySelector("#email")
   const password = document.querySelector("#password").value
   const response = await register(username, email, password)
+  console.log("checking payload\n", username, email, password)
   console.log(response)
 })
 
@@ -27,16 +53,20 @@ const register = async (username, email, password) => {
   if (response) {
     console.log("success")
 
-    setTimeout(() => {
-      window.location.href = "./login/login.html"
-
-      return response
-    }, 500)
+    return response
   }
 
   console.log("error")
-
-  return
 }
 
-module.exports = { register }
+// const body = document.querySelector("body")
+
+// create acct
+
+// submitButton.addEventListener("click", async () => {
+//   const docs = await axios.post("https://apivfl.vercel.app/account/create")
+//   console.log(docs)
+//   body.innerHTML = ""
+
+//   body.innerHTML = docs.data
+// })

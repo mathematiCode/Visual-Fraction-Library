@@ -2,45 +2,129 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta
+      name="description"
+      content="Sign in to Visual Fraction Library to access your account."
+    />
     <title>VFS Signin</title>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="icon" href="../../../icons-logos/small-logo.png" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
     <link rel="stylesheet" href="./login.css" />
+    <link rel="stylesheet" href="../../../css/styles.css" />
   </head>
   <body>
-    <div class="login-container">
-      <form class="login-form">
-        <h1 class="login-title">Sign in</h1>
-        <div class="login-input-container">
-          <input
-            class="login-input"
-            type="text"
-            name="username"
-            id="username"
-            placeholder="Username"
-          />
-          <input
-            class="login-input"
-            type="password"
-            name="password"
-            id="password"
-            placeholder="Password"
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6">
+          <img
+            src="../../../icons-logos/vfl logo v2.png"
+            alt="VFL Logo"
+            class="logo img-fluid logovfl"
           />
         </div>
-        <div class="login-button-container">
-          <button class="login-button" type="submit">Sign in</button>
-        </div>
-        <p class="login-error-message"></p>
-        <a class="login-signup-link" href="../register/register.html"
-          >Sign up</a
-        >
-        <a class="login-forgot-password-link" href="../reset/reset.html"
-          >Forgot password?</a
-        >
-        <a class="login-home-link" href="../../../index.html">Home</a>
-      </form>
-    </div>
 
+        <div
+          class="col-lg-6 d-flex align-items-center justify-content-center right-side"
+        >
+          <div class="form-2-wrapper">
+            <div class="logo text-center">
+              <h2>Welcome back!</h2>
+            </div>
+            <h2 class="text-center mb-4">Sign Into Your Account</h2>
+            <form action="#">
+              <div class="mb-3 form-box">
+                <input
+                  type="email"
+                  class="form-control"
+                  id="email"
+                  name="email"
+                  placeholder="Enter Your Email"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <input
+                  type="password"
+                  class="form-control"
+                  id="password"
+                  name="password"
+                  placeholder="Enter Your Password"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <div class="form-check">
+                  <input
+                    type="checkbox"
+                    class="form-check-input"
+                    id="rememberMe"
+                  />
+                  <label class="form-check-label" for="rememberMe"
+                    >Remember me</label
+                  >
+                  <a
+                    href="../reset/reset.html"
+                    class="text-decoration-none float-end reset"
+                  >
+                    Forgot Password?</a
+                  >
+                </div>
+              </div>
+              <button
+                type="submit"
+                class="btn btn-outline-secondary login-btn w-100 mb-3"
+              >
+                Login
+              </button>
+              <div class="social-login mb-3 type--A">
+                <h5 class="text-center mb-3">Social Login</h5>
+                <button class="btn btn-outline-secondary mb-3">
+                  <i class="fa-brands fa-google text-danger"></i> Sign With
+                  Google
+                </button>
+                <button class="btn btn-outline-secondary mb-3">
+                  <i class="fa-brands fa-facebook-f text-primary"></i> Sign With
+                  Microsoft
+                </button>
+              </div>
+            </form>
+
+            <!-- Register Link -->
+            <p class="text-center register-test mt-3">
+              Don't have an account?
+              <a href="../register/register.html" class="text-decoration-none"
+                >Register here</a
+              >
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
     <script src="./login.js"></script>
   </body>
 </html>
