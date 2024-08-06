@@ -169,7 +169,16 @@ function isFactor1GreaterThanOrEqualToFactor2(factor1, factor2) {
   }
 }
 
-function switchBetweenColors(current, color1, color2, color3) {
+function switchBetweenColors(current, colors) {
+  const currentIndex = colors.indexOf(current);
+  if (currentIndex !== -1) {
+    const nextIndex = (currentIndex + 1) % colors.length;
+    return colors[nextIndex];
+  } else {
+    return "gray";
+  }
+
+  colors.forEach((element) => {});
   if (current == color1) {
     current = color2;
   } else if (current == color2) {
@@ -469,7 +478,8 @@ function mixedNumCirclesHorizontal(
   width,
   height,
   startX = 0,
-  startY = 0
+  startY = 0,
+  border = false
 ) {
   let numWholes = Math.floor(mixedNum.numerator / mixedNum.denominator);
   let maxWholes = 0; // This is how many circles will be drawn on the svg
@@ -483,20 +493,39 @@ function mixedNumCirclesHorizontal(
   // let verticalSpacing = 0;
 
   radius = Math.min((width * 0.8) / maxWholes / 2, (height * 0.8) / 2);
+  let fillRadius = radius - lineThickness / 2;
 
   let verticalSpacing = (height - radius * 2 + 6) / 2;
   let horizontalSpacing = Math.min(
     10,
     (width - maxWholes * radius * 2) / maxWholes
   );
+
+  if (border === true) {
+    radius = radius - 3;
+    fillRadius = fillRadius - 3;
+  }
   startX =
     (width - maxWholes * radius * 2 - horizontalSpacing * (maxWholes + 1)) / 2;
-
-  let currentX = startX + radius + horizontalSpacing / 2;
+  width = width - startX * 2;
+  startY = startY + verticalSpacing;
+  let currentX = startX + radius + horizontalSpacing;
   let currentY = startY + radius + verticalSpacing;
   let slicesLeft = mixedNum.numerator;
   let currentWhole = 1;
-  let fillRadius = radius - lineThickness / 2;
+
+  if (border === true) {
+    const svgNS = svg.namespaceURI;
+    const blackBorder = document.createElementNS(svgNS, "rect");
+    blackBorder.setAttribute("x", startX);
+    blackBorder.setAttribute("y", startY);
+    blackBorder.setAttribute("width", width);
+    blackBorder.setAttribute("height", height);
+    blackBorder.setAttribute("fill", "none");
+    blackBorder.setAttribute("stroke", "black");
+    blackBorder.setAttribute("stroke-width", lineThickness);
+    svg.appendChild(blackBorder);
+  }
 
   // This loop draws the circles and shades in the correct # of slices given an improper fraction
   for (let i = 0; i < maxWholes; i++) {
@@ -548,8 +577,9 @@ function mixedNumCirclesVertical(
   colorFill = "rgb(120, 190, 250)",
   width,
   height,
-  startX = 0,
-  startY = 0
+  startX = 5,
+  startY = 5,
+  border = false
 ) {
   let numWholes = Math.floor(mixedNum.numerator / mixedNum.denominator);
   let maxWholes = 0; // This is how many circles will be drawn on the svg
@@ -565,11 +595,24 @@ function mixedNumCirclesVertical(
   let horizontalSpacing = (width - radius * 2) / 2;
   let verticalSpacing = (height - maxWholes * radius * 2) / (maxWholes + 1);
 
-  let currentX = startX + radius + horizontalSpacing / 2;
+  let currentX = startX + radius + horizontalSpacing;
   let currentY = startY + radius + verticalSpacing;
   let slicesLeft = mixedNum.numerator;
   let currentWhole = 1;
   let fillRadius = radius - lineThickness / 2;
+
+  if (border === true) {
+    const svgNS = svg.namespaceURI;
+    const blackBorder = document.createElementNS(svgNS, "rect");
+    blackBorder.setAttribute("x", startX);
+    blackBorder.setAttribute("y", startY);
+    blackBorder.setAttribute("width", width);
+    blackBorder.setAttribute("height", height);
+    blackBorder.setAttribute("fill", "none");
+    blackBorder.setAttribute("stroke", "black");
+    blackBorder.setAttribute("stroke-width", lineThickness);
+    svg.appendChild(blackBorder);
+  }
 
   // This loop draws the circles and shades in the correct # of slices given an improper fraction
   for (let i = 0; i < maxWholes; i++) {

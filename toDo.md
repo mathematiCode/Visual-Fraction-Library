@@ -2,7 +2,7 @@ Next Steps
 
 - Add a fraction division model for when the divisor is greater than the dividend ✅
 - Add labels to division models
-- Add group model for multiplication
+- Add group model for multiplication ✅
 - Add an SVG vs PNG page ✅
 - Add side menu from corner logo ✅
 
@@ -14,7 +14,7 @@ Refactoring
 - Add ARIA labels and other accessibility features ✅
 - Separate script.js into separate files?
 - Create customizations object to minimize parameters
-- Create and use smaller more reusable functions
+- Create and use smaller more reusable functions ✅
 - Simplify functions where possible ✅
 
 Models to Add
@@ -22,7 +22,7 @@ Models to Add
 - Division when divisor > dividend circle ✅
 - Division when divisor > dividend bar model ✅
 - Multiplication Area Model ✅
-- Multiplication Groups
+- Multiplication Groups Model ✅
 - Fraction of a Whole Model
 
 UI

@@ -79,7 +79,8 @@ function multiplicationFrac() {
 
   let openCloseNavButton = document.querySelector(".corner-logo");
   let sideNav = document.querySelector(".side-nav");
-  let toScaleContainer = document.getElementById("to-scale");
+  let toScaleLabel = document.getElementById("to-scale-label");
+  let showBorderLabel = document.getElementById("show-border-label");
   const factorLabels = document.querySelectorAll(".factor-label");
   const factor2Fraction = document.getElementById("factor2-fraction");
 
@@ -118,7 +119,8 @@ function multiplicationFrac() {
         document.getElementById("multiplication-denominator2").value
       );
 
-      toScaleContainer.style.setProperty("display", "flex");
+      toScaleLabel.style.setProperty("display", "flex");
+      showBorderLabel.style.setProperty("display", "none");
       factor2Fraction.style.setProperty("display", "flex");
       factorLabels.forEach((label) => {
         label.style.display = "none";
@@ -136,7 +138,8 @@ function multiplicationFrac() {
         toScale
       );
     } else {
-      toScaleContainer.style.setProperty("display", "none");
+      toScaleLabel.style.setProperty("display", "none");
+      showBorderLabel.style.setProperty("display", "flex");
       factor2Fraction.style.setProperty("display", "none");
       factorLabels.forEach((label) => {
         label.style.display = "grid";
@@ -154,12 +157,15 @@ function multiplicationFrac() {
         document.getElementById("multiplication-whole-number2").value
       );
 
+      let toScale = document.getElementById("to-scale-checkbox").checked;
+
       mathVisual.fractionMultiplicationGroupModel(
         multiplicationSVG,
         factor1,
         factor2,
         (lineThickness = 5),
-        (colorFill = "hsla(188, 37%, 51%,70%)")
+        (colorFill = "hsla(188, 37%, 51%,70%)"),
+        toScale
       );
     }
   }
