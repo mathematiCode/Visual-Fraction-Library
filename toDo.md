@@ -31,6 +31,7 @@ UI
 - Fix Toggle Quirk ✅
 - Add animation on logo
 - Add a checkIfValid function to the script to not run the function if the inputs are blank to prevent black borders for non-inputs
+- Add intuitive options to multiplication page
 
 Other To Do's
 
@@ -45,6 +46,7 @@ Other To Do's
 - Sign up Form ✅
 - SVG vs PNG page ✅
 - Side bar navigation ✅
+- If an input has some blanks but still valid overall, set the blanks to 0.
 
 Customizations to Add
 

@@ -11,7 +11,7 @@ body {
 
 .grid-layout {
   display: grid;
-  grid-template-rows: 80px 60px 140px 1fr 70px;
+  grid-template-rows: 60px 40px 150px 1fr 70px;
   margin-top: 10px;
   grid-column: 2/3;
   place-items: center;
@@ -34,6 +34,7 @@ body {
 .problem-input {
   gap: 8px;
   display: flex;
+  position: relative;
   align-items: center;
 }
 

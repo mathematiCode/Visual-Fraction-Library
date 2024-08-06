@@ -381,7 +381,6 @@ function mixedNumCircles(
     circlesPerLine = maxWholes;
     radius = Math.min((width * 0.8) / maxWholes / 2, (height * 0.8) / 2);
   } else {
-    debugger;
     optimalDimensions = calculateOptimalDimensions(
       width * 0.8,
       height * 0.8,
