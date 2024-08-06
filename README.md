@@ -1,4 +1,5 @@
 <h1> Visual Fraction Library </h1>
+<img src="./Visual Fraction Library Demo.png">
 
 This is the beginning of a library of simple fraction visualization functions that generate SVGs.
 
@@ -23,7 +24,7 @@ My goal is to have a website and a javascript library with many different types 
 </ul>
 
 <h2> Customization Options and Features </h2>
-<li> Change color((s)</li>
+<li> Change color(s)</li>
 <li> Change model (circles/bars/area model) ✅</li>
 <li> Change line width</li>
 <li> Change spacing between multiple items </li>
