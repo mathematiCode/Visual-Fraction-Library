@@ -461,6 +461,159 @@ function mixedNumCircles(
   return modelInfo;
 }
 
+function mixedNumCirclesHorizontal(
+  svg,
+  mixedNum,
+  lineThickness = 5,
+  colorFill = "rgb(120, 190, 250)",
+  width,
+  height,
+  startX = 0,
+  startY = 0
+) {
+  let numWholes = Math.floor(mixedNum.numerator / mixedNum.denominator);
+  let maxWholes = 0; // This is how many circles will be drawn on the svg
+
+  if (mixedNum.numerator % mixedNum.denominator == 0) {
+    maxWholes = numWholes + mixedNum.wholeNum;
+  } else {
+    maxWholes = numWholes + mixedNum.wholeNum + 1;
+  } // Determines how many total circles will be drawn even if the last one is only partially shaded
+
+  // let verticalSpacing = 0;
+
+  radius = Math.min((width * 0.8) / maxWholes / 2, (height * 0.8) / 2);
+
+  let verticalSpacing = (height - radius * 2 + 6) / 2;
+  let horizontalSpacing = Math.min(
+    10,
+    (width - maxWholes * radius * 2) / maxWholes
+  );
+  startX =
+    (width - maxWholes * radius * 2 - horizontalSpacing * (maxWholes + 1)) / 2;
+
+  let currentX = startX + radius + horizontalSpacing / 2;
+  let currentY = startY + radius + verticalSpacing;
+  let slicesLeft = mixedNum.numerator;
+  let currentWhole = 1;
+  let fillRadius = radius - lineThickness / 2;
+
+  // This loop draws the circles and shades in the correct # of slices given an improper fraction
+  for (let i = 0; i < maxWholes; i++) {
+    // Draws black outline of circle
+    drawCircle(svg, currentX, currentY, radius, lineThickness);
+
+    if (currentWhole <= mixedNum.wholeNum) {
+      drawCircle(
+        svg,
+        currentX,
+        currentY,
+        fillRadius,
+        lineThickness,
+        "none",
+        colorFill
+      );
+      currentWhole = currentWhole + 1;
+    } else {
+      shadeFractionSlices(
+        svg,
+        currentX,
+        currentY,
+        fillRadius,
+        slicesLeft,
+        mixedNum.denominator,
+        lineThickness,
+        colorFill,
+        angleWherePiecesStart
+      );
+      makeFractionLines(
+        svg,
+        currentX,
+        currentY,
+        radius,
+        mixedNum.denominator,
+        lineThickness
+      );
+
+      slicesLeft = slicesLeft - mixedNum.denominator;
+    }
+    currentX = currentX + 2 * radius + horizontalSpacing; // Move to next circle
+  }
+}
+
+function mixedNumCirclesVertical(
+  svg,
+  mixedNum,
+  lineThickness = 5,
+  colorFill = "rgb(120, 190, 250)",
+  width,
+  height,
+  startX = 0,
+  startY = 0
+) {
+  let numWholes = Math.floor(mixedNum.numerator / mixedNum.denominator);
+  let maxWholes = 0; // This is how many circles will be drawn on the svg
+
+  if (mixedNum.numerator % mixedNum.denominator == 0) {
+    maxWholes = numWholes + mixedNum.wholeNum;
+  } else {
+    maxWholes = numWholes + mixedNum.wholeNum + 1;
+  } // Determines how many total circles will be drawn even if the last one is only partially shaded
+
+  radius = Math.min((width * 0.8) / 2, (height * 0.8) / maxWholes / 2);
+
+  let horizontalSpacing = (width - radius * 2) / 2;
+  let verticalSpacing = (height - maxWholes * radius * 2) / (maxWholes + 1);
+
+  let currentX = startX + radius + horizontalSpacing / 2;
+  let currentY = startY + radius + verticalSpacing;
+  let slicesLeft = mixedNum.numerator;
+  let currentWhole = 1;
+  let fillRadius = radius - lineThickness / 2;
+
+  // This loop draws the circles and shades in the correct # of slices given an improper fraction
+  for (let i = 0; i < maxWholes; i++) {
+    // Draws black outline of circle
+    drawCircle(svg, currentX, currentY, radius, lineThickness);
+
+    if (currentWhole <= mixedNum.wholeNum) {
+      drawCircle(
+        svg,
+        currentX,
+        currentY,
+        fillRadius,
+        lineThickness,
+        "none",
+        colorFill
+      );
+      currentWhole = currentWhole + 1;
+    } else {
+      shadeFractionSlices(
+        svg,
+        currentX,
+        currentY,
+        fillRadius,
+        slicesLeft,
+        mixedNum.denominator,
+        lineThickness,
+        colorFill,
+        angleWherePiecesStart
+      );
+      makeFractionLines(
+        svg,
+        currentX,
+        currentY,
+        radius,
+        mixedNum.denominator,
+        lineThickness
+      );
+
+      slicesLeft = slicesLeft - mixedNum.denominator;
+    }
+    currentY = currentY + 2 * radius + verticalSpacing; // Move to next circle
+  }
+}
+
 function adjustWidthAndHeightToScale(maxWholes1, maxWholes2, width, height) {
   let adjustment = {};
   adjustment.wholeSize = parseFloat(
