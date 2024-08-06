@@ -271,10 +271,14 @@ function drawVerticalFractionBar(
   colorFill
 ) {
   const svgNS = svg.namespaceURI;
-  const interval = parseFloat((width / denominator).toFixed(2));
+  let interval = 0;
+  if (denominator > 0) {
+    interval = parseFloat((width / denominator).toFixed(2));
+  }
   let separator = interval; // Need two variables becuase separator will increment while interval stays constant.
 
   let shaded = interval * numerator;
+  console.log(`interval is ${interval} and numerator is ${numerator}`);
 
   const shadedRect = document.createElementNS(svgNS, "rect");
   shadedRect.setAttribute("x", x);
@@ -321,7 +325,10 @@ function drawHorizontalFractionBar(
   colorFill
 ) {
   const svgNS = svg.namespaceURI;
-  const interval = parseFloat((height / denominator).toFixed(2));
+  let interval = 0;
+  if (denominator > 0) {
+    interval = parseFloat((height / denominator).toFixed(2));
+  }
   let separator = interval; // Need two variables becuase separator will increment while interval stays constant.
 
   let shaded = interval * numerator;
