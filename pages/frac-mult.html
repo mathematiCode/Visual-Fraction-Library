@@ -22,12 +22,12 @@
     </button>
     <nav class="side-nav" data-state="closed">
       <a class="nav-link" href="../index.html"> Home</a>
-      <a class="nav-link" tabindex="" href="../pages/basic-frac.html">Simple Fractions</a>
-      <a class="nav-link" tabindex="" href="../pages/frac-div.html">
+      <a class="nav-link" href="../pages/basic-frac.html">Simple Fractions</a>
+      <a class="nav-link" href="../pages/frac-div.html">
         Fraction Division</a>
-      <a class="nav-link" tabindex="" href="../pages/terms-of-use.html">
+      <a class="nav-link" href="../pages/terms-of-use.html">
         Terms of Use</a>
-      <a class="nav-link" tabindex="" href="../pages/svg-vs-png.html">
+      <a class="nav-link" href="../pages/svg-vs-png.html">
         SVG vs PNG</a>
     </nav>
 
@@ -51,27 +51,38 @@
 
       <div class="user-inputs">
         <div class="problem-input">
-          <input aria-label="first factor whole number" type="number" class="whole-number"
-            id="multiplication-whole-number1" />
-          <div class="fraction-input">
-            <input aria-label="first factor numerator" type="number" class="numerator" id="multiplication-numerator1" />
-            <hr id="fracBar" />
-            <input aria-label="first factor denominator" type="number" class="denominator"
-              id="multiplication-denominator1" />
+          <div class="factor-with-label">
+            <p class="factor-label"> Size of Group</p>
+            <div class="factor">
+              <input aria-label="first factor whole number" type="number" class="whole-number"
+                id="multiplication-whole-number1" placeholder="" />
+              <div class="fraction-input">
+                <input aria-label="first factor numerator" type="number" class="numerator"
+                  id="multiplication-numerator1" placeholder="" />
+                <hr id="fracBar" />
+                <input aria-label="first factor denominator" type="number" class="denominator"
+                  id="multiplication-denominator1" placeholder="" />
+              </div>
+            </div>
           </div>
           <p class="symbol">×</p>
-          <input aria-label="second factor whole number" type="number" class="whole-number"
-            id="multiplication-whole-number2" />
-          <div class="fraction-input">
-            <input aria-label="second factor numerator" type="number" class="numerator"
-              id="multiplication-numerator2" />
-            <hr id="fracBar" />
-            <input aria-label="second factor denominator" type="number" class="denominator"
-              id="multiplication-denominator2" />
+          <div class="factor-with-label">
+            <p class="factor-label"> Number of Groups</p>
+            <div class="factor">
+              <input aria-label="second factor whole number" type="number" class="whole-number"
+                id="multiplication-whole-number2" placeholder="" />
+              <div id="factor2-fraction" class="fraction-input">
+                <input aria-label="second factor numerator" type="number" class="numerator"
+                  id="multiplication-numerator2" placeholder="" />
+                <hr id="fracBar" />
+                <input aria-label="second factor denominator" type="number" class="denominator"
+                  id="multiplication-denominator2" placeholder="" />
+              </div>
+            </div>
           </div>
         </div>
 
-        <div id="button-and-checkbox">
+        <div class="button-and-checkbox">
           <div id="to-scale">
             <input id="to-scale-checkbox" type="checkbox" aria-label="Draw to scale" />
             <p>Draw areas to scale</p>

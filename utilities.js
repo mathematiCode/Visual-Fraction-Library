@@ -357,6 +357,7 @@ function mixedNumCircles(
   colorFill = "rgb(120, 190, 250)",
   width,
   height,
+  maxPerLine = 4,
   startX = 0,
   startY = 0
 ) {
@@ -375,13 +376,12 @@ function mixedNumCircles(
   let circlesPerLine = maxWholes;
   let numLines = 1;
 
-  if (maxWholes <= 4) {
+  if (maxWholes <= maxPerLine) {
     // If there are only four or less circles this puts them all on one line because it looks silly otherwise.
     numLines = 1;
     circlesPerLine = maxWholes;
     radius = Math.min((width * 0.8) / maxWholes / 2, (height * 0.8) / 2);
   } else {
-    debugger;
     optimalDimensions = calculateOptimalDimensions(
       width * 0.8,
       height * 0.8,
@@ -390,6 +390,7 @@ function mixedNumCircles(
     circlesPerLine = optimalDimensions.itemsPerRow;
     numLines = optimalDimensions.numRows;
     radius = optimalDimensions.size / 2;
+    debugger;
   }
 
   horizontalSpacing = (width - circlesPerLine * radius * 2) / circlesPerLine;
@@ -397,7 +398,7 @@ function mixedNumCircles(
   verticalSpacing = (height - numLines * radius * 2) / (numLines + 1);
 
   let currentX = radius + horizontalSpacing / 2;
-  let currentY = radius + verticalSpacing;
+  let currentY = radius + verticalSpacing + startY;
   let slicesLeft = mixedNum.numerator;
   let currentWhole = 1;
   let fillRadius = radius - lineThickness / 2;
@@ -405,6 +406,7 @@ function mixedNumCircles(
   // This loop draws the circles and shades in the correct # of slices given an improper fraction
   for (let i = 0; i < maxWholes; i++) {
     if (currentX + radius >= width) {
+      debugger;
       currentY = currentY + radius * 2 + verticalSpacing + startY;
       // Moves the remaining circles to the next line if we run out of space
       currentX = radius + horizontalSpacing / 2 + startX;

@@ -79,6 +79,10 @@ function multiplicationFrac() {
 
   let openCloseNavButton = document.querySelector(".corner-logo");
   let sideNav = document.querySelector(".side-nav");
+  let toScaleContainer = document.getElementById("to-scale");
+  const factorLabels = document.querySelectorAll(".factor-label");
+  const factor2Fraction = document.getElementById("factor2-fraction");
+
   let multiplicationModel = document.getElementById(
     "multiplication-model-toggle"
   );
@@ -114,6 +118,11 @@ function multiplicationFrac() {
         document.getElementById("multiplication-denominator2").value
       );
 
+      toScaleContainer.style.setProperty("display", "flex");
+      factor2Fraction.style.setProperty("display", "flex");
+      factorLabels.forEach((label) => {
+        label.style.display = "none";
+      });
       let toScale = document.getElementById("to-scale-checkbox").checked;
 
       multiplicationSVG.innerHTML = "";
@@ -127,6 +136,11 @@ function multiplicationFrac() {
         toScale
       );
     } else {
+      toScaleContainer.style.setProperty("display", "none");
+      factor2Fraction.style.setProperty("display", "none");
+      factorLabels.forEach((label) => {
+        label.style.display = "grid";
+      });
       factor1.wholeNum = parseInt(
         document.getElementById("multiplication-whole-number1").value
       );
@@ -139,10 +153,20 @@ function multiplicationFrac() {
       factor2.wholeNum = parseInt(
         document.getElementById("multiplication-whole-number2").value
       );
+
+      mathVisual.fractionMultiplicationGroupModel(
+        multiplicationSVG,
+        factor1,
+        factor2,
+        (lineThickness = 5),
+        (colorFill = "hsla(188, 37%, 51%,70%)")
+      );
     }
   }
 
   generateMultiplicationButton.addEventListener("click", function () {
+    const multiplicationSVG = document.getElementById("multiplication-svg");
+    multiplicationSVG.innerHTML = "";
     generateMultiplicationModel();
   });
 
@@ -150,6 +174,12 @@ function multiplicationFrac() {
   const downloadMultiplicationPNG = document.getElementById("mult-png-button");
   const copyPngButton = document.getElementById("mult-copy-button");
   const toScaleCheck = document.getElementById("to-scale-checkbox");
+
+  multiplicationModel.addEventListener("change", () => {
+    const multiplicationSVG = document.getElementById("multiplication-svg");
+    multiplicationSVG.innerHTML = "";
+    generateMultiplicationModel();
+  });
 
   toScaleCheck.addEventListener("change", function () {
     const multiplicationSVG = document.getElementById("multiplication-svg");

@@ -2,7 +2,12 @@ input {
   text-align: center;
   border-radius: 10px;
   background-color: transparent;
+  border: 2px solid black;
   box-shadow: 0px 2px 5px #629ead;
+}
+
+input:placeholder-shown {
+  border: 2px solid hsl(0, 0%, 70%);
 }
 
 .numerator,
@@ -57,6 +62,23 @@ input {
   align-items: center;
   margin-right: 10px;
   margin-left: 10px;
+}
+
+.factor {
+  display: flex;
+  grid-row: 2/3;
+}
+
+.factor-with-label {
+  display: grid;
+  grid-template-rows: 25px 1fr;
+  gap: 4px;
+  justify-content: center;
+  align-items: center;
+}
+
+#factor2-fraction {
+  display: none;
 }
 
 #fracBar {
@@ -139,7 +161,7 @@ input:checked + .slider:before {
 .model-selection {
   display: grid;
   grid-row: 2/3;
-  width: 350px;
+  width: 380px;
   grid-template-columns: 1fr 70px 1fr;
 }
 
@@ -152,7 +174,7 @@ input:checked + .slider:before {
 }
 
 #to-scale {
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
   gap: 8px;
@@ -162,6 +184,11 @@ input:checked + .slider:before {
 #to-scale-checkbox {
   width: 1.3rem;
   height: 1.3rem;
+  grid-row: 1/2;
+}
+
+#generate-multiplication {
+  grid-row: 2/3;
 }
 
 #to-scale-checkbox:checked {
@@ -169,11 +196,11 @@ input:checked + .slider:before {
 }
 
 .button-and-checkbox {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: 50px 1fr;
   align-items: center;
-  gap: 0px;
-  margin-bottom: 15px;
+  gap: 10px;
+  margin-bottom: 0px;
 }
 
 #type-of-division {
