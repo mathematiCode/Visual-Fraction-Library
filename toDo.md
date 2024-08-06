@@ -2,7 +2,7 @@ Next Steps
 
 - Add a fraction division model for when the divisor is greater than the dividend ✅
 - Add labels to division models
-- Add circle model for multiplication
+- Add group model for multiplication
 - Add an SVG vs PNG page ✅
 - Add side menu from corner logo ✅
 
@@ -22,11 +22,12 @@ Models to Add
 - Division when divisor > dividend circle ✅
 - Division when divisor > dividend bar model ✅
 - Multiplication Area Model ✅
-- Multiplication Circles
+- Multiplication Groups
+- Fraction of a Whole Model
 
 UI
 
-- Use an icon for side nav to expand/collapsse
+- Use an icon for side nav to expand/collapse
 - Add Sign Up/ Log In Page to Navigation
 - Fix Toggle Quirk ✅
 - Add animation on logo
@@ -46,6 +47,7 @@ Other To Do's
 - Sign up Form ✅
 - SVG vs PNG page ✅
 - Side bar navigation ✅
+- Fix bug in multiplicationAreaModel where some inputs are blank but it's still valid overall and doesn't generate.
 - If an input has some blanks but still valid overall, set the blanks to 0.
 
 Customizations to Add

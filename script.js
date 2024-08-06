@@ -159,13 +159,14 @@ function multiplicationFrac() {
         factor1,
         factor2,
         (lineThickness = 5),
-        (colorFill = "hsla(188, 37%, 51%,70%)"),
-        (colorFill2 = "hsla(96, 70%, 66%,50%)")
+        (colorFill = "hsla(188, 37%, 51%,70%)")
       );
     }
   }
 
   generateMultiplicationButton.addEventListener("click", function () {
+    const multiplicationSVG = document.getElementById("multiplication-svg");
+    multiplicationSVG.innerHTML = "";
     generateMultiplicationModel();
   });
 
