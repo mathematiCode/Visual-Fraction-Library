@@ -157,8 +157,8 @@ h2 {
   background-color: var(--teal-900);
 }
 
-#contribute-link {
-  font-weight: 700;
+.bold-link {
+  font-weight: 600;
   text-decoration: underline;
 }
 

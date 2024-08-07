@@ -89,8 +89,14 @@ nav {
 
 .side-nav[data-state="closed"] .corner-logo {
   transform: translate(-100px, 0px);
-  transition: transform 0.4s;
+  transition: transform 0.3s;
 }
+
+/* .side-nav[data-state="open"] .corner-logo {
+  left: -80px;
+  transform: translate(100px, 0px);
+  transition: transform 0.3s;
+} */
 
 #expand-collapse-nav {
   border: 0px solid transparent;
