@@ -156,3 +156,12 @@ h2 {
 #buy-me-a-coffee:hover {
   background-color: var(--teal-900);
 }
+
+#contribute-link {
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+.title {
+  margin-top: 20px;
+}
