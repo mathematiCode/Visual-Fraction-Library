@@ -19,10 +19,11 @@
 
 	<div>
 		<div class="two-column-layout">
-			<button class="nav-toggle" aria-label="Open or Close Nav Bar">
+
+
+			<nav class="side-nav" data-state="open">
+				<button id="expand-collapse-nav" aria-label="Open or Close Nav Bar"> </button>
 				<img class="corner-logo" src="../icons-logos/small-logo.png" alt="Visual Fraction Library - Home" />
-			</button>
-			<nav class="side-nav" data-state="closed">
 				<a class="nav-link" href="../index.html"> Home</a>
 				<a class="nav-link" href="../pages/basic-frac.html">Simple Fractions</a>
 				<a class="nav-link" href="../pages/frac-mult.html">Fraction Multiplication</a>
@@ -125,6 +126,7 @@
 	<script src="../lib/divisionFunctions.js"></script>
 	<script>
 		divisionFrac();
+		buttonFunctions();
 	</script>
 	</body>
 

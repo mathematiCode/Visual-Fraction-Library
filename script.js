@@ -10,15 +10,17 @@ function basicFrac() {
   const basicSVG = document.getElementById("basic-svg");
   let mixedNum = {};
 
-  let openCloseNavButton = document.querySelector(".corner-logo");
-  let sideNav = document.querySelector(".side-nav");
+  // let openCloseNavButton = document.getElementById("expand-collapse-nav");
+  // let sideNav = document.querySelector(".side-nav");
 
-  openCloseNavButton.addEventListener("click", () => {
-    if (sideNav.dataset.state === "open") {
-      sideNav.dataset.state = "closed";
-    } else sideNav.dataset.state = "open";
-    console.log(sideNav.dataset.state);
-  });
+  // openCloseNavButton.addEventListener("click", () => {
+  //   if (sideNav.dataset.state === "open") {
+  //     sideNav.dataset.state = "closed";
+  //   } else {
+  //     sideNav.dataset.state = "open";
+  //   }
+  //   console.log(sideNav.dataset.state);
+  // });
 
   generateBasicButton.addEventListener("click", function () {
     mixedNum.wholeNum = parseInt(
@@ -378,7 +380,7 @@ function index() {
 }
 
 function buttonFunctions() {
-  let openCloseNavButton = document.querySelector(".corner-logo");
+  let openCloseNavButton = document.getElementById("expand-collapse-nav");
   let sideNav = document.querySelector(".side-nav");
 
   openCloseNavButton.addEventListener("click", () => {

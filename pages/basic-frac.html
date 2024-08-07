@@ -5,10 +5,7 @@
   <meta content="width=device-width" name="viewport">
   <meta name="description"
     content="Generate SVG and PNG images of visual models of fractions and mixed numbers including circle models and bar models.">
-  <!-- <link href="https://fonts.googleapis.com/css?family=Advent Pro" rel="stylesheet" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /> -->
-  <link rel="stylesheet" href="../Lovelo/Commercial/WEB/Lovelo-LineBold.woff">
+  <!-- <link rel="stylesheet" href="../Lovelo/Commercial/WEB/Lovelo-LineBold.woff"> -->
 
   <!--  <link
   href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
@@ -23,10 +20,9 @@
 
 <body>
   <div class="two-column-layout">
-    <button class="nav-toggle" aria-label="Open or Close Nav Bar">
+    <nav class="side-nav" data-state="open">
       <img class="corner-logo" src="../icons-logos/small-logo.png" alt="Visual Fraction Library Logo" />
-    </button>
-    <nav class="side-nav" data-state="closed">
+      <button id="expand-collapse-nav" aria-label="Open or Close Nav Bar"> </button>
       <a class="nav-link" href="../index.html">Home</a>
       <a class="nav-link" href="../pages/frac-mult.html">Fraction Multiplication</a>
       <a class="nav-link" href="../pages/frac-div.html"> Fraction Division</a>
@@ -90,8 +86,13 @@
   <script src="../utilities.js"></script>
   <script src="../lib/basicFunctions.js"></script>
   <script> basicFrac()</script>
+  <script> buttonFunctions() </script>
 
 
 </body>
 
 </html>
+
+
+
+<!-- Icon Credit: https://thenounproject.com/icon/chevron-3641462/  -->
