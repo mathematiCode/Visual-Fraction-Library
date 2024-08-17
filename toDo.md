@@ -49,6 +49,11 @@ Other To Do's
 - Side bar navigation ✅
 - Fix bug in multiplicationAreaModel where some inputs are blank but it's still valid overall and doesn't generate.
 - If an input has some blanks but still valid overall, set the blanks to 0.
+- Fix line thickness for basic circle model for proper fractions. ✅
+- Set download width to only the width needed
+- Make division generate for any valid set of inputs with some blanks
+- Fix bugs where it colors too much or not enough for division bar
+- Add white background option for area model
 
 Customizations to Add
 

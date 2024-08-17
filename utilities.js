@@ -233,7 +233,7 @@ function makeFractionLines(
   y,
   radius,
   denominator,
-  lineThickness,
+  lineThickness = 5,
   startAngle = angleWherePiecesStart
 ) {
   const angle = (Math.PI * 2) / denominator;
