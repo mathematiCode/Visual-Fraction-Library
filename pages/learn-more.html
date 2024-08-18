@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+     <meta charset="UTF-8" />
+     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+     <meta name="description" content="Generate SVG and PNG images of visual models depicting fraction operations." />
+
+     <title>Learn More</title>
+     <link rel="icon" type="image/x-icon" href="../icons-logos/Favicon.svg">
+     <link rel="stylesheet" href="../css/styles.css" />
+     <link rel="stylesheet" href="../css/nav.css" />
+</head>
+
+
+<body>
+     <img class="corner-logo" src="../icons-logos/Favicon.svg" alt="Visual Fraction Library Logo" />
+     <a id="home-button" href="../index.html"> Back to Home </a>
+     <div id="faq-container">
+          <h1>
+               Frequently Asked Questions
+          </h1>
+
+          <container class="q-and-a">
+               <h3 class="question" id="q1">
+                    Is it free?
+                    <div class="plus-minus" id="q1-toggle" data-state="collapsed">
+                    </div>
+               </h3>
+               <p class="answer" id="answer1">Visual Fraction Library is completely free for classroom and personal use.
+                    If you intend to use images generated on our site to sell commercially, you will need to make a one
+                    time donation to recieve a commercial use license. </p>
+               <hr>
+          </container>
+
+          <container class="q-and-a">
+               <h3 class="question" id="q2"> What image types are provided?
+                    <div class="plus-minus" id="q2-toggle" data-state="collapsed">
+                    </div>
+               </h3>
+               <p class="answer" id="answer2">Currently our images can be downloaded as SVG's (scalable vector graphics)
+                    or PNG's (portable network graphics). They can also be copied and pasted into powerpoint, google
+                    docs, canva, etc as PNG's. </p>
+               <hr>
+          </container>
+
+
+          <container class="q-and-a">
+               <h3 class="question" id="q3"> How can I help?
+                    <div class="plus-minus" id="q3-toggle" data-state="collapsed">
+                    </div>
+               </h3>
+
+               <p class="answer" id="answer3"> Reach out to <a class="bold-link"
+                         href="mailto:support@visualfractionlibrary.com">support@visualfractionlibrary.com </a> if you
+                    are interested in partnering with us. We are
+                    looking for people who can help promote the site, guest blogs related to creating and using visuals
+                    to teach math, and more.
+               </p>
+               <hr>
+          </container>
+          <container class="q-and-a">
+               <h3 class="question" id="q4"> When will it be released?
+                    <div class="plus-minus" id="q4-toggle" data-state="collapsed">
+                    </div>
+               </h3>
+
+               <p class="answer" id="answer4"> We are on track to release the site around mid-september. We are in the
+                    process of conducting research and user testing to ensure our product meets all of your needs. If
+                    you would like to help shape the website or participate in user testing, fill out this<a
+                         href="https://docs.google.com/forms/d/e/1FAIpQLSfRikZWRGzkHlukkmDO5cccAI0ELHNNhM6svtc3ytra0ll1dw/viewform?usp=sf_link">survey.</a>
+               </p>
+          </container>
+     </div>
+
+
+     <!-- 
+     <iframe id="subscribe-form" src="https://embeds.beehiiv.com/00190cb8-c18d-4c5d-bea5-8fc5bf7c958c"
+          data-test-id="beehiiv-embed" width="95%" height="250" frameborder="0" scrolling="no"></iframe> -->
+</body>
+
+</html>
+
+<style>
+     :root {
+          font-size: 16px;
+     }
+
+     * {
+          box-sizing: border-box;
+     }
+
+     body {
+          width: 98vw;
+          height: 98vh;
+          display: flex;
+          gap: 15px;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+     }
+
+     #faq-container {
+          margin-left: 15px;
+          margin-right: 15px;
+          margin-top: auto;
+          margin-bottom: auto;
+          width: 70%;
+          height: fit-content;
+          inset: 0;
+          padding-bottom: 15px;
+          /* overflow: auto; */
+          margin-inline: auto;
+          background: var(--teal-100);
+          border: 5px solid var(--teal-900);
+          display: flex;
+          flex-direction: column;
+          border-radius: 20px;
+     }
+
+     p {
+          font-size: 1.3rem;
+     }
+
+     #faq-container>* {
+          padding-left: 1.5rem;
+          padding-right: 1.5rem;
+     }
+
+     h1 {
+          font-size: 2.4rem;
+          display: grid;
+          align-self: center;
+          position: sticky;
+          top: 0;
+          z-index: 2;
+          padding: 10px;
+          border-bottom: 4px solid var(--teal-800);
+          background: var(--teal-100);
+     }
+
+     .answer {
+          display: none;
+     }
+
+
+     .plus-minus {
+          background-image: url(images/icon-plus.svg);
+          width: 30px;
+          height: 30px;
+          grid-column-start: 2;
+          grid-column-end: 3;
+          cursor: pointer;
+          padding: 1px;
+          box-sizing: border-box;
+     }
+
+     .plus-minus[data-state="expanded"] {
+          background-image: url(../icons-logos/icon-minus.svg);
+     }
+
+     .plus-minus[data-state="collapsed"] {
+          background-image: url(../icons-logos/icon-plus.svg);
+     }
+
+     .question {
+          display: grid;
+          font-size: 1.3rem;
+          font-weight: 600;
+          grid-template-columns: 93% 7%;
+          grid-template-rows: 1fr;
+          align-items: flex-start;
+          cursor: pointer;
+     }
+
+     .question:hover,
+     .question:focus-within {
+          color: var(--teal-800);
+     }
+
+     hr {
+          background-color: #4e7078;
+          color: 1px solid #4e7078;
+          stroke-width: 5%;
+     }
+
+     a:not(#home-button) {
+          font-weight: 900;
+     }
+
+     #subscribe-form {
+          border-radius: 10px;
+          border: 5px solid #16434a;
+          margin: 0;
+          background-color: transparent;
+          bottom: 10px;
+     }
+
+     #home-button {
+          background-color: var(--faded-green-100);
+          position: absolute;
+          right: 10px;
+          top: 10px;
+          border: 5px solid var(--teal-800);
+          border-radius: 8px;
+          box-sizing: border-box;
+          font-size: 1.5rem;
+          padding: 8px;
+          max-width: 20ch;
+          margin-left: 1rem;
+          margin-right: 1rem;
+          margin-top: 1rem;
+          color: var(--teal-900);
+          cursor: pointer;
+     }
+</style>
+
+<script>
+     const answer1 = document.getElementById("answer1");
+     const answer2 = document.getElementById("answer2");
+     const answer3 = document.getElementById("answer3");
+     const answer4 = document.getElementById("answer4");
+
+     const toggleButton1 = document.getElementById("q1-toggle");
+     const toggleButton2 = document.getElementById("q2-toggle");
+     const toggleButton3 = document.getElementById("q3-toggle");
+     const toggleButton4 = document.getElementById("q4-toggle");
+
+     const question1 = document.getElementById("q1");
+     const question2 = document.getElementById("q2");
+     const question3 = document.getElementById("q3");
+     const question4 = document.getElementById("q4");
+
+
+
+
+     function showHideAnswer(jsElement, toggleButton) {
+          let currentDisplay = window.getComputedStyle(jsElement).display;
+
+          // Toggle the display property based on its current value
+          if (currentDisplay === "none") {
+               jsElement.style.display = "inline";
+               toggleButton.setAttribute('data-state', 'expanded');
+          } else {
+               jsElement.style.display = "none";
+               toggleButton.setAttribute('data-state', 'collapsed');
+          }
+     };
+
+     question1.addEventListener("click", function () {
+          showHideAnswer(answer1, toggleButton1);
+          console.log("Question Pressed!");
+     });
+
+     question2.addEventListener("click", function () {
+          showHideAnswer(answer2, toggleButton2);
+     });
+
+
+     question3.addEventListener("click", function () {
+          showHideAnswer(answer3, toggleButton3);
+     });
+
+
+     question4.addEventListener("click", function () {
+          showHideAnswer(answer4, toggleButton4);
+     });
+
+</script>
