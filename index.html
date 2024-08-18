@@ -8,7 +8,7 @@
      <meta http-equiv="X-UA-Compatible" content="ie=edge" />
      <meta name="description" content="Generate SVG and PNG images of visual models depicting fraction operations." />
 
-     <title>Fraction Visual Library</title>
+     <title>Visual Fraction Library</title>
      <link rel="icon" type="image/x-icon" href="../icons-logos/Favicon.svg">
      <link rel="stylesheet" href="./css/styles.css" />
      <link rel="stylesheet" href="./css/nav.css" />
@@ -17,6 +17,7 @@
 
 <body>
      <img class="corner-logo" src="./icons-logos/Favicon.svg" alt="Visual Fraction Library Logo" />
+     <a id="learn-more-button" href="./pages/learn-more.html"> Learn More </a>
      <div id="video-container">
           <video height="410" autoplay muted loop>
                <source src="./icons-logos/VFL-cropped-video-demo.mp4" type="video/mp4">
@@ -115,6 +116,24 @@
           margin: 0;
           background-color: transparent;
           bottom: 10px;
+     }
+
+     #learn-more-button {
+          background-color: var(--faded-green-100);
+          position: absolute;
+          right: 10px;
+          top: 10px;
+          border: 5px solid var(--teal-800);
+          border-radius: 8px;
+          box-sizing: border-box;
+          font-size: 1.5rem;
+          padding: 8px;
+          max-width: 20ch;
+          margin-left: 1rem;
+          margin-right: 1rem;
+          margin-top: 1rem;
+          color: var(--teal-900);
+          cursor: pointer;
      }
 </style>
 
