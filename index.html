@@ -9,7 +9,7 @@
      <meta name="description" content="Generate SVG and PNG images of visual models depicting fraction operations." />
 
      <title>Visual Fraction Library</title>
-     <link rel="icon" type="image/x-icon" href="../icons-logos/Favicon.svg">
+     <link rel="icon" type="image/x-icon" href="./icons-logos/Favicon.svg">
      <link rel="stylesheet" href="./css/styles.css" />
      <link rel="stylesheet" href="./css/nav.css" />
 </head>
@@ -19,7 +19,7 @@
      <img class="corner-logo" src="./icons-logos/Favicon.svg" alt="Visual Fraction Library Logo" />
      <a id="learn-more-button" href="./pages/learn-more.html"> Learn More </a>
      <div id="video-container">
-          <video height="410" autoplay muted loop>
+          <video autoplay muted loop>
                <source src="./icons-logos/VFL-cropped-video-demo.mp4" type="video/mp4">
                <source src="movie.ogg" type="video/ogg">
                Your browser does not support the video tag.
@@ -32,6 +32,9 @@
 
      <iframe id="subscribe-form" src="https://embeds.beehiiv.com/00190cb8-c18d-4c5d-bea5-8fc5bf7c958c"
           data-test-id="beehiiv-embed" width="95%" height="250" frameborder="0" scrolling="no"></iframe>
+     <a id="subscribe-button" href="https://magic.beehiiv.com/v1/c785f6d7-0a69-4016-8ec0-f7d62097b17f?email={{email}}">
+          Subscribe to Email
+          Updates</a>
 </body>
 
 </html>
@@ -68,7 +71,6 @@
      #video-container {
           border-radius: 12px;
           margin-top: 12px;
-          aspect-ratio: 16/9;
           overflow: hidden;
           position: relative;
           display: grid;
@@ -79,7 +81,23 @@
 
      @media(max-width: 700px) {
           #video-container {
-               width: 100%;
+               width: 95%;
+               margin-top: 100px;
+               height: fit-content;
+          }
+
+          video {
+               width: 100% !important;
+          }
+     }
+
+     @media (max-height: 650px) {
+          #subscribe-form {
+               display: none;
+          }
+
+          #subscribe-button {
+               display: flex !important;
           }
      }
 
@@ -107,20 +125,46 @@
           grid-column: 1/2;
           grid-row: 1/2;
           z-index: 0;
+          width: 700px;
           clip-path: inset(3px 3px 1px 4px);
      }
 
      #subscribe-form {
           border-radius: 10px;
-          border: 5px solid #16434a;
+          position: absolute;
+          bottom: 15px;
+          left: auto;
+          right: auto;
+          width: 95%;
+          border: 5px solid var(--teal-800);
           margin: 0;
           background-color: transparent;
           bottom: 10px;
      }
 
+     #subscribe-button {
+          display: none;
+          background-color: var(--faded-green-100);
+          position: absolute;
+          bottom: 10px;
+          border: 5px solid var(--teal-800);
+          border-radius: 8px;
+          box-sizing: border-box;
+          font-size: 1.5rem;
+          padding: 8px;
+          max-width: 35ch;
+          margin-left: 1rem;
+          margin-right: 1rem;
+          margin-top: 1rem;
+          z-index: 3;
+          color: var(--teal-900);
+          cursor: pointer;
+     }
+
      #learn-more-button {
           background-color: var(--faded-green-100);
           position: absolute;
+          z-index: 3;
           right: 10px;
           top: 10px;
           border: 5px solid var(--teal-800);
