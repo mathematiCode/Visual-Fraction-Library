@@ -1,10 +1,9 @@
 Next Steps
 
-- Add a fraction division model for when the divisor is greater than the dividend ✅
-- Add labels to division models
-- Add group model for multiplication ✅
-- Add an SVG vs PNG page ✅
-- Add side menu from corner logo ✅
+- Add white background for area model
+- Modify the download width if the image width is smaller
+- Fix division circles alternating colors depending on denominator
+-
 
 Refactoring
 
@@ -16,6 +15,7 @@ Refactoring
 - Create customizations object to minimize parameters
 - Create and use smaller more reusable functions ✅
 - Simplify functions where possible ✅
+- Make email funnel and learn more pages more accessible
 
 Models to Add
 
@@ -27,10 +27,10 @@ Models to Add
 
 UI
 
-- Use an icon for side nav to expand/collapse
+- Use an icon for side nav to expand/collapse ✅
 - Add Sign Up/ Log In Page to Navigation
 - Fix Toggle Quirk ✅
-- Add animation on logo
+- Add animation on logo ✅
 - Add a checkIfValid function to the script to not run the function if the inputs are blank to prevent black borders for non-inputs
 - Add intuitive options to multiplication page
 
