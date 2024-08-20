@@ -130,6 +130,7 @@ function multiplicationFrac() {
       let toScale = document.getElementById("to-scale-checkbox").checked;
 
       multiplicationSVG.innerHTML = "";
+      multiplicationSVG.setAttribute("width", 800);
       mathVisual.fractionMultiplicationAreaModel(
         multiplicationSVG,
         factor1,
@@ -175,6 +176,7 @@ function multiplicationFrac() {
   generateMultiplicationButton.addEventListener("click", function () {
     const multiplicationSVG = document.getElementById("multiplication-svg");
     multiplicationSVG.innerHTML = "";
+    multiplicationSVG.setAttribute("width", 800);
     generateMultiplicationModel();
   });
 
@@ -186,12 +188,14 @@ function multiplicationFrac() {
   multiplicationModel.addEventListener("change", () => {
     const multiplicationSVG = document.getElementById("multiplication-svg");
     multiplicationSVG.innerHTML = "";
+    multiplicationSVG.setAttribute("width", 800);
     generateMultiplicationModel();
   });
 
   toScaleCheck.addEventListener("change", function () {
     const multiplicationSVG = document.getElementById("multiplication-svg");
     multiplicationSVG.innerHTML = "";
+    multiplicationSVG.setAttribute("width", 800);
     generateMultiplicationModel();
   });
   downloadMultiplicationSVG.addEventListener("click", function () {

@@ -268,7 +268,8 @@ function drawVerticalFractionBar(
   numerator,
   denominator,
   lineThickness,
-  colorFill
+  colorFill,
+  background = "transparent"
 ) {
   const svgNS = svg.namespaceURI;
   let interval = 0;
@@ -279,6 +280,16 @@ function drawVerticalFractionBar(
 
   let shaded = interval * numerator;
   console.log(`interval is ${interval} and numerator is ${numerator}`);
+
+  const backgroundColor = document.createElementNS(svgNS, "rect");
+  backgroundColor.setAttribute("x", x);
+  backgroundColor.setAttribute("y", y);
+  backgroundColor.setAttribute("width", width);
+  backgroundColor.setAttribute("height", height);
+  backgroundColor.setAttribute("fill", background);
+  backgroundColor.setAttribute("stroke", "transparent");
+  backgroundColor.setAttribute("stroke-width", 0);
+  svg.appendChild(backgroundColor);
 
   const shadedRect = document.createElementNS(svgNS, "rect");
   shadedRect.setAttribute("x", x);
@@ -512,27 +523,15 @@ function mixedNumCirclesHorizontal(
     radius = radius - 3;
     fillRadius = fillRadius - 3;
   }
-  startX =
-    (width - maxWholes * radius * 2 - horizontalSpacing * (maxWholes + 1)) / 2;
-  width = width - startX * 2;
+  // startX =
+  //   (width - maxWholes * radius * 2 - horizontalSpacing * (maxWholes + 1)) / 2;
+  // width = width - startX * 2;
+  startX = horizontalSpacing;
   startY = startY + verticalSpacing;
   let currentX = startX + radius + horizontalSpacing;
   let currentY = startY + radius + verticalSpacing;
   let slicesLeft = mixedNum.numerator;
   let currentWhole = 1;
-
-  if (border === true) {
-    const svgNS = svg.namespaceURI;
-    const blackBorder = document.createElementNS(svgNS, "rect");
-    blackBorder.setAttribute("x", startX);
-    blackBorder.setAttribute("y", startY);
-    blackBorder.setAttribute("width", width);
-    blackBorder.setAttribute("height", height);
-    blackBorder.setAttribute("fill", "none");
-    blackBorder.setAttribute("stroke", "black");
-    blackBorder.setAttribute("stroke-width", lineThickness);
-    svg.appendChild(blackBorder);
-  }
 
   // This loop draws the circles and shades in the correct # of slices given an improper fraction
   for (let i = 0; i < maxWholes; i++) {
@@ -574,6 +573,20 @@ function mixedNumCirclesHorizontal(
       slicesLeft = slicesLeft - mixedNum.denominator;
     }
     currentX = currentX + 2 * radius + horizontalSpacing; // Move to next circle
+  }
+  width = currentX - radius - horizontalSpacing;
+  svg.setAttribute("width", width + 15);
+  if (border === true) {
+    const svgNS = svg.namespaceURI;
+    const blackBorder = document.createElementNS(svgNS, "rect");
+    blackBorder.setAttribute("x", startX);
+    blackBorder.setAttribute("y", startY);
+    blackBorder.setAttribute("width", width);
+    blackBorder.setAttribute("height", height);
+    blackBorder.setAttribute("fill", "none");
+    blackBorder.setAttribute("stroke", "black");
+    blackBorder.setAttribute("stroke-width", lineThickness);
+    svg.appendChild(blackBorder);
   }
 }
 
