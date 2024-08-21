@@ -10,18 +10,6 @@ function basicFrac() {
   const basicSVG = document.getElementById("basic-svg");
   let mixedNum = {};
 
-  // let openCloseNavButton = document.getElementById("expand-collapse-nav");
-  // let sideNav = document.querySelector(".side-nav");
-
-  // openCloseNavButton.addEventListener("click", () => {
-  //   if (sideNav.dataset.state === "open") {
-  //     sideNav.dataset.state = "closed";
-  //   } else {
-  //     sideNav.dataset.state = "open";
-  //   }
-  //   console.log(sideNav.dataset.state);
-  // });
-
   generateBasicButton.addEventListener("click", function () {
     mixedNum.wholeNum = parseInt(
       document.getElementById("basic-whole-number").value
@@ -34,6 +22,7 @@ function basicFrac() {
     );
 
     basicSVG.innerHTML = "";
+    basicSVG.setAttribute("width", 800);
     if (modelToggle.checked) {
       mathVisual.fractionBar(basicSVG, mixedNum);
     } else {
@@ -52,6 +41,7 @@ function basicFrac() {
       document.getElementById("basic-denominator").value
     );
     basicSVG.innerHTML = "";
+    basicSVG.setAttribute("width", 800);
     if (modelToggle.checked) {
       mathVisual.fractionBar(basicSVG, mixedNum);
     } else {
@@ -266,6 +256,7 @@ function divisionFrac() {
         document.getElementById("division-denominator2").value
       );
       divisionSVG.innerHTML = "";
+      divisionSVG.setAttribute("width", 800);
       if (modelToggle.checked) {
         mathVisual.fractionDivisionBar(divisionSVG, dividend, divisor);
       } else {
@@ -313,6 +304,7 @@ function divisionFrac() {
   generateDivisionButton.addEventListener("click", function () {
     const divisionSVG = document.getElementById("division-svg");
     divisionSVG.innerHTML = "";
+    divisionSVG.setAttribute("width", 800);
     generateDivisionModel(divisionSVG);
   });
 
@@ -336,6 +328,7 @@ function divisionFrac() {
   modelToggle.addEventListener("change", () => {
     const divisionSVG = document.getElementById("division-svg");
     divisionSVG.innerHTML = "";
+    divisionSVG.setAttribute("width", 800);
     generateDivisionModel(divisionSVG);
   });
 }

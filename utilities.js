@@ -421,8 +421,13 @@ function mixedNumCircles(
   }
 
   horizontalSpacing = (width - circlesPerLine * radius * 2) / circlesPerLine;
-
   verticalSpacing = (height - numLines * radius * 2) / (numLines + 1);
+  if (horizontalSpacing > verticalSpacing) {
+    horizontalSpacing = verticalSpacing;
+  }
+
+  width = circlesPerLine * (radius * 2 + horizontalSpacing);
+  svg.setAttribute("width", width);
 
   let currentX = radius + horizontalSpacing / 2;
   let currentY = radius + verticalSpacing + startY;
