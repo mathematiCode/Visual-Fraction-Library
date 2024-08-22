@@ -490,6 +490,7 @@ function mixedNumCircles(
   modelInfo.verticalSpacing = verticalSpacing;
   modelInfo.radius = radius;
   modelInfo.svg = svg;
+  modelInfo.width = width;
   return modelInfo;
 }
 
