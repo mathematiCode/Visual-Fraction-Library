@@ -79,8 +79,8 @@ svg {
   grid-template-columns: 1fr;
 }
 
-/* @media screen and (max-width: 950px) {
+@media screen and (max-width: 950px) {
   svg {
     width: 85vw;
   }
-} */
+}

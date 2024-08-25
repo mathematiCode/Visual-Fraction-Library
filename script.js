@@ -22,7 +22,7 @@ function basicFrac() {
     );
 
     basicSVG.innerHTML = "";
-    basicSVG.setAttribute("width", 800);
+    basicSVG.setAttribute("width", window.innerWidth * 0.92);
     if (modelToggle.checked) {
       mathVisual.fractionBar(basicSVG, mixedNum);
     } else {
@@ -41,7 +41,7 @@ function basicFrac() {
       document.getElementById("basic-denominator").value
     );
     basicSVG.innerHTML = "";
-    basicSVG.setAttribute("width", 800);
+    basicSVG.setAttribute("width", window.innerWidth * 0.92);
     if (modelToggle.checked) {
       mathVisual.fractionBar(basicSVG, mixedNum);
     } else {
