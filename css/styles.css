@@ -165,3 +165,6 @@ h2 {
 .title {
   margin-top: 20px;
 }
+
+#basic-copy-button[data-state="copied"] {
+}

@@ -157,7 +157,7 @@ function multiplicationFrac() {
         factor1,
         factor2,
         (lineThickness = 5),
-        (colorFill = "hsla(188, 37%, 51%,70%)"),
+        (colorFill = "#54a4b0"),
         toScale
       );
     }
@@ -265,8 +265,11 @@ function divisionFrac() {
           dividend,
           divisor,
           (lineThickness = 5),
-          (colorFill = "#52a4b0"),
-          (colorFill2 = "#f0a68c")
+          (colorFill1 = "#52a4b0"), // teal
+          (colorFill2 = "#b7dd82"), // faded light green
+          (colorFill3 = "#f0a68c"), // peach
+          (colorFill4 = "#f5ef84"), // light yellow
+          (colorFill5 = "#928183") //  taupe
         );
       }
     } else {

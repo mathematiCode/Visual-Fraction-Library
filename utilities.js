@@ -189,6 +189,26 @@ function switchBetweenColors(current, colors) {
   return current;
 }
 
+function findIdealNumColors(
+  minGroupsPerCircle,
+  maxGroupsPerCircle,
+  currentNumColors
+) {
+  if (
+    maxGroupsPerCircle % currentNumColors === 1 ||
+    minGroupsPerCircle % currentNumColors === 1
+  ) {
+    return findIdealNumColors(
+      minGroupsPerCircle,
+      maxGroupsPerCircle,
+      currentNumColors + 1
+    );
+  } else {
+    console.log(`Returning ${currentNumColors}`);
+    return currentNumColors;
+  }
+}
+
 function shadeFractionSlices(
   svg,
   x,
