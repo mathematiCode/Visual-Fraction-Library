@@ -243,9 +243,13 @@ function divisionFrac() {
       dividend.wholeNum = parseInt(
         document.getElementById("division-whole-number1").value
       );
-      dividend.numerator = parseInt(
-        document.getElementById("division-numerator1").value
-      );
+      let numeratorPlaceholder = document.getElementById(
+        "division-numerator1"
+      ).value;
+      if (numeratorPlaceholder == "") {
+        numeratorPlaceholder = 0;
+      }
+      dividend.numerator = parseInt(numeratorPlaceholder);
       dividend.denominator = parseInt(
         document.getElementById("division-denominator1").value
       );
