@@ -94,6 +94,7 @@ svg {
   .download-button {
     margin-left: 6px;
     margin-right: 6px;
+    max-width: 10ch;
   }
   h1 {
     font-size: 1.7rem;
