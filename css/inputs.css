@@ -68,13 +68,13 @@ input:placeholder-shown {
   .numerator,
   .denominator {
     font-size: 1.4rem;
-    height: 40px;
-    width: 30px !important;
+    height: 30px;
+    width: 20px !important;
   }
   .whole-number {
     font-size: 1.9rem;
-    height: 90px;
-    width: 50px !important;
+    height: 80px;
+    width: 40px !important;
   }
 }
 
