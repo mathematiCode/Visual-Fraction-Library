@@ -45,6 +45,7 @@ input:placeholder-shown {
   .whole-number {
     font-size: 1.9rem;
     height: 90px;
+    width: 50px;
   }
 }
 

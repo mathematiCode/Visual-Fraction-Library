@@ -120,7 +120,10 @@ function multiplicationFrac() {
       let toScale = document.getElementById("to-scale-checkbox").checked;
 
       multiplicationSVG.innerHTML = "";
-      multiplicationSVG.setAttribute("width", 800);
+      multiplicationSVG.setAttribute(
+        "width",
+        Math.min(800, window.innerWidth * 0.8)
+      );
       mathVisual.fractionMultiplicationAreaModel(
         multiplicationSVG,
         factor1,
@@ -166,7 +169,10 @@ function multiplicationFrac() {
   generateMultiplicationButton.addEventListener("click", function () {
     const multiplicationSVG = document.getElementById("multiplication-svg");
     multiplicationSVG.innerHTML = "";
-    multiplicationSVG.setAttribute("width", 800);
+    multiplicationSVG.setAttribute(
+      "width",
+      Math.min(800, window.innerWidth * 0.8)
+    );
     generateMultiplicationModel();
   });
 
@@ -178,14 +184,20 @@ function multiplicationFrac() {
   multiplicationModel.addEventListener("change", () => {
     const multiplicationSVG = document.getElementById("multiplication-svg");
     multiplicationSVG.innerHTML = "";
-    multiplicationSVG.setAttribute("width", 800);
+    multiplicationSVG.setAttribute(
+      "width",
+      Math.min(800, window.innerWidth * 0.8)
+    );
     generateMultiplicationModel();
   });
 
   toScaleCheck.addEventListener("change", function () {
     const multiplicationSVG = document.getElementById("multiplication-svg");
     multiplicationSVG.innerHTML = "";
-    multiplicationSVG.setAttribute("width", 800);
+    multiplicationSVG.setAttribute(
+      "width",
+      Math.min(800, window.innerWidth * 0.8)
+    );
     generateMultiplicationModel();
   });
   downloadMultiplicationSVG.addEventListener("click", function () {
@@ -260,7 +272,7 @@ function divisionFrac() {
         document.getElementById("division-denominator2").value
       );
       divisionSVG.innerHTML = "";
-      divisionSVG.setAttribute("width", 800);
+      divisionSVG.setAttribute("width", Math.min(800, window.innerWidth * 0.8));
       if (modelToggle.checked) {
         mathVisual.fractionDivisionBar(divisionSVG, dividend, divisor);
       } else {
@@ -311,7 +323,7 @@ function divisionFrac() {
   generateDivisionButton.addEventListener("click", function () {
     const divisionSVG = document.getElementById("division-svg");
     divisionSVG.innerHTML = "";
-    divisionSVG.setAttribute("width", 800);
+    divisionSVG.setAttribute("width", Math.min(800, window.innerWidth * 0.8));
     generateDivisionModel(divisionSVG);
   });
 
@@ -335,7 +347,7 @@ function divisionFrac() {
   modelToggle.addEventListener("change", () => {
     const divisionSVG = document.getElementById("division-svg");
     divisionSVG.innerHTML = "";
-    divisionSVG.setAttribute("width", 800);
+    divisionSVG.setAttribute("width", Math.min(800, window.innerWidth * 0.8));
     generateDivisionModel(divisionSVG);
   });
 }
