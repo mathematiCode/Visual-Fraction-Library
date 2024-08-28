@@ -36,19 +36,6 @@ input:placeholder-shown {
   }
 }
 
-@media (max-width: 450px) {
-  .numerator,
-  .denominator {
-    font-size: 1.4rem;
-    height: 40px;
-  }
-  .whole-number {
-    font-size: 1.9rem;
-    height: 90px;
-    width: 50px;
-  }
-}
-
 @supports (field-sizing: inherit) {
   .whole-number,
   .numerator,
@@ -75,6 +62,20 @@ input:placeholder-shown {
   align-items: center;
   margin-right: 10px;
   margin-left: 10px;
+}
+
+@media (max-width: 450px) {
+  .numerator,
+  .denominator {
+    font-size: 1.4rem;
+    height: 40px;
+    width: 30px;
+  }
+  .whole-number {
+    font-size: 1.9rem;
+    height: 90px;
+    width: 50px;
+  }
 }
 
 .factor {
