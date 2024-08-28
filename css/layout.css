@@ -95,9 +95,11 @@ svg {
     margin-left: 6px;
     margin-right: 6px;
     max-width: 10ch;
+    font-size: 1.1rem;
   }
-  .blue-button {
-    font-size: 0.9rem;
+  .blue-button,
+  p {
+    font-size: 1.1rem;
   }
   h1 {
     font-size: 1.7rem;

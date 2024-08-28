@@ -69,12 +69,12 @@ input:placeholder-shown {
   .denominator {
     font-size: 1.4rem;
     height: 40px;
-    width: 30px;
+    width: 30px !important;
   }
   .whole-number {
     font-size: 1.9rem;
     height: 90px;
-    width: 50px;
+    width: 50px !important;
   }
 }
 
