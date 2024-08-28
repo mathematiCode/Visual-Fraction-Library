@@ -86,3 +86,21 @@ svg {
     max-width: 95vw;
   }
 }
+
+@media (max-width: 450px) {
+  .download-button-container {
+    gap: 8px;
+  }
+  .download-button {
+    margin-left: 6px;
+    margin-right: 6px;
+  }
+  h1 {
+    font-size: 1.7rem;
+    margin: 20px;
+    margin-left: 50px;
+  }
+  h2 {
+    font-size: 1.4rem;
+  }
+}

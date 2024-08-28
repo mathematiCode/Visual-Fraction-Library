@@ -36,6 +36,18 @@ input:placeholder-shown {
   }
 }
 
+@media (max-width: 450px) {
+  .numerator,
+  .denominator {
+    font-size: 1.4rem;
+    height: 40px;
+  }
+  .whole-number {
+    font-size: 1.9rem;
+    height: 90px;
+  }
+}
+
 @supports (field-sizing: inherit) {
   .whole-number,
   .numerator,
