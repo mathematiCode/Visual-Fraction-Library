@@ -76,6 +76,14 @@ input:placeholder-shown {
     height: 60px;
     width: 25px !important;
   }
+  #fracBar {
+    width: 35px;
+  }
+  .problem-input,
+  #divisor-larger,
+  #divisor-smaller {
+    gap: 2px;
+  }
 }
 
 .factor {
