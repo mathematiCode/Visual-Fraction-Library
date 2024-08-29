@@ -29,6 +29,7 @@ body {
   gap: 10px;
   justify-content: center;
   align-items: center;
+  max-width: 98vw;
 }
 
 .problem-input {
@@ -110,6 +111,9 @@ svg {
     font-size: 1.4rem;
   }
   .symbol {
-    font-size: 1.5rem;
+    font-size: 2rem !important;
+  }
+  .user-inputs {
+    gap: 2px !important;
   }
 }
