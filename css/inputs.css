@@ -77,12 +77,12 @@ input:placeholder-shown {
     width: 25px !important;
   }
   #fracBar {
-    width: 35px;
+    width: 35px !important;
   }
   .problem-input,
   #divisor-larger,
   #divisor-smaller {
-    gap: 2px;
+    gap: 2px !important;
   }
 }
 
