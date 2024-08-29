@@ -116,6 +116,13 @@ svg {
   .user-inputs {
     flex-direction: column;
   }
+  .grid-layout {
+    grid-template-rows: 60px 40px 260px 1fr 70px;
+  }
   .button-and-checkbox {
+    gap: 0px !important;
+  }
+  .blue-button {
+    margin-top: 5px;
   }
 }
