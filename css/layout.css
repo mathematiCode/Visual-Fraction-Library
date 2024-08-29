@@ -114,6 +114,8 @@ svg {
     font-size: 2rem !important;
   }
   .user-inputs {
-    gap: 2px !important;
+    flex-direction: column;
+  }
+  .button-and-checkbox {
   }
 }

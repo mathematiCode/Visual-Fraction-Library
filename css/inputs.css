@@ -64,34 +64,6 @@ input:placeholder-shown {
   margin-left: 10px;
 }
 
-@media (max-width: 450px) {
-  .numerator,
-  .denominator {
-    font-size: 1.4rem;
-    height: 25px;
-    min-width: 20px !important;
-  }
-  .whole-number {
-    font-size: 1.9rem;
-    height: 60px;
-    min-width: 25px !important;
-    margin: 2px;
-    margin-top: 10px;
-  }
-  .fraction-input {
-    margin: 2px;
-    margin-top: 10px;
-  }
-  #fracBar {
-    width: 35px !important;
-  }
-  .problem-input,
-  #divisor-larger,
-  #divisor-smaller {
-    gap: 2px !important;
-  }
-}
-
 .factor {
   display: flex;
   grid-row: 2/3;
