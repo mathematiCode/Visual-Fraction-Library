@@ -98,7 +98,6 @@ svg {
     max-width: 10ch;
     font-size: 1.1rem;
   }
-  .blue-button,
   p {
     font-size: 1.1rem;
   }
@@ -118,11 +117,13 @@ svg {
   }
   .grid-layout {
     grid-template-rows: 60px 40px 260px 1fr 70px;
+    gap: 25px;
   }
   .button-and-checkbox {
     gap: 0px !important;
   }
   .blue-button {
     margin-top: 5px;
+    max-width: 30ch !important;
   }
 }
