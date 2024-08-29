@@ -117,13 +117,22 @@ svg {
   }
   .grid-layout {
     grid-template-rows: 60px 40px 260px 1fr 70px;
-    gap: 25px;
+    gap: 35px;
   }
   .button-and-checkbox {
     gap: 0px !important;
   }
   .blue-button {
     margin-top: 5px;
-    max-width: 30ch !important;
+    max-width: 40ch !important;
+  }
+  .numerator,
+  .denominator {
+    min-width: 50px !important;
+    height: 36px !important;
+  }
+  .whole-number {
+    min-width: 50px !important;
+    height: 70px !important;
   }
 }
