@@ -408,8 +408,13 @@ function mixedNumCircles(
   startX = 0,
   startY = 0
 ) {
+  let numWholes = 0;
   // Figure out how long the radius of each circle should be based on the svg dimensions.
-  let numWholes = Math.floor(mixedNum.numerator / mixedNum.denominator);
+  if (mixedNum.denominator === 0) {
+    numWholes = 0;
+  } else {
+    numWholes = Math.floor(mixedNum.numerator / mixedNum.denominator);
+  }
   let maxWholes = 0; // This is how many circles will be drawn on the svg
 
   if (mixedNum.numerator % mixedNum.denominator == 0) {
