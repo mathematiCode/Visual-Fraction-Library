@@ -1,0 +1,80 @@
+@media screen and (max-width: 950px) {
+  svg {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 95vw;
+  }
+}
+
+@media (max-width: 800px) {
+  .numerator,
+  .denominator {
+    font-size: 1.4rem;
+    width: 40px;
+  }
+  .whole-number {
+    font-size: 1.9rem;
+    width: 50px;
+  }
+}
+
+@media (max-width: 450px) {
+  .download-button-container {
+    gap: 8px;
+  }
+  .download-button {
+    margin-left: 6px;
+    margin-right: 6px;
+    max-width: 10ch;
+    font-size: 1.1rem;
+  }
+  p {
+    font-size: 1.1rem;
+  }
+  h1 {
+    font-size: 1.7rem;
+    margin: 20px;
+    margin-left: 50px;
+  }
+  h2 {
+    font-size: 1.2rem;
+  }
+  .symbol {
+    font-size: 2rem !important;
+  }
+  .user-inputs {
+    flex-direction: column;
+  }
+  .grid-layout {
+    grid-template-rows: 60px 40px 260px 1fr 70px;
+    gap: 35px;
+  }
+  .button-and-checkbox {
+    gap: 0px !important;
+  }
+  .blue-button {
+    margin-top: 5px;
+    max-width: 40ch !important;
+  }
+  .numerator,
+  .denominator {
+    min-width: 40px !important;
+    height: 36px !important;
+  }
+  .fraction-input {
+    margin-left: 2px;
+    margin-right: 2px;
+  }
+  .whole-number {
+    min-width: 40px !important;
+    height: 70px !important;
+    margin-left: 2px;
+    margin-right: 2px;
+  }
+  .fracBar {
+    width: 50px !important;
+  }
+  .model-selection {
+    width: 90%;
+  }
+}

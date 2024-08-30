@@ -24,18 +24,6 @@ input:placeholder-shown {
   text-align: center;
 }
 
-@media (max-width: 800px) {
-  .numerator,
-  .denominator {
-    font-size: 1.4rem;
-    width: 40px;
-  }
-  .whole-number {
-    font-size: 1.9rem;
-    width: 50px;
-  }
-}
-
 @supports (field-sizing: inherit) {
   .whole-number,
   .numerator,
@@ -81,7 +69,7 @@ input:placeholder-shown {
   display: none;
 }
 
-#fracBar {
+.fracBar {
   height: 2px;
   width: 70px;
   background-color: #333;
