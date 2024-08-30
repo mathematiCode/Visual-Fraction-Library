@@ -73,6 +73,19 @@ alert {
   background-color: white;
 }
 
+.download-button[data-copied="true"]::before {
+  content: url(../icons-logos/check-icon.svg);
+  margin-left: 5px;
+  margin-right: 5px;
+  align-self: center;
+  width: 30px;
+  height: 30px;
+}
+
+.download-button[data-copied="true"] {
+  content: "Copied!";
+}
+
 #division-warning {
   font-size: 1.25rem;
 }
@@ -164,7 +177,4 @@ h2 {
 
 .title {
   margin-top: 20px;
-}
-
-#basic-copy-button[data-state="copied"] {
 }

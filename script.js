@@ -3,6 +3,15 @@ const mathVisual = {};
 // I made angleWherePiecesStart a global variable because I may change it later or make it customizable by the user. It means the circles will start shading at 270 degrees going counterclockwise. This is for fraction division circles so that if there are a few pieces that go in the same group as some in the next circle, they are closer together.
 angleWherePiecesStart = Math.PI * 0.5;
 
+function showCopiedVerification(copyButton) {
+  copyButton.dataset.copied = "true";
+  copyButton.innerHTML = "Copied!";
+  setTimeout(function () {
+    copyButton.dataset.copied = "false";
+    copyButton.innerHTML = "Copy to Clipboard";
+  }, 5000);
+}
+
 function basicFrac() {
   // HTML Elements from the basic fraction page
   const generateBasicButton = document.getElementById("generate-basic");
@@ -60,6 +69,7 @@ function basicFrac() {
   });
   copyPngButton.addEventListener("click", function () {
     copyPngToClipboard(basicSVG);
+    showCopiedVerification(copyPngButton);
   });
 }
 
@@ -212,6 +222,7 @@ function multiplicationFrac() {
   copyPngButton.addEventListener("click", function () {
     const multiplicationSVG = document.getElementById("multiplication-svg");
     copyPngToClipboard(multiplicationSVG);
+    showCopiedVerification(copyPngButton);
   });
 }
 
@@ -342,6 +353,7 @@ function divisionFrac() {
   copyPngButton.addEventListener("click", function () {
     const divisionSVG = document.getElementById("division-svg");
     copyPngToClipboard(divisionSVG);
+    showCopiedVerification(copyPngButton);
   });
 
   modelToggle.addEventListener("change", () => {
