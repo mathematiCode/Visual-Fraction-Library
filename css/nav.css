@@ -76,6 +76,7 @@ nav {
   display: flex;
   flex-direction: column;
   justify-content: start;
+  align-items: start;
   background-color: var(--teal-100);
 }
 
@@ -91,12 +92,6 @@ nav {
   transform: translate(-100px, 0px);
   transition: transform 0.3s;
 }
-
-/* .side-nav[data-state="open"] .corner-logo {
-  left: -80px;
-  transform: translate(100px, 0px);
-  transition: transform 0.3s;
-} */
 
 #expand-collapse-nav {
   border: 0px solid transparent;

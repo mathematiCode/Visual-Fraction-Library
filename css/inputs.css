@@ -196,9 +196,10 @@ input:checked + .slider:before {
 
 .button-and-checkbox {
   display: grid;
-  grid-template-rows: 50px 1fr;
+  grid-template-rows: 20px 1fr;
   align-items: center;
-  gap: 10px;
+  margin-top: 35px;
+  gap: 15px;
   margin-bottom: 0px;
 }
 
