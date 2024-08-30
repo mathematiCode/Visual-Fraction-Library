@@ -34,7 +34,8 @@
   h1 {
     font-size: 1.7rem;
     margin: 20px;
-    margin-left: 50px;
+    margin-top: 105px;
+    margin-bottom: 30px;
   }
   h2 {
     font-size: 1.2rem;
@@ -46,7 +47,7 @@
     flex-direction: column;
   }
   .grid-layout {
-    grid-template-rows: 60px 40px 260px 1fr 70px;
+    grid-template-rows: 100px 40px 260px 1fr 70px;
     gap: 35px;
   }
   .button-and-checkbox {
