@@ -79,7 +79,7 @@
     width: 90%;
   }
   body {
-    overflow: hidden;
+    overflow: hidden auto;
   }
   .whole-number,
   .numerator,
