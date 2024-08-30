@@ -8,7 +8,7 @@ function showCopiedVerification(copyButton) {
   copyButton.innerHTML = "Copied!";
   setTimeout(function () {
     copyButton.dataset.copied = "false";
-    copyButton.innerHTML = "Copy to Clipboard";
+    copyButton.innerHTML = "Copy PNG";
   }, 5000);
 }
 

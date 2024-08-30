@@ -6,6 +6,7 @@
   --teal-500: #52a4b0;
   --teal-800: #347d88;
   --teal-900: #16434a;
+  --faded-teal-900: #39585c;
 
   --peach-200: #f5b9ad;
   --peach-500: #f0a68c;
@@ -73,10 +74,15 @@ alert {
   background-color: white;
 }
 
+.download-button-container button:nth-child(3) {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
 .download-button[data-copied="true"]::before {
   content: url(../icons-logos/check-icon.svg);
   margin-left: 5px;
-  margin-right: 5px;
+  margin-right: 10px;
   align-self: center;
   width: 30px;
   height: 30px;
@@ -84,6 +90,12 @@ alert {
 
 .download-button[data-copied="true"] {
   content: "Copied!";
+  width: 12ch;
+  padding-left: 20px;
+  padding-right: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #division-warning {

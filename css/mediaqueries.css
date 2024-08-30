@@ -86,4 +86,8 @@
   .denominator {
     field-sizing: fixed;
   }
+
+  #divisor-larger {
+    justify-self: center;
+  }
 }
