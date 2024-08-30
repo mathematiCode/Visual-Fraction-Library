@@ -77,4 +77,12 @@
   .model-selection {
     width: 90%;
   }
+  body {
+    overflow: hidden;
+  }
+  .whole-number,
+  .numerator,
+  .denominator {
+    field-sizing: fixed;
+  }
 }
