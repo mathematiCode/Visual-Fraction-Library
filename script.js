@@ -50,6 +50,7 @@ function basicFrac() {
       document.getElementById("basic-denominator").value
     );
     basicSVG.innerHTML = "";
+    console.log(mixedNum);
     basicSVG.setAttribute("width", Math.min(800, window.innerWidth * 0.8));
     if (modelToggle.checked) {
       mathVisual.fractionBar(basicSVG, mixedNum);
