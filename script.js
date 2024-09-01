@@ -411,6 +411,9 @@ function index() {
 function buttonFunctions() {
   let openCloseNavButton = document.getElementById("expand-collapse-nav");
   let sideNav = document.querySelector(".side-nav");
+  let openSettings = document.querySelector(".open-settings");
+  let settingsModal = document.querySelector("settings-modal");
+  // let modal = settingsModal.shadowRoot.querySelector("dialog");
 
   openCloseNavButton.addEventListener("click", () => {
     if (sideNav.dataset.state === "open") {
@@ -418,4 +421,8 @@ function buttonFunctions() {
     } else sideNav.dataset.state = "open";
     console.log(sideNav.dataset.state);
   });
+
+  // openSettings.addEventListener("click", () => {
+  //   modal.showModal();
+  // });
 }

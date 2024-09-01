@@ -4,6 +4,11 @@
     margin-right: auto;
     max-width: 95vw;
   }
+  .whole-number,
+  .numerator,
+  .denominator {
+    field-sizing: fixed;
+  }
 }
 
 @media (max-width: 800px) {
