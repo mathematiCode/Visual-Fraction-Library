@@ -151,6 +151,7 @@ input:checked + .slider:before {
   grid-row: 2/3;
   width: 380px;
   grid-template-columns: 1fr 70px 1fr;
+  position: relative;
 }
 
 .right-toggle {
@@ -245,4 +246,14 @@ input[type="checkbox"]:checked {
   grid-template-columns: 1fr;
   grid-template-rows: 1fr;
   height: 140px;
+}
+
+#open-settings {
+  background-image: url(../icons-logos/settings-icon.svg);
+  position: absolute;
+  right: -30px;
+  top: 10px;
+  width: 40px;
+  height: 40px;
+  border: none;
 }
