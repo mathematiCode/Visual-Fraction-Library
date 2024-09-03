@@ -50,7 +50,7 @@
 
       <h1>Input the fraction you would like displayed.</h1>
 
-
+      <settings-modal></settings-modal>
 
       <div class="model-selection">
         <h2> Circle Model </h2>
@@ -61,13 +61,13 @@
         </label>
         <h2 class="right-toggle">Bar Model</h2>
 
-
       </div>
 
 
       <div class="user-inputs">
         <div class="problem-input">
-          <input aria-label="Whole Number" type="number" class="whole-number" id="basic-whole-number">
+          <input aria-label="Whole Number" type="number" min="0" max="300" step="1" pattern="[0-9]+"
+            class="whole-number" id="basic-whole-number">
           <div class="fraction-input">
             <input aria-label="numerator" type="number" class="numerator" id="basic-numerator" />
             <hr class="fracBar" />
@@ -145,6 +145,7 @@
 
   <script src="../script.js"></script>
   <script src="../utilities.js"></script>
+  <script src="../settingsModal.js"></script>
   <script src="../lib/basicFunctions.js"></script>
   <script> basicFrac();
     buttonFunctions(); </script>
