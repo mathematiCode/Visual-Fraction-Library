@@ -21,6 +21,7 @@
 
   <link rel="stylesheet" href="../css/styles.css" />
   <link rel="stylesheet" href="../css/nav.css" />
+  <link rel="stylesheet" href="../css/settings-popover.css" />
   <link rel="stylesheet" href="../css/inputs.css" />
   <link rel="stylesheet" href="../css/layout.css" />
   <link rel="stylesheet" href="../css/mediaqueries.css" />
@@ -49,7 +50,7 @@
 
       <h1>Input the fraction you would like displayed.</h1>
 
-      <settings-modal></settings-modal>
+
 
       <div class="model-selection">
         <h2> Circle Model </h2>
@@ -60,9 +61,6 @@
         </label>
         <h2 class="right-toggle">Bar Model</h2>
 
-        <button class="open-settings">
-          <object data="../icons-logos/settings-icon.svg" type="image/svg+xml"></object>
-        </button>
 
       </div>
 
@@ -77,10 +75,57 @@
           </div>
         </div>
         <button class="blue-button" id="generate-basic">Generate Model</button>
-        <aside>
-          <!-- <p class="requirements">
+        <!-- <p class="requirements">
             Works best with denominators 30 or less.
           </p> -->
+
+        <button class="open-settings" popovertarget="settings-popover">
+          Customize
+        </button>
+        <div id="settings-popover" popover=manual>
+          <h4> Customize Your Images</h4>
+          <form class="settings-form">
+            <div class="choose-color">
+              <label for="main-color">Choose Your Color</label>
+              <input id="main-color" type="color" value="#52a4b0">
+            </div>
+            <div class="width-and-height">
+              <div id="width-container">
+                <label id="width-label" for="width-input">Width</label> <input class="num-input" id="width-input"
+                  type="number" value="800" placeholder="800"><span class="unit">px</span>
+              </div>
+              <div id="height-container">
+                <label id="height-label" for="height-input">Height</label> <input class="num-input" id="height-input"
+                  type="number" value="250"><span class="unit">px</span>
+              </div>
+            </div>
+            <div id="line-thickness-container">
+              <label id="slider-label" for="thickness-slider">Line Width</label>
+              <input id="thickness-slider" type="range" list="tickmarks" step="1" min="0" max="20">
+              <datalist id="tickmarks">
+                <option value="0" label="0 "></option>
+                <option value="2"></option>
+                <option value="4"></option>
+                <option value="6"></option>
+                <option value="8"></option>
+                <option value="10" label="10"></option>
+                <option value="12"></option>
+                <option value="14"></option>
+                <option value="16"></option>
+                <option value="18"></option>
+                <option value="20" label="20"></option>
+              </datalist>
+            </div>
+          </form>
+          <div id="cancel-and-save">
+            <button class="cancel-button" popovertarget="settings-popover" popovertargetaction="hide">
+              <span class="sr-only">Cancel</span>
+            </button>
+            <button class="save-button" popovertarget="settings-popover" popovertargetaction="hide">
+              <span class="sr-only">Save</span>
+            </button>
+          </div>
+        </div>
       </div>
 
       <svg id="basic-svg" width="800" height="250" xmlns="http://www.w3.org/2000/svg"

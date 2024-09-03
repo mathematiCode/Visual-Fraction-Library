@@ -247,23 +247,3 @@ input[type="checkbox"]:checked {
   grid-template-rows: 1fr;
   height: 140px;
 }
-
-.open-settings {
-  position: absolute;
-  background: none;
-  right: -60px;
-  top: 15px;
-  width: 45px;
-  height: 45px;
-  border: none;
-}
-
-.open-settings > object {
-  width: 30px;
-  height: 30px;
-}
-
-.open-settings > object:hover {
-  width: 33px;
-  height: 33px;
-}
