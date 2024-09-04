@@ -12,12 +12,35 @@ function showCopiedVerification(copyButton) {
   }, 5000);
 }
 
+function saveSettings(svg) {
+  let customizations = {};
+  customizations.color1 = document.getElementById("main-color").value;
+  let width = document.getElementById("width-input").value;
+  let height = document.getElementById("height-input").value;
+  customizations.lineThickness =
+    document.getElementById("thickness-slider").value;
+  svg.setAttribute("width", width);
+  svg.setAttribute("height", height);
+  return customizations;
+}
+
+function revertSettings(color, lineThickness, width, height) {
+  document.getElementById("main-color").value = color;
+  document.getElementById("thickness-slider").value = lineThickness;
+  document.getElementById("width-input").value = width;
+  document.getElementById("height-input").value = height;
+}
+
 function basicFrac() {
   // HTML Elements from the basic fraction page
   const generateBasicButton = document.getElementById("generate-basic");
   const modelToggle = document.getElementById("basic-model-toggle");
   const basicSVG = document.getElementById("basic-svg");
   let mixedNum = {};
+  color = "#52a4b0";
+  lineThickness = 5;
+  width = 800;
+  height = 250;
 
   generateBasicButton.addEventListener("click", function () {
     mixedNum.wholeNum = parseInt(
@@ -33,9 +56,9 @@ function basicFrac() {
     basicSVG.innerHTML = "";
     basicSVG.setAttribute("width", Math.min(800, window.innerWidth * 0.8));
     if (modelToggle.checked) {
-      mathVisual.fractionBar(basicSVG, mixedNum);
+      mathVisual.fractionBar(basicSVG, mixedNum, lineThickness, color);
     } else {
-      mathVisual.fractionCircle(basicSVG, mixedNum);
+      mathVisual.fractionCircle(basicSVG, mixedNum, lineThickness, color);
     }
   });
 
@@ -53,9 +76,9 @@ function basicFrac() {
     console.log(mixedNum);
     basicSVG.setAttribute("width", Math.min(800, window.innerWidth * 0.8));
     if (modelToggle.checked) {
-      mathVisual.fractionBar(basicSVG, mixedNum);
+      mathVisual.fractionBar(basicSVG, mixedNum, lineThickness, color);
     } else {
-      mathVisual.fractionCircle(basicSVG, mixedNum);
+      mathVisual.fractionCircle(basicSVG, mixedNum, lineThickness, color);
     }
   });
 
@@ -71,6 +94,24 @@ function basicFrac() {
   copyPngButton.addEventListener("click", function () {
     copyPngToClipboard(basicSVG);
     showCopiedVerification(copyPngButton);
+  });
+
+  let saveSettingsButton = document.getElementById("save-button");
+  saveSettingsButton.addEventListener("click", () => {
+    let customizations = saveSettings(basicSVG);
+    color = customizations.color1;
+    lineThickness = customizations.lineThickness;
+    basicSVG.innerHTML = "";
+    if (modelToggle.checked) {
+      mathVisual.fractionBar(basicSVG, mixedNum, lineThickness, color);
+    } else {
+      mathVisual.fractionCircle(basicSVG, mixedNum, lineThickness, color);
+    }
+  });
+
+  let cancelSettingsButton = document.getElementById("cancel-button");
+  cancelSettingsButton.addEventListener("click", () => {
+    revertSettings(color, lineThickness, width, height);
   });
 }
 
@@ -411,9 +452,32 @@ function index() {
 function buttonFunctions() {
   let openCloseNavButton = document.getElementById("expand-collapse-nav");
   let sideNav = document.querySelector(".side-nav");
-  let openSettings = document.querySelector(".open-settings");
-  let settingsModal = document.querySelector("settings-modal");
-  // let modal = settingsModal.shadowRoot.querySelector("dialog");
+  let widthInput = document.getElementById("width-input");
+  let heightInput = document.getElementById("height-input");
+  let warning = document.getElementById("max-size-warning");
+
+  widthInput.addEventListener("change", () => {
+    if (widthInput.value > 1200) {
+      widthInput.value = 800;
+      warning.style.fontWeight = "bold";
+      setTimeout(() => {
+        warning.style.fontWeight = "normal";
+      }, 2000);
+    } else if (widthInput.value < 0) {
+      widthInput.value = 0;
+    }
+  });
+
+  heightInput.addEventListener("change", () => {
+    if (heightInput.value > 1200) {
+      heightInput.value = 250;
+      setTimeout(() => {
+        warning.style.fontWeight = "normal";
+      }, 2000);
+    } else if (heightInput.value < 0) {
+      heightInput.value = 0;
+    }
+  });
 
   openCloseNavButton.addEventListener("click", () => {
     if (sideNav.dataset.state === "open") {
@@ -421,8 +485,4 @@ function buttonFunctions() {
     } else sideNav.dataset.state = "open";
     console.log(sideNav.dataset.state);
   });
-
-  // openSettings.addEventListener("click", () => {
-  //   modal.showModal();
-  // });
 }
