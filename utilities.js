@@ -102,8 +102,8 @@ function drawCircle(
   y,
   radius,
   lineThickness,
-  lineColor = "black",
-  fillColor = "none"
+  fillColor = "none",
+  lineColor = "black"
 ) {
   const svgNS = svg.namespaceURI;
   const circle = document.createElementNS(svgNS, "circle");
@@ -177,16 +177,6 @@ function switchBetweenColors(current, colors) {
   } else {
     return "gray";
   }
-
-  colors.forEach((element) => {});
-  if (current == color1) {
-    current = color2;
-  } else if (current == color2) {
-    current = color3;
-  } else {
-    current = color1;
-  }
-  return current;
 }
 
 function findIdealNumColors(
@@ -218,6 +208,7 @@ function shadeFractionSlices(
   denominator,
   lineThickness,
   colorFill,
+  borderColor = "black",
   startAngle = angleWherePiecesStart
 ) {
   const svgNS = svg.namespaceURI;
@@ -253,7 +244,8 @@ function makeFractionLines(
   y,
   radius,
   denominator,
-  lineThickness = 5,
+  lineThickness,
+  lineColor,
   startAngle = angleWherePiecesStart
 ) {
   const angle = (Math.PI * 2) / denominator;
@@ -271,7 +263,7 @@ function makeFractionLines(
     line.setAttribute("y1", startY);
     line.setAttribute("x2", endX);
     line.setAttribute("y2", endY);
-    line.setAttribute("stroke", "black");
+    line.setAttribute("stroke", lineColor);
     line.setAttribute("stroke-width", lineThickness);
     svg.appendChild(line);
 
@@ -289,8 +281,14 @@ function drawVerticalFractionBar(
   denominator,
   lineThickness,
   colorFill,
+  borderColor,
   background = "transparent"
 ) {
+  debugger;
+  width = parseInt(width);
+  height = parseInt(height);
+  x = parseInt(x);
+  y = parseInt(y);
   const svgNS = svg.namespaceURI;
   let interval = 0;
   if (denominator > 0) {
@@ -317,31 +315,32 @@ function drawVerticalFractionBar(
   shadedRect.setAttribute("width", shaded);
   shadedRect.setAttribute("height", height);
   shadedRect.setAttribute("fill", colorFill);
-  shadedRect.setAttribute("stroke", "black");
+  shadedRect.setAttribute("stroke", borderColor);
   shadedRect.setAttribute("stroke-width", 0);
   svg.appendChild(shadedRect);
 
   for (let i = 1; i < denominator; i++) {
     const pieceSeparator = document.createElementNS(svgNS, "line");
+    pieceSeparator.setAttribute("stroke-width", lineThickness * 0.7);
+    pieceSeparator.setAttribute("stroke", borderColor);
     pieceSeparator.setAttribute("x1", x + separator);
     pieceSeparator.setAttribute("y1", y);
     pieceSeparator.setAttribute("x2", x + separator);
     pieceSeparator.setAttribute("y2", y + height);
-    pieceSeparator.setAttribute("stroke", "black");
-    pieceSeparator.setAttribute("stroke-width", lineThickness * 0.7);
     svg.appendChild(pieceSeparator);
     separator = separator + interval;
+    debugger;
   }
 
-  const blackBorder = document.createElementNS(svgNS, "rect");
-  blackBorder.setAttribute("x", x);
-  blackBorder.setAttribute("y", y);
-  blackBorder.setAttribute("width", width);
-  blackBorder.setAttribute("height", height);
-  blackBorder.setAttribute("fill", "none");
-  blackBorder.setAttribute("stroke", "black");
-  blackBorder.setAttribute("stroke-width", lineThickness);
-  svg.appendChild(blackBorder);
+  const border = document.createElementNS(svgNS, "rect");
+  border.setAttribute("x", x);
+  border.setAttribute("y", y);
+  border.setAttribute("width", width);
+  border.setAttribute("height", height);
+  border.setAttribute("fill", "none");
+  border.setAttribute("stroke", borderColor);
+  border.setAttribute("stroke-width", lineThickness);
+  svg.appendChild(border);
 }
 
 function drawHorizontalFractionBar(
@@ -353,7 +352,8 @@ function drawHorizontalFractionBar(
   numerator,
   denominator,
   lineThickness,
-  colorFill
+  colorFill,
+  borderColor
 ) {
   const svgNS = svg.namespaceURI;
   let interval = 0;
@@ -370,7 +370,7 @@ function drawHorizontalFractionBar(
   shadedRect.setAttribute("width", width);
   shadedRect.setAttribute("height", shaded);
   shadedRect.setAttribute("fill", colorFill);
-  shadedRect.setAttribute("stroke", "black");
+  shadedRect.setAttribute("stroke", borderColor);
   shadedRect.setAttribute("stroke-width", 0);
   svg.appendChild(shadedRect);
 
@@ -380,21 +380,21 @@ function drawHorizontalFractionBar(
     pieceSeparator.setAttribute("y1", y + separator);
     pieceSeparator.setAttribute("x2", x + width);
     pieceSeparator.setAttribute("y2", y + separator);
-    pieceSeparator.setAttribute("stroke", "black");
+    pieceSeparator.setAttribute("stroke", borderColor);
     pieceSeparator.setAttribute("stroke-width", lineThickness * 0.7);
     svg.appendChild(pieceSeparator);
     separator = separator + interval;
   }
 
-  const blackBorder = document.createElementNS(svgNS, "rect");
-  blackBorder.setAttribute("x", x);
-  blackBorder.setAttribute("y", y);
-  blackBorder.setAttribute("width", width);
-  blackBorder.setAttribute("height", height);
-  blackBorder.setAttribute("fill", "none");
-  blackBorder.setAttribute("stroke", "black");
-  blackBorder.setAttribute("stroke-width", lineThickness);
-  svg.appendChild(blackBorder);
+  const border = document.createElementNS(svgNS, "rect");
+  border.setAttribute("x", x);
+  border.setAttribute("y", y);
+  border.setAttribute("width", width);
+  border.setAttribute("height", height);
+  border.setAttribute("fill", "none");
+  border.setAttribute("stroke", borderColor);
+  border.setAttribute("stroke-width", lineThickness);
+  svg.appendChild(border);
 }
 
 function mixedNumCircles(
@@ -402,6 +402,7 @@ function mixedNumCircles(
   mixedNum,
   lineThickness = 5,
   colorFill = "rgb(120, 190, 250)",
+  borderColor,
   width,
   height,
   maxPerLine = 4,
@@ -470,7 +471,15 @@ function mixedNumCircles(
     }
 
     // Draws black outline of circle
-    drawCircle(svg, currentX, currentY, radius, lineThickness);
+    drawCircle(
+      svg,
+      currentX,
+      currentY,
+      radius,
+      lineThickness,
+      "none",
+      borderColor
+    );
 
     if (currentWhole <= mixedNum.wholeNum) {
       drawCircle(
@@ -479,8 +488,8 @@ function mixedNumCircles(
         currentY,
         fillRadius,
         lineThickness,
-        "none",
-        colorFill
+        colorFill,
+        "none"
       );
       currentWhole = currentWhole + 1;
     } else {
@@ -493,6 +502,7 @@ function mixedNumCircles(
         mixedNum.denominator,
         lineThickness,
         colorFill,
+        borderColor,
         angleWherePiecesStart
       );
 
@@ -502,7 +512,8 @@ function mixedNumCircles(
         currentY,
         radius,
         mixedNum.denominator,
-        lineThickness
+        lineThickness,
+        borderColor
       );
 
       slicesLeft = slicesLeft - mixedNum.denominator;
@@ -524,6 +535,7 @@ function mixedNumCirclesHorizontal(
   mixedNum,
   lineThickness = 5,
   colorFill = "rgb(120, 190, 250)",
+  borderColor,
   width,
   height,
   startX = 0,
@@ -576,8 +588,8 @@ function mixedNumCirclesHorizontal(
         currentY,
         fillRadius,
         lineThickness,
-        "none",
-        colorFill
+        colorFill,
+        "none"
       );
       currentWhole = currentWhole + 1;
     } else {
@@ -590,6 +602,7 @@ function mixedNumCirclesHorizontal(
         mixedNum.denominator,
         lineThickness,
         colorFill,
+        borderColor,
         angleWherePiecesStart
       );
       makeFractionLines(
@@ -598,7 +611,8 @@ function mixedNumCirclesHorizontal(
         currentY,
         radius,
         mixedNum.denominator,
-        lineThickness
+        lineThickness,
+        borderColor
       );
 
       slicesLeft = slicesLeft - mixedNum.denominator;
@@ -615,7 +629,7 @@ function mixedNumCirclesHorizontal(
     blackBorder.setAttribute("width", width);
     blackBorder.setAttribute("height", height);
     blackBorder.setAttribute("fill", "none");
-    blackBorder.setAttribute("stroke", "black");
+    blackBorder.setAttribute("stroke", borderColor);
     blackBorder.setAttribute("stroke-width", lineThickness);
     svg.appendChild(blackBorder);
   }

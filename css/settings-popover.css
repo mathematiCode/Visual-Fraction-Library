@@ -3,7 +3,7 @@
   border: 4px solid var(--faded-teal-900);
   border-radius: 10px;
   box-shadow: 3px 3px 10px rgb(0 0 0 / 0.6);
-  width: 330px;
+  width: 550px;
   height: 450px;
   position: relative;
 }
@@ -82,6 +82,7 @@
     grid-template-areas:
       "label nothing"
       "input unit";
+    width: 100px;
   }
 
   #width-container {
@@ -164,5 +165,9 @@
     cursor: pointer;
     display: flex;
     font-family: Inter, sans-serif;
+  }
+
+  input[type="color"][extra="true"] {
+    display: none;
   }
 }

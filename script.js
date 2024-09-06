@@ -12,23 +12,31 @@ function showCopiedVerification(copyButton) {
   }, 5000);
 }
 
-function saveSettings(svg) {
+function saveSettings(svg, numColors) {
   let customizations = {};
-  customizations.color1 = document.getElementById("main-color").value;
+  customizations.colors = [];
+  for (let i = 0; i < numColors; i++) {
+    customizations.colors[i] = document.getElementById(`color${i + 1}`).value;
+  }
+  console.log(customizations.colors);
+  customizations.borderColor = document.getElementById("border-color").value;
   let width = document.getElementById("width-input").value;
   let height = document.getElementById("height-input").value;
   customizations.lineThickness =
     document.getElementById("thickness-slider").value;
   svg.setAttribute("width", width);
   svg.setAttribute("height", height);
+  customizations.width = width;
+  customizations.height = height;
   return customizations;
 }
 
-function revertSettings(color, lineThickness, width, height) {
-  document.getElementById("main-color").value = color;
+function revertSettings(color, lineThickness, width, height, borderColor) {
+  document.getElementById("color1").value = color;
   document.getElementById("thickness-slider").value = lineThickness;
   document.getElementById("width-input").value = width;
   document.getElementById("height-input").value = height;
+  document.getElementById("border-color").value = borderColor;
 }
 
 function basicFrac() {
@@ -41,6 +49,7 @@ function basicFrac() {
   lineThickness = 5;
   width = 800;
   height = 250;
+  borderColor = "black";
 
   generateBasicButton.addEventListener("click", function () {
     mixedNum.wholeNum = parseInt(
@@ -54,11 +63,23 @@ function basicFrac() {
     );
 
     basicSVG.innerHTML = "";
-    basicSVG.setAttribute("width", Math.min(800, window.innerWidth * 0.8));
+    basicSVG.setAttribute("width", Math.min(width, window.innerWidth * 0.8));
     if (modelToggle.checked) {
-      mathVisual.fractionBar(basicSVG, mixedNum, lineThickness, color);
+      mathVisual.fractionBar(
+        basicSVG,
+        mixedNum,
+        lineThickness,
+        color,
+        borderColor
+      );
     } else {
-      mathVisual.fractionCircle(basicSVG, mixedNum, lineThickness, color);
+      mathVisual.fractionCircle(
+        basicSVG,
+        mixedNum,
+        lineThickness,
+        color,
+        borderColor
+      );
     }
   });
 
@@ -73,12 +94,23 @@ function basicFrac() {
       document.getElementById("basic-denominator").value
     );
     basicSVG.innerHTML = "";
-    console.log(mixedNum);
-    basicSVG.setAttribute("width", Math.min(800, window.innerWidth * 0.8));
+    basicSVG.setAttribute("width", Math.min(width, window.innerWidth * 0.8));
     if (modelToggle.checked) {
-      mathVisual.fractionBar(basicSVG, mixedNum, lineThickness, color);
+      mathVisual.fractionBar(
+        basicSVG,
+        mixedNum,
+        lineThickness,
+        color,
+        borderColor
+      );
     } else {
-      mathVisual.fractionCircle(basicSVG, mixedNum, lineThickness, color);
+      mathVisual.fractionCircle(
+        basicSVG,
+        mixedNum,
+        lineThickness,
+        color,
+        borderColor
+      );
     }
   });
 
@@ -98,20 +130,35 @@ function basicFrac() {
 
   let saveSettingsButton = document.getElementById("save-button");
   saveSettingsButton.addEventListener("click", () => {
-    let customizations = saveSettings(basicSVG);
-    color = customizations.color1;
+    let customizations = saveSettings(basicSVG, 1);
+    color = customizations.colors[0];
     lineThickness = customizations.lineThickness;
+    width = customizations.width;
+    height = customizations.height;
+    borderColor = customizations.borderColor;
     basicSVG.innerHTML = "";
     if (modelToggle.checked) {
-      mathVisual.fractionBar(basicSVG, mixedNum, lineThickness, color);
+      mathVisual.fractionBar(
+        basicSVG,
+        mixedNum,
+        lineThickness,
+        color,
+        borderColor
+      );
     } else {
-      mathVisual.fractionCircle(basicSVG, mixedNum, lineThickness, color);
+      mathVisual.fractionCircle(
+        basicSVG,
+        mixedNum,
+        lineThickness,
+        color,
+        borderColor
+      );
     }
   });
 
   let cancelSettingsButton = document.getElementById("cancel-button");
   cancelSettingsButton.addEventListener("click", () => {
-    revertSettings(color, lineThickness, width, height);
+    revertSettings(color, lineThickness, width, height, borderColor);
   });
 }
 
@@ -274,6 +321,11 @@ function divisionFrac() {
   const modelToggle = document.getElementById("division-model-toggle");
   const divisionSVG = document.getElementById("division-svg");
   divisionSVG.innerHTML = "";
+  let width = 800;
+  let height = 250;
+  let lineThickness = 5;
+  let lineColor = "#000000";
+  let colorArray = ["#52a4b0", "#b7dd82", "#f0a68c", "#f5ef84", "#928183"];
   const divisionModelCheckbox = document.getElementById(
     "divisor-is-larger-checkbox"
   );
@@ -325,20 +377,28 @@ function divisionFrac() {
         document.getElementById("division-denominator2").value
       );
       divisionSVG.innerHTML = "";
-      divisionSVG.setAttribute("width", Math.min(800, window.innerWidth * 0.8));
+      divisionSVG.setAttribute(
+        "width",
+        Math.min(width, window.innerWidth * 0.8)
+      );
       if (modelToggle.checked) {
-        mathVisual.fractionDivisionBar(divisionSVG, dividend, divisor);
+        mathVisual.fractionDivisionBar(
+          divisionSVG,
+          dividend,
+          divisor,
+          lineThickness,
+          colorArray[0],
+          colorArray[1],
+          lineColor
+        );
       } else {
         mathVisual.fractionDivisionCircles(
           divisionSVG,
           dividend,
           divisor,
-          (lineThickness = 5),
-          (colorFill1 = "#52a4b0"), // teal
-          (colorFill2 = "#b7dd82"), // faded light green
-          (colorFill3 = "#f0a68c"), // peach
-          (colorFill4 = "#f5ef84"), // light yellow
-          (colorFill5 = "#928183") //  taupe
+          lineThickness,
+          colorArray,
+          lineColor
         );
       }
     } else {
@@ -358,16 +418,18 @@ function divisionFrac() {
           divisionSVG,
           dividend,
           divisor,
-          (lineThickness = 5),
-          (colorFill = "#52a4b0")
+          lineThickness,
+          colorArray[0],
+          lineColor
         );
       } else {
         mathVisual.fractionDivisionOneCircle(
           divisionSVG,
           dividend,
           divisor,
-          (lineThickness = 5),
-          (colorFill = "#52a4b0")
+          lineThickness,
+          colorArray[0],
+          lineColor
         );
       }
     }
@@ -376,8 +438,26 @@ function divisionFrac() {
   generateDivisionButton.addEventListener("click", function () {
     const divisionSVG = document.getElementById("division-svg");
     divisionSVG.innerHTML = "";
-    divisionSVG.setAttribute("width", Math.min(800, window.innerWidth * 0.8));
+    divisionSVG.setAttribute("width", Math.min(width, window.innerWidth * 0.8));
     generateDivisionModel(divisionSVG);
+  });
+
+  let saveSettingsButton = document.getElementById("save-button");
+  saveSettingsButton.addEventListener("click", () => {
+    let customizations = saveSettings(divisionSVG, 5);
+    colorArray = customizations.colors;
+    lineThickness = customizations.lineThickness;
+    width = customizations.width;
+    height = customizations.height;
+    lineColor = customizations.borderColor;
+    divisionSVG.innerHTML = "";
+    divisionSVG.setAttribute("width", Math.min(width, window.innerWidth * 0.8));
+    generateDivisionModel(divisionSVG);
+  });
+
+  let cancelSettingsButton = document.getElementById("cancel-button");
+  cancelSettingsButton.addEventListener("click", () => {
+    revertSettings(color, lineThickness, width, height, borderColor);
   });
 
   const divisionPngButton = document.getElementById("division-png-button");
@@ -385,6 +465,7 @@ function divisionFrac() {
     const divisionSVG = document.getElementById("division-svg");
     downloadPng(divisionSVG);
   });
+
   const downloadDivisionSVG = document.getElementById("division-svg-button");
   downloadDivisionSVG.addEventListener("click", function () {
     const divisionSVG = document.getElementById("division-svg");
@@ -401,7 +482,7 @@ function divisionFrac() {
   modelToggle.addEventListener("change", () => {
     const divisionSVG = document.getElementById("division-svg");
     divisionSVG.innerHTML = "";
-    divisionSVG.setAttribute("width", Math.min(800, window.innerWidth * 0.8));
+    divisionSVG.setAttribute("width", Math.min(width, window.innerWidth * 0.8));
     generateDivisionModel(divisionSVG);
   });
 }
@@ -456,6 +537,12 @@ function buttonFunctions() {
   let heightInput = document.getElementById("height-input");
   let warning = document.getElementById("max-size-warning");
 
+  openCloseNavButton.addEventListener("click", () => {
+    if (sideNav.dataset.state === "open") {
+      sideNav.dataset.state = "closed";
+    } else sideNav.dataset.state = "open";
+  });
+
   widthInput.addEventListener("change", () => {
     if (widthInput.value > 1200) {
       widthInput.value = 800;
@@ -477,12 +564,5 @@ function buttonFunctions() {
     } else if (heightInput.value < 0) {
       heightInput.value = 0;
     }
-  });
-
-  openCloseNavButton.addEventListener("click", () => {
-    if (sideNav.dataset.state === "open") {
-      sideNav.dataset.state = "closed";
-    } else sideNav.dataset.state = "open";
-    console.log(sideNav.dataset.state);
   });
 }

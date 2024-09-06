@@ -26,6 +26,7 @@
 		<link rel="stylesheet" href="../css/layout.css" />
 		<link rel="stylesheet" href="../css/inputs.css" />
 		<link rel="stylesheet" href="../css/nav.css" />
+		<link rel="stylesheet" href="../css/settings-popover.css" />
 		<link rel="stylesheet" href="../css/mediaqueries.css" />
 		<title>Fraction Division Visuals</title>
 		<link rel="icon" type="image/x-icon" href="../icons-logos/Favicon.svg">
@@ -111,6 +112,68 @@
 						</div>
 						<button class="blue-button" id="generate-division">
 							Generate Division Model
+						</button>
+					</div>
+				</div>
+
+				<button class="open-settings" popovertarget="settings-popover">
+					Customize
+				</button>
+				<div id="settings-popover" popover=manual>
+					<h3> Customize Your Image</h3>
+					<form class="settings-form">
+						<div class="choose-color">
+							<label>Colors</label>
+							<input id="color1" type="color" value="#52a4b0">
+							<input id="color2" type="color" value="#b7dd82">
+							<input id="color3" extra="true" type="color" value="#f0a68c">
+							<input id="color4" extra="true" type="color" value="#f5ef84">
+							<input id="color5" extra="true" type="color" value="#928183">
+							<label for="main-color">Border</label>
+							<input id="border-color" type="color" value="#000000">
+						</div>
+
+						<div class="width-and-height">
+							<div id="width-container">
+								<label id="width-label" for="width-input">Width</label> <input class="num-input"
+									id="width-input" type="number" value="800" placeholder="800" min="20"
+									max="1000"><span class="unit">px</span>
+							</div>
+							<div id="height-container">
+								<label id="height-label" for="height-input" min="20" max="1000">Height</label>
+								<input class="num-input" id="height-input" type="number" value="250"><span
+									class="unit">px</span>
+							</div>
+							<p id="max-size-warning"> Width and height cannot be greater than 1200px</p>
+						</div>
+
+						<div id="line-thickness-container">
+							<label id="slider-label" for="thickness-slider">Line Width</label>
+							<input id="thickness-slider" type="range" list="tickmarks" step="1" min="0" max="20"
+								value="2">
+							<datalist id="tickmarks">
+								<option value="0" label="0 "></option>
+								<option value="2"></option>
+								<option value="4"></option>
+								<option value="6"></option>
+								<option value="8"></option>
+								<option value="10" label="10"></option>
+								<option value="12"></option>
+								<option value="14"></option>
+								<option value="16"></option>
+								<option value="18"></option>
+								<option value="20" label="20"></option>
+							</datalist>
+						</div>
+					</form>
+					<div id="cancel-and-save">
+						<button class="cancel-button" id="cancel-button" popovertarget="settings-popover"
+							popovertargetaction="hide">
+							<span class="sr-only">Cancel</span>
+						</button>
+						<button class="save-button" id="save-button" popovertarget="settings-popover"
+							popovertargetaction="hide">
+							<span class="sr-only">Save</span>
 						</button>
 					</div>
 				</div>
