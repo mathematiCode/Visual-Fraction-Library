@@ -167,6 +167,11 @@ function multiplicationFrac() {
   const generateMultiplicationButton = document.getElementById(
     "generate-multiplication"
   );
+  let lineColor = "#000000";
+  let color = "#52a4b0";
+  let lineThickness = 5;
+  let width = 800;
+  let height = 250;
 
   let openCloseNavButton = document.querySelector(".corner-logo");
   let sideNav = document.querySelector(".side-nav");
@@ -227,10 +232,11 @@ function multiplicationFrac() {
         multiplicationSVG,
         factor1,
         factor2,
-        (lineThickness = 5),
+        lineThickness,
         (colorFill = "hsla(188, 37%, 51%,70%)"),
         (colorFill2 = "hsla(96, 70%, 66%,50%)"),
-        toScale
+        toScale,
+        lineColor
       );
     } else {
       toScaleLabel.style.setProperty("display", "none");
@@ -258,12 +264,25 @@ function multiplicationFrac() {
         multiplicationSVG,
         factor1,
         factor2,
-        (lineThickness = 5),
-        (colorFill = "#54a4b0"),
+        lineThickness,
+        color,
+        lineColor,
         toScale
       );
     }
   }
+
+  let saveSettingsButton = document.getElementById("save-button");
+  saveSettingsButton.addEventListener("click", () => {
+    let customizations = saveSettings(multiplicationSVG, 2);
+    color = customizations.colors[0];
+    lineThickness = customizations.lineThickness;
+    width = customizations.width;
+    height = customizations.height;
+    lineColor = customizations.borderColor;
+    multiplicationSVG.innerHTML = "";
+    generateMultiplicationModel();
+  });
 
   generateMultiplicationButton.addEventListener("click", function () {
     const multiplicationSVG = document.getElementById("multiplication-svg");

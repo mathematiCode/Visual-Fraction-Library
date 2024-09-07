@@ -282,7 +282,7 @@ function drawVerticalFractionBar(
   lineThickness,
   colorFill,
   borderColor,
-  background = "transparent"
+  background = "none"
 ) {
   debugger;
   width = parseInt(width);
@@ -305,7 +305,7 @@ function drawVerticalFractionBar(
   backgroundColor.setAttribute("width", width);
   backgroundColor.setAttribute("height", height);
   backgroundColor.setAttribute("fill", background);
-  backgroundColor.setAttribute("stroke", "transparent");
+  backgroundColor.setAttribute("stroke", "none");
   backgroundColor.setAttribute("stroke-width", 0);
   svg.appendChild(backgroundColor);
 
@@ -533,7 +533,7 @@ function mixedNumCircles(
 function mixedNumCirclesHorizontal(
   svg,
   mixedNum,
-  lineThickness = 5,
+  lineThickness,
   colorFill = "rgb(120, 190, 250)",
   borderColor,
   width,
@@ -638,8 +638,9 @@ function mixedNumCirclesHorizontal(
 function mixedNumCirclesVertical(
   svg,
   mixedNum,
-  lineThickness = 5,
+  lineThickness,
   colorFill = "rgb(120, 190, 250)",
+  borderColor,
   width,
   height,
   startX = 5,
@@ -674,7 +675,7 @@ function mixedNumCirclesVertical(
     blackBorder.setAttribute("width", width);
     blackBorder.setAttribute("height", height);
     blackBorder.setAttribute("fill", "none");
-    blackBorder.setAttribute("stroke", "black");
+    blackBorder.setAttribute("stroke", borderColor);
     blackBorder.setAttribute("stroke-width", lineThickness);
     svg.appendChild(blackBorder);
   }
@@ -682,7 +683,15 @@ function mixedNumCirclesVertical(
   // This loop draws the circles and shades in the correct # of slices given an improper fraction
   for (let i = 0; i < maxWholes; i++) {
     // Draws black outline of circle
-    drawCircle(svg, currentX, currentY, radius, lineThickness);
+    drawCircle(
+      svg,
+      currentX,
+      currentY,
+      radius,
+      lineThickness,
+      "none",
+      borderColor
+    );
 
     if (currentWhole <= mixedNum.wholeNum) {
       drawCircle(
@@ -691,8 +700,8 @@ function mixedNumCirclesVertical(
         currentY,
         fillRadius,
         lineThickness,
-        "none",
-        colorFill
+        colorFill,
+        borderColor
       );
       currentWhole = currentWhole + 1;
     } else {
@@ -705,6 +714,7 @@ function mixedNumCirclesVertical(
         mixedNum.denominator,
         lineThickness,
         colorFill,
+        borderColor,
         angleWherePiecesStart
       );
       makeFractionLines(
@@ -713,7 +723,8 @@ function mixedNumCirclesVertical(
         currentY,
         radius,
         mixedNum.denominator,
-        lineThickness
+        lineThickness,
+        borderColor
       );
 
       slicesLeft = slicesLeft - mixedNum.denominator;
