@@ -549,11 +549,6 @@ function divisionFrac() {
 }
 
 function index() {
-  // function logoScript() {
-  //   let logoSVG = document.getElementById("logo-svg");
-  //   const downloadLogoSVG = document.getElementById("logo-svg-button");
-  // }
-
   let modal = document.getElementById("screen-size-modal");
   let closeModal = document.getElementById("screen-size-warning-button");
 
@@ -566,15 +561,6 @@ function index() {
     }
   }
 
-  // function handleResize() {
-  //   if (window.innerWidth <= 600) {
-  //     modal.showModal();
-  //   }
-  // }
-
-  // mediaQuery.addEventListener(handleScreenChange);
-  // handleScreenChange(mediaQuery);
-
   function handleScreenChange() {
     if (mediaQuery.matches) {
       modal.showModal();
@@ -582,8 +568,6 @@ function index() {
   }
 
   handleScreenChange();
-
-  // window.addEventListener("resize", handleResize);
 
   closeModal.addEventListener("click", () => {
     modal.close();

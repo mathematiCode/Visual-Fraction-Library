@@ -1,4 +1,4 @@
-input {
+input:not(input[type="range"]) {
   text-align: center;
   border-radius: 10px;
   background-color: transparent;
