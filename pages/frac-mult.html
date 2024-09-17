@@ -123,6 +123,23 @@
             <label for="border-color">Border</label>
             <input id="border-color" type="color" value="#000000">
           </div>
+          <div class="slider-container" id="opacity-container">
+            <label id="slider-label" for="opacity-slider">Opacity</label>
+            <input id="opacity-slider" type="range" list="tickmarks" step="10" min="0" max="100" value="50">
+            <datalist class="tickmarks">
+              <option value="0" label="0"></option>
+              <option value="10"></option>
+              <option value="20"></option>
+              <option value="30"></option>
+              <option value="40"></option>
+              <option value="50" label="50"></option>
+              <option value="60"></option>
+              <option value="70"></option>
+              <option value="80"></option>
+              <option value="90"></option>
+              <option value="100" label="100"></option>
+            </datalist>
+          </div>
 
           <div class="width-and-height">
             <div id="width-container">
@@ -136,10 +153,10 @@
             <p id="max-size-warning"> Width and height cannot be greater than 1200px</p>
           </div>
 
-          <div id="line-thickness-container">
+          <div class="slider-container" id="line-thickness-container">
             <label id="slider-label" for="thickness-slider">Line Width</label>
             <input id="thickness-slider" type="range" list="tickmarks" step="1" min="0" max="20" value="2">
-            <datalist id="tickmarks">
+            <datalist class="tickmarks">
               <option value="0" label="0 "></option>
               <option value="2"></option>
               <option value="4"></option>

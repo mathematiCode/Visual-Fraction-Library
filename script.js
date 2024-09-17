@@ -459,7 +459,6 @@ function divisionFrac() {
       divisor.wholeNum = parseInt(
         document.getElementById("divisor-whole-number").value
       );
-      console.log(`Color is ${colorArray[0]}`);
       if (modelToggle.checked) {
         mathVisual.fractionDivisionOneBar(
           divisionSVG,

@@ -124,12 +124,12 @@
     grid-area: unit;
   }
 
-  #line-thickness-container {
+  .slider-container {
     width: 90%;
     justify-content: flex-start;
   }
 
-  #thickness-slider {
+  input[type="range"] {
     width: 100%;
     accent-color: var(--teal-800);
   }
