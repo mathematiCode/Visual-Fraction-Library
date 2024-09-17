@@ -31,8 +31,17 @@ function saveSettings(svg, numColors) {
   return customizations;
 }
 
-function revertSettings(color, lineThickness, width, height, borderColor) {
-  document.getElementById("color1").value = color;
+function revertSettings(
+  colorArray,
+  numColors,
+  lineThickness,
+  width,
+  height,
+  borderColor
+) {
+  for (let i = 0; i < numColors; i++) {
+    document.getElementById(`color${i + 1}`).value = colorArray[i];
+  }
   document.getElementById("thickness-slider").value = lineThickness;
   document.getElementById("width-input").value = width;
   document.getElementById("height-input").value = height;
@@ -179,6 +188,7 @@ function multiplicationFrac() {
   let showBorderLabel = document.getElementById("show-border-label");
   const factorLabels = document.querySelectorAll(".factor-label");
   const factor2Fraction = document.getElementById("factor2-fraction");
+  const multiplicationSVG = document.getElementById("multiplication-svg");
 
   let multiplicationModel = document.getElementById(
     "multiplication-model-toggle"
@@ -192,7 +202,6 @@ function multiplicationFrac() {
   });
 
   function generateMultiplicationModel() {
-    const multiplicationSVG = document.getElementById("multiplication-svg");
     let factor1 = {};
     const factor2 = {};
     if (multiplicationModel.checked) {
@@ -226,7 +235,7 @@ function multiplicationFrac() {
       multiplicationSVG.innerHTML = "";
       multiplicationSVG.setAttribute(
         "width",
-        Math.min(800, window.innerWidth * 0.8)
+        Math.min(width, window.innerWidth * 0.8)
       );
       mathVisual.fractionMultiplicationAreaModel(
         multiplicationSVG,
@@ -289,7 +298,7 @@ function multiplicationFrac() {
     multiplicationSVG.innerHTML = "";
     multiplicationSVG.setAttribute(
       "width",
-      Math.min(800, window.innerWidth * 0.8)
+      Math.min(width, window.innerWidth * 0.8)
     );
     generateMultiplicationModel();
   });
@@ -304,7 +313,7 @@ function multiplicationFrac() {
     multiplicationSVG.innerHTML = "";
     multiplicationSVG.setAttribute(
       "width",
-      Math.min(800, window.innerWidth * 0.8)
+      Math.min(width, window.innerWidth * 0.8)
     );
     generateMultiplicationModel();
   });
@@ -314,7 +323,7 @@ function multiplicationFrac() {
     multiplicationSVG.innerHTML = "";
     multiplicationSVG.setAttribute(
       "width",
-      Math.min(800, window.innerWidth * 0.8)
+      Math.min(width, window.innerWidth * 0.8)
     );
     generateMultiplicationModel();
   });
@@ -353,6 +362,8 @@ function divisionFrac() {
 
   let openCloseNavButton = document.querySelector(".corner-logo");
   let sideNav = document.querySelector(".side-nav");
+  let colorInputs = document.querySelectorAll(`input[type="color"]`);
+  let numColors;
 
   openCloseNavButton.addEventListener("click", () => {
     if (sideNav.dataset.state === "open") {
@@ -366,7 +377,20 @@ function divisionFrac() {
     if (divisionModelCheckbox.checked) {
       divisorLargerInputs.style.visibility = "visible";
       divisorSmallerInputs.style.visibility = "hidden";
+      for (let i = 2; i < 5; i++) {
+        colorInputs[i].dataset.extra = "true";
+      }
+      numColors = 5;
+      colorInputs[1].value = "#cdcdcd";
+      colorArray[1] = "#cdcdcd";
+      console.log(colorInputs);
     } else {
+      for (let i = 2; i < 5; i++) {
+        colorInputs[i].dataset.extra = "false";
+      }
+      numColors = 2;
+      colorInputs[1].value = "#b7dd82";
+      colorArray[1] = "#b7dd82";
       divisorLargerInputs.style.visibility = "hidden";
       divisorSmallerInputs.style.visibility = "visible";
     }
@@ -376,6 +400,7 @@ function divisionFrac() {
     if (!divisionModelCheckbox.checked) {
       let dividend = {};
       let divisor = {};
+
       dividend.wholeNum = parseInt(
         document.getElementById("division-whole-number1").value
       );
@@ -421,8 +446,10 @@ function divisionFrac() {
         );
       }
     } else {
+      // if divisor is larger
       let dividend = {};
       let divisor = {};
+
       dividend.numerator = parseInt(
         document.getElementById("dividend-numerator").value
       );
@@ -432,6 +459,7 @@ function divisionFrac() {
       divisor.wholeNum = parseInt(
         document.getElementById("divisor-whole-number").value
       );
+      console.log(`Color is ${colorArray[0]}`);
       if (modelToggle.checked) {
         mathVisual.fractionDivisionOneBar(
           divisionSVG,
@@ -439,6 +467,7 @@ function divisionFrac() {
           divisor,
           lineThickness,
           colorArray[0],
+          colorArray[1],
           lineColor
         );
       } else {
@@ -448,6 +477,7 @@ function divisionFrac() {
           divisor,
           lineThickness,
           colorArray[0],
+          colorArray[1],
           lineColor
         );
       }
@@ -463,7 +493,13 @@ function divisionFrac() {
 
   let saveSettingsButton = document.getElementById("save-button");
   saveSettingsButton.addEventListener("click", () => {
-    let customizations = saveSettings(divisionSVG, 5);
+    let customizations = {};
+    if (divisionModelCheckbox.checked) {
+      numColors = 2;
+    } else {
+      numColors = 5;
+    }
+    customizations = saveSettings(divisionSVG, numColors);
     colorArray = customizations.colors;
     lineThickness = customizations.lineThickness;
     width = customizations.width;
@@ -476,7 +512,14 @@ function divisionFrac() {
 
   let cancelSettingsButton = document.getElementById("cancel-button");
   cancelSettingsButton.addEventListener("click", () => {
-    revertSettings(color, lineThickness, width, height, borderColor);
+    revertSettings(
+      colorArray,
+      numColors,
+      lineThickness,
+      width,
+      height,
+      lineColor
+    );
   });
 
   const divisionPngButton = document.getElementById("division-png-button");
