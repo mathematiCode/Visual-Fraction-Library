@@ -363,6 +363,7 @@ function divisionFrac() {
   let openCloseNavButton = document.querySelector(".corner-logo");
   let sideNav = document.querySelector(".side-nav");
   let colorInputs = document.querySelectorAll(`input[type="color"]`);
+  let colorNote = document.getElementById("color-note");
   let numColors;
 
   openCloseNavButton.addEventListener("click", () => {
@@ -380,7 +381,8 @@ function divisionFrac() {
       for (let i = 2; i < 5; i++) {
         colorInputs[i].dataset.extra = "true";
       }
-      numColors = 5;
+      colorNote.style.display = "none";
+      numColors = 2;
       colorInputs[1].value = "#cdcdcd";
       colorArray[1] = "#cdcdcd";
       console.log(colorInputs);
@@ -388,7 +390,8 @@ function divisionFrac() {
       for (let i = 2; i < 5; i++) {
         colorInputs[i].dataset.extra = "false";
       }
-      numColors = 2;
+      colorNote.style.display = "block";
+      numColors = 5;
       colorInputs[1].value = "#b7dd82";
       colorArray[1] = "#b7dd82";
       divisorLargerInputs.style.visibility = "hidden";
