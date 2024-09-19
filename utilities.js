@@ -282,9 +282,9 @@ function drawVerticalFractionBar(
   lineThickness,
   colorFill,
   borderColor,
-  background = "none"
+  background = "none",
+  opacity = 0.8
 ) {
-  debugger;
   width = parseInt(width);
   height = parseInt(height);
   x = parseInt(x);
@@ -315,6 +315,7 @@ function drawVerticalFractionBar(
   shadedRect.setAttribute("width", shaded);
   shadedRect.setAttribute("height", height);
   shadedRect.setAttribute("fill", colorFill);
+  shadedRect.setAttribute("opacity", opacity);
   shadedRect.setAttribute("stroke", borderColor);
   shadedRect.setAttribute("stroke-width", 0);
   svg.appendChild(shadedRect);
@@ -329,7 +330,6 @@ function drawVerticalFractionBar(
     pieceSeparator.setAttribute("y2", y + height);
     svg.appendChild(pieceSeparator);
     separator = separator + interval;
-    debugger;
   }
 
   const border = document.createElementNS(svgNS, "rect");
@@ -353,7 +353,8 @@ function drawHorizontalFractionBar(
   denominator,
   lineThickness,
   colorFill,
-  borderColor
+  borderColor,
+  opacity = 0.5
 ) {
   const svgNS = svg.namespaceURI;
   let interval = 0;
@@ -370,6 +371,7 @@ function drawHorizontalFractionBar(
   shadedRect.setAttribute("width", width);
   shadedRect.setAttribute("height", shaded);
   shadedRect.setAttribute("fill", colorFill);
+  shadedRect.setAttribute("opacity", opacity);
   shadedRect.setAttribute("stroke", borderColor);
   shadedRect.setAttribute("stroke-width", 0);
   svg.appendChild(shadedRect);

@@ -177,7 +177,7 @@ function multiplicationFrac() {
     "generate-multiplication"
   );
   let lineColor = "#000000";
-  let color = "#52a4b0";
+  let colorArray = ["#52a4b0", "#9ce56c"];
   let lineThickness = 5;
   let width = 800;
   let height = 250;
@@ -237,13 +237,19 @@ function multiplicationFrac() {
         "width",
         Math.min(width, window.innerWidth * 0.8)
       );
+
+      opacity1 = 0.6;
+      opacity2 = 0.4;
+
       mathVisual.fractionMultiplicationAreaModel(
         multiplicationSVG,
         factor1,
         factor2,
         lineThickness,
-        (colorFill = "hsla(188, 37%, 51%,70%)"),
-        (colorFill2 = "hsla(96, 70%, 66%,50%)"),
+        colorArray[0],
+        opacity1,
+        colorArray[1],
+        opacity2,
         toScale,
         lineColor
       );
@@ -274,7 +280,7 @@ function multiplicationFrac() {
         factor1,
         factor2,
         lineThickness,
-        color,
+        colorArray[0],
         lineColor,
         toScale
       );
@@ -284,7 +290,7 @@ function multiplicationFrac() {
   let saveSettingsButton = document.getElementById("save-button");
   saveSettingsButton.addEventListener("click", () => {
     let customizations = saveSettings(multiplicationSVG, 2);
-    color = customizations.colors[0];
+    colorArray = customizations.colors;
     lineThickness = customizations.lineThickness;
     width = customizations.width;
     height = customizations.height;
