@@ -283,7 +283,7 @@ function drawVerticalFractionBar(
   colorFill,
   borderColor,
   background = "none",
-  opacity = 0.8
+  opacity = 1
 ) {
   width = parseInt(width);
   height = parseInt(height);
@@ -354,7 +354,7 @@ function drawHorizontalFractionBar(
   lineThickness,
   colorFill,
   borderColor,
-  opacity = 0.5
+  opacity = 1
 ) {
   const svgNS = svg.namespaceURI;
   let interval = 0;
