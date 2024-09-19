@@ -28,6 +28,7 @@ function saveSettings(svg, numColors) {
   svg.setAttribute("height", height);
   customizations.width = width;
   customizations.height = height;
+  customizations.opacity = document.getElementById("opacity-slider").value;
   return customizations;
 }
 
@@ -181,6 +182,8 @@ function multiplicationFrac() {
   let lineThickness = 5;
   let width = 800;
   let height = 250;
+  let opacity1 = 0.6;
+  let opacity2 = 0.4;
 
   let openCloseNavButton = document.querySelector(".corner-logo");
   let sideNav = document.querySelector(".side-nav");
@@ -238,9 +241,6 @@ function multiplicationFrac() {
         Math.min(width, window.innerWidth * 0.8)
       );
 
-      opacity1 = 0.6;
-      opacity2 = 0.4;
-
       mathVisual.fractionMultiplicationAreaModel(
         multiplicationSVG,
         factor1,
@@ -295,6 +295,8 @@ function multiplicationFrac() {
     width = customizations.width;
     height = customizations.height;
     lineColor = customizations.borderColor;
+    opacity1 = customizations.opacity;
+    opacity2 = customizations.opacity;
     multiplicationSVG.innerHTML = "";
     generateMultiplicationModel();
   });

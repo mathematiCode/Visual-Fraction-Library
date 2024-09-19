@@ -81,9 +81,7 @@ function copyPngToClipboard(svgEl) {
       const item = new ClipboardItem({ "image/png": pngBlob });
 
       // Write the clipboard item to the clipboard
-      navigator.clipboard.write([item]).then(() => {
-        console.log("PNG copied to clipboard!");
-      });
+      navigator.clipboard.write([item]).then(() => {});
 
       URL.revokeObjectURL(url);
     };
@@ -194,9 +192,8 @@ function findIdealNumColors(
       currentNumColors + 1
     );
   } else {
-    console.log(`Returning ${currentNumColors}`);
-    return currentNumColors;
   }
+  return currentNumColors;
 }
 
 function shadeFractionSlices(
@@ -297,7 +294,6 @@ function drawVerticalFractionBar(
   let separator = interval; // Need two variables becuase separator will increment while interval stays constant.
 
   let shaded = interval * numerator;
-  console.log(`interval is ${interval} and numerator is ${numerator}`);
 
   const backgroundColor = document.createElementNS(svgNS, "rect");
   backgroundColor.setAttribute("x", x);
