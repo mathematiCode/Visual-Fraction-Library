@@ -31,121 +31,117 @@
 </head>
 
 <body>
-  <div class="two-column-layout">
-    <nav class="side-nav" data-state="open">
-      <img class="corner-logo" src="../icons-logos/Favicon.svg" alt="Visual Fraction Library Logo" />
-      <button id="expand-collapse-nav" aria-label="Open or Close Nav Bar"> </button>
-      <a class="nav-link" href="../home.html">Home</a>
-      <a class="nav-link" href="../pages/frac-mult.html">Fraction Multiplication</a>
-      <a class="nav-link" href="../pages/frac-div.html"> Fraction Division</a>
-      <a class="nav-link" href="../pages/terms-of-use.html"> Terms of Use</a>
-      <a class="nav-link" href="../pages/svg-vs-png.html"> SVG vs PNG</a>
-    </nav>
+  <nav class="side-nav" data-state="closed">
+    <img class="corner-logo" src="../icons-logos/Favicon.svg" alt="Visual Fraction Library Logo" />
+    <button id="expand-collapse-nav" aria-label="Open or Close Nav Bar"> </button>
+    <a class="nav-link" href="../index.html">Home</a>
+    <a class="nav-link" href="../pages/frac-mult.html">Fraction Multiplication</a>
+    <a class="nav-link" href="../pages/frac-div.html"> Fraction Division</a>
+    <a class="nav-link" href="../pages/terms-of-use.html"> Terms of Use</a>
+    <a class="nav-link" href="../pages/svg-vs-png.html"> SVG vs PNG</a>
+  </nav>
 
 
 
-    <div class="grid-layout">
+  <div class="grid-layout">
 
 
 
-      <h1>Input the fraction you would like displayed.</h1>
+    <h1>Input the fraction you would like displayed.</h1>
 
-      <settings-modal></settings-modal>
+    <settings-modal></settings-modal>
 
-      <div class="model-selection">
-        <h2> Circle Model </h2>
-        <label class="switch">
-          <input type="checkbox" id="basic-model-toggle" aria-label="Check for Bar Model, uncheck for Circle Model."
-            role="switch">
-          <span class="slider round"></span>
-        </label>
-        <h2 class="right-toggle">Bar Model</h2>
+    <div class="model-selection">
+      <h2> Circle Model </h2>
+      <label class="switch">
+        <input type="checkbox" id="basic-model-toggle" aria-label="Check for Bar Model, uncheck for Circle Model."
+          role="switch">
+        <span class="slider round"></span>
+      </label>
+      <h2 class="right-toggle">Bar Model</h2>
 
-      </div>
-
-
-      <div class="user-inputs">
-        <div class="problem-input">
-          <input aria-label="Whole Number" type="number" min="0" max="300" step="1" pattern="[0-9]+"
-            class="whole-number" id="basic-whole-number">
-          <div class="fraction-input">
-            <input aria-label="numerator" type="number" class="numerator" id="basic-numerator" />
-            <hr class="fracBar" />
-            <input aria-label="denominator" type="number" class="denominator" id="basic-denominator" />
-          </div>
-        </div>
-        <button class="blue-button" id="generate-basic">Generate Model</button>
+    </div>
 
 
-        <button class="open-settings" popovertarget="settings-popover">
-          Customize
-        </button>
-        <div id="settings-popover" popover=manual>
-          <h3> Customize Your Image</h3>
-          <form class="settings-form">
-            <div class="choose-color">
-              <label for="color1">Color</label>
-              <input id="color1" type="color" value="#52a4b0">
-              <label for="border-color">Border</label>
-              <input id="border-color" type="color" value="#000000">
-            </div>
-
-            <div class="width-and-height">
-              <div id="width-container">
-                <label id="width-label" for="width-input">Width</label> <input class="num-input" id="width-input"
-                  type="number" value="800" placeholder="800" min="20" max="1000"><span class="unit">px</span>
-              </div>
-              <div id="height-container">
-                <label id="height-label" for="height-input" min="20" max="1000">Height</label> <input class="num-input"
-                  id="height-input" type="number" value="250"><span class="unit">px</span>
-              </div>
-              <p id="max-size-warning"> Width and height cannot be greater than 1200px</p>
-            </div>
-
-            <div class="slider-container" id="line-thickness-container">
-              <label id="slider-label" for="thickness-slider">Line Width</label>
-              <input id="thickness-slider" type="range" list="tickmarks" step="1" min="0" max="20" value="4">
-              <datalist id="tickmarks">
-                <option value="0" label="0 "></option>
-                <option value="2"></option>
-                <option value="4"></option>
-                <option value="6"></option>
-                <option value="8"></option>
-                <option value="10" label="10"></option>
-                <option value="12"></option>
-                <option value="14"></option>
-                <option value="16"></option>
-                <option value="18"></option>
-                <option value="20" label="20"></option>
-              </datalist>
-            </div>
-          </form>
-          <div id="cancel-and-save">
-            <button class="cancel-button" id="cancel-button" popovertarget="settings-popover"
-              popovertargetaction="hide">
-              <span class="sr-only">Cancel</span>
-            </button>
-            <button class="save-button" id="save-button" popovertarget="settings-popover" popovertargetaction="hide">
-              <span class="sr-only">Save</span>
-            </button>
-          </div>
+    <div class="user-inputs">
+      <div class="problem-input">
+        <input aria-label="Whole Number" type="number" min="0" max="300" step="1" pattern="[0-9]+" class="whole-number"
+          id="basic-whole-number">
+        <div class="fraction-input">
+          <input aria-label="numerator" type="number" class="numerator" id="basic-numerator" />
+          <hr class="fracBar" />
+          <input aria-label="denominator" type="number" class="denominator" id="basic-denominator" />
         </div>
       </div>
-
-      <svg id="basic-svg" width="800" height="250" xmlns="http://www.w3.org/2000/svg"
-        xmlns:xlink="http://www.w3.org/1999/xlink" alt="Fraction Model will be displayed here.">
+      <button class="blue-button" id="generate-basic">Generate Model</button>
 
 
-      </svg>
+      <button class="open-settings" popovertarget="settings-popover">
+        Customize
+      </button>
+      <div id="settings-popover" popover=manual>
+        <h3> Customize Your Image</h3>
+        <form class="settings-form">
+          <div class="choose-color">
+            <label for="color1">Color</label>
+            <input id="color1" type="color" value="#52a4b0">
+            <label for="border-color">Border</label>
+            <input id="border-color" type="color" value="#000000">
+          </div>
 
+          <div class="width-and-height">
+            <div id="width-container">
+              <label id="width-label" for="width-input">Width</label> <input class="num-input" id="width-input"
+                type="number" value="800" placeholder="800" min="20" max="1000"><span class="unit">px</span>
+            </div>
+            <div id="height-container">
+              <label id="height-label" for="height-input" min="20" max="1000">Height</label> <input class="num-input"
+                id="height-input" type="number" value="250"><span class="unit">px</span>
+            </div>
+            <p id="max-size-warning"> Width and height cannot be greater than 1200px</p>
+          </div>
 
-      <div class="download-button-container">
-        <button class="download-button" id="basic-svg-button"> Download SVG </button>
-        <button class="download-button" id="basic-png-button"> Download PNG </button>
-        <button class="download-button" id="basic-copy-button"> Copy PNG </button>
+          <div class="slider-container" id="line-thickness-container">
+            <label id="slider-label" for="thickness-slider">Line Width</label>
+            <input id="thickness-slider" type="range" list="tickmarks" step="1" min="0" max="20" value="4">
+            <datalist id="tickmarks">
+              <option value="0" label="0 "></option>
+              <option value="2"></option>
+              <option value="4"></option>
+              <option value="6"></option>
+              <option value="8"></option>
+              <option value="10" label="10"></option>
+              <option value="12"></option>
+              <option value="14"></option>
+              <option value="16"></option>
+              <option value="18"></option>
+              <option value="20" label="20"></option>
+            </datalist>
+          </div>
+        </form>
+        <div id="cancel-and-save">
+          <button class="cancel-button" id="cancel-button" popovertarget="settings-popover" popovertargetaction="hide">
+            <span class="sr-only">Cancel</span>
+          </button>
+          <button class="save-button" id="save-button" popovertarget="settings-popover" popovertargetaction="hide">
+            <span class="sr-only">Save</span>
+          </button>
+        </div>
       </div>
     </div>
+
+    <svg id="basic-svg" width="800" height="250" xmlns="http://www.w3.org/2000/svg"
+      xmlns:xlink="http://www.w3.org/1999/xlink" alt="Fraction Model will be displayed here.">
+    </svg>
+
+
+    <div class="download-button-container">
+      <button class="download-button" id="basic-svg-button"> Download SVG </button>
+      <button class="download-button" id="basic-png-button"> Download PNG </button>
+      <button class="download-button" id="basic-copy-button"> Copy PNG </button>
+    </div>
   </div>
+
 
 
 

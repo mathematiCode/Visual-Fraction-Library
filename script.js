@@ -28,7 +28,10 @@ function saveSettings(svg, numColors) {
   svg.setAttribute("height", height);
   customizations.width = width;
   customizations.height = height;
-  customizations.opacity = document.getElementById("opacity-slider").value;
+  opacityElement = document.getElementById("opacity-slider");
+  if (opacityElement) {
+    customizations.opacity = opacityElement.value;
+  }
   return customizations;
 }
 

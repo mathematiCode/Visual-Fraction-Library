@@ -32,170 +32,166 @@
 </head>
 
 <body>
-  <div class="two-column-layout">
 
-    <nav class="side-nav" data-state="closed">
-      <button id="expand-collapse-nav" aria-label="Open or Close Nav Bar"> </button>
-      <img class="corner-logo" src="../icons-logos/Favicon.svg" alt="Visual Fraction Library Logo" />
-      <a class="nav-link" href="../index.html"> Home</a>
-      <a class="nav-link" href="../pages/basic-frac.html">Simple Fractions</a>
-      <a class="nav-link" href="../pages/frac-div.html">
-        Fraction Division</a>
-      <a class="nav-link" href="../pages/terms-of-use.html">
-        Terms of Use</a>
-      <a class="nav-link" href="../pages/svg-vs-png.html">
-        SVG vs PNG</a>
-    </nav>
+  <nav class="side-nav" data-state="closed">
+    <button id="expand-collapse-nav" aria-label="Open or Close Nav Bar"> </button>
+    <img class="corner-logo" src="../icons-logos/Favicon.svg" alt="Visual Fraction Library Logo" />
+    <a class="nav-link" href="../index.html"> Home</a>
+    <a class="nav-link" href="../pages/basic-frac.html">Simple Fractions</a>
+    <a class="nav-link" href="../pages/frac-div.html">
+      Fraction Division</a>
+    <a class="nav-link" href="../pages/terms-of-use.html">
+      Terms of Use</a>
+    <a class="nav-link" href="../pages/svg-vs-png.html">
+      SVG vs PNG</a>
+  </nav>
 
-    <div class="grid-layout">
+  <div class="grid-layout">
 
 
-      <h1>Enter the multiplication problem you would like displayed.</h1>
-      <!-- <p class="requirements">
-     Works best with denominators 10 or less.  
-  </p> -->
+    <h1>Enter the multiplication problem you would like displayed.</h1>
 
-      <div class="model-selection">
-        <h2 class="mode-toggle">Groups Model</h2>
-        <label for="multiplication-model-toggle" class="switch">
-          <input type="checkbox" role="switch" id="multiplication-model-toggle"
-            aria-label="Check for Area Model, uncheck for Circle Model." />
-          <span class="slider round"></span>
-        </label>
-        <h2 class="right-toggle" class="mode-toggle">Area Model</h2>
-      </div>
+    <div class="model-selection">
+      <h2 class="mode-toggle">Groups Model</h2>
+      <label for="multiplication-model-toggle" class="switch">
+        <input type="checkbox" role="switch" id="multiplication-model-toggle"
+          aria-label="Check for Area Model, uncheck for Circle Model." />
+        <span class="slider round"></span>
+      </label>
+      <h2 class="right-toggle" class="mode-toggle">Area Model</h2>
+    </div>
 
-      <div class="user-inputs">
-        <div class="problem-input">
-          <div class="factor-with-label">
-            <p class="factor-label"> Size of Each Group</p>
-            <div class="factor">
-              <input aria-label="first factor whole number" type="number" class="whole-number"
-                id="multiplication-whole-number1" placeholder="" />
-              <div class="fraction-input">
-                <input aria-label="first factor numerator" type="number" class="numerator"
-                  id="multiplication-numerator1" placeholder="" />
-                <hr class="fracBar" />
-                <input aria-label="first factor denominator" type="number" class="denominator"
-                  id="multiplication-denominator1" placeholder="" />
-              </div>
-            </div>
-          </div>
-          <p class="symbol">×</p>
-          <div class="factor-with-label">
-            <p class="factor-label"> Number of Groups</p>
-            <div class="factor">
-              <input aria-label="second factor whole number" type="number" class="whole-number"
-                id="multiplication-whole-number2" placeholder="" />
-              <div id="factor2-fraction" class="fraction-input">
-                <input aria-label="second factor numerator" type="number" class="numerator"
-                  id="multiplication-numerator2" placeholder="" />
-                <hr class="fracBar" />
-                <input aria-label="second factor denominator" type="number" class="denominator"
-                  id="multiplication-denominator2" placeholder="" />
-              </div>
+    <div class="user-inputs">
+      <div class="problem-input">
+        <div class="factor-with-label">
+          <p class="factor-label"> Size of Each Group</p>
+          <div class="factor">
+            <input aria-label="first factor whole number" type="number" class="whole-number"
+              id="multiplication-whole-number1" placeholder="" />
+            <div class="fraction-input">
+              <input aria-label="first factor numerator" type="number" class="numerator" id="multiplication-numerator1"
+                placeholder="" />
+              <hr class="fracBar" />
+              <input aria-label="first factor denominator" type="number" class="denominator"
+                id="multiplication-denominator1" placeholder="" />
             </div>
           </div>
         </div>
-
-        <div class="button-and-checkbox">
-          <div id="to-scale">
-            <input id="to-scale-checkbox" type="checkbox" aria-label="Draw to scale" />
-            <p id="to-scale-label">Draw areas to scale</p>
-            <p id="show-border-label">Show Borders</p>
+        <p class="symbol">×</p>
+        <div class="factor-with-label">
+          <p class="factor-label"> Number of Groups</p>
+          <div class="factor">
+            <input aria-label="second factor whole number" type="number" class="whole-number"
+              id="multiplication-whole-number2" placeholder="" />
+            <div id="factor2-fraction" class="fraction-input">
+              <input aria-label="second factor numerator" type="number" class="numerator" id="multiplication-numerator2"
+                placeholder="" />
+              <hr class="fracBar" />
+              <input aria-label="second factor denominator" type="number" class="denominator"
+                id="multiplication-denominator2" placeholder="" />
+            </div>
           </div>
-          <button class="blue-button" id="generate-multiplication">
-            Generate Multiplication Model
-          </button>
         </div>
       </div>
 
-      <button class="open-settings" popovertarget="settings-popover">
-        Customize
-      </button>
-      <div id="settings-popover" popover=manual>
-        <h3> Customize Your Image</h3>
-        <form class="settings-form">
-          <div class="choose-color">
-            <label>Colors</label>
-            <input id="color1" type="color" value="#52a4b0">
-            <input id="color2" type="color" value="#b7dd82">
-            <label for="border-color">Border</label>
-            <input id="border-color" type="color" value="#000000">
-          </div>
-          <div class="slider-container" id="opacity-container">
-            <label id="slider-label" for="opacity-slider">Opacity</label>
-            <input id="opacity-slider" type="range" list="opacity-tickmarks" step="0.1" min="0" max="1" value="0.5">
-            <datalist class="opacity-tickmarks">
-              <option value="0" label="0 "></option>
-              <option value="10" label=""></option>
-              <option value="20" label=""></option>
-              <option value="30" label=""></option>
-              <option value="40" label=""></option>
-              <option value="50" label="50"></option>
-              <option value="60" label=""></option>
-              <option value="70" label=""></option>
-              <option value="80" label=""></option>
-              <option value="90" label=""></option>
-              <option value="100" label="100"></option>
-            </datalist>
-          </div>
-
-          <div class="width-and-height">
-            <div id="width-container">
-              <label id="width-label" for="width-input">Width</label> <input class="num-input" id="width-input"
-                type="number" value="800" placeholder="800" min="20" max="1000"><span class="unit">px</span>
-            </div>
-            <div id="height-container">
-              <label id="height-label" for="height-input" min="20" max="1000">Height</label>
-              <input class="num-input" id="height-input" type="number" value="250"><span class="unit">px</span>
-            </div>
-            <p id="max-size-warning"> Width and height cannot be greater than 1200px</p>
-          </div>
-
-          <div class="slider-container" id="line-thickness-container">
-            <label id="slider-label" for="thickness-slider">Line Width</label>
-            <input id="thickness-slider" type="range" list="thickness-tickmarks" step="1" min="0" max="20" value="5">
-            <datalist class="thickness-tickmarks">
-              <option value="0" label="0 "></option>
-              <option value="2"></option>
-              <option value="4"></option>
-              <option value="6"></option>
-              <option value="8"></option>
-              <option value="10" label="10"></option>
-              <option value="12"></option>
-              <option value="14"></option>
-              <option value="16"></option>
-              <option value="18"></option>
-              <option value="20" label="20"></option>
-            </datalist>
-          </div>
-        </form>
-        <div id="cancel-and-save">
-          <button class="cancel-button" id="cancel-button" popovertarget="settings-popover" popovertargetaction="hide">
-            <span class="sr-only">Cancel</span>
-          </button>
-          <button class="save-button" id="save-button" popovertarget="settings-popover" popovertargetaction="hide">
-            <span class="sr-only">Save</span>
-          </button>
+      <div class="button-and-checkbox">
+        <div id="to-scale">
+          <input id="to-scale-checkbox" type="checkbox" aria-label="Draw to scale" />
+          <p id="to-scale-label">Draw areas to scale</p>
+          <p id="show-border-label">Show Borders</p>
         </div>
-      </div>
-
-      <svg id="multiplication-svg" width="800" height="250" alt="multiplication visual will be displayed here"></svg>
-
-      <div class="download-button-container">
-        <button class="download-button" id="mult-svg-button">
-          Download SVG
-        </button>
-        <button class="download-button" id="mult-png-button">
-          Download PNG
-        </button>
-        <button class="download-button" id="mult-copy-button">
-          Copy PNG
+        <button class="blue-button" id="generate-multiplication">
+          Generate Multiplication Model
         </button>
       </div>
     </div>
+
+    <button class="open-settings" popovertarget="settings-popover">
+      Customize
+    </button>
+    <div id="settings-popover" popover=manual>
+      <h3> Customize Your Image</h3>
+      <form class="settings-form">
+        <div class="choose-color">
+          <label>Colors</label>
+          <input id="color1" type="color" value="#52a4b0">
+          <input id="color2" type="color" value="#b7dd82">
+          <label for="border-color">Border</label>
+          <input id="border-color" type="color" value="#000000">
+        </div>
+        <div class="slider-container" id="opacity-container">
+          <label id="slider-label" for="opacity-slider">Opacity (for area model only) </label>
+          <input id="opacity-slider" type="range" list="opacity-tickmarks" step="0.1" min="0" max="1" value="0.5">
+          <datalist class="opacity-tickmarks">
+            <option value="0" label="0 "></option>
+            <option value="10" label=""></option>
+            <option value="20" label=""></option>
+            <option value="30" label=""></option>
+            <option value="40" label=""></option>
+            <option value="50" label="50"></option>
+            <option value="60" label=""></option>
+            <option value="70" label=""></option>
+            <option value="80" label=""></option>
+            <option value="90" label=""></option>
+            <option value="100" label="100"></option>
+          </datalist>
+        </div>
+
+        <div class="width-and-height">
+          <div id="width-container">
+            <label id="width-label" for="width-input">Width</label> <input class="num-input" id="width-input"
+              type="number" value="800" placeholder="800" min="20" max="1000"><span class="unit">px</span>
+          </div>
+          <div id="height-container">
+            <label id="height-label" for="height-input" min="20" max="1000">Height</label>
+            <input class="num-input" id="height-input" type="number" value="250"><span class="unit">px</span>
+          </div>
+          <p id="max-size-warning"> Width and height cannot be greater than 1200px</p>
+        </div>
+
+        <div class="slider-container" id="line-thickness-container">
+          <label id="slider-label" for="thickness-slider">Line Width</label>
+          <input id="thickness-slider" type="range" list="thickness-tickmarks" step="1" min="0" max="20" value="5">
+          <datalist class="thickness-tickmarks">
+            <option value="0" label="0 "></option>
+            <option value="2"></option>
+            <option value="4"></option>
+            <option value="6"></option>
+            <option value="8"></option>
+            <option value="10" label="10"></option>
+            <option value="12"></option>
+            <option value="14"></option>
+            <option value="16"></option>
+            <option value="18"></option>
+            <option value="20" label="20"></option>
+          </datalist>
+        </div>
+      </form>
+      <div id="cancel-and-save">
+        <button class="cancel-button" id="cancel-button" popovertarget="settings-popover" popovertargetaction="hide">
+          <span class="sr-only">Cancel</span>
+        </button>
+        <button class="save-button" id="save-button" popovertarget="settings-popover" popovertargetaction="hide">
+          <span class="sr-only">Save</span>
+        </button>
+      </div>
+    </div>
+
+    <svg id="multiplication-svg" width="800" height="250" alt="multiplication visual will be displayed here"></svg>
+
+    <div class="download-button-container">
+      <button class="download-button" id="mult-svg-button">
+        Download SVG
+      </button>
+      <button class="download-button" id="mult-png-button">
+        Download PNG
+      </button>
+      <button class="download-button" id="mult-copy-button">
+        Copy PNG
+      </button>
+    </div>
   </div>
+
 
   <script src="../script.js"></script>
   <script src="../utilities.js"></script>

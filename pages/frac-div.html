@@ -32,171 +32,168 @@
 		<link rel="icon" type="image/x-icon" href="../icons-logos/Favicon.svg">
 	</head>
 
+<body>
 	<div>
-		<div class="two-column-layout">
+		<nav class="side-nav" data-state="open">
+			<button id="expand-collapse-nav" aria-label="Open or Close Nav Bar"> </button>
+			<img class="corner-logo" src="../icons-logos/Favicon.svg" alt="Visual Fraction Library - Home" />
+			<a class="nav-link" href="../index.html">Home</a>
+			<a class="nav-link" href="../pages/basic-frac.html">Simple Fractions</a>
+			<a class="nav-link" href="../pages/frac-mult.html">Fraction Multiplication</a>
+			<a class="nav-link" href="../pages/terms-of-use.html"> Terms of Use</a>
+			<a class="nav-link" href="../pages/svg-vs-png.html"> SVG vs PNG</a>
+		</nav>
 
-
-			<nav class="side-nav" data-state="open">
-				<button id="expand-collapse-nav" aria-label="Open or Close Nav Bar"> </button>
-				<img class="corner-logo" src="../icons-logos/Favicon.svg" alt="Visual Fraction Library - Home" />
-				<a class="nav-link" href="../index.html">Home</a>
-				<a class="nav-link" href="../pages/basic-frac.html">Simple Fractions</a>
-				<a class="nav-link" href="../pages/frac-mult.html">Fraction Multiplication</a>
-				<a class="nav-link" href="../pages/terms-of-use.html"> Terms of Use</a>
-				<a class="nav-link" href="../pages/svg-vs-png.html"> SVG vs PNG</a>
-			</nav>
-
-			<div class="grid-layout">
-				<h1>Input the division problem you would like displayed.</h1>
-				<!-- <p class="requirements" id="division-warning">
+		<div class="grid-layout">
+			<h1>Input the division problem you would like displayed.</h1>
+			<!-- <p class="requirements" id="division-warning">
     For now this only works when the dividend is greater than the divisor. I
     plan to add other models later that are better at modeling division when the
     divisor is larger.
   </p> -->
 
-				<div class="model-selection">
-					<h2 class="mode-toggle">Circle Model</h2>
-					<label class="switch">
-						<input type="checkbox" role="switch" id="division-model-toggle"
-							aria-label="Check for Bar Model, uncheck for Circle Model" />
-						<span class="slider round"></span>
-					</label>
-					<h2 class="right-toggle" class="mode-toggle">Bar Model</h2>
-				</div>
+			<div class="model-selection">
+				<h2 class="mode-toggle">Circle Model</h2>
+				<label class="switch">
+					<input type="checkbox" role="switch" id="division-model-toggle"
+						aria-label="Check for Bar Model, uncheck for Circle Model" />
+					<span class="slider round"></span>
+				</label>
+				<h2 class="right-toggle" class="mode-toggle">Bar Model</h2>
+			</div>
 
-				<div class="user-inputs">
-					<div id="division-input-options">
-						<div id="divisor-smaller">
-							<input aria-label="Dividend Whole Number" type="number" class="whole-number"
-								id="division-whole-number1" />
-							<div class="fraction-input">
-								<input aria-label="Dividend Numerator" type="number" class="numerator"
-									id="division-numerator1" />
-								<hr class="fracBar" />
-								<input aria-label="Dividend denominator" type="number" class="denominator"
-									id="division-denominator1" />
-							</div>
-							<p class="symbol">÷</p>
-							<div class="fraction-input">
-								<input aria-label="Divisor numerator" type="number" class="numerator"
-									id="division-numerator2" />
-								<hr class="fracBar" />
-								<input aria-label="Divisor denominator" type="number" class="denominator"
-									id="division-denominator2" />
-							</div>
+			<div class="user-inputs">
+				<div id="division-input-options">
+					<div id="divisor-smaller">
+						<input aria-label="Dividend Whole Number" type="number" class="whole-number"
+							id="division-whole-number1" />
+						<div class="fraction-input">
+							<input aria-label="Dividend Numerator" type="number" class="numerator"
+								id="division-numerator1" />
+							<hr class="fracBar" />
+							<input aria-label="Dividend denominator" type="number" class="denominator"
+								id="division-denominator1" />
 						</div>
-
-						<!-- Divisor is Greater Inputs -->
-						<div id="divisor-larger">
-
-							<div class="fraction-input">
-								<input aria-label="Dividend Numerator" type="number" class="numerator"
-									id="dividend-numerator" />
-								<hr class="fracBar" />
-								<input aria-label="Dividend denominator" type="number" class="denominator"
-									id="dividend-denominator" />
-							</div>
-							<p class="symbol">÷</p>
-
-							<input aria-label="Divisor whole number" type="number" class="whole-number"
-								id="divisor-whole-number" />
+						<p class="symbol">÷</p>
+						<div class="fraction-input">
+							<input aria-label="Divisor numerator" type="number" class="numerator"
+								id="division-numerator2" />
+							<hr class="fracBar" />
+							<input aria-label="Divisor denominator" type="number" class="denominator"
+								id="division-denominator2" />
 						</div>
 					</div>
 
+					<!-- Divisor is Greater Inputs -->
+					<div id="divisor-larger">
 
-					<div class="button-and-checkbox">
-						<div id="type-of-division">
-							<input aria-label="Check if divisor is larger than dividend"
-								id="divisor-is-larger-checkbox" type="checkbox" />
-							<p>The Divisor is Larger</p>
+						<div class="fraction-input">
+							<input aria-label="Dividend Numerator" type="number" class="numerator"
+								id="dividend-numerator" />
+							<hr class="fracBar" />
+							<input aria-label="Dividend denominator" type="number" class="denominator"
+								id="dividend-denominator" />
 						</div>
-						<button class="blue-button" id="generate-division">
-							Generate Division Model
-						</button>
+						<p class="symbol">÷</p>
+
+						<input aria-label="Divisor whole number" type="number" class="whole-number"
+							id="divisor-whole-number" />
 					</div>
 				</div>
 
-				<button class="open-settings" popovertarget="settings-popover">
-					Customize
+
+				<div class="button-and-checkbox">
+					<div id="type-of-division">
+						<input aria-label="Check if divisor is larger than dividend"
+							id="divisor-is-larger-checkbox" type="checkbox" />
+						<p>The Divisor is Larger</p>
+					</div>
+					<button class="blue-button" id="generate-division">
+						Generate Division Model
+					</button>
+				</div>
+			</div>
+
+			<button class="open-settings" popovertarget="settings-popover">
+				Customize
+			</button>
+			<div id="settings-popover" popover=manual>
+				<h3> Customize Your Image</h3>
+				<form class="settings-form">
+					<div class="choose-color">
+						<label>Colors</label>
+						<input id="color1" type="color" value="#52a4b0">
+						<input id="color2" type="color" value="#b7dd82">
+						<input id="color3" data-extra="false" type="color" value="#f0a68c">
+						<input id="color4" data-extra="false" type="color" value="#f5ef84">
+						<input id="color5" data-extra="false" type="color" value="#928183">
+						<label for="border-color">Border</label>
+						<input id="border-color" type="color" value="#000000">
+					</div>
+					<p id="color-note"> Note: Some colors are only used when needed to avoid two adjacent
+						groups having the
+						same color. </p>
+
+					<div class="width-and-height">
+						<div id="width-container">
+							<label id="width-label" for="width-input">Width</label> <input class="num-input"
+								id="width-input" type="number" value="800" placeholder="800" min="20"
+								max="1200"><span class="unit">px</span>
+						</div>
+						<div id="height-container">
+							<label id="height-label" for="height-input" min="20" max="1200">Height</label>
+							<input class="num-input" id="height-input" type="number" value="250"><span
+								class="unit">px</span>
+						</div>
+						<p id="max-size-warning"> Width and height cannot be greater than 1200px</p>
+					</div>
+
+					<div class="slider-container" id="line-thickness-container">
+						<label id="slider-label" for="thickness-slider">Line Width</label>
+						<input id="thickness-slider" type="range" list="tickmarks" step="1" min="0" max="20"
+							value="4">
+						<datalist id="tickmarks">
+							<option value="0" label="0"></option>
+							<option value="2"></option>
+							<option value="4"></option>
+							<option value="6"></option>
+							<option value="8"></option>
+							<option value="10" label="10"></option>
+							<option value="12"></option>
+							<option value="14"></option>
+							<option value="16"></option>
+							<option value="18"></option>
+							<option value="20" label="20"></option>
+						</datalist>
+					</div>
+				</form>
+				<div id="cancel-and-save">
+					<button class="cancel-button" id="cancel-button" popovertarget="settings-popover"
+						popovertargetaction="hide">
+						<span class="sr-only">Cancel</span>
+					</button>
+					<button class="save-button" id="save-button" popovertarget="settings-popover"
+						popovertargetaction="hide">
+						<span class="sr-only">Save</span>
+					</button>
+				</div>
+			</div>
+
+
+			<svg id="division-svg" width="800" height="270" alt="Division model will be displayed here.">
+				This browser doesn't support svg elements. Try a different browser.
+			</svg>
+
+			<div class="download-button-container">
+				<button class="download-button" id="division-svg-button">
+					Download SVG
 				</button>
-				<div id="settings-popover" popover=manual>
-					<h3> Customize Your Image</h3>
-					<form class="settings-form">
-						<div class="choose-color">
-							<label>Colors</label>
-							<input id="color1" type="color" value="#52a4b0">
-							<input id="color2" type="color" value="#b7dd82">
-							<input id="color3" data-extra="false" type="color" value="#f0a68c">
-							<input id="color4" data-extra="false" type="color" value="#f5ef84">
-							<input id="color5" data-extra="false" type="color" value="#928183">
-							<label for="border-color">Border</label>
-							<input id="border-color" type="color" value="#000000">
-						</div>
-						<p id="color-note"> Note: Some colors are only used when needed to avoid two adjacent
-							groups having the
-							same color. </p>
-
-						<div class="width-and-height">
-							<div id="width-container">
-								<label id="width-label" for="width-input">Width</label> <input class="num-input"
-									id="width-input" type="number" value="800" placeholder="800" min="20"
-									max="1200"><span class="unit">px</span>
-							</div>
-							<div id="height-container">
-								<label id="height-label" for="height-input" min="20" max="1200">Height</label>
-								<input class="num-input" id="height-input" type="number" value="250"><span
-									class="unit">px</span>
-							</div>
-							<p id="max-size-warning"> Width and height cannot be greater than 1200px</p>
-						</div>
-
-						<div class="slider-container" id="line-thickness-container">
-							<label id="slider-label" for="thickness-slider">Line Width</label>
-							<input id="thickness-slider" type="range" list="tickmarks" step="1" min="0" max="20"
-								value="4">
-							<datalist id="tickmarks">
-								<option value="0" label="0"></option>
-								<option value="2"></option>
-								<option value="4"></option>
-								<option value="6"></option>
-								<option value="8"></option>
-								<option value="10" label="10"></option>
-								<option value="12"></option>
-								<option value="14"></option>
-								<option value="16"></option>
-								<option value="18"></option>
-								<option value="20" label="20"></option>
-							</datalist>
-						</div>
-					</form>
-					<div id="cancel-and-save">
-						<button class="cancel-button" id="cancel-button" popovertarget="settings-popover"
-							popovertargetaction="hide">
-							<span class="sr-only">Cancel</span>
-						</button>
-						<button class="save-button" id="save-button" popovertarget="settings-popover"
-							popovertargetaction="hide">
-							<span class="sr-only">Save</span>
-						</button>
-					</div>
-				</div>
-
-
-				<svg id="division-svg" width="800" height="270" alt="Division model will be displayed here.">
-					This browser doesn't support svg elements. Try a different browser.
-				</svg>
-
-				<div class="download-button-container">
-					<button class="download-button" id="division-svg-button">
-						Download SVG
-					</button>
-					<button class="download-button" id="division-png-button">
-						Download PNG
-					</button>
-					<button class="download-button" id="division-copy-button">
-						Copy PNG
-					</button>
-				</div>
+				<button class="download-button" id="division-png-button">
+					Download PNG
+				</button>
+				<button class="download-button" id="division-copy-button">
+					Copy PNG
+				</button>
 			</div>
 		</div>
 	</div>
@@ -208,7 +205,7 @@
 		divisionFrac();
 		buttonFunctions();
 	</script>
-	</body>
+</body>
 
-	</html>
+</html>
 </head>

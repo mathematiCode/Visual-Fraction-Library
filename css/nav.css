@@ -25,7 +25,7 @@ a {
 }
 
 #homepage-nav {
-  z-index: 1;
+  z-index: 2;
   padding-left: 70px !important;
   padding-right: 70px !important;
   gap: clamp(25px, 55px, 55px);

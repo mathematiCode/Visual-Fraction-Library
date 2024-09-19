@@ -27,7 +27,7 @@
   font-family: Inter, sans-serif;
   position: absolute;
   right: 0px;
-  top: 25px;
+  top: 30px;
 }
 
 #settings-popover::backdrop {

@@ -121,17 +121,43 @@ h2 {
   grid-template-rows: 400px;
 }
 
-.logo-text {
+.logo-text,
+.main-title {
   font-family: "Lovelo-LineBold", sans-serif;
   color: var(--teal-900);
   line-height: 1.5;
-  margin-left: 100px;
   font-size: 4.5rem;
   text-shadow: 4px 4px 1px var(--teal-400);
   font-weight: 800;
   grid-row: 1/-1;
   grid-column: 1/-1;
   z-index: 1;
+}
+
+ul {
+  all: unset;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+li {
+  all: unset;
+  vertical-align: top;
+  display: flex;
+  align-items: top;
+  gap: 10px;
+}
+
+.card img {
+  object-fit: contain;
+  max-width: 100%;
+  max-height: 100%;
+  height: 70px;
+  width: auto;
+}
+
+#mult-cards img {
+  height: 115px;
 }
 
 #logo-svg {

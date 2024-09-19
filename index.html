@@ -3,225 +3,164 @@
 
 
 <head>
-     <!-- Google tag (gtag.js) -->
-     <script async src="https://www.googletagmanager.com/gtag/js?id=G-8N6PMSC654"></script>
-     <script>
-          window.dataLayer = window.dataLayer || [];
-          function gtag() { dataLayer.push(arguments); }
-          gtag('js', new Date());
 
-          gtag('config', 'G-8N6PMSC654');
-     </script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8N6PMSC654"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-8N6PMSC654');
+  </script>
+
+  <!-- Google Tag Manager -->
+  <script>(function (w, d, s, l, i) {
+      w[l] = w[l] || []; w[l].push({
+        'gtm.start':
+          new Date().getTime(), event: 'gtm.js'
+      }); var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+          'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-MN5ZKZQ5');</script>
+  <!-- End Google Tag Manager -->
+  <script src="https://js.sentry-cdn.com/daccd7c79e783038caf4736181d2105c.min.js" crossorigin="anonymous"></script>
 
 
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <meta name="description" content="Generate SVG and PNG images of visual models depicting fraction operations." />
+  <meta name="keywords"
+    content="fraction visual generator, mixed number visuals, fraction clip art, fraction image, commercial use fraction clip art, fraction models, visualize mixed numbers, fraction picture, modeling fraction multiplication, modeling fraction division, math svg generator">
+  <style>
+    /* This is here to solve cross-origin problem(?) */
+  </style>
 
-     <meta charset="UTF-8" />
-     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-     <meta name="description" content="Generate SVG and PNG images of visual models depicting fraction operations." />
-     <meta name="keywords"
-          content="fraction visual generator, mixed number visuals, fraction clip art, fraction image, commercial use fraction clip art, fraction models, visualize mixed numbers, fraction picture, modeling fraction multiplication, modeling fraction division, math svg generator">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/nav.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/modal.css" />
 
-     <title>Visual Fraction Library</title>
-     <link rel="icon" type="image/x-icon" href="./icons-logos/Favicon.svg">
-     <link rel="stylesheet" href="./css/styles.css" />
-     <link rel="stylesheet" href="./css/nav.css" />
+  <title>Fraction Visual Library</title>
+  <link rel="icon" type="image/x-icon" href="./icons-logos/Favicon.svg">
 </head>
 
+<!-- <h1>Fraction Visual Library</h1> -->
 
 <body>
-     <img class="corner-logo" src="./icons-logos/Favicon.svg" alt="Visual Fraction Library Logo" />
-     <a id="learn-more-button" href="./pages/learn-more.html"> Learn More </a>
-     <div id="video-container">
-          <video autoplay muted playsinline loop>
-               <source src="./icons-logos/VFL-cropped-video-demo.mp4" type="video/mp4">
-               <source src="movie.ogg" type="video/ogg">
-               Your browser does not support the video tag.
-          </video>
-          <button id="video-toggle">
-               <img id="pause-icon" class="video-control-icon" src="./icons-logos/pause.svg">
-               <img id="play-icon" class="video-control-icon" src="./icons-logos/play-new.svg">
-          </button>
-     </div>
 
-     <iframe id="subscribe-form" src="https://embeds.beehiiv.com/00190cb8-c18d-4c5d-bea5-8fc5bf7c958c"
-          data-test-id="beehiiv-embed" width="95%" height="250" frameborder="0" scrolling="no"></iframe>
-     <a id="subscribe-button" href="https://magic.beehiiv.com/v1/c785f6d7-0a69-4016-8ec0-f7d62097b17f?email={{email}}">
-          Subscribe to Email
-          Updates</a>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MN5ZKZQ5" height="0" width="0"
+      style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <nav id="homepage-nav">
+    <img class="corner-logo" id="homepage-corner-logo" src="./icons-logos/Favicon.svg"
+      alt="Visual Fraction Library Logo" />
+    <a class="nav-link" href="./pages/basic-frac.html">Simple Fractions</a>
+    <a class="nav-link" href="./pages/frac-mult.html">Fraction Multiplication</a>
+    <a class="nav-link" href="./pages/frac-div.html">
+      Fraction Division</a>
+    <a class="nav-link" href="./pages/terms-of-use.html">
+      Terms of Use</a>
+    <a class="nav-link" href="./pages/svg-vs-png.html">
+      SVG vs PNG</a>
+  </nav>
+
+  <dialog id="screen-size-modal" class="modal">
+    <p id="screen-size-warning">
+      Warning: This website is not optimized for mobile devices. We strongly
+      recommend using our site on a tablet, laptop or desktop. <!--  Please reach
+      out to us if you would be interested in a mobile version of this
+      website. -->
+    </p>
+    <button class="blue-button" id="screen-size-warning-button"> Thanks for the warning.</button>
+  </dialog>
+  <!-- 
+  <div id="large-logo-container">
+    <h1 class="logo-text">Visual Fraction Library</h1>
+    <svg xmlns="http://www.w3.org/2000/svg" id="logo-svg" width="400" height="400"
+      alt="large logo made of colorful fraction pieces">
+      <path id="greenSlice1" fill="hsl(78, 61%, 81%,70%)"
+        d="&#10;        M 200,200 &#10;     L 61.1,182.4 &#10;   A 140,140 0 0 1 127.1,80.4 &#10;        Z&#10;      " />
+      <path id="peachSlice1" fill="hsl(78, 61%, 81%,70%)"
+        d="&#10;        M 200,200 &#10;     L 86.7,282.29 &#10;    A 140,140 0 0 1 65.0,162.75 &#10;        Z&#10;      " />
+      <path id="" fill="hsl(10, 78%, 82%, 70%)"
+        d="&#10;        M 200,200 &#10;     L 187.4,399.6 &#10;   A 200,200 0 0 1 36.1,314.6 &#10;        Z&#10;      " />
+      <path fill="hsl(183, 48%, 86%,70%)"
+        d="&#10;        M 200,200 &#10;     L 276.4,305.2 &#10;    A 130,130 0 0 1 190.9,329.7 &#10;        Z&#10;      " />
+      <path fill="hsl(78, 61%, 81%,70%)"
+        d="&#10;        M 200,200 &#10;     L 357.2,230 &#10;    A 160,160 0 0 1 274.5,341.6 &#10;        Z&#10;      " />
+      <path fill="hsl(10, 78%, 82%, 70%)"
+        d="&#10;        M 200,200 &#10;     L 381,114.8 &#10;    A 200,200 0 0 1 396.5,237.5 &#10;        Z&#10;      " />
+      <path fill="hsl(78, 61%, 81%,70%)"
+        d="&#10;        M 200,200 &#10;     L 255.9,44.7 &#10;    A 165,165 0 0 1 349.3,129.7 &#10;        Z&#10;      " />
+      <path fill="hsl(33, 86%, 81%, 70%)"
+        d="&#10;        M 200,200 &#10;     L 168.7,2.5 &#10;     A 200,200 0 0 1 264,10.5 &#10;        Z&#10;      " />
+      <path fill="hsl(183, 48%, 86%,70%)"
+        d="&#10;        M 200,200 &#10;     L 111.2,55.1 &#10;    A 170,170 0 0 1 173.4,32.1 &#10;        Z&#10;      " />
+    </svg> -->
+
+  </div>
+
+  <main>
+    <div id="cards-and-copy">
+      <h1 class="main-title">Visual Fraction Library</h1>
+      <h2> Use Visual Fraction Library to Generate Customizable Visual Models of...</h2>
+      <div class="card-container">
+        <div class="card">
+          <ul>
+            <li>Proper Fractions <img src="./example-svgs/3:7.svg" width="70px"></img></li>
+
+            <li> Improper Fractions </li>
+            <img width="190px" src="./example-svgs/11:4.svg"></img>
+            <li>or Mixed Numbers </li>
+            <img src="./example-svgs/4and2:5.svg"></img>
+          </ul>
+          with Circles or Bars
+        </div>
+        <div id="mult-cards" class="card">
+          <ul>
+            <li> Group Models </li>
+            <img src="./example-svgs/groups.svg"></img>
+            <li> Area Models </li>
+            <img src="./example-svgs/area-model.svg"></img>
+          </ul>
+        </div>
+        <div class="card">
+          Fraction Division
+          <br>
+          <ul>
+            <li> when the dividend is larger </li>
+            <img src="./example-svgs/dividend-larger.svg"></img>
+            <li>or when the divisor is larger </li>
+            <img src="./example-svgs/divisor-larger.svg"></img>
+          </ul>
+        </div>
+      </div>
+      <h2> ...to make Slideshows, Worksheets, and More for Commercial or Classroom Use</h2>
+    </div>
+  </main>
+
+
+  <a href="https://www.buymeacoffee.com/MathVisualLibrary" id="buy-me-a-coffee">Buy Me a Coffee </a>
+
+  <script src="script.js"></script>
+
+  <script>index()</script>
+  <script src="./utilities.js"></script>
+  <script>
+    myUndefinedFunction();
+  </script>
+
+
+  <!-- Logo Font is called Lovelo -->
+
 </body>
 
 </html>
-
-<style>
-     * {
-          box-sizing: border-box;
-     }
-
-     body {
-          width: 98vw;
-          display: flex;
-          gap: 15px;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-     }
-
-     #video-toggle {
-          display: none;
-          background-color: transparent;
-          border: none;
-     }
-
-     .video-control-icon {
-          z-index: 2;
-          height: 120px;
-     }
-
-     #play-icon {
-          display: none;
-     }
-
-     #video-container {
-          border-radius: 12px;
-          margin-top: 12px;
-          overflow: hidden;
-          position: relative;
-          display: grid;
-          grid-template-columns: 1fr;
-          grid-template-rows: 1fr;
-          justify-content: center;
-     }
-
-     @media(max-width: 700px) {
-          #video-container {
-               width: 95%;
-               margin-top: 100px;
-               height: fit-content;
-          }
-
-          video {
-               width: 100% !important;
-          }
-
-          .video-control-icon {
-               display: none;
-          }
-
-          #video-toggle {
-               display: none !important;
-          }
-     }
-
-     @media (max-height: 650px) {
-          #subscribe-form {
-               display: none;
-          }
-
-          #subscribe-button {
-               display: flex !important;
-          }
-     }
-
-
-     #video-container:hover::before {
-          content: "";
-          position: absolute;
-          z-index: 1;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background-color: rgba(0, 0, 0, 0.3);
-     }
-
-     #video-container:hover #video-toggle {
-          display: grid;
-          grid-column: 1/2;
-          place-self: center;
-          grid-row: 1/2;
-          height: 120px;
-     }
-
-     video {
-          grid-column: 1/2;
-          grid-row: 1/2;
-          z-index: 0;
-          width: 700px;
-          clip-path: inset(3px 3px 1px 4px);
-     }
-
-     #subscribe-form {
-          border-radius: 10px;
-          position: absolute;
-          bottom: 15px;
-          left: auto;
-          right: auto;
-          width: 95%;
-          border: 5px solid var(--teal-800);
-          margin: 0;
-          background-color: transparent;
-          bottom: 10px;
-     }
-
-     #subscribe-button {
-          display: none;
-          background-color: var(--faded-green-100);
-          position: absolute;
-          bottom: 10px;
-          border: 5px solid var(--teal-800);
-          border-radius: 8px;
-          box-sizing: border-box;
-          font-size: 1.5rem;
-          padding: 8px;
-          max-width: 35ch;
-          margin-left: 1rem;
-          margin-right: 1rem;
-          margin-top: 1rem;
-          z-index: 3;
-          color: var(--teal-900);
-          cursor: pointer;
-     }
-
-     #learn-more-button {
-          background-color: var(--faded-green-100);
-          position: absolute;
-          z-index: 3;
-          right: 10px;
-          top: 10px;
-          border: 5px solid var(--teal-800);
-          border-radius: 8px;
-          box-sizing: border-box;
-          font-size: 1.5rem;
-          padding: 8px;
-          max-width: 20ch;
-          margin-left: 1rem;
-          margin-right: 1rem;
-          margin-top: 1rem;
-          color: var(--teal-900);
-          cursor: pointer;
-     }
-</style>
-
-<script>
-
-     const toggleButton = document.getElementById('video-toggle');
-     const video = document.querySelector('video');
-     const pauseIcon = document.getElementById('pause-icon');
-     const playIcon = document.getElementById('play-icon');
-
-     toggleButton.addEventListener('click', () => {
-          if (video.paused) {
-               video.play();
-               pauseIcon.style.display = 'flex';
-               playIcon.style.display = 'none';
-
-          } else {
-               video.pause();
-               playIcon.style.display = 'flex';
-               pauseIcon.style.display = 'none';
-          }
-     });
-
-
-</script>
