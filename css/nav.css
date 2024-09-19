@@ -61,6 +61,13 @@ nav {
   #logo-svg {
     display: none;
   }
+
+  #cards-and-copy {
+    margin-top: 330px;
+  }
+  .main-title {
+    font-size: 2rem;
+  }
 }
 
 .side-nav[data-state="open"] {

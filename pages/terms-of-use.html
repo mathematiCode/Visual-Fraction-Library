@@ -26,12 +26,27 @@
      <link rel="icon" type="image/x-icon" href="../icons-logos/Favicon.svg">
      <link rel="stylesheet" href="../css/styles.css" />
      <link rel="stylesheet" href="../css/nav.css" />
+     <link rel="stylesheet" href="../css/layout.css" />
+     <link rel="stylesheet" href="../css/mediaqueries.css" />
 </head>
 
 
 <body>
      <img class="corner-logo" src="../icons-logos/Favicon.svg" alt="Visual Fraction Library Logo" />
-     <a id="home-button" href="../home.html"> Back to Home </a>
+
+     <nav class="side-nav" data-state="closed">
+          <button id="expand-collapse-nav" aria-label="Open or Close Nav Bar"> </button>
+          <img class="corner-logo" src="../icons-logos/Favicon.svg" alt="Visual Fraction Library Logo" />
+          <a class="nav-link" href="../index.html"> Home</a>
+          <a class="nav-link" href="../pages/basic-frac.html">Simple Fractions</a>
+          <a class="nav-link" href="../pages/frac-mult.html">Fraction Multiplication</a>
+          <a class="nav-link" href="../pages/frac-div.html">
+               Fraction Division</a>
+          <a class="nav-link" href="../pages/terms-of-use.html">
+               Terms of Use</a>
+     </nav>
+
+
      <div id="faq-container">
           <h1>
                Frequently Asked Questions
@@ -107,11 +122,9 @@
                </div>
           </container>
      </div>
-
-
-     <!-- 
-     <iframe id="subscribe-form" src="https://embeds.beehiiv.com/00190cb8-c18d-4c5d-bea5-8fc5bf7c958c"
-          data-test-id="beehiiv-embed" width="95%" height="250" frameborder="0" scrolling="no"></iframe> -->
+     <script src="../script.js">  </script>
+     <script> buttonFunctions() </script>
+     <script src="../utilities.js"></script>
 </body>
 
 </html>
