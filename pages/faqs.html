@@ -255,8 +255,10 @@
      .side-nav[data-state="closed"] {
           width: 30px;
           height: 30px;
+          box-sizing: content-box;
           overflow: hidden;
           border-radius: 15px;
+          transition: width 0.3s ease-in-out;
      }
 
      .side-nav[data-state="closed"] #expand-collapse-nav {
@@ -266,8 +268,8 @@
      #expand-collapse-nav {
           border: 0px solid transparent;
           width: 35px;
-          height: 50px;
-          padding: 10px;
+          height: 35px;
+          padding: 20px;
           position: absolute;
           right: 3px;
           top: 10px;
