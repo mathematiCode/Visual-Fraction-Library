@@ -32,7 +32,6 @@
 
 
 <body>
-     <img class="corner-logo" src="../icons-logos/Favicon.svg" alt="Visual Fraction Library Logo" />
 
      <nav class="side-nav" data-state="closed">
           <button id="expand-collapse-nav" aria-label="Open or Close Nav Bar"> </button>
@@ -42,8 +41,8 @@
           <a class="nav-link" href="../pages/frac-mult.html">Fraction Multiplication</a>
           <a class="nav-link" href="../pages/frac-div.html">
                Fraction Division</a>
-          <a class="nav-link" href="../pages/terms-of-use.html">
-               Terms of Use</a>
+          <a class="nav-link" href="../pages/svg-vs-png.html">
+               SVG vs PNG</a>
      </nav>
 
 
@@ -59,8 +58,11 @@
                     </div>
                </h3>
                <p class="answer" id="answer1">Visual Fraction Library is completely free for classroom and personal use.
-                    If you intend to use images generated on our site to sell commercially, you will need to purchase a
-                    commercial use license that is good for life. </p>
+                    If you intend to use images generated on our site to sell commercially, you will need to purchase
+                    a<a class="bold-link" href="https://buymeacoffee.com/mathvisuallibrary/extras">commercial use
+                         license</a>that is
+                    good for life.
+               </p>
                <hr>
           </container>
 
@@ -82,9 +84,9 @@
                     </div>
                </h3>
 
-               <p class="answer" id="answer3"> Reach out to <a class="bold-link"
-                         href="mailto:support@visualfractionlibrary.com">support@visualfractionlibrary.com </a> if you
-                    are interested in partnering with us. We are
+               <p class="answer" id="answer3"> Reach out to<a class="bold-link"
+                         href="mailto:support@visualfractionlibrary.com">support@visualfractionlibrary.com</a>if you
+                    are interested in partnering with me. I am
                     looking for people who can help promote the site, guest blogs related to creating and using visuals
                     to teach math, and more.
                </p>
@@ -96,8 +98,8 @@
                     </div>
                </h3>
 
-               <p class="answer" id="answer4"> Please email me at <a class="bold-link"
-                         href="mailto:support@visualfractionlibrary.com"> support@visualfractionlibrary.com </a> if you
+               <p class="answer" id="answer4"> Please email me at<a class="bold-link"
+                         href="mailto:support@visualfractionlibrary.com">support@visualfractionlibrary.com</a>if you
                     find anything that might need fixing.
                </p>
                <hr>
@@ -111,11 +113,11 @@
 
                <div class="answer" id="answer5">
                     <p>Yes, absolutely! I am happy to add new features if they fit the scope of
-                         the website and would be useful to people. Please email any feature requests to <a
-                              class="bold-link" href="mailto:support@visualfractionlibrary.com">
-                              support@visualfractionlibrary.com </a>. You
+                         the website and would be useful to people. Please email any feature requests to<a
+                              class="bold-link"
+                              href="mailto:support@visualfractionlibrary.com">support@visualfractionlibrary.com</a>. You
                          can also join my email list where I will send out polls for which feature I should work on
-                         next. </p>
+                         next.</p>
 
                     <iframe id="subscribe-form" src="https://embeds.beehiiv.com/00190cb8-c18d-4c5d-bea5-8fc5bf7c958c"
                          data-test-id="beehiiv-embed" width="95%" height="250" frameborder="0" scrolling="no"></iframe>
@@ -241,13 +243,36 @@
      }
 
      hr {
-          background-color: #4e7078;
-          color: 1px solid #4e7078;
+          background-color: #275a66;
+          color: 1px solid #236270;
           stroke-width: 5%;
      }
 
-     a:not(#home-button) {
-          font-weight: 900;
+     .side-nav[data-state="open"] {
+          width: 160px;
+     }
+
+     .side-nav[data-state="closed"] {
+          width: 30px;
+          height: 30px;
+          overflow: hidden;
+          border-radius: 15px;
+     }
+
+     .side-nav[data-state="closed"] #expand-collapse-nav {
+          background-image: url(../icons-logos/expand-nav.svg);
+     }
+
+     #expand-collapse-nav {
+          border: 0px solid transparent;
+          width: 35px;
+          height: 50px;
+          padding: 10px;
+          position: absolute;
+          right: 3px;
+          top: 10px;
+          cursor: pointer;
+          background: transparent;
      }
 
      #subscribe-form {
@@ -256,25 +281,6 @@
           margin: 0;
           background-color: transparent;
           bottom: 10px;
-     }
-
-     #home-button {
-          background-color: var(--faded-green-100);
-          position: absolute;
-          right: 10px;
-          top: 10px;
-          border: 5px solid var(--teal-800);
-          border-radius: 8px;
-          box-sizing: border-box;
-          font-size: 1.5rem;
-          padding: 8px;
-          max-width: 20ch;
-          margin-left: 1rem;
-          margin-right: 1rem;
-          margin-top: 1rem;
-          z-index: 3;
-          color: var(--teal-900);
-          cursor: pointer;
      }
 </style>
 

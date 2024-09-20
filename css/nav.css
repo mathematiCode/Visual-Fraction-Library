@@ -75,7 +75,7 @@ nav {
   transition: width 0.3s ease-in-out;
   box-shadow: 5px 5px 5px rgb(72, 99, 107);
   position: fixed;
-  z-index: 2;
+  z-index: 4;
   border-radius: 15px;
   left: 0;
   gap: 40px;

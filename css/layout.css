@@ -18,6 +18,13 @@ main {
   font-weight: 500;
 }
 
+#extra-copy {
+  font-size: 1.35rem;
+  font-weight: 500;
+  margin: 40px;
+  margin-top: 75px;
+}
+
 main h2 {
   font-size: 1.5rem;
   font-weight: 800;

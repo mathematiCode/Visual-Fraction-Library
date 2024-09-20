@@ -191,10 +191,11 @@ li {
 #buy-me-a-coffee {
   position: fixed;
   padding-right: 7px;
-  bottom: 30px;
-  right: 30px;
+  bottom: 15px;
+  right: 15px;
+  width: 10ch;
   color: var(--faded-green-100);
-  font-size: 1.7rem;
+  font-size: 1.5rem;
   background-color: var(--teal-800);
   border: none;
   padding: 0.5rem;
