@@ -418,7 +418,7 @@ function mixedNumCircles(
   } else {
     numWholes = Math.floor(mixedNum.numerator / mixedNum.denominator);
   }
-
+  console.log(mixedNum);
   if (mixedNum.denominator === 0) {
     maxWholes = mixedNum.wholeNum;
   } else if (mixedNum.denominator === 1 && mixedNum.numerator > 0) {
@@ -449,7 +449,6 @@ function mixedNumCircles(
     circlesPerLine = optimalDimensions.itemsPerRow;
     numLines = optimalDimensions.numRows;
     radius = optimalDimensions.size / 2;
-    debugger;
   }
 
   horizontalSpacing = (width - circlesPerLine * radius * 2) / circlesPerLine;
