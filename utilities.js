@@ -247,24 +247,25 @@ function makeFractionLines(
 ) {
   const angle = (Math.PI * 2) / denominator;
   let currentAngle = startAngle;
+  if (denominator > 1) {
+    for (let i = 0; i < denominator; i++) {
+      const svgNS = svg.namespaceURI;
+      const line = document.createElementNS(svgNS, "line");
+      const startX = (x + radius * Math.cos(currentAngle)).toFixed(1);
+      const startY = (y + radius * Math.sin(currentAngle)).toFixed(1);
+      const endX = x;
+      const endY = y;
 
-  for (let i = 0; i < denominator; i++) {
-    const svgNS = svg.namespaceURI;
-    const line = document.createElementNS(svgNS, "line");
-    const startX = (x + radius * Math.cos(currentAngle)).toFixed(1);
-    const startY = (y + radius * Math.sin(currentAngle)).toFixed(1);
-    const endX = x;
-    const endY = y;
+      line.setAttribute("x1", startX);
+      line.setAttribute("y1", startY);
+      line.setAttribute("x2", endX);
+      line.setAttribute("y2", endY);
+      line.setAttribute("stroke", lineColor);
+      line.setAttribute("stroke-width", lineThickness);
+      svg.appendChild(line);
 
-    line.setAttribute("x1", startX);
-    line.setAttribute("y1", startY);
-    line.setAttribute("x2", endX);
-    line.setAttribute("y2", endY);
-    line.setAttribute("stroke", lineColor);
-    line.setAttribute("stroke-width", lineThickness);
-    svg.appendChild(line);
-
-    currentAngle += angle;
+      currentAngle += angle;
+    }
   }
 }
 
@@ -408,15 +409,22 @@ function mixedNumCircles(
   startY = 0
 ) {
   let numWholes = 0;
-  // Figure out how long the radius of each circle should be based on the svg dimensions.
+  let maxWholes = 0; // This is how many circles will be drawn on the svg
+
   if (mixedNum.denominator === 0) {
     numWholes = 0;
+  } else if (mixedNum.numerator === 0 && mixedNum.denominator > 0) {
+    numWholes = 1;
   } else {
     numWholes = Math.floor(mixedNum.numerator / mixedNum.denominator);
   }
-  let maxWholes = 0; // This is how many circles will be drawn on the svg
 
-  if (mixedNum.numerator % mixedNum.denominator == 0) {
+  if (mixedNum.denominator === 0) {
+    maxWholes = mixedNum.wholeNum;
+  } else if (mixedNum.denominator === 1 && mixedNum.numerator > 0) {
+    maxWholes = mixedNum.wholeNum + mixedNum.numerator;
+    mixedNum.wholeNum += mixedNum.numerator;
+  } else if (mixedNum.numerator % mixedNum.denominator == 0) {
     maxWholes = numWholes + mixedNum.wholeNum;
   } else {
     maxWholes = numWholes + mixedNum.wholeNum + 1;
@@ -462,7 +470,6 @@ function mixedNumCircles(
   // This loop draws the circles and shades in the correct # of slices given an improper fraction
   for (let i = 0; i < maxWholes; i++) {
     if (currentX + radius >= width) {
-      debugger;
       currentY = currentY + radius * 2 + verticalSpacing + startY;
       // Moves the remaining circles to the next line if we run out of space
       currentX = radius + horizontalSpacing / 2 + startX;
