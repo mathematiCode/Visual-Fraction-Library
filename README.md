@@ -19,13 +19,13 @@ My goal is to have a website and a javascript library with many different types 
 <li> Maybe More?</li>
 </ul>
 
-<h2> Customization Options and Features [in progress] </h2>
-<li> Change color(s) [in progress] </li>
+<h2> Customization Options and Features ✅ </h2>
+<li> Change color(s) ✅ </li>
 <li> Show/Hide Labels </li>
 <li> Change model (circles/bars/area model) ✅</li>
-<li> Change line width [in progress] </li>
+<li> Change line width ✅ </li>
 <li> Change spacing between multiple items </li>
 <li> Copy to Clipboard ✅</li>
 <li> Download as SVG ✅</li>
-<li> Change size of image [in progress] </li>
+<li> Change size of image ✅ </li>
 <li> Download as PNG ✅ </li>
