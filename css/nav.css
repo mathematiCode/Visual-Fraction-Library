@@ -66,6 +66,14 @@ nav {
   .main-title {
     font-size: 5.5vw;
   }
+
+  #cards-and-copy,
+  #extra-copy {
+    font-size: 3vw;
+  }
+  h2 {
+    font-size: 4vw;
+  }
 }
 
 .side-nav[data-state="open"] {
