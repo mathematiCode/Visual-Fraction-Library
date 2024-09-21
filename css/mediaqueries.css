@@ -4,11 +4,6 @@
     margin-right: auto;
     max-width: 95vw;
   }
-  /* .whole-number,
-  .numerator,
-  .denominator {
-    field-sizing: fixed;
-  } */
 }
 
 @media (max-width: 800px) {
@@ -23,15 +18,19 @@
   }
 
   .main-title {
-    font-size: 6vw;
+    font-size: 7vw;
   }
 
   #cards-and-copy,
   #extra-copy {
-    font-size: 3vw;
-  }
-  h2 {
     font-size: 4vw;
+  }
+  main h2 {
+    font-size: 5vw;
+  }
+
+  iframe {
+    width: 90%;
   }
 }
 
@@ -49,7 +48,7 @@
     font-size: 1.1rem;
   }
   h1 {
-    font-size: 1.7rem;
+    font-size: 2rem;
     margin: 20px;
     margin-top: 105px;
     margin-bottom: 30px;
