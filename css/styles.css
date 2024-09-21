@@ -188,7 +188,7 @@ li {
   }
 }
 
-#buy-me-a-coffee {
+.buy-license {
   position: fixed;
   padding-right: 7px;
   bottom: 15px;
@@ -205,7 +205,7 @@ li {
   box-shadow: 2px 2px 5px var(--teal-400);
 }
 
-#buy-me-a-coffee:hover {
+.buy-license:hover {
   background-color: var(--teal-900);
 }
 

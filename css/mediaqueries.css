@@ -7,6 +7,10 @@
   .main-title {
     margin-top: 20px;
   }
+  .buy-license {
+    position: static;
+    width: fit-content;
+  }
 }
 
 @media (min-width: 950px) {
