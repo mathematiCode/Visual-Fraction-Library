@@ -49,10 +49,8 @@ nav {
 }
 
 @media (max-width: 950px) {
-  nav {
-    flex-direction: column;
-    gap: 30px;
-    align-items: center;
+  #homepage-nav {
+    display: none;
   }
 
   .logo-text {
@@ -61,12 +59,12 @@ nav {
   #logo-svg {
     display: none;
   }
-
+  /* 
   #cards-and-copy {
     margin-top: 330px;
-  }
+  } */
   .main-title {
-    font-size: 2rem;
+    font-size: 5.5vw;
   }
 }
 
