@@ -601,7 +601,9 @@ function buttonFunctions() {
       sideNav.dataset.state = "closed";
     } else sideNav.dataset.state = "open";
   });
+}
 
+function settingsModal() {
   widthInput.addEventListener("change", () => {
     if (widthInput.value > 1200) {
       widthInput.value = 800;

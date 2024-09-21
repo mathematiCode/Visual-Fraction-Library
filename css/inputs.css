@@ -6,6 +6,10 @@ input:not(input[type="range"]) {
   box-shadow: 0px 2px 5px #629ead;
 }
 
+input[type="checkbox"] {
+  background: none;
+}
+
 input:placeholder-shown {
   border: 2px solid hsl(0, 0%, 70%);
 }

@@ -6,7 +6,7 @@
 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-8N6PMSC654"></script>
-  <script>
+  <script async>
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
@@ -24,7 +24,8 @@
           'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
     })(window, document, 'script', 'dataLayer', 'GTM-MN5ZKZQ5');</script>
   <!-- End Google Tag Manager -->
-  <script src="https://js.sentry-cdn.com/daccd7c79e783038caf4736181d2105c.min.js" crossorigin="anonymous"></script>
+  <script src="https://js.sentry-cdn.com/daccd7c79e783038caf4736181d2105c.min.js" crossorigin="anonymous"
+    defer></script>
 
 
   <meta charset="UTF-8" />
@@ -115,21 +116,22 @@
       <div class="card-container">
         <div class="card">
           <ul>
-            <li>Proper Fractions <img src="./example-svgs/3:7.svg" width="70px"></img></li>
+            <li>Proper Fractions <img alt="3 sevenths circle model" src="./example-svgs/3:7.svg" width="70px"></img>
+            </li>
 
             <li> Improper Fractions </li>
-            <img width="190px" src="./example-svgs/11:4.svg"></img>
+            <img width="190px" alt="11 fourths circle model" src="./example-svgs/11:4.svg"></img>
             <li>or Mixed Numbers </li>
-            <img src="./example-svgs/4and2:5.svg"></img>
+            <img alt="4 and 2 fifths bar model" src="./example-svgs/4and2:5.svg"></img>
           </ul>
           with Circles or Bars
         </div>
         <div id="mult-cards" class="card">
           <ul>
             <li> Group Models </li>
-            <img src="./example-svgs/groups.svg"></img>
+            <img alt="model showing 2 groups of 5 and 3 fourths" src="./example-svgs/groups.svg"></img>
             <li> Area Models </li>
-            <img src="./example-svgs/area-model.svg"></img>
+            <img alt="area model showing 2 fifths by 4 sixths" src="./example-svgs/area-model.svg"></img>
           </ul>
         </div>
         <div class="card">
@@ -137,9 +139,13 @@
           <br>
           <ul>
             <li> when the dividend is larger </li>
-            <img src="./example-svgs/dividend-larger.svg"></img>
+            <img
+              alt="circle model showing 2 and 3 fifths divided into groups of 2/5 where each group is shown in a different color"
+              src="./example-svgs/dividend-larger.svg"></img>
             <li>or when the divisor is larger </li>
-            <img src="./example-svgs/divisor-larger.svg"></img>
+            <img
+              alt="bar model with 2 thirds shaded where each third is divided into 4 pieces and one is shaded a different color to show 2 thirds divided by 4."
+              src="./example-svgs/divisor-larger.svg"></img>
           </ul>
         </div>
       </div>
@@ -179,7 +185,8 @@
 
   </div>
 
-
+  <iframe id="subscribe-form" src="https://embeds.beehiiv.com/00190cb8-c18d-4c5d-bea5-8fc5bf7c958c"
+    data-test-id="beehiiv-embed" width="95%" height="250" frameborder="0" scrolling="no"></iframe>
 
 
 

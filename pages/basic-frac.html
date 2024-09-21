@@ -4,14 +4,15 @@
 <head>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-8N6PMSC654"></script>
-  <script>
+  <script async>
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
 
     gtag('config', 'G-8N6PMSC654');
   </script>
-  <script src="https://js.sentry-cdn.com/daccd7c79e783038caf4736181d2105c.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://js.sentry-cdn.com/daccd7c79e783038caf4736181d2105c.min.js"
+    crossorigin="anonymous"></script>
   <script src="https://browser.sentry-cdn.com/8.30.0/bundle.tracing.replay.feedback.min.js"
     integrity="sha384-e1BdrB5vLe4P8AsuwpguH1WZ/JvH+FDp8UPsLL9K/kqmUre50yoaRQ6iqIPBZ//9"
     crossorigin="anonymous"></script>
@@ -20,7 +21,7 @@
 
   <meta content="width=device-width" name="viewport">
   <meta name="description"
-    content="Generate SVG and PNG images of visual models of fractions and mixed numbers including circle models and bar models.">
+    content="Generate SVG and PNG images of visual models of fractions, inluding proper and improper and mixed numbers. Images can be circle models or bar models with customizable colors and sizes.">
   <meta name="keywords"
     content="fraction visual generator, mixed number visuals, fraction clip art, fraction image, commercial use fraction clip art, fraction models, visualize mixed numbers, fraction picture, mixed number graphics, math svg generator">
 
@@ -155,7 +156,9 @@
   <script src="../settingsModal.js"></script>
   <script src="../lib/basicFunctions.js"></script>
   <script> basicFrac();
-    buttonFunctions(); </script>
+    buttonFunctions();
+    settingsModal();
+  </script>
 
 
 </body>
