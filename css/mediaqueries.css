@@ -4,6 +4,15 @@
     margin-right: auto;
     max-width: 95vw;
   }
+  .main-title {
+    margin-top: 20px;
+  }
+}
+
+@media (min-width: 950px) {
+  main {
+    margin-top: 60px;
+  }
 }
 
 @media (max-width: 800px) {
