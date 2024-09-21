@@ -592,9 +592,6 @@ function index() {
 function buttonFunctions() {
   let openCloseNavButton = document.getElementById("expand-collapse-nav");
   let sideNav = document.querySelector(".side-nav");
-  let widthInput = document.getElementById("width-input");
-  let heightInput = document.getElementById("height-input");
-  let warning = document.getElementById("max-size-warning");
 
   openCloseNavButton.addEventListener("click", () => {
     if (sideNav.dataset.state === "open") {
@@ -604,6 +601,9 @@ function buttonFunctions() {
 }
 
 function settingsModal() {
+  let widthInput = document.getElementById("width-input");
+  let heightInput = document.getElementById("height-input");
+  let warning = document.getElementById("max-size-warning");
   widthInput.addEventListener("change", () => {
     if (widthInput.value > 1200) {
       widthInput.value = 800;
