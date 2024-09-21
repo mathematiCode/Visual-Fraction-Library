@@ -3,7 +3,7 @@
 
 This is a library of visuals that model mixed number and fraction operations. All images are generated as SVGs.
 
-My goal is to have a website and a javascript library with many different types of math visuals and customization options.
+My goal is to have a website fraction visuals and customization options for use by teachers and curriculum developers.
 
 <h2> Math Visual Functions/Pages to Create </h2>
 <ul>
