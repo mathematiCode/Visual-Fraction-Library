@@ -20,14 +20,14 @@
   max-width: 20ch;
   margin-left: 1rem;
   margin-right: 1rem;
-  margin-top: 1rem;
+  margin-top: 0.5rem;
   color: var(--teal-900);
   cursor: pointer;
   display: flex;
   font-family: Inter, sans-serif;
   position: absolute;
   right: 0px;
-  top: 30px;
+  top: 0px;
 }
 
 #settings-popover::backdrop {
