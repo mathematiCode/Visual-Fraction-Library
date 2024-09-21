@@ -21,6 +21,18 @@
     font-size: 1.9rem;
     width: 50px;
   }
+
+  .main-title {
+    font-size: 6vw;
+  }
+
+  #cards-and-copy,
+  #extra-copy {
+    font-size: 3vw;
+  }
+  h2 {
+    font-size: 4vw;
+  }
 }
 
 @media (max-width: 450px) {
