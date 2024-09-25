@@ -336,6 +336,10 @@ function multiplicationFrac() {
       "width",
       Math.min(width, window.innerWidth * 0.8)
     );
+    multiplicationSVG.setAttribute(
+      "height",
+      Math.min(height, window.innerWidth * 0.6)
+    );
     generateMultiplicationModel();
   });
   downloadMultiplicationSVG.addEventListener("click", function () {
