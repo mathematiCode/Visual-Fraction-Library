@@ -110,16 +110,6 @@ h2 {
   font-family: "Lovelo-LineBold";
   src: url(../Lovelo-LineBold.woff);
 }
-/* 
-#large-logo-container {
-  place-items: center;
-  width: 400px;
-  height: 400px;
-  text-align: center;
-  display: grid;
-  grid-template-columns: 400px;
-  grid-template-rows: 400px;
-} */
 
 .logo-text,
 .main-title {
@@ -216,4 +206,18 @@ li {
 
 .title {
   margin-top: 20px;
+}
+
+.email-link {
+  font-size: 2rem;
+  font-weight: 600;
+  align-items: center;
+  background-color: var(--teal-100);
+  border: 5px solid var(--teal-800);
+  border-radius: 8px;
+  color: var(--teal-900);
+  cursor: pointer;
+  display: flex;
+  font-family: Inter, sans-serif;
+  margin-bottom: 2rem;
 }
