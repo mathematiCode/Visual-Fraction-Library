@@ -63,16 +63,13 @@
     color: gray;
   }
 
-  /* .settings-form > * {
-  padding-bottom: 5px;
-  border-bottom: 2px solid gray;
-} */
-
   .width-and-height {
     display: grid;
     grid-template-areas:
       "width height"
       "p p";
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
     gap: 0px;
     width: 90%;
   }
@@ -117,6 +114,7 @@
   #height-input {
     grid-area: input;
     font-size: 1.3rem;
+    max-width: 50px;
   }
 
   #width-label,

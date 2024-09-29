@@ -686,7 +686,7 @@ function mixedNumCirclesVertical(
 
   // This loop draws the circles and shades in the correct # of slices given an improper fraction
   for (let i = 0; i < maxWholes; i++) {
-    // Draws black outline of circle
+    // Draws black outline of circle (for wholes and fractions)
     drawCircle(
       svg,
       currentX,
@@ -698,12 +698,13 @@ function mixedNumCirclesVertical(
     );
 
     if (currentWhole <= mixedNum.wholeNum) {
+      // Fully shades in circle if it's a whole
       drawCircle(
         svg,
         currentX,
         currentY,
         fillRadius,
-        lineThickness,
+        0,
         colorFill,
         borderColor
       );
