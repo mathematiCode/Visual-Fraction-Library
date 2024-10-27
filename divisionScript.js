@@ -3,14 +3,13 @@ const generateDivisionButton = document.getElementById("generate-division");
 const modelToggle = document.getElementById("division-model-toggle");
 const divisionSVG = document.getElementById("division-svg");
 divisionSVG.innerHTML = "";
+let attributes = {};
 let width = 800;
 let height = 250;
-let lineThickness = 5;
-let lineColor = "#000000";
-let colorArray = ["#52a4b0", "#b7dd82", "#f0a68c", "#f5ef84", "#928183"];
-const divisionModelCheckbox = document.getElementById(
-  "divisor-is-larger-checkbox"
-);
+attributes.lineThickness = 5;
+attributes.lineColor = "#000000";
+attributes.colorArray = ["#52a4b0", "#b7dd82", "#f0a68c", "#f5ef84", "#928183"];
+divisionModelCheckbox = document.getElementById("divisor-is-larger-checkbox");
 const divisorLargerInputs = document.getElementById("divisor-larger");
 const divisorSmallerInputs = document.getElementById("divisor-smaller");
 
@@ -38,7 +37,7 @@ divisionModelCheckbox.addEventListener("change", function () {
     colorNote.style.display = "none";
     numColors = 2;
     colorInputs[1].value = "#cdcdcd";
-    colorArray[1] = "#cdcdcd";
+    attributes.colorArray[1] = "#cdcdcd";
     console.log(colorInputs);
   } else {
     for (let i = 2; i < 5; i++) {
@@ -47,7 +46,7 @@ divisionModelCheckbox.addEventListener("change", function () {
     colorNote.style.display = "block";
     numColors = 5;
     colorInputs[1].value = "#b7dd82";
-    colorArray[1] = "#b7dd82";
+    attributes.colorArray[1] = "#b7dd82";
     divisorLargerInputs.style.visibility = "hidden";
     divisorSmallerInputs.style.visibility = "visible";
   }
@@ -84,19 +83,21 @@ function generateDivisionModel(divisionSVG) {
         divisionSVG,
         dividend,
         divisor,
-        lineThickness,
-        colorArray[0],
-        colorArray[1],
-        lineColor
+        attributes,
+        attributes.lineThickness,
+        attributes.colorArray[0],
+        attributes.colorArray[1],
+        attributes.lineColor
       );
     } else {
       mathVisual.fractionDivisionCircles(
         divisionSVG,
         dividend,
         divisor,
-        lineThickness,
-        colorArray,
-        lineColor
+        attributes,
+        attributes.lineThickness,
+        attributes.colorArray,
+        attributes.lineColor
       );
     }
   } else {
@@ -118,20 +119,22 @@ function generateDivisionModel(divisionSVG) {
         divisionSVG,
         dividend,
         divisor,
-        lineThickness,
-        colorArray[0],
-        colorArray[1],
-        lineColor
+        attributes,
+        attributes.lineThickness,
+        attributes.colorArray[0],
+        attributes.colorArray[1],
+        attributes.lineColor
       );
     } else {
       mathVisual.fractionDivisionOneCircle(
         divisionSVG,
         dividend,
         divisor,
-        lineThickness,
-        colorArray[0],
-        colorArray[1],
-        lineColor
+        attributes,
+        attributes.lineThickness,
+        attributes.colorArray[0],
+        attributes.colorArray[1],
+        attributes.lineColor
       );
     }
   }
@@ -153,11 +156,11 @@ saveSettingsButton.addEventListener("click", () => {
     numColors = 5;
   }
   customizations = saveSettings(divisionSVG, numColors);
-  colorArray = customizations.colors;
-  lineThickness = customizations.lineThickness;
+  attributes.colorArray = customizations.colors;
+  attributes.lineThickness = customizations.lineThickness;
   width = customizations.width;
   height = customizations.height;
-  lineColor = customizations.borderColor;
+  attributes.lineColor = customizations.borderColor;
   divisionSVG.innerHTML = "";
   divisionSVG.setAttribute("width", Math.min(width, window.innerWidth * 0.8));
   generateDivisionModel(divisionSVG);
@@ -166,12 +169,12 @@ saveSettingsButton.addEventListener("click", () => {
 let cancelSettingsButton = document.getElementById("cancel-button");
 cancelSettingsButton.addEventListener("click", () => {
   revertSettings(
-    colorArray,
+    attributes.colorArray,
     numColors,
-    lineThickness,
+    attributes.lineThickness,
     width,
     height,
-    lineColor
+    attributes.lineColor
   );
 });
 
