@@ -59,9 +59,7 @@ function generateMultiplicationModel() {
     factorLabels.forEach((label) => {
       label.style.display = "none";
     });
-    let checkboxIsChecked =
-      document.getElementById("to-scale-checkbox").checked;
-    let showBorder = checkboxIsChecked;
+    let showBorder = document.getElementById("to-scale-checkbox").checked;
 
     multiplicationSVG.innerHTML = "";
     multiplicationSVG.setAttribute(
