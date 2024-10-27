@@ -83,21 +83,14 @@ function generateDivisionModel(divisionSVG) {
         divisionSVG,
         dividend,
         divisor,
-        attributes,
-        attributes.lineThickness,
-        attributes.colorArray[0],
-        attributes.colorArray[1],
-        attributes.lineColor
+        attributes
       );
     } else {
       mathVisual.fractionDivisionCircles(
         divisionSVG,
         dividend,
         divisor,
-        attributes,
-        attributes.lineThickness,
-        attributes.colorArray,
-        attributes.lineColor
+        attributes
       );
     }
   } else {
