@@ -29,7 +29,6 @@ openCloseNavButton.addEventListener("click", () => {
   if (sideNav.dataset.state === "open") {
     sideNav.dataset.state = "closed";
   } else sideNav.dataset.state = "open";
-  console.log(sideNav.dataset.state);
 });
 
 function generateMultiplicationModel() {
