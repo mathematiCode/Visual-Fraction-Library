@@ -396,6 +396,128 @@ function drawHorizontalFractionBar(
   svg.appendChild(border);
 }
 
+function mixedNumBars(
+  svg,
+  wholeNum,
+  numerator,
+  denominator,
+  lineThickness,
+  colorFill,
+  borderColor
+) {
+  const width = svg.getAttribute("width");
+  const height = svg.getAttribute("height");
+  const svgNS = svg.namespaceURI;
+  let numWholes = 0;
+  let maxWholes = 0; // This is how many bars will be drawn on the svg
+
+  if (numerator && denominator) {
+    numWholes = Math.floor(numerator / denominator);
+  } else if (numerator === 0 && denominator > 0) {
+    numWholes = 1;
+  }
+
+  if (numerator % denominator > 0) {
+    maxWholes = numWholes + wholeNum + 1;
+  } else {
+    maxWholes = numWholes + wholeNum;
+  } // Determines how many total bars will be drawn even if the last one is only partially shaded
+
+  let horizontalSpacing = 0;
+  let verticalSpacing = 0;
+  let barsPerLine = maxWholes;
+  let numLines = 1;
+  let barHeight = height;
+
+  if (maxWholes <= 7) {
+    // If there are only 7 or less bars this puts them all on one line because it looks silly otherwise.
+    numLines = 1;
+    barsPerLine = maxWholes;
+    barWidth = parseFloat(((width * 0.9) / maxWholes).toFixed(2));
+    barHeight = height * 0.8;
+  } else {
+    optimalDimensions = calculateOptimalDimensions(
+      width * 0.9,
+      height * 0.8,
+      maxWholes
+    ); // Multiplying by 0.8 and 0.9 to leave room for spacing.
+    barsPerLine = optimalDimensions.itemsPerRow;
+    numLines = optimalDimensions.numRows;
+    barWidth = optimalDimensions.size;
+    barHeight = optimalDimensions.size;
+  }
+
+  horizontalSpacing = parseFloat(
+    ((width - barsPerLine * barWidth) / barsPerLine).toFixed(2)
+  );
+
+  verticalSpacing = parseFloat(
+    ((height - numLines * barHeight) / (numLines + 1)).toFixed(2)
+  );
+
+  let currentX = horizontalSpacing / 2;
+  let currentY = verticalSpacing;
+  let currentWhole = 1;
+  let piecesLeft = numerator;
+
+  // Draws the bars and shades in the correct # of pieces given an improper fraction
+  for (let i = 0; i < maxWholes; i++) {
+    if (currentX + barWidth >= width) {
+      currentY = currentY + barHeight + verticalSpacing; // Moves the remaining bars to the next line if we run out of space
+      currentX = horizontalSpacing / 2;
+    }
+    const wholeBar = document.createElementNS(svgNS, "rect");
+
+    if (currentWhole <= wholeNum) {
+      wholeBar.setAttribute("x", currentX);
+      wholeBar.setAttribute("y", currentY);
+      wholeBar.setAttribute("width", barWidth);
+      wholeBar.setAttribute("height", barHeight);
+      wholeBar.setAttribute("stroke", borderColor);
+      wholeBar.setAttribute("stroke-width", lineThickness);
+      wholeBar.setAttribute("fill", colorFill);
+      svg.appendChild(wholeBar);
+      currentWhole = currentWhole + 1;
+    } else {
+      if (piecesLeft > denominator) {
+        numerator = denominator;
+        piecesLeft = piecesLeft - denominator;
+      } else {
+        numerator = piecesLeft;
+      }
+      if (barWidth > barHeight) {
+        drawVerticalFractionBar(
+          svg,
+          currentX,
+          currentY,
+          barWidth,
+          barHeight,
+          numerator,
+          denominator,
+          lineThickness,
+          colorFill,
+          borderColor,
+          "transparent"
+        );
+      } else {
+        drawHorizontalFractionBar(
+          svg,
+          currentX,
+          currentY,
+          barWidth,
+          barHeight,
+          numerator,
+          denominator,
+          lineThickness,
+          colorFill,
+          borderColor
+        );
+      }
+    }
+    currentX = currentX + barWidth + horizontalSpacing; // Move to next bar
+  }
+}
+
 function mixedNumCircles(
   svg,
   mixedNum,
