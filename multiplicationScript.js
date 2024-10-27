@@ -6,10 +6,12 @@ let attributes = {};
 attributes.lineColor = "#000000";
 attributes.colorArray = ["#52a4b0", "#9ce56c"];
 attributes.lineThickness = 5;
+attributes.borderIsShowing = false; // for groups only
+attributes.toScale = false; //for area model only
 width = 800;
 height = 250;
-attributes.opacity1 = 0.6;
-attributes.opacity2 = 0.4;
+attributes.opacity1 = 0.5;
+attributes.opacity2 = 0.5;
 
 let openCloseNavButton = document.querySelector(".corner-logo");
 let sideNav = document.querySelector(".side-nav");
@@ -59,7 +61,7 @@ function generateMultiplicationModel() {
     factorLabels.forEach((label) => {
       label.style.display = "none";
     });
-    let showBorder = document.getElementById("to-scale-checkbox").checked;
+    attributes.toScale = document.getElementById("to-scale-checkbox").checked;
 
     multiplicationSVG.innerHTML = "";
     multiplicationSVG.setAttribute(
@@ -71,14 +73,7 @@ function generateMultiplicationModel() {
       multiplicationSVG,
       factor1,
       factor2,
-      attributes,
-      attributes.lineThickness,
-      attributes.colorArray[0],
-      attributes.opacity1,
-      attributes.colorArray[1],
-      attributes.opacity2,
-      showBorder,
-      attributes.lineColor
+      attributes
     );
   } else {
     toScaleLabel.style.setProperty("display", "none");
@@ -100,17 +95,14 @@ function generateMultiplicationModel() {
       document.getElementById("multiplication-whole-number2").value
     );
 
-    let toScale = document.getElementById("to-scale-checkbox").checked;
+    attributes.borderIsShowing =
+      document.getElementById("to-scale-checkbox").checked;
 
     mathVisual.fractionMultiplicationGroupModel(
       multiplicationSVG,
       factor1,
       factor2,
-      attributes,
-      attributes.lineThickness,
-      attributes.colorArray[0],
-      attributes.lineColor,
-      toScale
+      attributes
     );
   }
 }
