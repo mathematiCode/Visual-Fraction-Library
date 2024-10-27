@@ -38,7 +38,6 @@ divisionModelCheckbox.addEventListener("change", function () {
     numColors = 2;
     colorInputs[1].value = "#cdcdcd";
     attributes.colorArray[1] = "#cdcdcd";
-    console.log(colorInputs);
   } else {
     for (let i = 2; i < 5; i++) {
       colorInputs[i].dataset.extra = "false";
@@ -112,22 +111,14 @@ function generateDivisionModel(divisionSVG) {
         divisionSVG,
         dividend,
         divisor,
-        attributes,
-        attributes.lineThickness,
-        attributes.colorArray[0],
-        attributes.colorArray[1],
-        attributes.lineColor
+        attributes
       );
     } else {
       mathVisual.fractionDivisionOneCircle(
         divisionSVG,
         dividend,
         divisor,
-        attributes,
-        attributes.lineThickness,
-        attributes.colorArray[0],
-        attributes.colorArray[1],
-        attributes.lineColor
+        attributes
       );
     }
   }
