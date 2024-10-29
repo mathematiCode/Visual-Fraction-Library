@@ -9,6 +9,7 @@ let height = 250;
 attributes.lineThickness = 5;
 attributes.lineColor = "#000000";
 attributes.colorArray = ["#52a4b0", "#b7dd82", "#f0a68c", "#f5ef84", "#928183"];
+attributes.minNumColors = 3;
 divisionModelCheckbox = document.getElementById("divisor-is-larger-checkbox");
 const divisorLargerInputs = document.getElementById("divisor-larger");
 const divisorSmallerInputs = document.getElementById("divisor-smaller");

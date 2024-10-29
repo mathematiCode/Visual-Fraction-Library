@@ -177,20 +177,28 @@ function switchBetweenColors(current, colors) {
   }
 }
 
-function findIdealNumColors(
-  minGroupsPerCircle,
-  maxGroupsPerCircle,
-  currentNumColors
-) {
+function findIdealNumColors(numerator, denominator, currentNumColors) {
+  /** 
+This function uses recursion to find the ideal number of colors to show fraction division with circles and avoid two separate groups of the same color bordering each other (imagine 3 groups of 2/6ths in a circle and only 2 alternating colors. You would have 4/6ths all adjacent to each other in the same color which would be confusing and misleading. So the idealNumColors for any problem with a divisor of 2/6ths would be 3. But with divisors such as 4/7ths for example, not every circle will have the same number of groups. One circle may have 4/7ths and 3/7ths (minGroupsPerCircle = 2) but the next circle would then have 1/7th, 4/7ths, and 2/7ths (maxGroupsPerCircle = 3). This means the remainders of minGroupsPerCircle/numColors and maxGroupsPerCircle / numColors should not be 1.
+
+Take 5/9ths as an example.The minGroupsPerCircle is 2 (5/9ths and 4/9ths for example) and the maxGroupsPerCircle is 3 (1/9th, 5/9ths, and 3/9ths for example). First the function will try numColors = 2. For the circles with 3 different groups, there would be two adjacent groups with the same color which is a problem. The check for maxGroupsPerCircle % numColors === 1 will be true (indicating that numColors cannot be 2). Then the function calls itself to run again, this time trying numColors = 3. 3 alternating colors will work for both circles with two groups and three groups. So this function would return the idealNumColors as 3.
+The algorithm will sometimes choose more colors than needed but I prefer it that way.
+*/
+  if (denominator % numerator === 0) {
+    minGroupsPerCircle = denominator / numerator;
+    maxGroupsPerCircle = minGroupsPerCircle;
+  } else if ((denominator * 2) % numerator === 0) {
+    minGroupsPerCircle = Math.ceil(denominator / numerator);
+    maxGroupsPerCircle = minGroupsPerCircle;
+  } else {
+    minGroupsPerCircle = Math.ceil(denominator / numerator);
+    maxGroupsPerCircle = minGroupsPerCircle + 1;
+  }
   if (
-    maxGroupsPerCircle % currentNumColors === 1 ||
-    minGroupsPerCircle % currentNumColors === 1
+    minGroupsPerCircle % currentNumColors === 1 ||
+    maxGroupsPerCircle % currentNumColors === 1
   ) {
-    return findIdealNumColors(
-      minGroupsPerCircle,
-      maxGroupsPerCircle,
-      currentNumColors + 1
-    );
+    return findIdealNumColors(numerator, denominator, currentNumColors + 1);
   } else {
   }
   return currentNumColors;
@@ -269,6 +277,7 @@ function makeFractionLines(
   }
 }
 
+//69 lines
 function drawVerticalFractionBar(
   svg,
   x,
@@ -339,7 +348,7 @@ function drawVerticalFractionBar(
   border.setAttribute("stroke-width", lineThickness);
   svg.appendChild(border);
 }
-
+// 54 lines
 function drawHorizontalFractionBar(
   svg,
   x,
@@ -395,7 +404,7 @@ function drawHorizontalFractionBar(
   border.setAttribute("stroke-width", lineThickness);
   svg.appendChild(border);
 }
-
+//120 lines
 function mixedNumBars(
   svg,
   wholeNum,
@@ -517,12 +526,12 @@ function mixedNumBars(
     currentX = currentX + barWidth + horizontalSpacing; // Move to next bar
   }
 }
-
+//94 lines
 function mixedNumCircles(
   svg,
   mixedNum,
   lineThickness = 5,
-  colorFill = "rgb(120, 190, 250)",
+  fillColor = "rgb(120, 190, 250)",
   borderColor,
   width,
   height,
@@ -584,11 +593,58 @@ function mixedNumCircles(
 
   let currentX = radius + horizontalSpacing / 2;
   let currentY = radius + verticalSpacing + startY;
-  let slicesLeft = mixedNum.numerator;
+  let slicesToFill = mixedNum.numerator;
+
+  // This loop draws the circles and shades in the correct # of slices given an improper fraction
+  drawMixedNumCircles(
+    svg,
+    slicesToFill,
+    mixedNum.denominator,
+    mixedNum.wholeNum,
+    maxWholes,
+    startX,
+    startY,
+    currentX,
+    currentY,
+    width,
+    radius,
+    lineThickness,
+    fillColor,
+    borderColor,
+    horizontalSpacing,
+    verticalSpacing
+  );
+  // Returns this object of info to be used later in the fractionDivisionCircles function.
+  let modelInfo = {};
+  modelInfo.horizontalSpacing = horizontalSpacing;
+  modelInfo.verticalSpacing = verticalSpacing;
+  modelInfo.radius = radius;
+  modelInfo.svg = svg;
+  modelInfo.width = width;
+  return modelInfo;
+}
+//77 lines
+function drawMixedNumCircles(
+  svg,
+  slicesToFill,
+  denominator,
+  wholeNum,
+  maxWholes,
+  startX,
+  startY,
+  currentX,
+  currentY,
+  width,
+  radius,
+  lineThickness,
+  fillColor,
+  borderColor,
+  horizontalSpacing,
+  verticalSpacing
+) {
   let currentWhole = 1;
   let fillRadius = radius - lineThickness / 2;
 
-  // This loop draws the circles and shades in the correct # of slices given an improper fraction
   for (let i = 0; i < maxWholes; i++) {
     if (currentX + radius >= width) {
       currentY = currentY + radius * 2 + verticalSpacing + startY;
@@ -607,14 +663,14 @@ function mixedNumCircles(
       borderColor
     );
 
-    if (currentWhole <= mixedNum.wholeNum) {
+    if (currentWhole <= wholeNum) {
       drawCircle(
         svg,
         currentX,
         currentY,
         fillRadius,
         lineThickness,
-        colorFill,
+        fillColor,
         "none"
       );
       currentWhole = currentWhole + 1;
@@ -624,10 +680,10 @@ function mixedNumCircles(
         currentX,
         currentY,
         fillRadius,
-        slicesLeft,
-        mixedNum.denominator,
+        slicesToFill,
+        denominator,
         lineThickness,
-        colorFill,
+        fillColor,
         borderColor,
         angleWherePiecesStart
       );
@@ -637,25 +693,17 @@ function mixedNumCircles(
         currentX,
         currentY,
         radius,
-        mixedNum.denominator,
+        denominator,
         lineThickness,
         borderColor
       );
 
-      slicesLeft = slicesLeft - mixedNum.denominator;
+      slicesToFill = slicesToFill - denominator;
     }
     currentX = currentX + 2 * radius + horizontalSpacing; // Move to next circle
   }
-  // Returns this object of info to be used later in the fractionDivisionCircles function.
-  let modelInfo = {};
-  modelInfo.horizontalSpacing = horizontalSpacing;
-  modelInfo.verticalSpacing = verticalSpacing;
-  modelInfo.radius = radius;
-  modelInfo.svg = svg;
-  modelInfo.width = width;
-  return modelInfo;
 }
-
+//103 lines
 function mixedNumCirclesHorizontal(
   svg,
   mixedNum,
@@ -760,7 +808,7 @@ function mixedNumCirclesHorizontal(
     svg.appendChild(blackBorder);
   }
 }
-
+//97 lines
 function mixedNumCirclesVertical(
   svg,
   mixedNum,

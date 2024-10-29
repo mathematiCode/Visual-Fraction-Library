@@ -133,6 +133,18 @@
 			<div id="settings-popover" popover=manual>
 				<h3> Customize Your Image</h3>
 				<form class="settings-form">
+					<div class="slider-container" id="num-colors-container">
+						<label id="num-colors-label" for="num-colors-slider">Minimum Number of
+							Colors (temporarily disabled)</label>
+						<input disabled="true" id="num-colors-slider" type="range" list="tickmarks" step="1"
+							min="2" max="5" value="3">
+						<datalist class="tickmarks">
+							<option value="2" label="2"></option>
+							<option value="3" label="3"></option>
+							<option value="4" label="4"></option>
+							<option value="5" label="5"></option>
+						</datalist>
+					</div>
 					<div class="choose-color">
 						<label>Colors</label>
 						<input id="color1" type="color" value="#52a4b0">
@@ -143,7 +155,7 @@
 						<label for="border-color">Border</label>
 						<input id="border-color" type="color" value="#000000">
 					</div>
-					<p id="color-note"> Note: Some colors are only used when needed to avoid two adjacent
+					<p id="color-note"> Some colors are only used when needed to avoid two adjacent
 						groups having the
 						same color. </p>
 

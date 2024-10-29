@@ -180,6 +180,9 @@ datalist {
   font-family: Inter, sans-serif;
 }
 
+input[type="color"] {
+  cursor: pointer;
+}
 input[type="color"][data-extra="true"] {
   display: none;
 }
