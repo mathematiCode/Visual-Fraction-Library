@@ -52,33 +52,6 @@ function revertSettings(
   document.getElementById("border-color").value = borderColor;
 }
 
-function index() {
-  let modal = document.getElementById("screen-size-modal");
-  let closeModal = document.getElementById("screen-size-warning-button");
-
-  const mediaQuery = window.matchMedia("(max-width: 600px)");
-
-  function handleScreenChange(e) {
-    if (e.matches) {
-      // Screen width is 600px or less
-      modal.showModal();
-    }
-  }
-
-  function handleScreenChange() {
-    if (mediaQuery.matches) {
-      modal.showModal();
-    }
-  }
-
-  handleScreenChange();
-
-  closeModal.addEventListener("click", () => {
-    modal.close();
-    console.log("Success!");
-  });
-}
-
 function buttonFunctions() {
   let openCloseNavButton = document.getElementById("expand-collapse-nav");
   let sideNav = document.querySelector(".side-nav");

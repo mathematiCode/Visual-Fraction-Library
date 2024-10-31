@@ -33,7 +33,7 @@
           content="math clip art generator, math commercial use clip art, mixed number clip art, visual fraction library terms of use, visual fraction library, commercial use fraction images, fraction visual models, modeling mixed number operations, math svg creator, math svg">
 
      <title>Learn More</title>
-     <link rel="icon" type="image/x-icon" href="../icons-logos/Favicon.svg">
+     <link rel="icon" type="image/x-icon" href="../assets/icons-logos/Favicon.svg">
      <link rel="stylesheet" href="../css/styles.css" />
      <link rel="stylesheet" href="../css/nav.css" />
      <link rel="stylesheet" href="../css/layout.css" />
@@ -44,7 +44,7 @@
 
      <nav class="side-nav" data-state="closed">
           <button id="expand-collapse-nav" aria-label="Open or Close Nav Bar"> </button>
-          <img class="corner-logo" src="../icons-logos/Favicon.svg" alt="Visual Fraction Library Logo" />
+          <img class="corner-logo" src="../assets/icons-logos/Favicon.svg" alt="Visual Fraction Library Logo" />
           <a class="nav-link" href="../index.html"> Home</a>
           <a class="nav-link" href="../pages/basic-frac.html">Simple Fractions</a>
           <a class="nav-link" href="../pages/frac-mult.html">Fraction Multiplication</a>
@@ -141,7 +141,7 @@
                </div>
           </container>
      </div>
-     <script src="../script.js">  </script>
+     <script src="../scripts/script.js">  </script>
      <script> buttonFunctions() </script>
      <script src="../utilities.js"></script>
 </body>
@@ -226,7 +226,7 @@
 
 
      .plus-minus {
-          background-image: url(images/icon-plus.svg);
+          background-image: url(images/assets/icon-plus.svg);
           width: 30px;
           height: 30px;
           grid-column-start: 2;
@@ -237,11 +237,11 @@
      }
 
      .plus-minus[data-state="expanded"] {
-          background-image: url(../icons-logos/icon-minus.svg);
+          background-image: url(../assets/icons-logos/icon-minus.svg);
      }
 
      .plus-minus[data-state="collapsed"] {
-          background-image: url(../icons-logos/icon-plus.svg);
+          background-image: url(../assets/icons-logos/icon-plus.svg);
      }
 
      .question {
@@ -279,7 +279,7 @@
      }
 
      .side-nav[data-state="closed"] #expand-collapse-nav {
-          background-image: url(../icons-logos/expand-nav.svg);
+          background-image: url(../assets/icons-logos/expand-nav.svg);
      }
 
      #expand-collapse-nav {
@@ -340,7 +340,6 @@
 
      question1.addEventListener("click", function () {
           showHideAnswer(answer1, toggleButton1);
-          console.log("Question Pressed!");
      });
 
      question2.addEventListener("click", function () {

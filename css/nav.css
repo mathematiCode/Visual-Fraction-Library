@@ -104,11 +104,11 @@ nav {
 }
 
 .side-nav[data-state="open"] #expand-collapse-nav {
-  background-image: url(../icons-logos/collapse-nav.svg);
+  background-image: url(../assets/icons-logos/collapse-nav.svg);
 }
 
 .side-nav[data-state="closed"] #expand-collapse-nav {
-  background-image: url(../icons-logos/expand-nav.svg);
+  background-image: url(../assets/icons-logos/expand-nav.svg);
 }
 
 .side-nav[data-state="closed"] .nav-link {
