@@ -2,8 +2,10 @@
 <img src="./assets/Visual Fraction Library Demo.png">
 
 This is a library of visuals that model mixed number and fraction operations. All images are generated as SVGs.
+Check it out here: visualfractionlibrary.com/
 
 My goal is to have a website fraction visuals and customization options for use by teachers and curriculum developers.
+
 
 Note: I have paused working on this project to learn React for a few months. I may redo it in React and add many more types of visuals but I'm not sure yet.
 
