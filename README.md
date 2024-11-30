@@ -3,7 +3,7 @@
 
 This is a library of visuals that model mixed number and fraction operations. All images are generated as SVGs. <br>
 
-Check it out here: <a href="www.visualfractionlibrary.com/"> Visual Fraction Library </a>
+Check it out here: <a href="www.visualfractionlibrary.com"> Visual Fraction Library </a>
 
 My goal is to have a website fraction visuals and customization options for use by teachers and curriculum developers.
 
