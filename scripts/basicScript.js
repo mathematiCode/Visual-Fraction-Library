@@ -94,23 +94,9 @@ saveSettingsButton.addEventListener("click", () => {
   //   borderColor = customizations.borderColor;
   basicSVG.innerHTML = "";
   if (modelToggle.checked) {
-    mathVisual.fractionBar(
-      basicSVG,
-      mixedNum,
-      attributes,
-      attributes.lineThickness,
-      attributes.fillColor,
-      attributes.borderColor
-    );
+    mathVisual.fractionBar(basicSVG, mixedNum, attributes);
   } else {
-    mathVisual.fractionCircle(
-      basicSVG,
-      mixedNum,
-      attributes,
-      attributes.lineThickness,
-      attributes.fillColor,
-      attributes.borderColor
-    );
+    mathVisual.fractionCircle(basicSVG, mixedNum, attributes);
   }
 });
 
