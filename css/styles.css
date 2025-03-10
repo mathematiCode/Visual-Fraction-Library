@@ -19,9 +19,15 @@
 
   --light-gray: rgb(195, 195, 195);
 
-  font-family: "Raleway", sans-serif;
+  font-family: 'Raleway', sans-serif;
   font-size: 16px;
   color: var(--teal-900);
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
@@ -79,7 +85,7 @@ alert {
   padding-right: 20px;
 }
 
-.download-button[data-copied="true"]::before {
+.download-button[data-copied='true']::before {
   content: url(../icons-logos/check-icon.svg);
   margin-left: 5px;
   margin-right: 10px;
@@ -88,8 +94,8 @@ alert {
   height: 30px;
 }
 
-.download-button[data-copied="true"] {
-  content: "Copied!";
+.download-button[data-copied='true'] {
+  content: 'Copied!';
   width: 12ch;
   padding-left: 20px;
   padding-right: 20px;
@@ -107,13 +113,13 @@ h2 {
 }
 
 @font-face {
-  font-family: "Lovelo-LineBold";
+  font-family: 'Lovelo-LineBold';
   src: url(../assets/Lovelo-LineBold.woff);
 }
 
 .logo-text,
 .main-title {
-  font-family: "Lovelo-LineBold", sans-serif;
+  font-family: 'Lovelo-LineBold', sans-serif;
   color: var(--teal-900);
   line-height: 1.5;
   font-size: 4.5rem;
@@ -134,15 +140,23 @@ li {
   all: unset;
   vertical-align: top;
   display: flex;
+  flex-wrap: wrap;
   align-items: top;
   gap: 10px;
+}
+
+.no-styles {
+  all: inherit;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
 }
 
 .card img {
   object-fit: contain;
   max-width: 100%;
   max-height: 100%;
-  height: 70px;
+  height: 66px;
   width: auto;
 }
 
@@ -183,12 +197,13 @@ li {
   padding-right: 7px;
   bottom: 15px;
   right: 15px;
-  width: 10ch;
+  width: 13ch;
   color: var(--faded-green-100);
   font-size: 1.5rem;
   background-color: var(--teal-800);
   border: none;
-  padding: 0.5rem;
+  padding-inline: 1.5rem;
+  padding-block: 0.5rem;
   border-radius: 10px;
   text-align: center;
   cursor: pointer;

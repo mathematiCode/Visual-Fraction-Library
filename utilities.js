@@ -1,9 +1,9 @@
 function downloadPng(svgEl) {
   if (svgEl instanceof Node) {
-    const canvas = document.createElement("canvas");
-    const ctx = canvas.getContext("2d");
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
     const svgXml = new XMLSerializer().serializeToString(svgEl);
-    const svgBlob = new Blob([svgXml], { type: "image/svg+xml" });
+    const svgBlob = new Blob([svgXml], { type: 'image/svg+xml' });
     const url = URL.createObjectURL(svgBlob);
     const img = new Image();
     img.onload = function () {
@@ -12,22 +12,22 @@ function downloadPng(svgEl) {
       ctx.drawImage(img, 0, 0);
 
       // Get the canvas data as a PNG-encoded string
-      const pngData = canvas.toDataURL("image/png");
+      const pngData = canvas.toDataURL('image/png');
 
       // Create a link to download the PNG file
-      const a = document.createElement("a");
+      const a = document.createElement('a');
       a.href = pngData;
-      a.download = "my-image.png";
+      a.download = 'my-image.png';
       a.click();
 
       URL.revokeObjectURL(url);
     };
     img.src = url;
     img.onerror = function () {
-      console.error("Failed to load image");
+      console.error('Failed to load image');
     };
   } else {
-    console.error("The object is not a node");
+    console.error('The object is not a node');
   }
 }
 
@@ -35,35 +35,35 @@ function downloadSvg(svgEl) {
   if (svgEl instanceof Node) {
     const serializer = new XMLSerializer();
     const xmlString = serializer.serializeToString(svgEl);
-    const svgBlob = new Blob([xmlString], { type: "image/svg+xml" });
+    const svgBlob = new Blob([xmlString], { type: 'image/svg+xml' });
     const url = URL.createObjectURL(svgBlob);
-    const link = document.createElement("a");
+    const link = document.createElement('a');
     link.href = url;
-    link.download = "image.svg";
+    link.download = 'image.svg';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
   } else {
-    console.error("The object is not a node.");
+    console.error('The object is not a node.');
   }
 }
 
 // Helper function to convert a data URL to a blob
 function dataURLtoBlob(dataURL) {
-  const binary = atob(dataURL.split(",")[1]);
+  const binary = atob(dataURL.split(',')[1]);
   const array = [];
   for (let i = 0; i < binary.length; i++) {
     array.push(binary.charCodeAt(i));
   }
-  return new Blob([new Uint8Array(array)], { type: "image/png" });
+  return new Blob([new Uint8Array(array)], { type: 'image/png' });
 }
 
 function copyPngToClipboard(svgEl) {
   if (svgEl instanceof Node) {
-    const canvas = document.createElement("canvas");
-    const ctx = canvas.getContext("2d");
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
     const svgXml = new XMLSerializer().serializeToString(svgEl);
-    const svgBlob = new Blob([svgXml], { type: "image/svg+xml" });
+    const svgBlob = new Blob([svgXml], { type: 'image/svg+xml' });
     const url = URL.createObjectURL(svgBlob);
     const img = new Image();
     img.onload = function () {
@@ -72,13 +72,13 @@ function copyPngToClipboard(svgEl) {
       ctx.drawImage(img, 0, 0);
 
       // Get the canvas data as a PNG-encoded string
-      const pngData = canvas.toDataURL("image/png");
+      const pngData = canvas.toDataURL('image/png');
 
       // Convert the PNG data to a blob
       const pngBlob = dataURLtoBlob(pngData);
 
       // Create a clipboard item
-      const item = new ClipboardItem({ "image/png": pngBlob });
+      const item = new ClipboardItem({ 'image/png': pngBlob });
 
       // Write the clipboard item to the clipboard
       navigator.clipboard.write([item]).then(() => {});
@@ -87,10 +87,10 @@ function copyPngToClipboard(svgEl) {
     };
     img.src = url;
     img.onerror = function () {
-      console.error("Failed to load image");
+      console.error('Failed to load image');
     };
   } else {
-    console.error("The object is not a node");
+    console.error('The object is not a node');
   }
 }
 
@@ -100,17 +100,17 @@ function drawCircle(
   y,
   radius,
   lineThickness,
-  fillColor = "none",
-  lineColor = "black"
+  fillColor = 'none',
+  lineColor = 'black'
 ) {
   const svgNS = svg.namespaceURI;
-  const circle = document.createElementNS(svgNS, "circle");
-  circle.setAttribute("cx", x);
-  circle.setAttribute("cy", y);
-  circle.setAttribute("r", radius);
-  circle.setAttribute("stroke", lineColor);
-  circle.setAttribute("fill", fillColor);
-  circle.setAttribute("stroke-width", lineThickness);
+  const circle = document.createElementNS(svgNS, 'circle');
+  circle.setAttribute('cx', x);
+  circle.setAttribute('cy', y);
+  circle.setAttribute('r', radius);
+  circle.setAttribute('stroke', lineColor);
+  circle.setAttribute('fill', fillColor);
+  circle.setAttribute('stroke-width', lineThickness);
   svg.appendChild(circle);
 }
 
@@ -173,7 +173,7 @@ function switchBetweenColors(current, colors) {
     const nextIndex = (currentIndex + 1) % colors.length;
     return colors[nextIndex];
   } else {
-    return "gray";
+    return 'gray';
   }
 }
 
@@ -213,7 +213,7 @@ function shadeFractionSlices(
   denominator,
   lineThickness,
   colorFill,
-  borderColor = "black",
+  borderColor = 'black',
   startAngle = angleWherePiecesStart
 ) {
   const svgNS = svg.namespaceURI;
@@ -222,14 +222,14 @@ function shadeFractionSlices(
   let currentAngle = startAngle + angle;
 
   for (let i = 0; i < numerator; i++) {
-    const curvedPath = document.createElementNS(svgNS, "path");
+    const curvedPath = document.createElementNS(svgNS, 'path');
     const startX = (x + radius * Math.cos(previousAngle)).toFixed(1);
     const startY = (y + radius * Math.sin(previousAngle)).toFixed(1);
     const endX = (x + radius * Math.cos(currentAngle)).toFixed(1);
     const endY = (y + radius * Math.sin(currentAngle)).toFixed(1);
-    curvedPath.setAttribute("fill", colorFill);
+    curvedPath.setAttribute('fill', colorFill);
     curvedPath.setAttribute(
-      "d",
+      'd',
       `
       M ${x},${y} 
       L ${startX},${startY} 
@@ -258,18 +258,18 @@ function makeFractionLines(
   if (denominator > 1) {
     for (let i = 0; i < denominator; i++) {
       const svgNS = svg.namespaceURI;
-      const line = document.createElementNS(svgNS, "line");
+      const line = document.createElementNS(svgNS, 'line');
       const startX = (x + radius * Math.cos(currentAngle)).toFixed(1);
       const startY = (y + radius * Math.sin(currentAngle)).toFixed(1);
       const endX = x;
       const endY = y;
 
-      line.setAttribute("x1", startX);
-      line.setAttribute("y1", startY);
-      line.setAttribute("x2", endX);
-      line.setAttribute("y2", endY);
-      line.setAttribute("stroke", lineColor);
-      line.setAttribute("stroke-width", lineThickness);
+      line.setAttribute('x1', startX);
+      line.setAttribute('y1', startY);
+      line.setAttribute('x2', endX);
+      line.setAttribute('y2', endY);
+      line.setAttribute('stroke', lineColor);
+      line.setAttribute('stroke-width', lineThickness);
       svg.appendChild(line);
 
       currentAngle += angle;
@@ -289,7 +289,7 @@ function drawVerticalFractionBar(
   lineThickness,
   colorFill,
   borderColor,
-  background = "none",
+  background = 'none',
   opacity = 1
 ) {
   width = parseInt(width);
@@ -305,47 +305,47 @@ function drawVerticalFractionBar(
 
   let shaded = interval * numerator;
 
-  const backgroundColor = document.createElementNS(svgNS, "rect");
-  backgroundColor.setAttribute("x", x);
-  backgroundColor.setAttribute("y", y);
-  backgroundColor.setAttribute("width", width);
-  backgroundColor.setAttribute("height", height);
-  backgroundColor.setAttribute("fill", background);
-  backgroundColor.setAttribute("stroke", "none");
-  backgroundColor.setAttribute("stroke-width", 0);
+  const backgroundColor = document.createElementNS(svgNS, 'rect');
+  backgroundColor.setAttribute('x', x);
+  backgroundColor.setAttribute('y', y);
+  backgroundColor.setAttribute('width', width);
+  backgroundColor.setAttribute('height', height);
+  backgroundColor.setAttribute('fill', background);
+  backgroundColor.setAttribute('stroke', 'none');
+  backgroundColor.setAttribute('stroke-width', 0);
   svg.appendChild(backgroundColor);
 
-  const shadedRect = document.createElementNS(svgNS, "rect");
-  shadedRect.setAttribute("x", x);
-  shadedRect.setAttribute("y", y);
-  shadedRect.setAttribute("width", shaded);
-  shadedRect.setAttribute("height", height);
-  shadedRect.setAttribute("fill", colorFill);
-  shadedRect.setAttribute("opacity", opacity);
-  shadedRect.setAttribute("stroke", borderColor);
-  shadedRect.setAttribute("stroke-width", 0);
+  const shadedRect = document.createElementNS(svgNS, 'rect');
+  shadedRect.setAttribute('x', x);
+  shadedRect.setAttribute('y', y);
+  shadedRect.setAttribute('width', shaded);
+  shadedRect.setAttribute('height', height);
+  shadedRect.setAttribute('fill', colorFill);
+  shadedRect.setAttribute('opacity', opacity);
+  shadedRect.setAttribute('stroke', borderColor);
+  shadedRect.setAttribute('stroke-width', 0);
   svg.appendChild(shadedRect);
 
   for (let i = 1; i < denominator; i++) {
-    const pieceSeparator = document.createElementNS(svgNS, "line");
-    pieceSeparator.setAttribute("stroke-width", lineThickness * 0.7);
-    pieceSeparator.setAttribute("stroke", borderColor);
-    pieceSeparator.setAttribute("x1", x + separator);
-    pieceSeparator.setAttribute("y1", y);
-    pieceSeparator.setAttribute("x2", x + separator);
-    pieceSeparator.setAttribute("y2", y + height);
+    const pieceSeparator = document.createElementNS(svgNS, 'line');
+    pieceSeparator.setAttribute('stroke-width', lineThickness * 0.7);
+    pieceSeparator.setAttribute('stroke', borderColor);
+    pieceSeparator.setAttribute('x1', x + separator);
+    pieceSeparator.setAttribute('y1', y);
+    pieceSeparator.setAttribute('x2', x + separator);
+    pieceSeparator.setAttribute('y2', y + height);
     svg.appendChild(pieceSeparator);
     separator = separator + interval;
   }
 
-  const border = document.createElementNS(svgNS, "rect");
-  border.setAttribute("x", x);
-  border.setAttribute("y", y);
-  border.setAttribute("width", width);
-  border.setAttribute("height", height);
-  border.setAttribute("fill", "none");
-  border.setAttribute("stroke", borderColor);
-  border.setAttribute("stroke-width", lineThickness);
+  const border = document.createElementNS(svgNS, 'rect');
+  border.setAttribute('x', x);
+  border.setAttribute('y', y);
+  border.setAttribute('width', width);
+  border.setAttribute('height', height);
+  border.setAttribute('fill', 'none');
+  border.setAttribute('stroke', borderColor);
+  border.setAttribute('stroke-width', lineThickness);
   svg.appendChild(border);
 }
 // 54 lines
@@ -371,37 +371,37 @@ function drawHorizontalFractionBar(
 
   let shaded = interval * numerator;
 
-  const shadedRect = document.createElementNS(svgNS, "rect");
-  shadedRect.setAttribute("x", x);
-  shadedRect.setAttribute("y", y);
-  shadedRect.setAttribute("width", width);
-  shadedRect.setAttribute("height", shaded);
-  shadedRect.setAttribute("fill", colorFill);
-  shadedRect.setAttribute("opacity", opacity);
-  shadedRect.setAttribute("stroke", borderColor);
-  shadedRect.setAttribute("stroke-width", 0);
+  const shadedRect = document.createElementNS(svgNS, 'rect');
+  shadedRect.setAttribute('x', x);
+  shadedRect.setAttribute('y', y);
+  shadedRect.setAttribute('width', width);
+  shadedRect.setAttribute('height', shaded);
+  shadedRect.setAttribute('fill', colorFill);
+  shadedRect.setAttribute('opacity', opacity);
+  shadedRect.setAttribute('stroke', borderColor);
+  shadedRect.setAttribute('stroke-width', 0);
   svg.appendChild(shadedRect);
 
   for (let i = 1; i < denominator; i++) {
-    const pieceSeparator = document.createElementNS(svgNS, "line");
-    pieceSeparator.setAttribute("x1", x);
-    pieceSeparator.setAttribute("y1", y + separator);
-    pieceSeparator.setAttribute("x2", x + width);
-    pieceSeparator.setAttribute("y2", y + separator);
-    pieceSeparator.setAttribute("stroke", borderColor);
-    pieceSeparator.setAttribute("stroke-width", lineThickness * 0.7);
+    const pieceSeparator = document.createElementNS(svgNS, 'line');
+    pieceSeparator.setAttribute('x1', x);
+    pieceSeparator.setAttribute('y1', y + separator);
+    pieceSeparator.setAttribute('x2', x + width);
+    pieceSeparator.setAttribute('y2', y + separator);
+    pieceSeparator.setAttribute('stroke', borderColor);
+    pieceSeparator.setAttribute('stroke-width', lineThickness * 0.7);
     svg.appendChild(pieceSeparator);
     separator = separator + interval;
   }
 
-  const border = document.createElementNS(svgNS, "rect");
-  border.setAttribute("x", x);
-  border.setAttribute("y", y);
-  border.setAttribute("width", width);
-  border.setAttribute("height", height);
-  border.setAttribute("fill", "none");
-  border.setAttribute("stroke", borderColor);
-  border.setAttribute("stroke-width", lineThickness);
+  const border = document.createElementNS(svgNS, 'rect');
+  border.setAttribute('x', x);
+  border.setAttribute('y', y);
+  border.setAttribute('width', width);
+  border.setAttribute('height', height);
+  border.setAttribute('fill', 'none');
+  border.setAttribute('stroke', borderColor);
+  border.setAttribute('stroke-width', lineThickness);
   svg.appendChild(border);
 }
 //120 lines
@@ -414,8 +414,8 @@ function mixedNumBars(
   colorFill,
   borderColor
 ) {
-  const width = svg.getAttribute("width");
-  const height = svg.getAttribute("height");
+  const width = svg.getAttribute('width');
+  const height = svg.getAttribute('height');
   const svgNS = svg.namespaceURI;
   let numWholes = 0;
   let maxWholes = 0; // This is how many bars will be drawn on the svg
@@ -475,16 +475,16 @@ function mixedNumBars(
       currentY = currentY + barHeight + verticalSpacing; // Moves the remaining bars to the next line if we run out of space
       currentX = horizontalSpacing / 2;
     }
-    const wholeBar = document.createElementNS(svgNS, "rect");
+    const wholeBar = document.createElementNS(svgNS, 'rect');
 
     if (currentWhole <= wholeNum) {
-      wholeBar.setAttribute("x", currentX);
-      wholeBar.setAttribute("y", currentY);
-      wholeBar.setAttribute("width", barWidth);
-      wholeBar.setAttribute("height", barHeight);
-      wholeBar.setAttribute("stroke", borderColor);
-      wholeBar.setAttribute("stroke-width", lineThickness);
-      wholeBar.setAttribute("fill", colorFill);
+      wholeBar.setAttribute('x', currentX);
+      wholeBar.setAttribute('y', currentY);
+      wholeBar.setAttribute('width', barWidth);
+      wholeBar.setAttribute('height', barHeight);
+      wholeBar.setAttribute('stroke', borderColor);
+      wholeBar.setAttribute('stroke-width', lineThickness);
+      wholeBar.setAttribute('fill', colorFill);
       svg.appendChild(wholeBar);
       currentWhole = currentWhole + 1;
     } else {
@@ -506,7 +506,7 @@ function mixedNumBars(
           lineThickness,
           colorFill,
           borderColor,
-          "transparent"
+          'transparent'
         );
       } else {
         drawHorizontalFractionBar(
@@ -531,7 +531,7 @@ function mixedNumCircles(
   svg,
   mixedNum,
   lineThickness = 5,
-  fillColor = "rgb(120, 190, 250)",
+  fillColor = 'rgb(120, 190, 250)',
   borderColor,
   width,
   height,
@@ -549,7 +549,7 @@ function mixedNumCircles(
   } else {
     numWholes = Math.floor(mixedNum.numerator / mixedNum.denominator);
   }
-  console.log(mixedNum);
+
   if (mixedNum.denominator === 0) {
     maxWholes = mixedNum.wholeNum;
   } else if (mixedNum.denominator === 1 && mixedNum.numerator > 0) {
@@ -589,7 +589,7 @@ function mixedNumCircles(
   }
 
   width = circlesPerLine * (radius * 2 + horizontalSpacing);
-  svg.setAttribute("width", width);
+  svg.setAttribute('width', width);
 
   let currentX = radius + horizontalSpacing / 2;
   let currentY = radius + verticalSpacing + startY;
@@ -659,7 +659,7 @@ function drawMixedNumCircles(
       currentY,
       radius,
       lineThickness,
-      "none",
+      'none',
       borderColor
     );
 
@@ -671,7 +671,7 @@ function drawMixedNumCircles(
         fillRadius,
         lineThickness,
         fillColor,
-        "none"
+        'none'
       );
       currentWhole = currentWhole + 1;
     } else {
@@ -708,7 +708,7 @@ function mixedNumCirclesHorizontal(
   svg,
   mixedNum,
   lineThickness,
-  colorFill = "rgb(120, 190, 250)",
+  colorFill = 'rgb(120, 190, 250)',
   borderColor,
   width,
   height,
@@ -763,7 +763,7 @@ function mixedNumCirclesHorizontal(
         fillRadius,
         lineThickness,
         colorFill,
-        "none"
+        'none'
       );
       currentWhole = currentWhole + 1;
     } else {
@@ -794,17 +794,17 @@ function mixedNumCirclesHorizontal(
     currentX = currentX + 2 * radius + horizontalSpacing; // Move to next circle
   }
   width = currentX - radius - horizontalSpacing;
-  svg.setAttribute("width", width + 15);
+  svg.setAttribute('width', width + 15);
   if (border === true) {
     const svgNS = svg.namespaceURI;
-    const blackBorder = document.createElementNS(svgNS, "rect");
-    blackBorder.setAttribute("x", startX);
-    blackBorder.setAttribute("y", startY);
-    blackBorder.setAttribute("width", width);
-    blackBorder.setAttribute("height", height);
-    blackBorder.setAttribute("fill", "none");
-    blackBorder.setAttribute("stroke", borderColor);
-    blackBorder.setAttribute("stroke-width", lineThickness);
+    const blackBorder = document.createElementNS(svgNS, 'rect');
+    blackBorder.setAttribute('x', startX);
+    blackBorder.setAttribute('y', startY);
+    blackBorder.setAttribute('width', width);
+    blackBorder.setAttribute('height', height);
+    blackBorder.setAttribute('fill', 'none');
+    blackBorder.setAttribute('stroke', borderColor);
+    blackBorder.setAttribute('stroke-width', lineThickness);
     svg.appendChild(blackBorder);
   }
 }
@@ -813,7 +813,7 @@ function mixedNumCirclesVertical(
   svg,
   mixedNum,
   lineThickness,
-  colorFill = "rgb(120, 190, 250)",
+  colorFill = 'rgb(120, 190, 250)',
   borderColor,
   width,
   height,
@@ -843,14 +843,14 @@ function mixedNumCirclesVertical(
 
   if (border === true) {
     const svgNS = svg.namespaceURI;
-    const blackBorder = document.createElementNS(svgNS, "rect");
-    blackBorder.setAttribute("x", startX);
-    blackBorder.setAttribute("y", startY);
-    blackBorder.setAttribute("width", width);
-    blackBorder.setAttribute("height", height);
-    blackBorder.setAttribute("fill", "none");
-    blackBorder.setAttribute("stroke", borderColor);
-    blackBorder.setAttribute("stroke-width", lineThickness);
+    const blackBorder = document.createElementNS(svgNS, 'rect');
+    blackBorder.setAttribute('x', startX);
+    blackBorder.setAttribute('y', startY);
+    blackBorder.setAttribute('width', width);
+    blackBorder.setAttribute('height', height);
+    blackBorder.setAttribute('fill', 'none');
+    blackBorder.setAttribute('stroke', borderColor);
+    blackBorder.setAttribute('stroke-width', lineThickness);
     svg.appendChild(blackBorder);
   }
 
@@ -863,7 +863,7 @@ function mixedNumCirclesVertical(
       currentY,
       radius,
       lineThickness,
-      "none",
+      'none',
       borderColor
     );
 

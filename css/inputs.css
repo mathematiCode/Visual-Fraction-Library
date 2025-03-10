@@ -1,4 +1,4 @@
-input:not(input[type="range"]) {
+input:not(input[type='range']) {
   text-align: center;
   border-radius: 10px;
   background-color: transparent;
@@ -6,7 +6,7 @@ input:not(input[type="range"]) {
   box-shadow: 0px 2px 5px #629ead;
 }
 
-input[type="checkbox"] {
+input[type='checkbox'] {
   background: none;
 }
 
@@ -74,9 +74,11 @@ input:placeholder-shown {
 }
 
 .fracBar {
-  height: 2px;
+  height: 4px; /* Increased the height to make the line thicker */
   width: 70px;
+  font-weight: 900;
   background-color: #333;
+  margin-block: 6px;
 }
 
 .symbol {
@@ -89,7 +91,6 @@ input:placeholder-shown {
   position: relative;
   display: inline-block;
   margin: 5px;
-  margin-top: 18px;
   width: 60px;
   height: 34px;
 }
@@ -116,7 +117,7 @@ input:placeholder-shown {
 
 .slider:before {
   position: absolute;
-  content: "";
+  content: '';
   height: 26px;
   width: 26px;
   left: 4px;
@@ -153,8 +154,10 @@ input:checked + .slider:before {
 .model-selection {
   display: grid;
   grid-row: 2/3;
+  align-items: center;
   width: 380px;
   grid-template-columns: 1fr 70px 1fr;
+  margin-top: 10px;
   position: relative;
 }
 
@@ -221,7 +224,7 @@ input:checked + .slider:before {
   height: 1.3rem;
 }
 
-input[type="checkbox"]:checked {
+input[type='checkbox']:checked {
   accent-color: var(--teal-800);
 }
 
