@@ -1,10 +1,10 @@
 // HTML Elements from the Multiplication page
 const generateMultiplicationButton = document.getElementById(
-  "generate-multiplication"
+  'generate-multiplication'
 );
 let attributes = {};
-attributes.lineColor = "#000000";
-attributes.colorArray = ["#52a4b0", "#9ce56c"];
+attributes.lineColor = '#000000';
+attributes.colorArray = ['#52a4b0', '#9ce56c'];
 attributes.lineThickness = 5;
 attributes.borderIsShowing = false; // for groups only
 attributes.toScale = false; //for area model only
@@ -13,22 +13,68 @@ height = 250;
 attributes.opacity1 = 0.5;
 attributes.opacity2 = 0.5;
 
-let openCloseNavButton = document.querySelector(".corner-logo");
-let sideNav = document.querySelector(".side-nav");
-let toScaleLabel = document.getElementById("to-scale-label");
-let showBorderLabel = document.getElementById("show-border-label");
-const factorLabels = document.querySelectorAll(".factor-label");
-const factor2Fraction = document.getElementById("factor2-fraction");
-const multiplicationSVG = document.getElementById("multiplication-svg");
-
+let openCloseNavButton = document.querySelector('.corner-logo');
+let sideNav = document.querySelector('.side-nav');
+let toScaleLabel = document.getElementById('to-scale-label');
+let showBorderLabel = document.getElementById('show-border-label');
+const factorLabels = document.querySelectorAll('.factor-label');
+const factor2Fraction = document.getElementById('factor2-fraction');
+const multiplicationSVG = document.getElementById('multiplication-svg');
 let multiplicationModel = document.getElementById(
-  "multiplication-model-toggle"
+  'multiplication-model-toggle'
 );
 
-openCloseNavButton.addEventListener("click", () => {
-  if (sideNav.dataset.state === "open") {
-    sideNav.dataset.state = "closed";
-  } else sideNav.dataset.state = "open";
+function getUrlParams() {
+  const params = {};
+  const queryString = window.location.search.substring(1);
+  const regex = /([^&=]+)=([^&]*)/g;
+  let m;
+
+  while ((m = regex.exec(queryString))) {
+    params[decodeURIComponent(m[1])] = decodeURIComponent(m[2]);
+  }
+
+  return params;
+}
+
+function preFillForm() {
+  const params = getUrlParams();
+
+  for (const key in params) {
+    const input = document.getElementById(key);
+    if (input) {
+      input.value = params[key];
+    }
+  }
+
+  if (params['multiplication-model-toggle'] === 'true') {
+    document.getElementById('multiplication-model-toggle').checked = true;
+  } else {
+    document.getElementById('multiplication-model-toggle').checked = false;
+  }
+
+  if (params.submit === 'true') {
+    handleSubmit(event);
+  }
+}
+
+window.onload = preFillForm;
+
+function handleSubmit(event) {
+  event.preventDefault();
+  const multiplicationSVG = document.getElementById('multiplication-svg');
+  multiplicationSVG.innerHTML = '';
+  multiplicationSVG.setAttribute(
+    'width',
+    Math.min(width, window.innerWidth * 0.8)
+  );
+  generateMultiplicationModel();
+}
+
+openCloseNavButton.addEventListener('click', () => {
+  if (sideNav.dataset.state === 'open') {
+    sideNav.dataset.state = 'closed';
+  } else sideNav.dataset.state = 'open';
 });
 
 function generateMultiplicationModel() {
@@ -36,35 +82,35 @@ function generateMultiplicationModel() {
   const factor2 = {};
   if (multiplicationModel.checked) {
     factor1.wholeNum = parseInt(
-      document.getElementById("multiplication-whole-number1").value
+      document.getElementById('multiplication-whole-number1').value
     );
     factor1.numerator = parseInt(
-      document.getElementById("multiplication-numerator1").value
+      document.getElementById('multiplication-numerator1').value
     );
     factor1.denominator = parseInt(
-      document.getElementById("multiplication-denominator1").value
+      document.getElementById('multiplication-denominator1').value
     );
     factor2.wholeNum = parseInt(
-      document.getElementById("multiplication-whole-number2").value
+      document.getElementById('multiplication-whole-number2').value
     );
     factor2.numerator = parseInt(
-      document.getElementById("multiplication-numerator2").value
+      document.getElementById('multiplication-numerator2').value
     );
     factor2.denominator = parseInt(
-      document.getElementById("multiplication-denominator2").value
+      document.getElementById('multiplication-denominator2').value
     );
 
-    toScaleLabel.style.setProperty("display", "flex");
-    showBorderLabel.style.setProperty("display", "none");
-    factor2Fraction.style.setProperty("display", "flex");
-    factorLabels.forEach((label) => {
-      label.style.display = "none";
+    toScaleLabel.style.setProperty('display', 'flex');
+    showBorderLabel.style.setProperty('display', 'none');
+    factor2Fraction.style.setProperty('display', 'flex');
+    factorLabels.forEach(label => {
+      label.style.display = 'none';
     });
-    attributes.toScale = document.getElementById("to-scale-checkbox").checked;
+    attributes.toScale = document.getElementById('to-scale-checkbox').checked;
 
-    multiplicationSVG.innerHTML = "";
+    multiplicationSVG.innerHTML = '';
     multiplicationSVG.setAttribute(
-      "width",
+      'width',
       Math.min(width, window.innerWidth * 0.8)
     );
 
@@ -75,27 +121,27 @@ function generateMultiplicationModel() {
       attributes
     );
   } else {
-    toScaleLabel.style.setProperty("display", "none");
-    showBorderLabel.style.setProperty("display", "flex");
-    factor2Fraction.style.setProperty("display", "none");
-    factorLabels.forEach((label) => {
-      label.style.display = "grid";
+    toScaleLabel.style.setProperty('display', 'none');
+    showBorderLabel.style.setProperty('display', 'flex');
+    factor2Fraction.style.setProperty('display', 'none');
+    factorLabels.forEach(label => {
+      label.style.display = 'grid';
     });
     factor1.wholeNum = parseInt(
-      document.getElementById("multiplication-whole-number1").value
+      document.getElementById('multiplication-whole-number1').value
     );
     factor1.numerator = parseInt(
-      document.getElementById("multiplication-numerator1").value
+      document.getElementById('multiplication-numerator1').value
     );
     factor1.denominator = parseInt(
-      document.getElementById("multiplication-denominator1").value
+      document.getElementById('multiplication-denominator1').value
     );
     factor2.wholeNum = parseInt(
-      document.getElementById("multiplication-whole-number2").value
+      document.getElementById('multiplication-whole-number2').value
     );
 
     attributes.borderIsShowing =
-      document.getElementById("to-scale-checkbox").checked;
+      document.getElementById('to-scale-checkbox').checked;
 
     mathVisual.fractionMultiplicationGroupModel(
       multiplicationSVG,
@@ -106,8 +152,8 @@ function generateMultiplicationModel() {
   }
 }
 
-let saveSettingsButton = document.getElementById("save-button");
-saveSettingsButton.addEventListener("click", () => {
+let saveSettingsButton = document.getElementById('save-button');
+saveSettingsButton.addEventListener('click', () => {
   let customizations = saveSettings(multiplicationSVG, 2);
   attributes.colorArray = customizations.colors;
   attributes.lineThickness = customizations.lineThickness;
@@ -116,59 +162,59 @@ saveSettingsButton.addEventListener("click", () => {
   attributes.lineColor = customizations.borderColor;
   attributes.opacity1 = customizations.opacity;
   attributes.opacity2 = customizations.opacity;
-  multiplicationSVG.innerHTML = "";
+  multiplicationSVG.innerHTML = '';
   generateMultiplicationModel();
 });
 
-generateMultiplicationButton.addEventListener("click", function () {
-  const multiplicationSVG = document.getElementById("multiplication-svg");
-  multiplicationSVG.innerHTML = "";
+// generateMultiplicationButton.addEventListener('click', function () {
+//   const multiplicationSVG = document.getElementById('multiplication-svg');
+//   multiplicationSVG.innerHTML = '';
+//   multiplicationSVG.setAttribute(
+//     'width',
+//     Math.min(width, window.innerWidth * 0.8)
+//   );
+//   generateMultiplicationModel();
+// });
+
+const downloadMultiplicationSVG = document.getElementById('mult-svg-button');
+const downloadMultiplicationPNG = document.getElementById('mult-png-button');
+const copyPngButton = document.getElementById('mult-copy-button');
+const toScaleCheck = document.getElementById('to-scale-checkbox');
+
+multiplicationModel.addEventListener('change', () => {
+  const multiplicationSVG = document.getElementById('multiplication-svg');
+  multiplicationSVG.innerHTML = '';
   multiplicationSVG.setAttribute(
-    "width",
+    'width',
     Math.min(width, window.innerWidth * 0.8)
   );
   generateMultiplicationModel();
 });
 
-const downloadMultiplicationSVG = document.getElementById("mult-svg-button");
-const downloadMultiplicationPNG = document.getElementById("mult-png-button");
-const copyPngButton = document.getElementById("mult-copy-button");
-const toScaleCheck = document.getElementById("to-scale-checkbox");
-
-multiplicationModel.addEventListener("change", () => {
-  const multiplicationSVG = document.getElementById("multiplication-svg");
-  multiplicationSVG.innerHTML = "";
+toScaleCheck.addEventListener('change', function () {
+  const multiplicationSVG = document.getElementById('multiplication-svg');
+  multiplicationSVG.innerHTML = '';
   multiplicationSVG.setAttribute(
-    "width",
-    Math.min(width, window.innerWidth * 0.8)
-  );
-  generateMultiplicationModel();
-});
-
-toScaleCheck.addEventListener("change", function () {
-  const multiplicationSVG = document.getElementById("multiplication-svg");
-  multiplicationSVG.innerHTML = "";
-  multiplicationSVG.setAttribute(
-    "width",
+    'width',
     Math.min(width, window.innerWidth * 0.8)
   );
   multiplicationSVG.setAttribute(
-    "height",
+    'height',
     Math.min(height, window.innerWidth * 0.6)
   );
   generateMultiplicationModel();
 });
-downloadMultiplicationSVG.addEventListener("click", function () {
-  const multiplicationSVG = document.getElementById("multiplication-svg");
+downloadMultiplicationSVG.addEventListener('click', function () {
+  const multiplicationSVG = document.getElementById('multiplication-svg');
   downloadSvg(multiplicationSVG);
 });
 
-downloadMultiplicationPNG.addEventListener("click", function () {
-  const multiplicationSVG = document.getElementById("multiplication-svg");
+downloadMultiplicationPNG.addEventListener('click', function () {
+  const multiplicationSVG = document.getElementById('multiplication-svg');
   downloadPng(multiplicationSVG);
 });
-copyPngButton.addEventListener("click", function () {
-  const multiplicationSVG = document.getElementById("multiplication-svg");
+copyPngButton.addEventListener('click', function () {
+  const multiplicationSVG = document.getElementById('multiplication-svg');
   copyPngToClipboard(multiplicationSVG);
   showCopiedVerification(copyPngButton);
 });

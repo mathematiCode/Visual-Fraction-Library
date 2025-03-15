@@ -1,6 +1,6 @@
 // HTML Elements from the basic fraction page
 const generateBasicButton = document.getElementById('generate-basic');
-const userInputs = document.getElementById('user-inputs');
+// const userInputs = document.getElementById('user-inputs');
 const modelToggle = document.getElementById('basic-model-toggle');
 const basicSVG = document.getElementById('basic-svg');
 let mixedNum = {};
@@ -10,6 +10,42 @@ attributes.lineThickness = 5;
 attributes.width = 800;
 attributes.height = 250;
 attributes.borderColor = 'black';
+
+function getUrlParams() {
+  const params = {};
+  const queryString = window.location.search.substring(1);
+  const regex = /([^&=]+)=([^&]*)/g;
+  let m;
+
+  while ((m = regex.exec(queryString))) {
+    params[decodeURIComponent(m[1])] = decodeURIComponent(m[2]);
+  }
+
+  return params;
+}
+
+function preFillForm() {
+  const params = getUrlParams();
+
+  for (const key in params) {
+    const input = document.getElementById(key);
+    if (input) {
+      input.value = params[key];
+    }
+  }
+
+  if (params['basic-model-toggle'] === 'true') {
+    document.getElementById('basic-model-toggle').checked = true;
+  } else {
+    document.getElementById('basic-model-toggle').checked = false;
+  }
+
+  if (params.submit === 'true') {
+    handleSubmit(event);
+  }
+}
+
+window.onload = preFillForm;
 
 function handleSubmit(event) {
   event.preventDefault();

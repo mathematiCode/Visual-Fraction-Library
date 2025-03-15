@@ -90,39 +90,3 @@ function settingsModal() {
     }
   });
 }
-
-function getUrlParams() {
-  const params = {};
-  const queryString = window.location.search.substring(1);
-  const regex = /([^&=]+)=([^&]*)/g;
-  let m;
-
-  while ((m = regex.exec(queryString))) {
-    params[decodeURIComponent(m[1])] = decodeURIComponent(m[2]);
-  }
-
-  return params;
-}
-
-function preFillForm() {
-  const params = getUrlParams();
-
-  for (const key in params) {
-    const input = document.getElementById(key);
-    if (input) {
-      input.value = params[key];
-    }
-  }
-
-  if (params['basic-model-toggle'] === 'true') {
-    document.getElementById('basic-model-toggle').checked = true; // Check the checkbox
-  } else {
-    document.getElementById('basic-model-toggle').checked = false; // Uncheck the checkbox if needed
-  }
-
-  if (params.submit === 'true') {
-    handleSubmit(event);
-  }
-}
-
-window.onload = preFillForm;

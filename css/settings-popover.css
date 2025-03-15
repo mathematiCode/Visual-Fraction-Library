@@ -65,8 +65,8 @@ hr {
 .width-and-height {
   display: grid;
   grid-template-areas:
-    "width height"
-    "p p";
+    'width height'
+    'p p';
   grid-template-rows: 1fr 1fr;
   grid-template-columns: 1fr 1fr;
   gap: 0px;
@@ -77,9 +77,10 @@ hr {
 #height-container {
   display: grid;
   grid-template-areas:
-    "label nothing"
-    "input unit";
-  width: 100px;
+    'label nothing'
+    'input unit';
+  width: fit-content;
+  justify-content: center;
 }
 
 #width-container {
@@ -113,7 +114,8 @@ hr {
 #height-input {
   grid-area: input;
   font-size: 1.3rem;
-  max-width: 50px;
+  max-width: 70px;
+  margin-top: 5px;
 }
 
 #width-label,
@@ -133,12 +135,12 @@ hr {
   justify-content: flex-start;
 }
 
-input[type="range"] {
+input[type='range'] {
   width: 100%;
   accent-color: var(--teal-800);
 }
 
-input[type="range"]::-webkit-slider-tick {
+input[type='range']::-webkit-slider-tick {
   -webkit-appearance: none;
   background-color: #666;
   width: 2px;
@@ -180,9 +182,9 @@ datalist {
   font-family: Inter, sans-serif;
 }
 
-input[type="color"] {
+input[type='color'] {
   cursor: pointer;
 }
-input[type="color"][data-extra="true"] {
+input[type='color'][data-extra='true'] {
   display: none;
 }

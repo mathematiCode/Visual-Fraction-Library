@@ -32,7 +32,7 @@
   <meta name="keywords"
     content="fraction visual generator, mixed number visuals, fraction clip art, fraction image, commercial use fraction clip art, fraction models, visualize mixed numbers, fraction picture, modeling fraction multiplication, modeling fraction division, math svg generator">
   <style>
-    /* This empty style tag is here to solve cross-origin problem(?) */
+    /* This empty style tag is here to solve the cross-origin problem(?) */
   </style>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -105,28 +105,40 @@
           </ul>
           with Circles or Bars
         </div>
-        <a id="mult-cards" class="card" href="./pages/frac-mult.html">
+        <div id="mult-cards" class="card">
           <ul>
-            <li> Group Models </li>
-            <img alt="model showing 2 groups of 5 and 3 fourths" src="./assets/example-svgs/groups.svg"></img>
-            <li> Area Models </li>
-            <img alt="area model showing 2 fifths by 4 sixths" src="./assets/example-svgs/area-model.svg"></img>
+            <li> <a class="no-styles"
+                href="./pages/frac-mult.html?multiplication-whole-number1=5&multiplication-numerator1=3&multiplication-denominator1=4&multiplication-whole-number2=2&submit=true">
+                Group Models
+                <img alt="model showing 2 groups of 5 and 3 fourths" src="./assets/example-svgs/groups.svg"></img>
+              </a></li>
+            <li> <a class="no-styles"
+                href="./pages/frac-mult.html?multiplication-numerator1=4&multiplication-denominator1=6&multiplication-numerator2=2&multiplication-denominator2=5&multiplication-model-toggle=true&submit=true">Area
+                Models
+                <img alt="area model showing 2 fifths by 4 sixths" src="./assets/example-svgs/area-model.svg"></img>
+              </a></li>
           </ul>
-        </a>
-        <a class="card" href="./pages/frac-div.html">
+        </div>
+        <div class="card">
           Fraction Division
           <br>
           <ul>
-            <li> when the dividend is larger </li>
-            <img
-              alt="circle model showing 2 and 3 fifths divided into groups of 2/5 where each group is shown in a different color"
-              src="./assets/example-svgs/dividend-larger.svg"></img>
-            <li>or when the divisor is larger </li>
-            <img
-              alt="bar model with 2 thirds shaded where each third is divided into 4 pieces and one is shaded a different color to show 2 thirds divided by 4."
-              src="./assets/example-svgs/divisor-larger.svg"></img>
+            <li> <a class="no-styles"
+                href="./pages/frac-div.html?division-whole-number1=2&division-numerator1=3&division-denominator1=5&division-numerator2=2&division-denominator2=5&submit=true">
+                when the dividend is larger
+                <img
+                  alt="circle model showing 2 and 3 fifths divided into groups of 2/5 where each group is shown in a different color"
+                  src="./assets/example-svgs/dividend-larger.svg"></img> </a>
+            </li>
+            <li> <a class="no-styles"
+                href="./pages/frac-div.html?dividend-numerator=2&dividend-denominator=3&divisor-whole-number=4&division-model-toggle=true&divisor-is-larger-checkbox=true&submit=true">
+                or when the divisor is larger
+                <img
+                  alt="bar model with 2 thirds shaded where each third is divided into 4 pieces and one is shaded a different color to show 2 thirds divided by 4."
+                  src="./assets/example-svgs/divisor-larger.svg"></img> </a>
+            </li>
           </ul>
-        </a>
+        </div>
       </div>
       <h2> ...to make Slideshows, Worksheets, and More for Commercial or Classroom Use</h2>
     </div>
@@ -164,10 +176,8 @@
 
   </div>
 
-  <iframe id="subscribe-form" src="https://embeds.beehiiv.com/00190cb8-c18d-4c5d-bea5-8fc5bf7c958c"
-    data-test-id="beehiiv-embed" width="95%" height="250" frameborder="0" scrolling="no"></iframe>
-
-
+  <!-- <iframe id="subscribe-form" src="https://embeds.beehiiv.com/00190cb8-c18d-4c5d-bea5-8fc5bf7c958c"
+    data-test-id="beehiiv-embed" width="95%" height="250" frameborder="0" scrolling="no"></iframe> -->
 
 
   <script src="./scripts/script.js"></script>

@@ -26,8 +26,9 @@
 }
 
 * {
-  margin: 0;
+  /* margin: 0;
   padding: 0;
+  If I add these to my css default, I will just have to add back in margin and padding to the faq container and the settings modals. */
   box-sizing: border-box;
 }
 

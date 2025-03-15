@@ -120,3 +120,7 @@ svg {
 #generate-multiplication {
   margin-top: 0px;
 }
+
+.text-container h2:not(:first-of-type) {
+  margin-top: 22px;
+}
