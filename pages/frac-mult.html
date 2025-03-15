@@ -73,7 +73,7 @@
       <h2 class="right-toggle" class="mode-toggle">Area Model</h2>
     </div>
 
-    <div class="user-inputs">
+    <form class="user-inputs" onsubmit="handleSubmit(event)">
       <div class="problem-input">
         <div class="factor-with-label">
           <p class="factor-label"> Size of Each Group</p>
@@ -112,11 +112,11 @@
           <p id="to-scale-label">Draw areas to scale</p>
           <p id="show-border-label">Show Borders</p>
         </div>
-        <button class="blue-button" id="generate-multiplication">
+        <button class="blue-button" id="generate-multiplication" type="submit">
           Generate Multiplication Model
         </button>
       </div>
-    </div>
+    </form>
 
     <button class="open-settings" popovertarget="settings-popover">
       Customize

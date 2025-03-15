@@ -75,7 +75,7 @@
 				<h2 class="right-toggle" class="mode-toggle">Bar Model</h2>
 			</div>
 
-			<div class="user-inputs">
+			<form class="user-inputs" onsubmit="handleSubmit(event)">
 				<div id="division-input-options">
 					<div id="divisor-smaller">
 						<input aria-label="Dividend Whole Number" type="number" class="whole-number"
@@ -117,15 +117,15 @@
 
 				<div class="button-and-checkbox">
 					<div id="type-of-division">
-						<input aria-label="Check if divisor is larger than dividend"
+						<input aria-label="Check if your divisor will be larger than your dividend"
 							id="divisor-is-larger-checkbox" type="checkbox" />
 						<p>The Divisor is Larger</p>
 					</div>
-					<button class="blue-button" id="generate-division">
+					<button class="blue-button" id="generate-division" type="submit">
 						Generate Division Model
 					</button>
 				</div>
-			</div>
+			</form>
 
 			<button class="open-settings" popovertarget="settings-popover">
 				Customize
