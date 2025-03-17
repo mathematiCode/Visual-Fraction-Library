@@ -73,56 +73,7 @@ function handleSubmit(event) {
   } else {
     mathVisual.fractionCircle(basicSVG, mixedNum, attributes);
   }
-
-  basicSVG.innerHTML = '';
-  basicSVG.setAttribute(
-    'width',
-    Math.min(attributes.width, window.innerWidth * 0.8)
-  );
-  if (modelToggle.checked) {
-    mathVisual.fractionBar(
-      basicSVG,
-      mixedNum,
-      attributes,
-      attributes.lineThickness,
-      attributes.fillColor,
-      attributes.borderColor
-    );
-  } else {
-    mathVisual.fractionCircle(
-      basicSVG,
-      mixedNum,
-      attributes,
-      attributes.lineThickness,
-      attributes.fillColor,
-      attributes.borderColor
-    );
-  }
 }
-
-// generateBasicButton.addEventListener('click', function (event) {
-//   event.preventDefault();
-//   mixedNum.wholeNum = parseInt(
-//     document.getElementById('basic-whole-number').value
-//   );
-//   mixedNum.numerator = parseInt(
-//     document.getElementById('basic-numerator').value
-//   );
-//   mixedNum.denominator = parseInt(
-//     document.getElementById('basic-denominator').value
-//   );
-
-//   basicSVG.innerHTML = '';
-//   basicSVG.setAttribute(
-//     'width',
-//     Math.min(attributes.width, window.innerWidth * 0.8)
-//   );
-//   if (modelToggle.checked) {
-//     mathVisual.fractionBar(basicSVG, mixedNum, attributes);
-//   } else {
-//     mathVisual.fractionCircle(basicSVG, mixedNum, attributes);
-//   }
-// });
 
 const downloadPngButton = document.getElementById('basic-png-button');
 const downloadBasicSVGButton = document.getElementById('basic-svg-button');
