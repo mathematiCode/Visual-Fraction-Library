@@ -87,7 +87,7 @@ alert {
 }
 
 .download-button[data-copied='true']::before {
-  content: url(../icons-logos/check-icon.svg);
+  content: url(../assets/icons-logos/check-icon.svg);
   margin-left: 5px;
   margin-right: 10px;
   align-self: center;
